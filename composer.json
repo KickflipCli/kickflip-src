@@ -1,0 +1,57 @@
+{
+    "name": "mallardduck/kickflip-monorepo",
+    "description": "Repository for kickflip related packages and docs.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Pock",
+            "email": "self@danpock.me"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "codeat3/blade-game-icons": "^1.0.0",
+        "illuminate/events": "^8.0",
+        "illuminate/log": "^8.0",
+        "illuminate/view": "^8.0",
+        "laravel-zero/framework": "^8.8",
+        "league/commonmark": "^2.0",
+        "mallardduck/blade-boxicons": "^2.1.2",
+        "mallardduck/laravel-traits": "dev-main",
+        "samdark/sitemap": "^2.2.1",
+        "spatie/enum": "^3.9",
+        "spatie/laravel-markdown": "^2.0",
+        "symfony/yaml": "^5.3",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "replace": {
+        "mallardduck/kickflip-cli": "self.version"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4.3",
+        "pestphp/pest": "^1.3",
+        "phpunit/phpunit": "^9.5",
+        "symplify/monorepo-builder": "^9.4"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Kickflip\\": "packages/kickflip-cli/app/",
+            "Kickflip\\Docs\\": "projects/kickflip-docs/app/"
+        },
+        "files": [
+            "packages/kickflip-cli/app/helpers.php",
+            "projects/kickflip-docs/app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "packages/kickflip-cli/tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
