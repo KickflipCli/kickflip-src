@@ -1,0 +1,13 @@
+/.idea/
+/build_*/
+/cache/*
+/node_modules/
+/source/assets/build/
+/vendor/
+composer.lock
+npm-debug.log
+yarn-error.log
+storage/*.key
+.env
+.phpunit.result.cache
+

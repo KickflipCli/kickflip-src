@@ -1,0 +1,121 @@
+#logo:hover {
+    animation: kickflip 1s linear infinite;
+
+    @keyframes kickflip {
+      0% {
+        transform: rotate(0deg) scaleY(1);
+      }
+      49% {
+        transform: rotate(179deg) scaleY(0.25);
+      }
+      50% {
+        transform: rotate(180deg)  scaleY(-0.25);
+      }
+      100% {
+        transform: rotate(360deg) scaleY(-1);
+      }
+    }
+}
+
+body {
+    font-size: 16px;
+}
+
+.prose a {
+    @apply font-semibold text-blue-600;
+}
+
+.prose blockquote {
+    @apply my-8 pl-6;
+    @apply border-blue-400 border-l-4;
+    @apply font-normal italic text-gray-800 text-lg;
+}
+
+.prose code.hljs {
+    @apply bg-transparent p-0;
+
+    .hljs-comment,
+    .hljs-keyword,
+    .hljs-meta {
+        @apply font-normal not-italic;
+    }
+}
+
+h1, h2,
+h3, h4,
+h5, h6 {
+    @apply leading-tight;
+    @apply mb-4;
+    @apply mt-8;
+    @apply text-gray-900;
+
+    &:first-child {
+        @apply mt-0;
+    }
+}
+
+h1 {
+    @apply font-extrabold;
+    @apply text-5xl;
+}
+
+h2 {
+    @apply font-bold;
+    @apply text-4xl;
+}
+
+h3 {
+    @apply font-bold;
+    @apply text-3xl;
+}
+
+h4 {
+    @apply font-normal;
+    @apply text-2xl;
+}
+
+h5 {
+    @apply font-normal;
+    @apply text-xl;
+}
+
+h6 {
+    @apply font-light;
+    @apply text-lg;
+}
+
+hr {
+    @apply border-b;
+    @apply border-blue-200;
+    @apply my-12;
+    @apply rounded-full;
+}
+
+li {
+    ul,
+    ol {
+        @apply my-0;
+    }
+}
+
+ol,
+ul {
+    @apply my-4;
+}
+
+ol {
+    @apply list-decimal;
+}
+
+p {
+    @apply my-3;
+
+    @screen md {
+        @apply my-6;
+    }
+}
+
+::selection {
+    @apply bg-blue-500;
+    @apply text-white;
+}

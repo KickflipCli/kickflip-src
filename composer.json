@@ -1,6 +1,11 @@
 {
-    "name": "mallardduck/kickflip-monorepo",
-    "description": "Repository for kickflip related packages and docs.",
+    "name": "mallardduck/kickflip-cli",
+    "replace": {
+        "mallardduck/kickflip-cli": "self.version"
+    },
+    "description": "A Laravel Zero based static site generator CLI tool.",
+    "keywords": ["ssg", "static site generator", "laravel zero", "cli"],
+    "type": "project",
     "license": "MIT",
     "authors": [
         {
@@ -10,48 +15,58 @@
     ],
     "require": {
         "php": "^8.0",
-        "codeat3/blade-game-icons": "^1.0.0",
+        "codeat3/blade-file-icons": "^1.5",
         "illuminate/events": "^8.0",
         "illuminate/log": "^8.0",
         "illuminate/view": "^8.0",
-        "laravel-zero/framework": "^8.8",
+        "laravel-zero/framework": "^8.9",
         "league/commonmark": "^2.0",
         "mallardduck/blade-boxicons": "^2.1.2",
+        "mallardduck/blade-emoji-icons": "^1.0",
         "mallardduck/laravel-traits": "dev-main",
         "samdark/sitemap": "^2.2.1",
+        "spatie/emoji": "^2.3",
         "spatie/enum": "^3.9",
         "spatie/laravel-markdown": "^2.0",
+        "symfony/dependency-injection": "^5.0",
+        "symfony/http-kernel": "^5.0",
         "symfony/yaml": "^5.3",
         "vlucas/phpdotenv": "^5.3"
-    },
-    "replace": {
-        "mallardduck/kickflip-cli": "self.version"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
         "pestphp/pest": "^1.3",
+        "pestphp/pest-plugin-faker": "^1.0",
+        "pestphp/pest-plugin-mock": "^1.0",
         "phpunit/phpunit": "^9.5",
         "symplify/monorepo-builder": "^9.4"
     },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
     "autoload": {
-        "psr-4": {
-            "Kickflip\\": "packages/kickflip-cli/app/",
-            "Kickflip\\Docs\\": "projects/kickflip-docs/app/"
-        },
         "files": [
-            "packages/kickflip-cli/app/helpers.php",
-            "projects/kickflip-docs/app/helpers.php"
-        ]
+            "packages/kickflip-docs/app/helpers.php"
+        ],
+        "psr-4": {
+            "KickflipDocs\\": "packages/kickflip-docs/app/",
+            "Kickflip\\": "app/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "packages/kickflip-cli/tests/"
+            "KickflipTests\\": "tests/"
         }
     },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "test": "XDEBUG_MODE=off vendor/bin/pest",
+        "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage"
+    },
+    "bin": [
+        "bin/kickflip"
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

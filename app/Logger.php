@@ -1,0 +1,58 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Kickflip;
+
+use Kickflip\Enums\ConsoleVerbosity;
+use Illuminate\Config\Repository;
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
+use Illuminate\Support\Facades\Log;
+
+class Logger
+{
+    public static function timing(string $methodName, ?string $static = null): void
+    {
+        /**
+         * @var Repository $timingsRepo
+         */
+        $timingsRepo = app('kickflipTimings');
+        $index = Str::of($methodName)->afterLast('\\')->replace('::', '.');
+        if (null !== $static) {
+            $index = $index->replaceFirst(
+                '.',
+                Str::of($static)->afterLast('\\')->prepend('.extended.')->append('.')
+            );
+        }
+        $timingsRepo->set((string) $index, microtime(true));
+    }
+
+    public static function debug(string $message): void
+    {
+        if (ConsoleVerbosity::debug() <= app('kickflipCli')->get('output.verbosity')) {
+            Log::debug($message);
+        }
+    }
+
+    public static function veryVerbose(string $message): void
+    {
+        if (ConsoleVerbosity::veryVerbose() <= app('kickflipCli')->get('output.verbosity')) {
+            Log::debug($message);
+        }
+    }
+
+    public static function verbose(string $message): void
+    {
+        if (ConsoleVerbosity::verbose() <= app('kickflipCli')->get('output.verbosity')) {
+            Log::info($message);
+        }
+    }
+
+    public static function info(string $message): void
+    {
+        if (ConsoleVerbosity::normal() <= app('kickflipCli')->get('output.verbosity')) {
+            Log::info($message);
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "mix",
+    "watch": "mix watch",
+    "staging": "NODE_ENV=staging mix",
+    "prod": "mix --production"
+  },
+  "devDependencies": {
+    "@knagis/postcss-advanced-variables": "^4.0.0",
+    "@tailwindcss/typography": "^0.4.1",
+    "autoprefixer": "^10.3.4",
+    "docsearch.js": "^2.6.3",
+    "highlight.js": "^11.2.0",
+    "laravel-mix": "^6.0.29",
+    "postcss": "^8.3.6",
+    "postcss-custom-selectors": "^6.0.0",
+    "postcss-import": "^14.0.2",
+    "postcss-mixins": "^8.1.0",
+    "postcss-nested": "^5.0.6",
+    "postcss-omit-import-tilde": "^1.0.1",
+    "tailwindcss": "^2.2.14",
+    "shiki": "^0.9.10"
+  }
+}

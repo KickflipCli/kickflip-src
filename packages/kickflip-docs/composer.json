@@ -1,0 +1,29 @@
+{
+    "name": "mallardduck/kickflip-docs",
+    "description": "The docs site/repo for the kickflip cli projects.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "mallardduck/kickflip-cli": "*",
+        "samdark/sitemap": "^2.2.1",
+        "mallardduck/blade-boxicons": "^2.1.2",
+        "codeat3/blade-file-icons": "^1.5",
+        "mallardduck/blade-emoji-icons": "^1.0",
+        "spatie/emoji": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "KickflipDocs\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "scripts": {
+        "build": "./vendor/bin/kickflip build",
+        "staging": "./vendor/bin/kickflip build staging",
+        "prod": "./vendor/bin/kickflip build production"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
