@@ -29,6 +29,10 @@
         "symfony/yaml": "^5.3",
         "vlucas/phpdotenv": "^5.3"
     },
+    "replace": {
+        "mallardduck/kickflip-cli": "self.version",
+        "mallardduck/kickflip-docs": "self.version"
+    },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
         "pestphp/pest": "^1.3",
@@ -37,28 +41,24 @@
         "phpunit/phpunit": "^9.5",
         "symplify/monorepo-builder": "^9.4"
     },
-    "autoload": {
-        "files": [
-            "packages/kickflip-docs/app/helpers.php"
-        ],
-        "psr-4": {
-            "KickflipDocs\\": "packages/kickflip-docs/app/",
-            "Kickflip\\": "packages/kickflip-cli/app/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "KickflipTests\\": "packages/kickflip-cli/tests/"
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "replace": {
-        "mallardduck/kickflip-cli": "self.version",
-        "mallardduck/kickflip-docs": "self.version"
+    "autoload": {
+        "psr-4": {
+            "KickflipDocs\\": "packages/kickflip-docs/app/",
+            "Kickflip\\": "packages/kickflip-cli/app/"
+        },
+        "files": [
+            "packages/kickflip-docs/app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KickflipTests\\": "packages/kickflip-cli/tests/"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
