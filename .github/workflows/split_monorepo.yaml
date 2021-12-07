@@ -11,9 +11,6 @@ env:
     # 1. for Github split
     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-    # 2. for Gitlab split
-    GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-
 jobs:
     provide_packages_json:
         # see json juggling: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-6
