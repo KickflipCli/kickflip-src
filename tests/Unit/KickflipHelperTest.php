@@ -21,7 +21,8 @@ test('custom KickflipHelper::basePath', function ($input, $expected) {
 
 test('helper to kebab', function ($input, $expected) {
     expect(KickflipHelper::toKebab($input))
-        ->toBeString()->toBe($expected);
+        ->toBeString()
+        ->toBe($expected);
 })->with([
     ['Hello World', 'hello-world'],
     ['Hello Kickflip!', 'hello-kickflip!'],
@@ -31,11 +32,11 @@ test('helper to kebab', function ($input, $expected) {
 test('KickflipHelper::path', function ($input, $expected) {
     expect(KickflipHelper::path($input))
         ->toBeString()
-        ->toBe($expected);
+        ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/Users/danpock/GitProjects/kickflip-monorepo/packages/kickflip-docs'],
-    ['blue', '/Users/danpock/GitProjects/kickflip-monorepo/packages/kickflip-docs/blue'],
-    ['hello/world', '/Users/danpock/GitProjects/kickflip-monorepo/packages/kickflip-docs/hello/world'],
+    ['', '/packages/kickflip-docs'],
+    ['blue', '/packages/kickflip-docs/blue'],
+    ['hello/world', '/packages/kickflip-docs/hello/world'],
 ]);
 
 test('KickflipHelper::getFrontmatterParser', function () {
