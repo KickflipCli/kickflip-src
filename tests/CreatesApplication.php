@@ -14,7 +14,7 @@ trait CreatesApplication
      */
     public function createApplication()
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $app = require __DIR__.'/../packages/kickflip-cli/bootstrap/app.php';
         KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/mock-app'));
         $app->make(Kernel::class)->bootstrap();
         return $app;

@@ -1,1 +1,8 @@
-/vendor/
+/build
+/node_modules
+/vendor
+/.idea
+/.vscode
+/.vagrant
+.php-cs-fixer.cache
+.phpunit.result.cache

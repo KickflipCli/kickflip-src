@@ -27,11 +27,17 @@ uses(KickflipTests\TestCase::class)->in('Feature');
 */
 
 expect()->extend('isEnumValue', function (string $enum, $actual) {
+    /**
+     * @var \Pest\Expectation $this
+     */
     return $this->toBeInstanceOf($enum)
             ->and($this->value->value)->toBeScalar()->toBe($actual);
 });
 
 expect()->extend('isHtmlStringOf', function (string $actual) {
+    /**
+     * @var \Pest\Expectation $this
+     */
     $castString = (string) $this->value;
     return $this->toBeInstanceOf(HtmlString::class)
         ->and($castString)->toBeString()->toBe($actual);
