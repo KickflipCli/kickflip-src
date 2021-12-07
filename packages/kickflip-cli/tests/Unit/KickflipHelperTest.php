@@ -12,11 +12,12 @@ test('default KickflipHelper::basePath', function () {
 test('custom KickflipHelper::basePath', function ($input, $expected) {
     expect(KickflipHelper::basePath($input))
         ->toBeString()
-        ->toBe(dirname(__DIR__, 2) . $expected);
+        ->toBe(dirname(__DIR__, 4) . $expected);
 })->with([
-    [null, '/tests/mock-app'],
-    ['./', ''],
-    ['./packages/kickflip-docs', '/packages/kickflip-docs'],
+    [null, '/packages/kickflip-cli/tests/mock-app'],
+    ['./', '/packages/kickflip-cli'],
+    ['../../', ''],
+    ['../kickflip-docs', '/packages/kickflip-docs'],
 ]);
 
 test('helper to kebab', function ($input, $expected) {
