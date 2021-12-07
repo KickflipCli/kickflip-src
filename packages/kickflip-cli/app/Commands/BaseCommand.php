@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Kickflip\Commands;
 
+use Illuminate\Support\Facades\View;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Str;
+use Kickflip\Models\SiteData;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -60,5 +62,10 @@ abstract class BaseCommand extends Command
             $envNavConfig = include $envNavConfigPath;
             $kickflipCliState->set('siteNav', array_merge($kickflipCliState->get('siteNav'), $envNavConfig));
         }
+
+        View::share(
+            'site',
+            SiteData::fromConfig(KickflipHelper::config('site', []), KickflipHelper::config('siteNav', []))
+        );
     }
 }

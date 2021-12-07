@@ -63,7 +63,7 @@ class SourcesLocator
          * @var SourcePageMetaData $bladeSource
          */
         foreach ($this->bladeSources as $bladeSource) {
-            $frontMatterData = KickflipHelper::getFrontmatterParser()
+            $frontMatterData = KickflipHelper::getFrontMatterParser()
                     ->parse(file_get_contents($bladeSource->getFullPath()))
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
@@ -77,7 +77,7 @@ class SourcesLocator
          * @var SourcePageMetaData $markdownSource
          */
         foreach ($this->markdownSources as $markdownSource) {
-            $frontMatterData = KickflipHelper::getFrontmatterParser()
+            $frontMatterData = KickflipHelper::getFrontMatterParser()
                     ->parse(file_get_contents($markdownSource->getFullPath()))
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
@@ -91,7 +91,7 @@ class SourcesLocator
          * @var SourcePageMetaData $markdownBladeSource
          */
         foreach ($this->markdownBladeSources as $markdownBladeSource) {
-            $frontMatterData = KickflipHelper::getFrontmatterParser()
+            $frontMatterData = KickflipHelper::getFrontMatterParser()
                     ->parse(file_get_contents($markdownBladeSource->getFullPath()))
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(

@@ -40,7 +40,7 @@ test('KickflipHelper::path', function ($input, $expected) {
 ]);
 
 test('KickflipHelper::getFrontmatterParser', function () {
-    expect(KickflipHelper::getFrontmatterParser())
+    expect(KickflipHelper::getFrontMatterParser())
         ->toBeInstanceOf(FrontMatterParserInterface::class);
 });
 
@@ -86,4 +86,5 @@ test('KickflipHelper::relativeUrl', function (string $input, string $expected) {
     ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
     ['/half-life/blackmesa/', '/half-life/blackmesa'],
     ['/hello-world/', '/hello-world'],
+    ['/half-life/blackmesa.html', '/half-life/blackmesa.html'],
 ]);

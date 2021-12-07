@@ -30,9 +30,9 @@ final class KickflipHelper
      *
      * @param  ?string  $key Identifier of the entry to look for.
      * @param  ?mixed  $default
-     * @return mixed|Repository
+     * @return Repository|string|array|int|float|null
      */
-    public static function config(?string $key = null, $default = null)
+    public static function config(?string $key = null, mixed $default = null)
     {
         /**
          * @var Repository $kickflipState
@@ -79,12 +79,12 @@ final class KickflipHelper
     /**
      * Get the path to a versioned Mix file.
      *
-     * @param  string  $path
+     * @param string $path
      * @return HtmlString|string
      *
      * @throws \Exception
      */
-    public static function mix($path)
+    public static function mix(string $path): HtmlString|string
     {
         return mix($path, 'assets/build');
     }
@@ -140,15 +140,15 @@ final class KickflipHelper
     /**
      * Get the path relative to the kickflip working dir.
      *
-     * @param  string  $path
+     * @param string|null $path
      * @return string
      */
-    public static function buildPath($path = ''): string
+    public static function buildPath(?string $path = ''): string
     {
-        return KickflipHelper::config('paths.build.destination').($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
+        return KickflipHelper::config('paths.build.destination') . ($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
     }
 
-    public static function getFrontmatterParser(): FrontMatterParserInterface
+    public static function getFrontMatterParser(): FrontMatterParserInterface
     {
         return (new FrontMatterExtension())->getFrontMatterParser();
     }
@@ -165,7 +165,7 @@ final class KickflipHelper
 
     public static function trimPath(string $path): string
     {
-        return KickflipHelper::rightTrimPath(KickflipHelper::leftTrimPath($path));
+        return rtrim(ltrim($path, ' \\/'), ' .\\/');
     }
 
     public static function relativeUrl(string $url): string

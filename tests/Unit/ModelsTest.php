@@ -45,7 +45,7 @@ test('it can create a PageData instance', function () {
     $fileInfo = iterator_to_array($finder, false)[0];
     $pageMetaData = SourcePageMetaData::fromSplFileInfo($fileInfo);
 
-    $frontMatterData = KickflipHelper::getFrontmatterParser()
+    $frontMatterData = KickflipHelper::getFrontMatterParser()
             ->parse(file_get_contents($pageMetaData->getFullPath()))
             ->getFrontMatter() ?? [];
     $pageData = PageData::make(
