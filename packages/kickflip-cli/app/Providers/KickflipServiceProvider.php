@@ -89,11 +89,6 @@ class KickflipServiceProvider extends ServiceProvider
         ]);
         $this->enableBladeMarkdownEngine();
 
-        View::share(
-            'site',
-            SiteData::fromConfig(KickflipHelper::config('site', []), KickflipHelper::config('siteNav', []))
-        );
-
         $bootstrapFile = $this->app->get('kickflipCli')->get('paths.bootstrapFile');
         if (file_exists($bootstrapFile)) {
             include $bootstrapFile;
