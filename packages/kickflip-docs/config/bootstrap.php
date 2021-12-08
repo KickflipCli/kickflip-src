@@ -8,7 +8,7 @@
 
 use KickflipDocs\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
-use Kickflip\Events\SiteBuilt;
+use Kickflip\Events\SiteBuildComplete;
 
 /**
  * Here is a good place to adjust global defaults, like:
@@ -25,4 +25,4 @@ use Kickflip\Events\SiteBuilt;
  *     // Your code here
  * });
  */
-Event::listen(SiteBuilt::class, GenerateSitemap::class);
+Event::listen(SiteBuildComplete::class, GenerateSitemap::class);

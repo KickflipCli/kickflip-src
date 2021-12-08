@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Kickflip\Events\BaseEvent;
-use Kickflip\Events\BuildStarted;
-use Kickflip\Events\SiteBuilt;
+use Kickflip\Events\SiteBuildStarted;
+use Kickflip\Events\SiteBuildComplete;
 use Kickflip\Models\PageData;
 use Illuminate\Console\OutputStyle;
 
@@ -25,10 +25,10 @@ class SiteBuilder
 
     public function build($consoleOutput)
     {
-        return $this->fireEvent(BuildStarted::class)
+        return $this->fireEvent(SiteBuildStarted::class)
                     ->copyAssets($consoleOutput)
                     ->buildSite($consoleOutput)
-                    ->fireEvent(SiteBuilt::class);
+                    ->fireEvent(SiteBuildComplete::class);
     }
 
     private function fireEvent(string $eventClass): self
@@ -65,6 +65,7 @@ class SiteBuilder
 
     private function cleanup(): void
     {
+        // TODO: clean up build cache
     }
 
     private function copyAssets(OutputStyle $consoleOutput): self

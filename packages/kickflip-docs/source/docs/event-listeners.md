@@ -16,12 +16,13 @@ To add a listener to one of these events simply edit `config/bootstrap.php`.
 Within that file you can use Laravel's `Event` facade to register listeners like:
 
 > config/bootstrap.php
+
 ```php
 use KickflipDocs\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
-use Kickflip\Events\SiteBuilt;
+use Kickflip\Events\SiteBuildComplete;
 
-Event::listen(SiteBuilt::class, GenerateSitemap::class);
+Event::listen(SiteBuildComplete::class, GenerateSitemap::class);
 ```
 
 Just like any Laravel based Event listener you can even register a simple closure.
