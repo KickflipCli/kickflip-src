@@ -19,18 +19,18 @@ test('KickflipHelper::config', function ($input, $expected) {
     expect(KickflipHelper::config('paths.' . $input))
         ->toBeString()->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['baseDir', '/tests/mock-app'],
-    ['cache', '/tests/mock-app/cache'],
-    ['env_config', '/tests/mock-app/config/config.{env}.php'],
+    ['baseDir', '/packages/kickflip-docs'],
+    ['cache', '/packages/kickflip-docs/cache'],
+    ['env_config', '/packages/kickflip-docs/config/config.{env}.php'],
 ]);
 
 test('KickflipHelper::assetUrl', function ($input, $expected) {
     expect(KickflipHelper::assetUrl($input))
         ->isHtmlStringOf($expected);
 })->with([
-    ['', 'http://example.com/assets/'],
-    ['blue', 'http://example.com/assets/blue'],
-    ['hello/world', 'http://example.com/assets/hello/world'],
+    ['', 'http://kickflip-docs.test/assets/'],
+    ['blue', 'http://kickflip-docs.test/assets/blue'],
+    ['hello/world', 'http://kickflip-docs.test/assets/hello/world'],
 ]);
 
 test('KickflipHelper::resourcePath', function ($input, $expected) {
@@ -38,9 +38,9 @@ test('KickflipHelper::resourcePath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/tests/mock-app/resources'],
-    ['blue', '/tests/mock-app/resources/blue'],
-    ['hello/world', '/tests/mock-app/resources/hello/world'],
+    ['', '/packages/kickflip-docs/resources'],
+    ['blue', '/packages/kickflip-docs/resources/blue'],
+    ['hello/world', '/packages/kickflip-docs/resources/hello/world'],
 ]);
 
 test('KickflipHelper::sourcePath', function ($input, $expected) {
@@ -48,9 +48,9 @@ test('KickflipHelper::sourcePath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/tests/mock-app/source'],
-    ['blue', '/tests/mock-app/source/blue'],
-    ['hello/world', '/tests/mock-app/source/hello/world'],
+    ['', '/packages/kickflip-docs/source'],
+    ['blue', '/packages/kickflip-docs/source/blue'],
+    ['hello/world', '/packages/kickflip-docs/source/hello/world'],
 ]);
 
 test('KickflipHelper::buildPath', function ($input, $expected) {
@@ -58,9 +58,9 @@ test('KickflipHelper::buildPath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/tests/mock-app/build_{env}'],
-    ['blue', '/tests/mock-app/build_{env}/blue'],
-    ['hello/world', '/tests/mock-app/build_{env}/hello/world'],
+    ['', '/packages/kickflip-docs/build_{env}'],
+    ['blue', '/packages/kickflip-docs/build_{env}/blue'],
+    ['hello/world', '/packages/kickflip-docs/build_{env}/hello/world'],
 ]);
 
 test('KickflipHelper::buildPath macro replaceEnv', function ($buildPathInput, $envInput, $expected) {
@@ -68,7 +68,7 @@ test('KickflipHelper::buildPath macro replaceEnv', function ($buildPathInput, $e
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', 'prod', '/tests/mock-app/build_prod'],
-    ['blue', 'site', '/tests/mock-app/build_site/blue'],
-    ['hello/world', 'dev', '/tests/mock-app/build_dev/hello/world'],
+    ['', 'prod', '/packages/kickflip-docs/build_prod'],
+    ['blue', 'site', '/packages/kickflip-docs/build_site/blue'],
+    ['hello/world', 'dev', '/packages/kickflip-docs/build_dev/hello/world'],
 ]);

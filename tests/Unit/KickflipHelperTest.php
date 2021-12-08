@@ -6,7 +6,7 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 test('default KickflipHelper::basePath', function () {
     expect(KickflipHelper::basePath())
         ->toBeString()
-        ->toBe(dirname(__DIR__) . '/mock-app');
+        ->toBe(dirname(__DIR__, 2) . '/packages/kickflip-docs');
 });
 
 test('custom KickflipHelper::basePath', function ($input, $expected) {
@@ -14,7 +14,7 @@ test('custom KickflipHelper::basePath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    [null, '/tests/mock-app'],
+    [null, '/packages/kickflip-docs'],
     ['./', ''],
     ['./packages/kickflip-docs', '/packages/kickflip-docs'],
 ]);
@@ -84,7 +84,7 @@ test('KickflipHelper::relativeUrl', function (string $input, string $expected) {
 })->with([
     ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
     ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
-    ['/half-life/blackmesa/', '/half-life/blackmesa'],
-    ['/hello-world/', '/hello-world'],
-    ['/half-life/blackmesa.html', '/half-life/blackmesa.html'],
+    ['/half-life/blackmesa/', 'half-life/blackmesa'],
+    ['/hello-world/', 'hello-world'],
+    ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
 ]);
