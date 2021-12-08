@@ -55,6 +55,7 @@ class BuildCommand extends BaseCommand
      */
     public function handle()
     {
+        Logger::setOutput($this->output);
         /**
          * @var string $env
          */

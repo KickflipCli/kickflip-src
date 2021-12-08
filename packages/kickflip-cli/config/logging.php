@@ -71,6 +71,7 @@ return [
             'handler' => NullHandler::class,
         ],
 
+        // TODO figure out how I want this to work...
         'emergency' => [
             'path' => \Phar::running()
                 ? dirname(\Phar::running(false)) . 'kickflip-cli.log'
