@@ -65,7 +65,7 @@ abstract class BaseCommand extends Command
 
         View::share(
             'site',
-            SiteData::fromConfig(KickflipHelper::config('site', []), KickflipHelper::config('siteNav', []))
+            SiteData::fromConfig($kickflipCliState->get('site'), $kickflipCliState->get('siteNav'))
         );
     }
 }
