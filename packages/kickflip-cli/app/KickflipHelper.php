@@ -177,7 +177,7 @@ final class KickflipHelper
 
     public static function relativeUrl(string $url): string
     {
-        return Str::startsWith($url, 'http') ? $url : '/' . KickflipHelper::trimPath($url);
+        return Str::startsWith($url, 'http') ? $url : KickflipHelper::trimPath($url);
     }
 
     public static function toKebab(string $string): string
