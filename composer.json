@@ -49,13 +49,13 @@
         "sort-packages": true
     },
     "autoload": {
-        "files": [
-            "packages/kickflip-docs/app/helpers.php"
-        ],
         "psr-4": {
             "KickflipDocs\\": "packages/kickflip-docs/app/",
             "Kickflip\\": "packages/kickflip-cli/app/"
-        }
+        },
+        "files": [
+            "packages/kickflip-docs/app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -63,10 +63,10 @@
             "KickflipMonoTests\\": "tests/"
         }
     },
-    "scripts": {
-        "test": "XDEBUG_MODE=off vendor/bin/pest",
-        "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage"
-    },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
+        "test": "XDEBUG_MODE=off vendor/bin/pest"
+    }
 }
