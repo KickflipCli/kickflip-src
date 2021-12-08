@@ -86,7 +86,14 @@ final class KickflipHelper
      */
     public static function mix(string $path): HtmlString|string
     {
-        return mix($path, 'assets/build');
+        static $baseUrl;
+        if (is_null($baseUrl)) {
+            $baseUrl = KickflipHelper::config('site.baseUrl', '');
+        }
+
+        return new HtmlString(
+            $baseUrl . mix($path, 'assets/build')
+        );
     }
 
     /**
