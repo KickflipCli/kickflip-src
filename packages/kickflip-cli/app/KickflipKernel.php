@@ -34,10 +34,12 @@ class KickflipKernel extends BaseKernel
              */
             $flags = $this->explode(' ')->map(static fn ($value) => ltrim($value, '-'));
             $flags->shift();
-            $flags = $flags->intersect(VerbosityFlag::toValues())
+            $flags = $flags->intersect(['q', ...VerbosityFlag::toValues()])
+                ->map(static fn ($value) => ('q' === $value) ? 'quiet' : $value)
                 ->map(static fn ($value) => VerbosityFlag::from($value));
 
-            if ($flags->contains(VerbosityFlag::quiet())) {
+            // Ensure we catch both long/short flags for quite mode.
+            if ($flags->contains(VerbosityFlag::quiet()) || $flags->contains('q')) {
                 return ConsoleVerbosity::fromFlag(VerbosityFlag::quiet());
             }
 
