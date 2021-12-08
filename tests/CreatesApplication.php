@@ -1,6 +1,6 @@
 <?php
 
-namespace KickflipTests;
+namespace KickflipMonoTests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Kickflip\KickflipHelper;

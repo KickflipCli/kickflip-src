@@ -1,6 +1,6 @@
 <?php
 
-namespace KickflipTests;
+namespace KickflipMonoTests;
 
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 

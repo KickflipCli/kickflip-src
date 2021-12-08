@@ -13,7 +13,7 @@
 
 use Illuminate\Support\HtmlString;
 
-uses(KickflipTests\TestCase::class)->in('Feature');
+uses(KickflipMonoTests\TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
