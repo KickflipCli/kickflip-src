@@ -32,8 +32,8 @@
         "vlucas/phpdotenv": "^5.3"
     },
     "replace": {
-        "mallardduck/kickflip-cli": "0.1.0",
-        "mallardduck/kickflip-docs": "0.1.0"
+        "mallardduck/kickflip-cli": "0.1.1",
+        "mallardduck/kickflip-docs": "0.1.1"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
@@ -66,10 +66,10 @@
             "KickflipTests\\": "packages/kickflip-cli/tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
         "test": "XDEBUG_MODE=off vendor/bin/pest"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
