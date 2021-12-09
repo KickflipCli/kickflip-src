@@ -1,13 +1,7 @@
 <?php
 
-use Illuminate\Support\Str;
-use Kickflip\KickflipHelper;
 use Kickflip\Models\NavItem;
-use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
-use Kickflip\Models\SourcePageMetaData;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 it('throws exception when creating empty SiteData', function () {
     SiteData::fromConfig([], []);

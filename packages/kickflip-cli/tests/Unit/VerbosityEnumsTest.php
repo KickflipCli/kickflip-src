@@ -29,3 +29,41 @@ test('ConsoleVerbosity can be constructed from VerbosityFlag', function () {
     expect(ConsoleVerbosity::fromFlag(VerbosityFlag::debug()))
         ->toBeInstanceOf(ConsoleVerbosity::class);
 });
+
+test('ConsoleVerbosity values and labels', function () {
+    expect(ConsoleVerbosity::toValues())
+        ->toBeArray()
+        ->toHaveLength(5)
+        ->toContain(16)
+        ->toContain(32)
+        ->toContain(64)
+        ->toContain(128)
+        ->toContain(256);
+    expect(ConsoleVerbosity::toLabels())
+        ->toBeArray()
+        ->toHaveLength(5)
+        ->toContain('quiet')
+        ->toContain('normal')
+        ->toContain('verbose')
+        ->toContain('veryVerbose')
+        ->toContain('debug');
+});
+
+test('VerbosityFlag values and labels', function () {
+    expect(VerbosityFlag::toValues())
+        ->toBeArray()
+        ->toHaveLength(5)
+        ->toContain('quiet')
+        ->toContain('normal')
+        ->toContain('v')
+        ->toContain('vv')
+        ->toContain('vvv');
+    expect(VerbosityFlag::toLabels())
+        ->toBeArray()
+        ->toHaveLength(5)
+        ->toContain('quiet')
+        ->toContain('normal')
+        ->toContain('verbose')
+        ->toContain('veryVerbose')
+        ->toContain('debug');
+});
