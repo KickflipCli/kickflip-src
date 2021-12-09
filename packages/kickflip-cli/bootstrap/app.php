@@ -46,6 +46,7 @@ $app->singleton(
 */
 $app->singleton('kickflipTimings', static fn () => new \Illuminate\Config\Repository());
 $app->singleton('kickflipCli', static fn () => new \Illuminate\Config\Repository());
+app('kickflipCli')->set('output.verbosity', \Kickflip\Enums\ConsoleVerbosity::normal());
 
 /*
 |--------------------------------------------------------------------------
