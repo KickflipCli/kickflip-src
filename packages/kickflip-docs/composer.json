@@ -4,11 +4,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "mallardduck/kickflip-cli": "^0.2",
-        "samdark/sitemap": "^2.2.1",
-        "mallardduck/blade-boxicons": "^2.1.2",
         "codeat3/blade-file-icons": "^1.5",
+        "mallardduck/blade-boxicons": "^2.1.2",
         "mallardduck/blade-emoji-icons": "^1.0",
+        "mallardduck/kickflip-cli": "^0.1.0",
+        "samdark/sitemap": "^2.2.1",
         "spatie/emoji": "^2.3"
     },
     "autoload": {
@@ -19,11 +19,11 @@
             "app/helpers.php"
         ]
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "build": "./vendor/bin/kickflip build",
-        "staging": "./vendor/bin/kickflip build staging",
-        "prod": "./vendor/bin/kickflip build production"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+        "prod": "./vendor/bin/kickflip build production",
+        "staging": "./vendor/bin/kickflip build staging"
+    }
 }

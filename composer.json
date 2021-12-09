@@ -11,9 +11,11 @@
     ],
     "require": {
         "php": "^8.0",
+        "ext-filter": "*",
         "codeat3/blade-file-icons": "^1.5",
         "illuminate/events": "^8.0",
         "illuminate/log": "^8.0",
+        "illuminate/support": "^8.0",
         "illuminate/view": "^8.0",
         "laravel-zero/framework": "^8.9",
         "league/commonmark": "^2.0",
@@ -50,9 +52,9 @@
     },
     "autoload": {
         "psr-4": {
-            "RepoBuilder\\": "src/",
             "KickflipDocs\\": "packages/kickflip-docs/app/",
-            "Kickflip\\": "packages/kickflip-cli/app/"
+            "Kickflip\\": "packages/kickflip-cli/app/",
+            "RepoBuilder\\": "src/"
         },
         "files": [
             "packages/kickflip-docs/app/helpers.php"
@@ -60,14 +62,14 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KickflipTests\\": "packages/kickflip-cli/tests/",
-            "KickflipMonoTests\\": "tests/"
+            "KickflipMonoTests\\": "tests/",
+            "KickflipTests\\": "packages/kickflip-cli/tests/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
         "test": "XDEBUG_MODE=off vendor/bin/pest"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
