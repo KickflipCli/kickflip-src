@@ -5,14 +5,14 @@ namespace KickflipMono;
 use Nette\Utils\Strings;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 
-class EnvironmentReplacerWorker implements ReleaseWorkerInterface
+class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
 {
     /**
      * @inheritDoc
      */
     public function work($version): void
     {
-        $configFile = \getcwd() . '/packages/kickflip-cli/config/app.php';
+        $configFile = \getcwd() . '/config/app.php';
         if (!\file_exists($configFile)) {
             return;
         }

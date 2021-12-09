@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use KickflipMono\EnvironmentReplacerWorker;
+use KickflipMono\ConfigEnvironmentReplacerWorker;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\AddTagToChangelogReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushNextDevReleaseWorker;
@@ -23,7 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     # release workers - in order to execute
     $services->set(UpdateReplaceReleaseWorker::class);
     $services->set(SetCurrentMutualDependenciesReleaseWorker::class);
-    $services->set(EnvironmentReplacerWorker::class);
+    $services->set(ConfigEnvironmentReplacerWorker::class);
     $services->set(AddTagToChangelogReleaseWorker::class);
     $services->set(TagVersionReleaseWorker::class);
     $services->set(PushTagReleaseWorker::class);
