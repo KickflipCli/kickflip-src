@@ -1,3 +1,5 @@
+!/bootstrap/cache/.gitkeep
+/bootstrap/cache/*
 /build
 /node_modules
 /vendor

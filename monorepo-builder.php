@@ -36,7 +36,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // Update kickflip config to production mode
     $services->set(ConfigEnvironmentDevReplacerReleaseWorker::class);
-    
+
     $services->set(UpdateBranchAliasReleaseWorker::class);
     $services->set(PushNextDevReleaseWorker::class);
 };
