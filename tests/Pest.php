@@ -43,6 +43,16 @@ expect()->extend('isHtmlStringOf', function (string $actual) {
         ->and($castString)->toBeString()->toBe($actual);
 });
 
+expect()->extend('reflectHasProperty', function (string $property) {
+    /**
+     * @var \Pest\Expectation $this
+     * @var class-string|object $class
+     */
+    $class = $this->value;
+    $reflectionClass = new ReflectionClass($class);
+    return $this->and($reflectionClass->hasProperty($property))->toBeTrue();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions

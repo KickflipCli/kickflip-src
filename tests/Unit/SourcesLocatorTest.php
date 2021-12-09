@@ -6,17 +6,13 @@ use Kickflip\SourcesLocator;
 // We do this to have access to laravel's filesystem facade used by SourcesLocator
 uses(KickflipMonoTests\TestCase::class);
 
-test('SourcesLocator can be constructed', function () {
+test('SourcesLocator class exists', function () {
     expect(SourcesLocator::class)->toBeString();
+});
+
+test('SourcesLocator can be constructed', function () {
     expect(new SourcesLocator(dirname(__DIR__) . '/sources'))
-        ->toBeInstanceOf(SourcesLocator::class)
-        ->toHaveProperties([
-            'sourcesBasePath',
-            'renderPageList',
-            'bladeSources',
-            'markdownSources',
-            'markdownBladeSources',
-        ]);
+        ->toBeInstanceOf(SourcesLocator::class);
 });
 
 test('SourcesLocator has expected properties', function () {
