@@ -50,9 +50,9 @@
     },
     "autoload": {
         "psr-4": {
+            "App\\": "src/",
             "KickflipDocs\\": "packages/kickflip-docs/app/",
-            "Kickflip\\": "packages/kickflip-cli/app/",
-            "KickflipMono\\": "src/"
+            "Kickflip\\": "packages/kickflip-cli/app/"
         },
         "files": [
             "packages/kickflip-docs/app/helpers.php"
