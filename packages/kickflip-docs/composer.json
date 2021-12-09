@@ -4,7 +4,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "mallardduck/kickflip-cli": "^0.1",
+        "mallardduck/kickflip-cli": "^0.2",
         "samdark/sitemap": "^2.2.1",
         "mallardduck/blade-boxicons": "^2.1.2",
         "codeat3/blade-file-icons": "^1.5",
