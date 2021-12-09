@@ -77,13 +77,13 @@ class BuildCommand extends BaseCommand
         ) {
             File::ensureDirectoryExists($buildDest);
             File::cleanDirectory($buildDest);
+            $this->output->writeln('<info>Starting site build...</info>');
             $siteBuilder = new SiteBuilder($prettyUrls);
             $siteBuilder->build($this->output);
-            $this->output->info("SUCCESS");
-            $this->output->info("DONE");
+            $this->output->success("Completed building site.");
             return static::SUCCESS;
         }
-        $this->output->info("DONE");
+        $this->output->error("Done, did not build.");
 
         return static::FAILURE;
     }

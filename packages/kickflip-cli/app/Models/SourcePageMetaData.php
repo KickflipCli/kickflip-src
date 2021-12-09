@@ -57,4 +57,14 @@ final class SourcePageMetaData
     {
         return $this->explicitExtension;
     }
+
+    public function getType(): string
+    {
+        return match ($this->implicitExtension) {
+            'blade.php' => 'blade',
+            'md.blade.php', 'blade.md', 'blade.markdown' => 'markdown w/ blade',
+            'md', 'markdown' => 'markdown',
+            default => 'unknown'
+        };
+    }
 }
