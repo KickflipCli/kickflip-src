@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-docs/app" isTestSource="false" packagePrefix="KickflipDocs\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/app" isTestSource="false" packagePrefix="Kickflip\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/tests" isTestSource="true" packagePrefix="KickflipTests\" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="KickflipMono\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/commonmark-shiki-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/collection" />
