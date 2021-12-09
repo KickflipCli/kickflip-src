@@ -1,11 +1,12 @@
 <?php
 
-namespace KickflipMono;
+declare(strict_types=1);
+namespace App;
 
 use Nette\Utils\Strings;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 
-class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
+final class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
 {
     /**
      * @inheritDoc
@@ -26,6 +27,6 @@ class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
      */
     public function getDescription($version): string
     {
-        return 'Replace environment config value for release';
+        return 'Update config/app.php to production environment';
     }
 }
