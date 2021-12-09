@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Nette\Utils\Strings;
-use RepoBuilder\ConfigEnvironmentReplacerReleaseWorker;
+use RepoBuilder\ConfigEnvironmentProdReplacerReleaseWorker;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\AddTagToChangelogReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushNextDevReleaseWorker;
@@ -27,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(AddTagToChangelogReleaseWorker::class);
 
     // Update kickflip config to production mode
-    $services->set(ConfigEnvironmentReplacerReleaseWorker::class);
+    $services->set(ConfigEnvironmentProdReplacerReleaseWorker::class);
 
     $services->set(TagVersionReleaseWorker::class);
     $services->set(PushTagReleaseWorker::class);

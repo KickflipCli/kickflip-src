@@ -5,7 +5,7 @@ namespace RepoBuilder;
 use Nette\Utils\Strings;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 
-final class ConfigEnvironmentReplacerReleaseWorker implements ReleaseWorkerInterface
+final class ConfigEnvironmentProdReplacerReleaseWorker implements ReleaseWorkerInterface
 {
     public function work($version): void
     {
