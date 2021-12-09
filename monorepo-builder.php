@@ -25,10 +25,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(UpdateReplaceReleaseWorker::class);
     $services->set(SetCurrentMutualDependenciesReleaseWorker::class);
     $services->set(ConfigEnvironmentReplacerReleaseWorker::class);
-    $services->set(AddTagToChangelogReleaseWorker::class);
-    $services->set(TagVersionReleaseWorker::class);
-    $services->set(PushTagReleaseWorker::class);
-    $services->set(SetNextMutualDependenciesReleaseWorker::class);
-    $services->set(UpdateBranchAliasReleaseWorker::class);
-    $services->set(PushNextDevReleaseWorker::class);
+    //$services->set(AddTagToChangelogReleaseWorker::class);
+    //$services->set(TagVersionReleaseWorker::class);
+    //$services->set(PushTagReleaseWorker::class);
+    //$services->set(SetNextMutualDependenciesReleaseWorker::class);
+    //$services->set(UpdateBranchAliasReleaseWorker::class);
+    //$services->set(PushNextDevReleaseWorker::class);
 };
