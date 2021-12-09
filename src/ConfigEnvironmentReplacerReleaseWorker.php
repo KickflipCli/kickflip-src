@@ -1,16 +1,12 @@
 <?php
 
-declare(strict_types=1);
-namespace App;
+namespace RepoBuilder;
 
 use Nette\Utils\Strings;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 
-final class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
+final class ConfigEnvironmentReplacerReleaseWorker implements ReleaseWorkerInterface
 {
-    /**
-     * @inheritDoc
-     */
     public function work($version): void
     {
         $configFile = \getcwd() . '/config/app.php';
@@ -22,9 +18,6 @@ final class ConfigEnvironmentReplacerWorker implements ReleaseWorkerInterface
         \file_put_contents($configFile, $configFileContent);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDescription($version): string
     {
         return 'Update config/app.php to production environment';
