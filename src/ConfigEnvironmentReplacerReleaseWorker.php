@@ -9,7 +9,7 @@ final class ConfigEnvironmentReplacerReleaseWorker implements ReleaseWorkerInter
 {
     public function work($version): void
     {
-        $configFile = \getcwd() . '/config/app.php';
+        $configFile = \getcwd() . '/packages/kickflip-cli/config/app.php';
         if (!\file_exists($configFile)) {
             return;
         }
