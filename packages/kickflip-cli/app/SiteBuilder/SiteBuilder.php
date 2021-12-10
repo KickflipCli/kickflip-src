@@ -18,11 +18,22 @@ use function view;
 class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
+    /**
+     * @var ShikiNpmFetcher
+     */
+    private ShikiNpmFetcher $shikiNpmFetcher;
 
     public function __construct(
         private bool $prettyUrls,
     ) {
         $this->sourcesLocator = new SourcesLocator(KickflipHelper::sourcePath());
+
+        $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
+        if ($this->shikiNpmFetcher->markdownHighlighterEnabled()) {
+            if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
+                $this->shikiNpmFetcher->installShiki();
+            }
+        }
     }
 
     public function build($consoleOutput): void
@@ -77,7 +88,9 @@ class SiteBuilder
 
     private function cleanup(): void
     {
-        // TODO: clean up build cache
+        if (!$this->shikiNpmFetcher->isNpmUsedByProject()) {
+            $this->shikiNpmFetcher->removeShikiAndNodeModules();
+        }
     }
 
     private function copyAssets(OutputStyle $consoleOutput): self

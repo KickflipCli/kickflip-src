@@ -15,5 +15,9 @@ return [
             'driver' => 'local',
             'root' => getcwd(),
         ],
+        'arbitrary' => [
+            'driver' => 'local',
+            'root' => getcwd(),
+        ],
     ],
 ];
