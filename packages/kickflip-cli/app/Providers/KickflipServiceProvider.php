@@ -52,6 +52,8 @@ class KickflipServiceProvider extends ServiceProvider
             $navConfig = include $navConfigPath;
             $kickflipCliState->set('siteNav', $navConfig);
         }
+
+        $this->app->singleton(ShikiNpmFetcher::class, static fn() => new ShikiNpmFetcher());
     }
 
     /**
@@ -75,17 +77,6 @@ class KickflipServiceProvider extends ServiceProvider
     {
         Logger::timing(__METHOD__);
         Logger::debug("Firing " . __METHOD__);
-
-        // TODO: consider putting this inside the SiteBuilder class
-        $shikiNpmFetcher = new ShikiNpmFetcher();
-        if ($shikiNpmFetcher->markdownHighlighterEnabled()) {
-            $shikiFolder = $shikiNpmFetcher->getProjectRootDirectory() . '/node_modules/shiki';
-
-            if (!$shikiNpmFetcher->isShikiInstalled()) {
-                $shikiNpmFetcher->installShiki();
-                // TODO: Determine a success message
-            }
-        }
 
         $codeHighlightTheme = KickflipHelper::config('site.markdown.code.theme', null);
         if ($codeHighlightTheme !== null) {
