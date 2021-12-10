@@ -21,5 +21,5 @@ Before V1 is released this repo may undergo a lot of changes with no backwards c
 - [ ] Sort out workflows for CHANGELOG.md updates
 - [ ] Add README.md files to Kickflip-cli and Kickflip-docs
 - [ ] Review the way URLs are generated (consider adding a config option for this)
-- [ ] Determine the best method to hook into NodeJS to ensure required dependencies are installed
+- [x] Hook into NodeJS to ensure required dependencies are installed - complete in https://github.com/mallardduck/kickflip-monorepo/commit/ce365d5201858b29933e5ef8465439f0d90bb016
 - [ ] Ensure static files within sources are copied to the build directory (or consider better methods)
