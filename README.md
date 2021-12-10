@@ -14,3 +14,12 @@ This is the monorepo that houses the [Kickflip-cli](https://github.com/mallarddu
 Until this repo reaches V1.0.0, this is a work in progress and it ~~may~~ **will** _eat your cat_.  
 
 Before V1 is released this repo may undergo a lot of changes with no backwards compatibility guarantees.
+
+## The Roadmap to V1
+- [ ] Create a starter project
+- [ ] Complete the KickflipCLI docs repo
+- [ ] Sort out workflows for CHANGELOG.md updates
+- [ ] Add README.md files to Kickflip-cli and Kickflip-docs
+- [ ] Review the way URLs are generated (consider adding a config option for this)
+- [ ] Determine the best method to hook into NodeJS to ensure required dependencies are installed
+- [ ] Ensure static files within sources are copied to the build directory (or consider better methods)
