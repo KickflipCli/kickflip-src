@@ -1,5 +1,7 @@
 /build
 /node_modules
+/package.json
+/package-lock.json
 /vendor
 /.idea
 /.vscode
