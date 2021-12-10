@@ -1,7 +1,7 @@
 <?php
 
 use Kickflip\Models\PageData;
-use Kickflip\SourcesLocator;
+use Kickflip\SiteBuilder\SourcesLocator;
 
 // We do this to have access to laravel's filesystem facade used by SourcesLocator
 uses(KickflipTests\TestCase::class);

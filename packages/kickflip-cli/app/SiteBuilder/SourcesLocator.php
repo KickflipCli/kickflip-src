@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Kickflip;
+namespace Kickflip\SiteBuilder;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\SplFileInfo;
+use function collect;
 
 class SourcesLocator
 {
