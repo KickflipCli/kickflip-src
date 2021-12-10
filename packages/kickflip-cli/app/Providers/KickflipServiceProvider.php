@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Kickflip\Providers;
 
+use Composer\InstalledVersions;
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\View;
 use Illuminate\View\Factory as ViewFactory;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Support\ServiceProvider;
-use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use Kickflip\View\Engine\MarkdownEngine;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 
 class KickflipServiceProvider extends ServiceProvider
 {
@@ -72,6 +74,40 @@ class KickflipServiceProvider extends ServiceProvider
     {
         Logger::timing(__METHOD__);
         Logger::debug("Firing " . __METHOD__);
+
+        // TODO: consider putting this inside the SiteBuilder class
+        if (config('markdown.code_highlighting.enabled')) {
+            $reflection = new \ReflectionClass(InstalledVersions::class);
+            $projectRootDir = dirname($reflection->getFileName(), 3);
+            $shikiFolder = $projectRootDir . '/node_modules/shiki';
+
+            if (
+                ! is_dir(dirname($shikiFolder)) ||
+                ! is_dir($shikiFolder)
+            ) {
+                $command = [
+                    (new ExecutableFinder)->find('npm', 'npm', [
+                        '/usr/local/bin',
+                        '/opt/homebrew/bin',
+                    ]),
+                    'install',
+                    'shiki',
+                ];
+
+                $process = new Process(
+                    command: $command,
+                    cwd: $projectRootDir,
+                    timeout: null,
+                );
+
+                $process->run();
+
+                if (! $process->isSuccessful()) {
+                    throw new ProcessFailedException($process);
+                }
+                // TODO: Determine a success message
+            }
+        }
 
         $codeHighlightTheme = KickflipHelper::config('site.markdown.code.theme', null);
         if ($codeHighlightTheme !== null) {

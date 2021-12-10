@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39ea76160bedee8ff94769767c32506a",
+    "content-hash": "d3635659ef387f14f600dc3e2b6572dd",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -6770,9 +6770,6 @@
             "require": {
                 "php": "^7.1 || ^8.0"
             },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
-            },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
@@ -9352,5 +9349,5 @@
         "ext-filter": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
