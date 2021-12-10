@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Kickflip;
+namespace Kickflip\SiteBuilder;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Kickflip\Events\BaseEvent;
-use Kickflip\Events\SiteBuildStarted;
-use Kickflip\Events\SiteBuildComplete;
-use Kickflip\Models\PageData;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Support\Facades\File;
+use Kickflip\Events\BaseEvent;
+use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Events\SiteBuildStarted;
+use Kickflip\KickflipHelper;
+use Kickflip\Logger;
+use Kickflip\Models\PageData;
+use function collect;
+use function view;
 
 class SiteBuilder
 {
