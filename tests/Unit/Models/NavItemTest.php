@@ -1,11 +1,6 @@
 <?php
 
 use Kickflip\Models\NavItem;
-use Kickflip\Models\SiteData;
-
-it('throws exception when creating empty SiteData', function () {
-    SiteData::fromConfig([], []);
-})->throws(\Exception::class, 'Cannot initialize SiteData with empty site config array.');
 
 test('a basic NavItem can be created', function($title, $url) {
     $navItem = NavItem::make($title, $url);
