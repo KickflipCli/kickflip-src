@@ -32,6 +32,9 @@ final class SiteData
         if (count($siteConfig) === 0) {
             throw new Exception('Cannot initialize SiteData with empty site config array.');
         }
+        if (!isset($siteConfig['baseUrl'], $siteConfig['production'], $siteConfig['siteName'], $siteConfig['siteDescription'])) {
+            throw new Exception('Cannot initialize SiteData due to missing required parameter. Must include: baseUrl, production, siteName, siteDescription.');
+        }
 
         return new self(
             baseUrl: $siteConfig['baseUrl'],
