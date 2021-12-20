@@ -29,10 +29,8 @@ class SiteBuilder
         $this->sourcesLocator = new SourcesLocator(KickflipHelper::sourcePath());
 
         $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
-        if ($this->shikiNpmFetcher->markdownHighlighterEnabled()) {
-            if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
-                $this->shikiNpmFetcher->installShiki();
-            }
+        if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
+            $this->shikiNpmFetcher->installShiki();
         }
     }
 
