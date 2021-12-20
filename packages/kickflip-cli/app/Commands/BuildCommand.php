@@ -7,6 +7,7 @@ namespace Kickflip\Commands;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
@@ -86,9 +87,9 @@ class BuildCommand extends BaseCommand
 
     private function updateBuildPaths(string $env)
     {
-        $basePaths = $this->app->get('kickflipCli')->get('paths.build');
-        $basePaths['destination'] = Str::of($basePaths['destination'])->replaceEnv($env);
+        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::BuildBase . '.' . CliStateDirPaths::BuildDestination);
+        $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         // TODO: decide if we need a views entry in here too...
-        $this->app->get('kickflipCli')->set('paths.build', $basePaths);
+        $this->app->get('kickflipCli')->set('paths.build.destination', $buildDestinationEnvPath);
     }
 }

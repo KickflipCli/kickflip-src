@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kickflip\Commands;
 
 use Illuminate\Support\Facades\View;
+use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Config\Repository;
@@ -50,14 +51,14 @@ abstract class BaseCommand extends Command
          * @var Repository $kickflipCliState
          */
         $kickflipCliState = KickflipHelper::config();
-        $envConfigPath = (string) Str::of($kickflipCliState->get('paths.env_config'))->replaceEnv($env);
+        $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
         }
 
         // TODO: actually test this...
-        $envNavConfigPath = (string) Str::of($kickflipCliState->get('paths.env_navigationFile'))->replaceEnv($env);
+        $envNavConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvNavigationFile))->replaceEnv($env);
         if (file_exists($envNavConfigPath)) {
             $envNavConfig = include $envNavConfigPath;
             $kickflipCliState->set('siteNav', array_merge($kickflipCliState->get('siteNav'), $envNavConfig));
