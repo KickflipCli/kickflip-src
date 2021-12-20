@@ -15,17 +15,6 @@ final class KickflipHelper
 {
     private static string $basePath;
 
-    public static function basePath(?string $basePath = null): string
-    {
-        if (
-            isset(KickflipHelper::$basePath) === false ||
-            $basePath !== null
-        ) {
-            KickflipHelper::$basePath = realpath($basePath ?? getcwd());
-        }
-        return KickflipHelper::$basePath;
-    }
-
     /**
      * Get the path relative to the kickflip working dir.
      *
@@ -44,6 +33,22 @@ final class KickflipHelper
         }
 
         return $kickflipState->get($key, $default);
+    }
+
+    /**
+     * @param string|null $basePath
+     * @return string
+     * @internal
+     */
+    public static function basePath(?string $basePath = null): string
+    {
+        if (
+            isset(KickflipHelper::$basePath) === false ||
+            $basePath !== null
+        ) {
+            KickflipHelper::$basePath = realpath($basePath ?? getcwd());
+        }
+        return KickflipHelper::$basePath;
     }
 
     public static function setPaths(string $basePath): void
@@ -121,17 +126,6 @@ final class KickflipHelper
                 ->prepend('assets/')
                 ->prepend(KickflipHelper::config('site.baseUrl'))
         );
-    }
-
-    /**
-     * Get the path relative to the kickflip working dir.
-     *
-     * @param string $path
-     * @return string
-     */
-    public static function path(string $path = ''): string
-    {
-        return KickflipHelper::$basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**

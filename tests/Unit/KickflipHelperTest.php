@@ -29,16 +29,6 @@ test('helper to kebab', function ($input, $expected) {
     ['Hello World, from kickflip!', 'hello-world,-from-kickflip!'],
 ]);
 
-test('KickflipHelper::path', function ($input, $expected) {
-    expect(KickflipHelper::path($input))
-        ->toBeString()
-        ->toBe(dirname(__DIR__, 2) . $expected);
-})->with([
-    ['', '/packages/kickflip-docs'],
-    ['blue', '/packages/kickflip-docs/blue'],
-    ['hello/world', '/packages/kickflip-docs/hello/world'],
-]);
-
 test('KickflipHelper::getFrontmatterParser', function () {
     expect(KickflipHelper::getFrontMatterParser())
         ->toBeInstanceOf(FrontMatterParserInterface::class);
