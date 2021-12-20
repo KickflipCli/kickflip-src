@@ -3,7 +3,7 @@
 use Kickflip\Enums\CliStateDirPaths;
 
 test('verify CliStateDirPaths enum exists', function () {
-    expect(enum_exists(CliStateDirPaths::class))->toBeTrue();
+    expect(class_exists(CliStateDirPaths::class))->toBeTrue();
 });
 
 test('verify CliStateDirPaths constants', function (string $constName) {
@@ -18,7 +18,9 @@ test('verify CliStateDirPaths constants', function (string $constName) {
     'NavigationFile',
     'EnvNavigationFile',
     'BuildBase',
+    'BuildSourcePart',
     'BuildSource',
+    'BuildDestinationPart',
     'BuildDestination',
 ]);
 
@@ -62,11 +64,19 @@ test('verify CliStateDirPaths constant values', function (string $constName, str
         'build'
     ],
     [
-        'BuildSource',
+        'BuildSourcePart',
         'source'
     ],
     [
-        'BuildDestination',
+        'BuildSource',
+        'build.source'
+    ],
+    [
+        'BuildDestinationPart',
         'destination'
+    ],
+    [
+        'BuildDestination',
+        'build.destination'
     ],
 ]);

@@ -87,7 +87,7 @@ class BuildCommand extends BaseCommand
 
     private function updateBuildPaths(string $env)
     {
-        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::BuildBase . '.' . CliStateDirPaths::BuildDestination);
+        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::BuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         // TODO: decide if we need a views entry in here too...
         $this->app->get('kickflipCli')->set('paths.build.destination', $buildDestinationEnvPath);

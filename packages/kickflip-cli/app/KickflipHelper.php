@@ -64,8 +64,8 @@ final class KickflipHelper
             CliStateDirPaths::NavigationFile => $basePath . '/config/navigation.php',
             CliStateDirPaths::EnvNavigationFile => $basePath . '/config/navigation.{env}.php',
             CliStateDirPaths::BuildBase => [
-                CliStateDirPaths::BuildSource => $basePath . '/source',
-                CliStateDirPaths::BuildDestination => $basePath . '/build_{env}',
+                CliStateDirPaths::BuildSourcePart => $basePath . '/source',
+                CliStateDirPaths::BuildDestinationPart => $basePath . '/build_{env}',
             ]
         ]);
 
@@ -136,9 +136,7 @@ final class KickflipHelper
      */
     public static function resourcePath(string $path = ''): string
     {
-        return KickflipHelper::namedPath(
-            CliStateDirPaths::Resources
-        ).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return KickflipHelper::namedPath(CliStateDirPaths::Resources).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**
@@ -149,11 +147,7 @@ final class KickflipHelper
      */
     public static function sourcePath(string $path = ''): string
     {
-        return KickflipHelper::namedPath(
-            CliStateDirPaths::BuildBase .
-            '.' .
-            CliStateDirPaths::BuildSource
-        ).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return KickflipHelper::namedPath(CliStateDirPaths::BuildSource).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**
@@ -164,11 +158,7 @@ final class KickflipHelper
      */
     public static function buildPath(?string $path = ''): string
     {
-        return KickflipHelper::namedPath(
-                CliStateDirPaths::BuildBase .
-                '.' .
-                CliStateDirPaths::BuildDestination
-            ).($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
+        return KickflipHelper::namedPath(CliStateDirPaths::BuildDestination).($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
     }
 
     public static function getFrontMatterParser(): FrontMatterParserInterface

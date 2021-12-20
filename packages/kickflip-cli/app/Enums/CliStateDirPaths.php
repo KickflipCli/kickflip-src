@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\Enums;
 
-enum CliStateDirPaths
+abstract class CliStateDirPaths
 {
     public const Base = 'baseDir';
     public const Cache = 'cache';
@@ -13,6 +15,8 @@ enum CliStateDirPaths
     public const NavigationFile = 'navigationFile';
     public const EnvNavigationFile = 'env_navigationFile';
     public const BuildBase = 'build';
-    public const BuildSource = 'source';
-    public const BuildDestination = 'destination';
+    public const BuildSourcePart = 'source';
+    public const BuildSource = self::BuildBase . '.' . self::BuildSourcePart;
+    public const BuildDestinationPart = 'destination';
+    public const BuildDestination = self::BuildBase . '.' . self::BuildDestinationPart;
 }
