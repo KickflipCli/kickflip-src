@@ -19,10 +19,6 @@ class ShikiNpmFetcher
 
     public function __construct()
     {
-        if (!$this->isShikiPhpInstalled()) {
-            throw new \Exception('Shiki PHP library is not installed.');
-        }
-
         // Determine the root folder based on the composer vendor dir in use.
         $reflection = new \ReflectionClass(InstalledVersions::class);
         $this->projectRootDirectory = dirname($reflection->getFileName(), 3);
@@ -34,16 +30,6 @@ class ShikiNpmFetcher
 
         // Collect this on init since we'll DL shiki no matter what - this way we know if we should clean up later.
         $this->isNpmUsedByProject = $this->projectRootDirectoryFilesystem->exists('package.json');
-    }
-
-    public function isShikiPhpInstalled(): bool
-    {
-        return class_exists(Shiki::class);
-    }
-
-    public function markdownHighlighterEnabled(): bool
-    {
-        return config('markdown.code_highlighting.enabled');
     }
 
     /**
@@ -99,6 +85,7 @@ class ShikiNpmFetcher
                 '/opt/homebrew/bin',
             ]),
             'install',
+            '-D',
             'shiki',
         ];
 
