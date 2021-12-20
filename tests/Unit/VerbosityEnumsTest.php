@@ -14,6 +14,14 @@ test('VerbosityFlag enum can be constructed', function ($input, $expected) {
     [VerbosityFlag::debug(), 'vvv'],
 ]);
 
+test('VerbosityFlag enum values', function () {
+    $reflectionClass = new ReflectionClass(VerbosityFlag::class);
+    $valuesMethod = $reflectionClass->getMethod('values');
+    $valuesMethod->setAccessible(true);
+    expect($valuesMethod->invoke(null))
+        ->toBeArray();
+});
+
 test('ConsoleVerbosity enum can be constructed', function ($input, $expected) {
     expect($input)
         ->isEnumValue(ConsoleVerbosity::class, $expected);
@@ -24,6 +32,14 @@ test('ConsoleVerbosity enum can be constructed', function ($input, $expected) {
     [ConsoleVerbosity::veryVerbose(), 128],
     [ConsoleVerbosity::debug(), 256],
 ]);
+
+test('ConsoleVerbosity enum values', function () {
+    $reflectionClass = new ReflectionClass(ConsoleVerbosity::class);
+    $valuesMethod = $reflectionClass->getMethod('values');
+    $valuesMethod->setAccessible(true);
+    expect($valuesMethod->invoke(null))
+        ->toBeArray();
+});
 
 test('ConsoleVerbosity can be constructed from VerbosityFlag', function ($input, $expected) {
     expect(ConsoleVerbosity::fromFlag($input))

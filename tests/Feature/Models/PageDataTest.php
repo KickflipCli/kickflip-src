@@ -25,7 +25,8 @@ it('can instantiate PageData with from SourcePageMetaData', function () {
     expect($pageData)->toBeInstanceOf(PageData::class);
     expect($pageData->getUrl())->toBeString()->toBe('basic.html');
     expect($pageData->getUrl(true))->toBeString()->toBe('basic');
-    expect($pageData->getOutputPath())->toBeString()->toBe('/Users/danpock/GitProjects/kickflip-monorepo/packages/kickflip-docs/build_{env}/basic');
+    expect($pageData->getOutputPath())->toBeString()
+        ->toBe(dirname(__FILE__, 4) . '/packages/kickflip-docs/build_{env}/basic');
     expect($pageData->getExtendsView())->toBeString()->toBe('layouts.master');
     expect($pageData->getExtendsSection())->toBeString()->toBe('content');
     expect($pageData->getTitleId())->toBeString()->toBe('basic');
@@ -35,6 +36,6 @@ it('can instantiate PageData with from SourcePageMetaData', function () {
     ]);
 
     $this->expectException(\Exception::class);
-    $this->expectExceptionMessage('Undefined property via __get(): nana in /Users/danpock/GitProjects/kickflip-monorepo/tests/Feature/Models/PageDataTest.php on line 39');
+    $this->expectExceptionMessage('Undefined property via __get(): nana in ' . dirname(__FILE__, 4) . '/tests/Feature/Models/PageDataTest.php on line 40');
     $pageData->nana;
 });
