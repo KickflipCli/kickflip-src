@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kickflip\Providers;
 
 use Illuminate\Config\Repository;
+use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Support\ServiceProvider;
@@ -22,8 +23,7 @@ class InitServiceProvider extends ServiceProvider
         Logger::debug("Firing " . __METHOD__);
         # Set a relevant paths
         $this->app->instance('cwd', getcwd());
-        $baseDir = KickflipHelper::basePath();
-        KickflipHelper::setPaths($baseDir);
+        KickflipHelper::setPaths(KickflipHelper::basePath());
 
         /**
          * @var Repository $config
@@ -31,9 +31,9 @@ class InitServiceProvider extends ServiceProvider
         $config = app('config');
         $config->set('view.paths', [
             KickflipHelper::resourcePath('views'),
-            KickflipHelper::path('source'),
+            KickflipHelper::sourcePath(),
         ]);
-        $config->set('view.compiled', KickflipHelper::config('paths.cache'));
+        $config->set('view.compiled', KickflipHelper::namedPath(CliStateDirPaths::Cache));
     }
 
     /**

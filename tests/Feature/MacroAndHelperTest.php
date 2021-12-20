@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 
 test('string macro replaceEnv', function ($input, $expected) {
@@ -22,6 +23,16 @@ test('KickflipHelper::config', function ($input, $expected) {
     ['baseDir', '/packages/kickflip-docs'],
     ['cache', '/packages/kickflip-docs/cache'],
     ['env_config', '/packages/kickflip-docs/config/config.{env}.php'],
+]);
+
+test('KickflipHelper::namedPath', function ($input, $expected) {
+    expect(KickflipHelper::namedPath($input))
+        ->toBeString()
+        ->toBe(dirname(__DIR__, 2) . $expected);
+})->with([
+    [CliStateDirPaths::Base, '/packages/kickflip-docs'],
+    [CliStateDirPaths::Config, '/packages/kickflip-docs/config/config.php'],
+    [CliStateDirPaths::BootstrapFile, '/packages/kickflip-docs/config/bootstrap.php'],
 ]);
 
 test('KickflipHelper::assetUrl', function ($input, $expected) {
