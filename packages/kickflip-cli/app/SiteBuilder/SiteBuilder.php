@@ -155,9 +155,7 @@ class SiteBuilder
         $rootBuildDir = KickflipHelper::buildPath();
         foreach ($this->sourcesLocator->getCopyFileList() as $copyFileItem) {
             Logger::verbose("Copying asset `{$copyFileItem->getUrl()}` from {$kickflipSourceDir} to {$rootBuildDir}");
-            if (!is_dir(dirname($copyFileItem->getOutputPath()))) {
-                mkdir(dirname($copyFileItem->getOutputPath()));
-            }
+            File::ensureDirectoryExists(dirname($copyFileItem->getOutputPath()));
             File::copy(KickflipHelper::sourcePath($copyFileItem->getUrl()), $copyFileItem->getOutputPath());
         }
 
