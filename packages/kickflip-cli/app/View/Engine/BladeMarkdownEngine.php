@@ -33,7 +33,7 @@ class BladeMarkdownEngine extends CompilerEngine
     public function get($path, array $data = [])
     {
         // First gets the file contents, then renders blade parts into string before returning
-        $contents = parent::get($path, $data);
+        $contents = parent::get($path, array_merge($data, $data['page']->getExtraData()));
         $renderedMarkdown = $this->markdown->convertToHtml($contents);
 
         /*

@@ -130,6 +130,11 @@ class PageData implements PageInterface
         return KickflipHelper::toKebab($this->title);
     }
 
+    public function getExtraData(): array
+    {
+        return $this->data;
+    }
+
     /**
      * @param string $name
      * @return mixed
