@@ -72,8 +72,15 @@ function getDocUrl(string $routeName, ?string $anchorLink = null): string
     }
 
     if ((null !== $anchorLink) && Str::contains(file_get_contents($routePagePath), sprintf('{#%s}', ltrim($anchorLink, '#')))) {
-        return sprintf('/docs/%s#%s', $routeName, ltrim($anchorLink, '#'));
+        if (KickflipHelper::config('prettyUrls')) {
+            return sprintf('/docs/%s#%s', $routeName, ltrim($anchorLink, '#'));
+        }
+        return sprintf('/docs/%s.html#%s', $routeName, ltrim($anchorLink, '#'));
     }
 
-    return sprintf('/docs/%s', $routeName);
+    if (KickflipHelper::config('prettyUrls')) {
+        return sprintf('/docs/%s', $routeName);
+    }
+
+    return sprintf('/docs/%s.html', $routeName);
 }

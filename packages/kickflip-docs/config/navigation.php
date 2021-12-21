@@ -3,28 +3,28 @@
 use Kickflip\Models\NavItem;
 
 return [
-    NavItem::make('Getting Started', '/docs/getting-started')
+    NavItem::make('Getting Started', getDocUrl('getting-started'))
         ->setChildren([
-            NavItem::make('Installation', '/docs/getting-started-installation'),
-            NavItem::make('Directory Structure', '/docs/getting-started-structure'),
+            NavItem::make('Installation', getDocUrl('getting-started-installation')),
+            NavItem::make('Directory Structure', getDocUrl('getting-started-structure')),
         ]),
-    NavItem::make('Building & Previewing', '/docs/building-and-previewing')
+    NavItem::make('Building & Previewing', getDocUrl('building-and-previewing'))
         ->setChildren([
-            NavItem::make('Environments', '/docs/building-and-previewing-environments'),
-            NavItem::make('Compiling Assets', '/docs/building-and-previewing-compiling-assets'),
+            NavItem::make('Environments', getDocUrl('building-and-previewing-environments')),
+            NavItem::make('Compiling Assets', getDocUrl('building-and-previewing-compiling-assets')),
         ]),
-    NavItem::make('Creating your Site\'s Content', '/docs/site-content')
+    NavItem::make('Creating your Site\'s Content', getDocUrl('site-content'))
         ->setChildren([
-            NavItem::make('Templates & Components', '/docs/site-content-templates-and-components'),
-            NavItem::make('Markdown', '/docs/site-content-markdown'),
-            NavItem::make('Other File Types', '/docs/site-content-other-file-types'),
+            NavItem::make('Templates & Components', getDocUrl('site-content-templates-and-components')),
+            NavItem::make('Markdown', getDocUrl('site-content-markdown')),
+            NavItem::make('Other File Types', getDocUrl('site-content-other-file-types')),
         ]),
-    NavItem::make('Template Variables', '/docs/template-variables')
+    NavItem::make('Template Variables', getDocUrl('template-variables'))
         ->setChildren([
-            NavItem::make('Site Variables', '/docs/template-variables-site'),
-            NavItem::make('Page Data', '/docs/template-variables-page'),
+            NavItem::make('Site Variables', getDocUrl('template-variables-site')),
+            NavItem::make('Page Data', getDocUrl('template-variables-page')),
         ]),
-    NavItem::make('Pretty URLs', '/docs/pretty-urls'),
-    NavItem::make('Event Listeners', '/docs/event-listeners'),
-    NavItem::make('Navigation', '/docs/navigation'),
+    NavItem::make('Pretty URLs', getDocUrl('pretty-urls')),
+    NavItem::make('Event Listeners', getDocUrl('event-listeners')),
+    NavItem::make('Navigation', getDocUrl('navigation')),
 ];
