@@ -25,18 +25,21 @@ function relativeUrl(string $url): string
 }
 
 
-function isActive(PageInterface $page, string $path): bool
+function isActive(PageInterface $currentPage, string $navItemUrl): bool
 {
-    return Str::endsWith(KickflipHelper::trimPath($page->getUrl()), KickflipHelper::trimPath($path));
+    return Str::endsWith(KickflipHelper::trimPath($currentPage->getUrl()), KickflipHelper::trimPath(parse_url($navItemUrl, PHP_URL_PATH) ?? ''));
 }
 
 function isActiveParent(PageInterface $page, NavItem $menuItem): bool
 {
     $pageUrl = $page->getUrl();
     if ($menuItem->hasChildren()) {
-        return collect($menuItem->children)->contains(function ($child) use ($pageUrl) {
-            return KickflipHelper::trimPath($pageUrl) == KickflipHelper::trimPath($child->url);
-        });
+        return collect($menuItem->children)
+            ->filter(static fn($value) => !str_starts_with($value->url, '#')) // Remove Anchor links
+            ->map(static fn($value) => parse_url($value->url, PHP_URL_PATH)) // Map every URL to just paths...
+            ->contains(function ($childUrl) use ($pageUrl) {
+                return KickflipHelper::trimPath($pageUrl) === KickflipHelper::trimPath($childUrl);
+            });
     }
 
     return false;
