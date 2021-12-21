@@ -39,6 +39,15 @@ class SiteBuilder
         }
     }
 
+    public static function loadNav()
+    {
+        # Load base nav config into state
+        if (file_exists($navConfigPath = KickflipHelper::namedPath(CliStateDirPaths::NavigationFile))) {
+            $navConfig = include $navConfigPath;
+            KickflipHelper::config()->set('siteNav', $navConfig);
+        }
+    }
+
     public static function includeEnvironmentConfig(string $env)
     {
         /**

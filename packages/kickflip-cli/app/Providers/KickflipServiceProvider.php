@@ -43,12 +43,6 @@ class KickflipServiceProvider extends ServiceProvider
             $this->bootSemiAutoloadProviders($packages);
         }
 
-        # Load base nav config into state
-        if (file_exists($navConfigPath = $kickflipCliState->get('paths.navigationFile'))) {
-            $navConfig = include $navConfigPath;
-            $kickflipCliState->set('siteNav', $navConfig);
-        }
-
         $this->app->singleton(ShikiNpmFetcher::class, static fn() => new ShikiNpmFetcher());
         $app = $this->app;
         $this->app->singleton(BladeMarkdownEngine::class, static function() use ($app) {
