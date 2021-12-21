@@ -12,7 +12,7 @@ use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 use Spatie\LaravelMarkdown\Renderers\AnchorHeadingRenderer;
 
-class MarkdownRenderer extends BaseMarkdownRenderer
+final class MarkdownRenderer extends BaseMarkdownRenderer
 {
     protected function configureCommonMarkEnvironment(EnvironmentBuilderInterface $environment): void
     {

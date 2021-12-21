@@ -11,7 +11,7 @@ use Kickflip\Models\PageData;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
-class MarkdownEngine extends FileEngine
+final class MarkdownEngine extends FileEngine
 {
     private BaseMarkdownRenderer $markdown;
 

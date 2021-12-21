@@ -13,7 +13,7 @@ use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\SplFileInfo;
 use function collect;
 
-class SourcesLocator
+final class SourcesLocator
 {
     /**
      * @var array<int, PageData>

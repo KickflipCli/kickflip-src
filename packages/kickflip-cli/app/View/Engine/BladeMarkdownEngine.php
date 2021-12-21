@@ -9,7 +9,7 @@ use Illuminate\View\Compilers\CompilerInterface;
 use Illuminate\View\Engines\CompilerEngine;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
-class BladeMarkdownEngine extends CompilerEngine
+final class BladeMarkdownEngine extends CompilerEngine
 {
     private BaseMarkdownRenderer $markdown;
 

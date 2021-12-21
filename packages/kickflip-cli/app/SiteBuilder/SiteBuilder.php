@@ -20,7 +20,7 @@ use Kickflip\Models\SiteData;
 use function collect;
 use function view;
 
-class SiteBuilder
+final class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
     /**

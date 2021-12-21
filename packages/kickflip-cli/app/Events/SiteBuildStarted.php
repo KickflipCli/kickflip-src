@@ -6,7 +6,7 @@ namespace Kickflip\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 
-class SiteBuildStarted extends BaseEvent
+final class SiteBuildStarted extends BaseEvent
 {
     use Dispatchable;
 

@@ -14,7 +14,7 @@ use Symfony\Component\Process\Process;
 /**
  * This class is responsible for fetching Shiki to ensure code highlighting always works
  */
-class ShikiNpmFetcher
+final class ShikiNpmFetcher
 {
     private string $projectRootDirectory;
     private Filesystem $projectRootDirectoryFilesystem;
