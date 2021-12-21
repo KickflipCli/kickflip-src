@@ -35,6 +35,7 @@ class KickflipServiceProvider extends ServiceProvider
         if (file_exists($configPath = $kickflipCliState->get('paths.config'))) {
             $config = include $configPath;
             $kickflipCliState->set('site', $config);
+            app('config')->set('app.url',$kickflipCliState->get('site.baseUrl'));
         }
 
         # Implement the kickflip level autoloading...
