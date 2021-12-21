@@ -17,7 +17,6 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
-use Kickflip\Models\SourcePageMetaData;
 use function collect;
 use function view;
 
@@ -32,7 +31,7 @@ class SiteBuilder
     public function __construct(
         private bool $prettyUrls,
     ) {
-        $this->sourcesLocator = new SourcesLocator(KickflipHelper::sourcePath());
+        $this->sourcesLocator = app(SourcesLocator::class);
 
         $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
         if (!$this->shikiNpmFetcher->isShikiDownloaded()) {

@@ -11,6 +11,7 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Support\ServiceProvider;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use Kickflip\SiteBuilder\SourcesLocator;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use Kickflip\View\Engine\MarkdownEngine;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
@@ -58,6 +59,11 @@ class KickflipServiceProvider extends ServiceProvider
                 $app->get(MarkdownRenderer::class)
             );
         });
+        $this->app->singleton(SourcesLocator::class, function($app) {
+            return new SourcesLocator(KickflipHelper::sourcePath());
+        });
+        // This forces the singleton to be initialized early, necessary for route bindings
+        $this->app->make(SourcesLocator::class);
     }
 
     /**
