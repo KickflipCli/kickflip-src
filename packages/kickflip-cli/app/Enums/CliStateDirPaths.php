@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Kickflip\Enums;
 
+/**
+ * @internal
+ */
 abstract class CliStateDirPaths
 {
     public const Base = 'baseDir';

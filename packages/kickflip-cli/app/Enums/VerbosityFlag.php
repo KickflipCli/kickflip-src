@@ -13,7 +13,7 @@ use Spatie\Enum\Enum;
  * @method static self veryVerbose()
  * @method static self debug()
  */
-class VerbosityFlag extends Enum
+final class VerbosityFlag extends Enum
 {
     /**
      * @return string[]

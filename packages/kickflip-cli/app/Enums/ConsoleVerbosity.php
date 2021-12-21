@@ -13,7 +13,7 @@ use Spatie\Enum\Enum;
  * @method static self veryVerbose()
  * @method static self debug()
  */
-class ConsoleVerbosity extends Enum
+final class ConsoleVerbosity extends Enum
 {
     public static function fromFlag(VerbosityFlag $flag): ConsoleVerbosity
     {
