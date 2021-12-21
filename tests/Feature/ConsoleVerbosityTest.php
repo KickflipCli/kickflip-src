@@ -61,3 +61,11 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
         ConsoleVerbosity::debug()
     ],
 ]);
+
+test('ConsoleVerbosity enum values', function () {
+    $reflectionClass = new ReflectionClass(ConsoleVerbosity::class);
+    $valuesMethod = $reflectionClass->getMethod('values');
+    $valuesMethod->setAccessible(true);
+    expect($valuesMethod->invoke(null))
+        ->toBeArray();
+});
