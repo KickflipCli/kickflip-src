@@ -66,8 +66,8 @@ class BuildCommand extends BaseCommand
         $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
 
         # Load in the local projects config based on env...
-        $this->includeEnvironmentConfig($env);
-        $this->updateBuildPaths($env);
+        SiteBuilder::includeEnvironmentConfig($env);
+        SiteBuilder::updateBuildPaths($env);
 
         $buildDest = KickflipHelper::buildPath();
         if (
@@ -85,13 +85,5 @@ class BuildCommand extends BaseCommand
         $this->output->error("Done, did not build.");
 
         return static::FAILURE;
-    }
-
-    private function updateBuildPaths(string $env)
-    {
-        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::BuildDestination);
-        $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
-        // TODO: decide if we need a views entry in here too...
-        $this->app->get('kickflipCli')->set('paths.build.destination', $buildDestinationEnvPath);
     }
 }
