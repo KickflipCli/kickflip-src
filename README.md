@@ -16,6 +16,7 @@ Until this repo reaches V1.0.0, this is a work in progress and it ~~may~~ **will
 Before V1 is released this repo may undergo a lot of changes with no backwards compatibility guarantees.
 
 ## The Roadmap to V1
+- [x] At least 80% test coverage complete
 - [ ] Create a starter project
 - [ ] Complete the KickflipCLI docs repo
 - [ ] Sort out workflows for CHANGELOG.md updates
