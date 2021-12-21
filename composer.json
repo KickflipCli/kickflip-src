@@ -32,8 +32,8 @@
         "vlucas/phpdotenv": "^5.3"
     },
     "replace": {
-        "mallardduck/kickflip-cli": "0.2.1",
-        "mallardduck/kickflip-docs": "0.2.1"
+        "mallardduck/kickflip-cli": "0.3.0",
+        "mallardduck/kickflip-docs": "0.3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
