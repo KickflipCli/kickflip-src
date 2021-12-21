@@ -62,14 +62,13 @@ class SiteBuilder
                 return [$page->title, $page->url, $page->source->getFilename(), $page->source->getType()];
             })->toArray()
         );
+        /**
+         * @var PageData $page
+         */
         foreach ($renderPageList as $page) {
             $consoleOutput->writeln(sprintf('Rendering page from %s', $page->source->getFilename()));
             Logger::verbose("Building " . $page->source->getName() . ":" . $page->url . ":" . $page->title);
-            if ($this->prettyUrls) {
-                $outputFile = sprintf("%s/index.html", KickflipHelper::buildPath($page->url));
-            } else {
-                $outputFile = sprintf("%s.html", KickflipHelper::buildPath($page->url));
-            }
+            $outputFile = $page->getOutputPath($this->prettyUrls);
             $outputDir = dirname($outputFile);
             $view = view($page->source->getName(), [
                 'page' => $page

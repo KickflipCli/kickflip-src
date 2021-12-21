@@ -101,10 +101,10 @@ class PageData implements PageInterface
         }
     }
 
-    public function getUrl(?bool $pretty = false): string
+    public function getUrl(): string
     {
         $relUrl = KickflipHelper::relativeUrl($this->url);
-        if ($relUrl === '/' || $pretty === true) {
+        if ($relUrl === '/' || KickflipHelper::config('prettyUrls', true) === true) {
             return $relUrl;
         }
         return (string) Str::of($relUrl)->append('.html');
@@ -112,7 +112,14 @@ class PageData implements PageInterface
 
     public function getOutputPath(): string
     {
-        return KickflipHelper::buildPath($this->url);
+        if ($this->url === '/') {
+            return KickflipHelper::buildPath('index.html');
+        }
+        $url = $this->getUrl();
+        if (KickflipHelper::config('prettyUrls') === true) {
+            $url .= '/index.html';
+        }
+        return KickflipHelper::buildPath($url);
     }
 
     public function getExtendsView(): string

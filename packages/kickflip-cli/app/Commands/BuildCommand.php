@@ -61,7 +61,9 @@ class BuildCommand extends BaseCommand
          * @var bool $quiet
          */
         $quiet = filter_var($this->input->getOption('quiet'), FILTER_VALIDATE_BOOL);
+        # Set global state of pretty URL status
         $prettyUrls = filter_var($this->input->getOption('pretty'), FILTER_VALIDATE_BOOL);
+        $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
 
         # Load in the local projects config based on env...
         $this->includeEnvironmentConfig($env);

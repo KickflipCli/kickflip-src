@@ -7,7 +7,7 @@ namespace Kickflip\Models;
 interface PageInterface
 {
     public static function make(SourcePageMetaData $metaData, array $frontMatter = []): self;
-    public function getUrl(?bool $pretty = false): string;
+    public function getUrl(): string;
     public function getOutputPath(): string;
     public function getExtendsView(): string;
     public function getExtendsSection(): string;
