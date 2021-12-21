@@ -45,15 +45,14 @@ class KickflipServiceProvider extends ServiceProvider
         }
 
         $this->app->singleton(ShikiNpmFetcher::class, static fn() => new ShikiNpmFetcher());
-        $app = $this->app;
-        $this->app->singleton(BladeMarkdownEngine::class, static function() use ($app) {
+        $this->app->singleton(BladeMarkdownEngine::class, function($app) {
             return new BladeMarkdownEngine(
                 $app->get('blade.compiler'),
                 $app->get(Filesystem::class),
                 $app->get(MarkdownRenderer::class)
             );
         });
-        $this->app->singleton(MarkdownEngine::class, static function() use ($app) {
+        $this->app->singleton(MarkdownEngine::class, function($app) {
             return new MarkdownEngine(
                 $app->get(Filesystem::class),
                 $app->get(MarkdownRenderer::class)
