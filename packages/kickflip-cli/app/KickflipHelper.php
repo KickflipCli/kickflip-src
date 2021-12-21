@@ -18,9 +18,10 @@ final class KickflipHelper
     /**
      * Get the path relative to the kickflip working dir.
      *
-     * @param  ?string  $key Identifier of the entry to look for.
-     * @param  ?mixed  $default
-     * @return Repository|string|array|int|float|null
+     * @template T
+     * @param  null|string  $key Identifier of the entry to look for.
+     * @param  null|T  $default
+     * @return Repository|null|T
      */
     public static function config(?string $key = null, mixed $default = null)
     {
