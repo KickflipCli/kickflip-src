@@ -62,8 +62,6 @@ class KickflipServiceProvider extends ServiceProvider
         $this->app->singleton(SourcesLocator::class, function($app) {
             return new SourcesLocator(KickflipHelper::sourcePath());
         });
-        // This forces the singleton to be initialized early, necessary for route bindings
-        $this->app->make(SourcesLocator::class);
     }
 
     /**

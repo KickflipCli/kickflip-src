@@ -41,6 +41,7 @@ final class SiteBuilder
 
     public static function loadNav()
     {
+        app()->make(SourcesLocator::class); // This forces the singleton to be initialized, must be done after Pretty URL setting loaded
         # Load base nav config into state
         if (file_exists($navConfigPath = KickflipHelper::namedPath(CliStateDirPaths::NavigationFile))) {
             $navConfig = include $navConfigPath;
