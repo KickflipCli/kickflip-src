@@ -12,8 +12,9 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
 use MallardDuck\LaravelTraits\Console\CommandManagesSections;
+use LaravelZero\Framework\Commands\Command;
 
-class BuildCommand extends BaseCommand
+class BuildCommand extends Command
 {
     use CommandManagesSections;
 
@@ -31,7 +32,7 @@ class BuildCommand extends BaseCommand
      *
      * @var string
      */
-    protected $description = 'Build your site.';
+    protected $description = 'Build your website project.';
 
     protected Factory $viewFactory;
 
