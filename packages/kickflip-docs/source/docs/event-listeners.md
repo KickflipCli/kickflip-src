@@ -2,10 +2,9 @@ Ultimately since Kickflip was inspired by Jigsaw, we provide the same basic even
 These can be used to run custom code before and after your build is processed.
 
 There are 3 supported events:
-- A `BuildStarted` event is fired before any `source` files have been processed.
+- A `SiteBuildStarted` event is fired before any `source` files have been processed.
 This provides an opportunity to programmatically modify settings, fetch data, or modify files in the `source` folder.
-- A `CollectionsBuilt` event has been built, but is not yet in use as Collections are not implemented yet.
-- A `SiteBuilt` event is fired after the build is complete, and all the output files have been written.
+- A `SiteBuildComplete` event is fired after the build is complete, and all the output files have been written.
 This provides a chance to take care of any post-processing steps (like generating a `sitemap.xml` file).
 
 ---
