@@ -54,13 +54,14 @@ return [
     */
 
     'providers' => [
-        Kickflip\Providers\InitServiceProvider::class,
+        \Kickflip\Providers\InitServiceProvider::class,
         \Illuminate\Filesystem\FilesystemServiceProvider::class,
         \Illuminate\Log\LogServiceProvider::class,
         \Illuminate\Events\EventServiceProvider::class,
+        \Kickflip\Providers\RoutingServiceProvider::class,
         \Illuminate\View\ViewServiceProvider::class,
         \Spatie\LaravelMarkdown\MarkdownServiceProvider::class,
-        Kickflip\Providers\KickflipServiceProvider::class,
+        \Kickflip\Providers\KickflipServiceProvider::class,
     ],
 
     'aliases' => [
