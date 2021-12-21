@@ -37,7 +37,7 @@ class SourcesLocator
     public function __construct(
         private string $sourcesBasePath,
     ) {
-        // Filter out anything in the assets folder - these were compiled from mix into that folder before compiling the site.
+        // Filter out anything in the assets' folder - these were compiled from mix into that folder before compiling the site.
         $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))->filter(static function ($value) {
             return ! Str::of($value->getRelativePath())->startsWith('assets');
         });

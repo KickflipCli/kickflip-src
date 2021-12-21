@@ -11,6 +11,9 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
+/**
+ * This class is responsible for fetching Shiki to ensure code highlighting always works
+ */
 class ShikiNpmFetcher
 {
     private string $projectRootDirectory;
