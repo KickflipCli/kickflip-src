@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kickflip\Providers;
 
-use Composer\InstalledVersions;
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Factory as ViewFactory;
@@ -15,9 +14,6 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use Kickflip\View\Engine\MarkdownEngine;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\ExecutableFinder;
-use Symfony\Component\Process\Process;
 
 class KickflipServiceProvider extends ServiceProvider
 {
