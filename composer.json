@@ -15,6 +15,7 @@
         "codeat3/blade-file-icons": "^1.5",
         "illuminate/events": "^8.0",
         "illuminate/log": "^8.0",
+        "illuminate/routing": "^8.0",
         "illuminate/support": "^8.0",
         "illuminate/view": "^8.0",
         "laravel-zero/framework": "^8.9",
