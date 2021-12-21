@@ -30,6 +30,6 @@ test('SourcesLocator has expected methods', function () {
     $sourcesLocator = new SourcesLocator(dirname(__DIR__) . '/sources');
     expect($sourcesLocator->getRenderPageList())
         ->toBeArray()
-        ->toHaveCount(5)
+        ->toHaveCount(6)
         ->each->toBeInstanceOf(PageData::class);
 });
