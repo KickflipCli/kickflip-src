@@ -7,6 +7,7 @@ namespace Kickflip\SiteBuilder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
+use Kickflip\Models\ContentFileData;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\SplFileInfo;
@@ -34,6 +35,11 @@ class SourcesLocator
      */
     private array $markdownBladeSources = [];
 
+    /**
+     * @var ContentFileData[]
+     */
+    private array $plainTextOrMediaSources = [];
+
     public function __construct(
         private string $sourcesBasePath,
     ) {
@@ -52,6 +58,7 @@ class SourcesLocator
                 'blade.php' => $this->bladeSources[] = $pageMetaData,
                 'md', 'markdown' => $this->markdownSources[] = $pageMetaData,
                 'md.blade.php', 'blade.md', 'blade.markdown' => $this->markdownBladeSources[] = $pageMetaData,
+                'html', 'txt', 'ico' => $this->plainTextOrMediaSources[] = ContentFileData::make($pageMetaData),
                 default => 'do nothing',
             };
         }
@@ -110,5 +117,13 @@ class SourcesLocator
     public function getRenderPageList(): array
     {
         return $this->renderPageList;
+    }
+
+    /**
+     * @return ContentFileData[]
+     */
+    public function getCopyFileList(): array
+    {
+        return $this->plainTextOrMediaSources;
     }
 }

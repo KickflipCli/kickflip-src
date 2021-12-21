@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\Models;
 
-interface PageInterface
+interface PageInterface extends ContentItemInterface
 {
     public static function make(SourcePageMetaData $metaData, array $frontMatter = []): self;
     public function getUrl(): string;

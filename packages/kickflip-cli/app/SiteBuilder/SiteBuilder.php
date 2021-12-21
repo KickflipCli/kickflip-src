@@ -17,6 +17,7 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
+use Kickflip\Models\SourcePageMetaData;
 use function collect;
 use function view;
 
@@ -149,6 +150,15 @@ class SiteBuilder
             $consoleOutput->writeln("Assets folder copied to build dir.");
         } else {
             $consoleOutput->warning("Assets folder NOT found, these may be missing.");
+        }
+
+        $rootBuildDir = KickflipHelper::buildPath();
+        foreach ($this->sourcesLocator->getCopyFileList() as $copyFileItem) {
+            Logger::verbose("Copying asset `{$copyFileItem->getUrl()}` from {$kickflipSourceDir} to {$rootBuildDir}");
+            if (!is_dir(dirname($copyFileItem->getOutputPath()))) {
+                mkdir(dirname($copyFileItem->getOutputPath()));
+            }
+            File::copy(KickflipHelper::sourcePath($copyFileItem->getUrl()), $copyFileItem->getOutputPath());
         }
 
         return $this;
