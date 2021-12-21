@@ -28,3 +28,23 @@ it('can make a view', function () {
     $markdownEngine = app(MarkdownEngine::class);
     expect($markdownEngine->get($mockPageData->source->getFullPath(), $data))->toBeString();
 });
+
+it('can make a non-extended view', function () {
+    $mockSiteData = SiteData::fromConfig([
+        'baseUrl' => 'http://example.com',
+        'production' => true,
+        'siteName' => 'Example Site',
+        'siteDescription' => 'This is an example site.',
+    ], []);
+    $mockPageData = getTestPageData(6);
+
+    $data = [
+        '__env' => app('view'),
+        'app' => app(),
+        'site' => $mockSiteData,
+        'page' => $mockPageData,
+    ];
+
+    $markdownEngine = app(MarkdownEngine::class);
+    expect($markdownEngine->get($mockPageData->source->getFullPath(), $data))->toBeString();
+});
