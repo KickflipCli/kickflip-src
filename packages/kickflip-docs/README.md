@@ -1,11 +1,7 @@
-# Kickflip CLI
-#### A CLI tool for generating static site's using Laravel tools you know and love.
+# Kickflip CLI Docs
+#### The Docs for Kickflip CLI static site generator.
 
 ------
-
-## Documentation
-
-TODO
 
 ## Contributing
 
