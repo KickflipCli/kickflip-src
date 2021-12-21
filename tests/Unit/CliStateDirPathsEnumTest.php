@@ -16,7 +16,6 @@ test('verify CliStateDirPaths constants', function (string $constName) {
     'EnvConfig',
     'BootstrapFile',
     'NavigationFile',
-    'EnvNavigationFile',
     'BuildBase',
     'BuildSourcePart',
     'BuildSource',
@@ -54,10 +53,6 @@ test('verify CliStateDirPaths constant values', function (string $constName, str
     [
         'NavigationFile',
         'navigationFile'
-    ],
-    [
-        'EnvNavigationFile',
-        'env_navigationFile'
     ],
     [
         'BuildBase',
