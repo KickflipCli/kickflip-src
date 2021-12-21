@@ -45,8 +45,8 @@ class BladeMarkdownEngine extends CompilerEngine
          * 2) any FrontMatter markdown without `autoExpand: false` passed,
          */
         if (
-            $this->autoExtendEnabled($data['site'], $data['page']) ||
-            $this->pageExtendEnabled($data['page'], $renderedMarkdown)
+            $this->isAutoExtendEnabled($data['site'], $data['page']) ||
+            $this->isPageExtendEnabled($data['page'], $renderedMarkdown)
         ) {
             return $this->makeView($data, $renderedMarkdown)->render();
         }
