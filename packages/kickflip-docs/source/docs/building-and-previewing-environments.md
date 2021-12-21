@@ -2,12 +2,13 @@
 title: Environments
 ---
 
-Your kickflip sites likely need to have slightly different configurations in your development and production environments.
+Your Kickflip site likely needs to have slightly different configurations in your development and production environments.
+Each environment has a config with the respective name in it, so building for `stage` will load `config/config.stage.php`
+
 This can really be used for anything you need, but is most often used for adjusting the base URL.
 
-The way Kickflip loads the build configuration is by first loading the global `config.php` file.
-When building the site this will be the main config used no matter what environment is being built.
-For Staging or Production builds the respective config will be loaded on top.
+Kickflip will always load and requires access to the `config/config.php` file.
+For any other environment build the respective config will be loaded and merged on top of the global config.
 
 So if your base `config.php` file looks like this:
 
@@ -17,11 +18,11 @@ So if your base `config.php` file looks like this:
 return [
     'baseUrl' => 'http://kickflip-docs.test/',
     'production' => false,
-    'siteName' => 'Kickflip',
+    'siteName' => 'Kickflip CLI',
 ];
 ```
 
-You can then override the production variable in the `config.production.php` file like:
+You can then override the `production` env's variable in the `config.production.php` file like:
 
 ```php
 <?php
@@ -33,6 +34,16 @@ return [
 ```
 
 Once merged any values in the production file will take precedent and overwrite base values.
+The effective merged config would look like:
+
+```php
+array:3 [
+  "baseUrl" => "https://kickflip.lucidinternets.com/"
+  "production" => true
+  "siteName" => "Kickflip CLI"
+]
+```
+
 
 ## Building environment specific files
 
