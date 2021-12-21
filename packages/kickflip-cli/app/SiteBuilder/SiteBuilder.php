@@ -61,13 +61,6 @@ final class SiteBuilder
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
         }
 
-        // TODO: actually test this...
-        $envNavConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvNavigationFile))->replaceEnv($env);
-        if (file_exists($envNavConfigPath)) {
-            $envNavConfig = include $envNavConfigPath;
-            $kickflipCliState->set('siteNav', array_merge($kickflipCliState->get('siteNav'), $envNavConfig));
-        }
-
         View::share(
             'site',
             SiteData::fromConfig($kickflipCliState->get('site'), $kickflipCliState->get('siteNav'))

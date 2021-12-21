@@ -16,7 +16,6 @@ abstract class CliStateDirPaths
     public const EnvConfig = 'env_config';
     public const BootstrapFile = 'bootstrapFile';
     public const NavigationFile = 'navigationFile';
-    public const EnvNavigationFile = 'env_navigationFile';
     public const BuildBase = 'build';
     public const BuildSourcePart = 'source';
     public const BuildSource = self::BuildBase . '.' . self::BuildSourcePart;

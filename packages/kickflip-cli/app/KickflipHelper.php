@@ -63,7 +63,6 @@ final class KickflipHelper
             CliStateDirPaths::EnvConfig => $basePath . '/config/config.{env}.php',
             CliStateDirPaths::BootstrapFile => $basePath . '/config/bootstrap.php',
             CliStateDirPaths::NavigationFile => $basePath . '/config/navigation.php',
-            CliStateDirPaths::EnvNavigationFile => $basePath . '/config/navigation.{env}.php',
             CliStateDirPaths::BuildBase => [
                 CliStateDirPaths::BuildSourcePart => $basePath . '/source',
                 CliStateDirPaths::BuildDestinationPart => $basePath . '/build_{env}',
