@@ -8,7 +8,7 @@ use Illuminate\View\Factory;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
-use League\CommonMark\Output\RenderedContent;
+use League\CommonMark\Output\RenderedContentInterface;
 
 trait MarkdownHelpers
 {
@@ -44,7 +44,7 @@ trait MarkdownHelpers
         ];
     }
 
-    public function makeView(array $data, RenderedContent $renderedMarkdown)
+    public function makeView(array $data, RenderedContentInterface $renderedMarkdown)
     {
         /**
          * @var Factory $viewFactory
