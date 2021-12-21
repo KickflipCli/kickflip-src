@@ -14,10 +14,25 @@ it('can instantiate PageData with from SourcePageMetaData', function () {
 
     // Test the PageData object
     expect($pageData)->toBeInstanceOf(PageData::class);
+
+    # Temporary set Pretty URLs to false..
+    KickflipHelper::config()->set('prettyUrls', false);
     expect($pageData->getUrl())->toBeString()->toBe('basic.html');
-    expect($pageData->getUrl(true))->toBeString()->toBe('basic');
+
+    # Change Pretty URLs back
+    KickflipHelper::config()->set('prettyUrls', true);
+    expect($pageData->getUrl())->toBeString()->toBe('basic');
+
+    # Temporary set Pretty URLs to false..
+    KickflipHelper::config()->set('prettyUrls', false);
     expect($pageData->getOutputPath())->toBeString()
-        ->toBe(dirname(__FILE__, 4) . '/packages/kickflip-docs/build_{env}/basic');
+        ->toBe(dirname(__FILE__, 4) . '/packages/kickflip-docs/build_{env}/basic.html');
+
+    # Change Pretty URLs back
+    KickflipHelper::config()->set('prettyUrls', true);
+    expect($pageData->getOutputPath())->toBeString()
+        ->toBe(dirname(__FILE__, 4) . '/packages/kickflip-docs/build_{env}/basic/index.html');
+
     expect($pageData->getExtendsView())->toBeString()->toBe('layouts.master');
     expect($pageData->getExtendsSection())->toBeString()->toBe('content');
     expect($pageData->getTitleId())->toBeString()->toBe('basic');

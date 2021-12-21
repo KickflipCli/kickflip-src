@@ -8,37 +8,29 @@ it('Logger::timing works correctly', function () {
     expect($timingsRepo)
         ->toBeInstanceOf(\Illuminate\Config\Repository::class)
         ->and($timingsRepo->all())
-        ->toHaveCount(5);
+        ->toHaveCount(4);
     Logger::timing('NotStatic::stepOne');
     expect($timingsRepo)
         ->and($timingsRepo->all())
-        ->toHaveCount(6)
+        ->toHaveCount(5)
         ->and($timingsRepo->get('NotStatic'))
         ->toBeArray()
         ->toHaveCount(1);
     Logger::timing('NotStatic::stepTwo', 'Static');
     expect($timingsRepo)
         ->and($timingsRepo->all())
-        ->toHaveCount(6)
+        ->toHaveCount(5)
         ->and($timingsRepo->get('NotStatic'))
         ->toBeArray()
         ->toHaveCount(2);
     expect($timingsRepo)
         ->and($timingsRepo->all())
-        ->toHaveCount(6);
+        ->toHaveCount(5);
     Logger::timing('Static::stepThree');
     expect($timingsRepo)
         ->and($timingsRepo->all())
-        ->toHaveCount(7)
+        ->toHaveCount(6)
         ->and($timingsRepo->get('Static'))
         ->toBeArray()
         ->toHaveCount(1);
 });
-
-it('can try logging with a booted app', function () {
-    Logger::info('This is a test');
-
-    dd(
-        app('log'),
-    );
-})->skip();

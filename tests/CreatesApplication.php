@@ -22,14 +22,12 @@ trait CreatesApplication
         $app = require __DIR__.'/../packages/kickflip-cli/bootstrap/app.php';
         KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip-docs'));
         $app->make(Kernel::class)->bootstrap();
-
         $this->callAfterResolving($app, 'view', function ($view) {
             /**
              * @var Factory $view
              */
             $view->addLocation(__DIR__ . '/views');
         });
-
         return $app;
     }
 

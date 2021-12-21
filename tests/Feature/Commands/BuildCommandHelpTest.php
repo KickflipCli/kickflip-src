@@ -19,7 +19,7 @@ test('build command help flag', function () {
 
 $expectedLines = collect(explode("\n", <<<HEREDOC
 Description:
-  Build your site.
+  Build your website project.
 
 Usage:
   build [options] [--] [<env>]
@@ -39,27 +39,4 @@ Options:
 HEREDOC))
     ->filter(fn($value) => '' !== $value)
     ->map(fn($value) => $pendingCommand->expectsOutput($value));
-});
-
-test('build command', function () {
-    $this->artisan('build')
-        ->assertExitCode(0);
-});
-
-test('test successful fake dirty build command', function () {
-    $buildPath = Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('local');
-    mkdir($buildPath);
-
-    $this->artisan('build')
-        ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'yes')
-        ->assertExitCode(0);
-});
-
-test('test denied fake dirty build command', function () {
-    $buildPath = Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('local');
-    mkdir($buildPath);
-
-    $this->artisan('build')
-        ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'no')
-        ->assertExitCode(1);
 });
