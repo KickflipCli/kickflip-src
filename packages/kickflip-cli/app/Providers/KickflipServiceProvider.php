@@ -69,7 +69,7 @@ class KickflipServiceProvider extends ServiceProvider
         $projectMarkdownConfig = sprintf('%s%s%s', dirname(KickflipHelper::namedPath(CliStateDirPaths::Config)), DIRECTORY_SEPARATOR, 'markdown.php');
         if (File::exists($projectMarkdownConfig)) {
             config()->set('markdown', require $projectMarkdownConfig);
-            $kickflipMarkdownConfig = sprintf('%s%s%s', KickflipHelper::rootPackagePath(), DIRECTORY_SEPARATOR, 'markdown.php');
+            $kickflipMarkdownConfig = KickflipHelper::rootPackagePath() . '/config/markdown.php';
             $this->mergeConfigFrom($kickflipMarkdownConfig, 'markdown');
             $basePackageConfig = dirname((new \ReflectionClass(\Spatie\LaravelMarkdown\MarkdownServiceProvider::class))->getFileName(), 2) .
                 '/config/markdown.php';
