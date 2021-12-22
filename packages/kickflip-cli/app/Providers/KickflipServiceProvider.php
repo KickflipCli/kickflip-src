@@ -109,7 +109,7 @@ class KickflipServiceProvider extends ServiceProvider
         $this->enableBladeMarkdownEngine();
 
         $bootstrapFile = $this->app->get('kickflipCli')->get('paths.bootstrapFile');
-        if (file_exists($bootstrapFile)) {
+        if (File::exists($bootstrapFile)) {
             include $bootstrapFile;
         }
     }
