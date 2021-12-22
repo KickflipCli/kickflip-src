@@ -6,7 +6,9 @@ namespace Kickflip\Providers;
 
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory as ViewFactory;
+use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Illuminate\Support\ServiceProvider;
@@ -62,6 +64,17 @@ class KickflipServiceProvider extends ServiceProvider
         $this->app->singleton(SourcesLocator::class, function($app) {
             return new SourcesLocator(KickflipHelper::sourcePath());
         });
+
+        // Check for local markdown config file and merge on top if exists...
+        $projectMarkdownConfig = sprintf('%s%s%s', dirname(KickflipHelper::namedPath(CliStateDirPaths::Config)), DIRECTORY_SEPARATOR, 'markdown.php');
+        if (File::exists($projectMarkdownConfig)) {
+            config()->set('markdown', require $projectMarkdownConfig);
+            $kickflipMarkdownConfig = sprintf('%s%s%s', KickflipHelper::rootPackagePath(), DIRECTORY_SEPARATOR, 'markdown.php');
+            $this->mergeConfigFrom($kickflipMarkdownConfig, 'markdown');
+            $basePackageConfig = dirname((new \ReflectionClass(\Spatie\LaravelMarkdown\MarkdownServiceProvider::class))->getFileName(), 2) .
+                '/config/markdown.php';
+            $this->mergeConfigFrom($basePackageConfig, 'markdown');
+        }
     }
 
     /**
@@ -95,6 +108,8 @@ class KickflipServiceProvider extends ServiceProvider
             $appConfig->set('markdown.code_highlighting.theme', $codeHighlightTheme);
         }
 
+        // TODO: Correct this as kickflip will likely never be in PHAR mode...
+        // We will want to make sure the log goes to useful places tho....
         # ensure you configure the right channel you use
         config(['logging.channels.single.path' => \Phar::running()
             ? dirname(\Phar::running(false)) . '/logs/kickflip.log'
