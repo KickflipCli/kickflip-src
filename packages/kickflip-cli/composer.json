@@ -13,6 +13,7 @@
     "require": {
         "php": "^8.0",
         "ext-filter": "*",
+        "ext-json": "*",
         "illuminate/events": "^8.0",
         "illuminate/log": "^8.0",
         "illuminate/routing": "^8.0",
@@ -22,11 +23,7 @@
         "league/commonmark": "^2.0",
         "mallardduck/laravel-traits": "dev-main",
         "spatie/enum": "^3.9",
-        "spatie/laravel-markdown": "^2.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/http-kernel": "^5.0",
-        "symfony/yaml": "^5.3",
-        "vlucas/phpdotenv": "^5.3"
+        "spatie/laravel-markdown": "^2.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
