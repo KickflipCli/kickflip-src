@@ -3,6 +3,10 @@
 use Kickflip\KickflipHelper;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 
+beforeAll(static function() {
+    KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
+});
+
 test('default KickflipHelper::basePath', function () {
     expect(KickflipHelper::basePath())
         ->toBeString()
@@ -18,6 +22,12 @@ test('custom KickflipHelper::basePath', function ($input, $expected) {
     ['./', ''],
     ['./packages/kickflip-docs', '/packages/kickflip-docs'],
 ]);
+
+test('KickflipHelper::rootPackagePath', function () {
+    expect(KickflipHelper::rootPackagePath())
+        ->toBeString()
+        ->toBe(dirname(__DIR__, 2) . '/packages/kickflip-cli');
+});
 
 test('helper to kebab', function ($input, $expected) {
     expect(KickflipHelper::toKebab($input))

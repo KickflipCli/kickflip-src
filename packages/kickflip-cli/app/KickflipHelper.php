@@ -161,6 +161,15 @@ final class KickflipHelper
         return KickflipHelper::namedPath(CliStateDirPaths::BuildDestination).($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
     }
 
+    /**
+     * Return the path to the root of the `kickflip-cli` package.
+     * @return string
+     */
+    public static function rootPackagePath(): string
+    {
+        return dirname(__FILE__, 2);
+    }
+
     public static function getFrontMatterParser(): FrontMatterParserInterface
     {
         return (new FrontMatterExtension())->getFrontMatterParser();
