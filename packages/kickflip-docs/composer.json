@@ -7,7 +7,7 @@
         "codeat3/blade-file-icons": "^1.5",
         "mallardduck/blade-boxicons": "^2.1.2",
         "mallardduck/blade-emoji-icons": "^1.0",
-        "mallardduck/kickflip-cli": "^0.4.4",
+        "mallardduck/kickflip-cli": "^0.5",
         "samdark/sitemap": "^2.2.1",
         "spatie/emoji": "^2.3"
     },
