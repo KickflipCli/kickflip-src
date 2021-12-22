@@ -57,6 +57,28 @@ expect()->extend('reflectHasProperty', function (string $property) {
     return $this->and($reflectionClass->hasProperty($property))->toBeTrue();
 });
 
+expect()->extend('reflectExpectProperty', function (string $property) {
+    /**
+     * @var \Pest\Expectation $this
+     * @var class-string|object $class
+     */
+    $class = $this->value;
+    $reflectionClass = new ReflectionClass($class);
+    return $this->and($reflectionClass->getProperty($property)->getValue($class));
+});
+
+expect()->extend('reflectCallMethod', function (string $method) {
+    /**
+     * @var \Pest\Expectation $this
+     * @var class-string|object $class
+     */
+    $class = $this->value;
+    $reflectionClass = new ReflectionClass($class);
+    $reflectionMethod = $reflectionClass->getMethod($method);
+    $reflectionMethod->setAccessible(true);
+    return $this->and($reflectionMethod->invoke($class));
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
