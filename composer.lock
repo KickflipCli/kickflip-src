@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a2c5fa4316222f5ee1da902480dccdc",
+    "content-hash": "17315bd3660cc1fdac25d862082f1dc8",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -627,7 +627,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -680,7 +680,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -740,7 +740,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -794,7 +794,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -842,7 +842,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -902,7 +902,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -953,7 +953,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1001,7 +1001,7 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
@@ -1069,7 +1069,7 @@
         },
         {
             "name": "illuminate/events",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1124,7 +1124,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1186,7 +1186,7 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
@@ -1244,7 +1244,7 @@
         },
         {
             "name": "illuminate/log",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/log.git",
@@ -1293,7 +1293,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -1339,7 +1339,7 @@
         },
         {
             "name": "illuminate/pagination",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pagination.git",
@@ -1389,7 +1389,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1437,7 +1437,7 @@
         },
         {
             "name": "illuminate/routing",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
@@ -1500,7 +1500,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -1556,7 +1556,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1624,7 +1624,7 @@
         },
         {
             "name": "illuminate/testing",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/testing.git",
@@ -1682,7 +1682,7 @@
         },
         {
             "name": "illuminate/view",
-            "version": "v8.77.0",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
@@ -9860,7 +9860,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0",
-        "ext-filter": "*"
+        "ext-filter": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

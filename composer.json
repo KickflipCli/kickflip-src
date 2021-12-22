@@ -12,6 +12,7 @@
     "require": {
         "php": "^8.0",
         "ext-filter": "*",
+        "ext-json": "*",
         "codeat3/blade-file-icons": "^1.5",
         "illuminate/events": "^8.0",
         "illuminate/log": "^8.0",
@@ -27,6 +28,7 @@
         "spatie/emoji": "^2.3",
         "spatie/enum": "^3.9",
         "spatie/laravel-markdown": "^2.0",
+        "symfony/process": "^5.0",
         "symfony/dependency-injection": "^5.0",
         "symfony/http-kernel": "^5.0",
         "symfony/yaml": "^5.3",
