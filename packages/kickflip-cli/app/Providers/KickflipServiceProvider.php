@@ -99,15 +99,6 @@ class KickflipServiceProvider extends ServiceProvider
         Logger::timing(__METHOD__);
         Logger::debug("Firing " . __METHOD__);
 
-        $codeHighlightTheme = KickflipHelper::config('site.markdown.code.theme', null);
-        if ($codeHighlightTheme !== null) {
-            /**
-             * @var Repository $appConfig
-             */
-            $appConfig = $this->app['config'];
-            $appConfig->set('markdown.code_highlighting.theme', $codeHighlightTheme);
-        }
-
         // TODO: Correct this as kickflip will likely never be in PHAR mode...
         // We will want to make sure the log goes to useful places tho....
         # ensure you configure the right channel you use
