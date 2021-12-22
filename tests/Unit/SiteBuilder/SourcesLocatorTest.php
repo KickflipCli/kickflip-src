@@ -11,12 +11,12 @@ test('SourcesLocator class exists', function () {
 });
 
 test('SourcesLocator can be constructed', function () {
-    expect(new SourcesLocator(dirname(__DIR__) . '/sources'))
+    expect(new SourcesLocator(dirname(__DIR__, 2) . '/sources'))
         ->toBeInstanceOf(SourcesLocator::class);
 });
 
 test('SourcesLocator has expected properties', function () {
-    expect(new SourcesLocator(dirname(__DIR__) . '/sources'))
+    expect(new SourcesLocator(dirname(__DIR__, 2) . '/sources'))
         ->toHaveProperties([
             'sourcesBasePath',
             'renderPageList',
@@ -27,7 +27,7 @@ test('SourcesLocator has expected properties', function () {
 });
 
 test('SourcesLocator has expected methods', function () {
-    $sourcesLocator = new SourcesLocator(dirname(__DIR__) . '/sources');
+    $sourcesLocator = new SourcesLocator(dirname(__DIR__, 2) . '/sources');
     expect($sourcesLocator->getRenderPageList())
         ->toBeArray()
         ->toHaveCount(7)

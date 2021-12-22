@@ -25,7 +25,7 @@ it('can getType from SourcePageMetaData instances', function (SplFileInfo $splFi
 })->with(
     Finder::create()
     ->files()
-    ->in(dirname(__DIR__) . '/sources')
+    ->in(dirname(__DIR__, 2) . '/sources')
     ->ignoreDotFiles(true)
     ->getIterator()
 );
