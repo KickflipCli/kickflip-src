@@ -10,7 +10,7 @@ it('can verify ShikiNpmFetcher methods', function () {
     $shikiFetcher = new ShikiNpmFetcher();
     expect($shikiFetcher)->toBeInstanceOf(ShikiNpmFetcher::class);
     expect($shikiFetcher->getProjectRootDirectory())
-        ->toBeString()->toBe(dirname(__FILE__, 3));
+        ->toBeString()->toBe(dirname(__FILE__, 4));
     expect($shikiFetcher->isNpmUsedByProject())
         ->toBeBool();
     expect($shikiFetcher->isShikiRequired())
