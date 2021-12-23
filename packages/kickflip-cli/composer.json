@@ -23,7 +23,8 @@
         "league/commonmark": "^2.0",
         "mallardduck/laravel-traits": "dev-main",
         "spatie/enum": "^3.9",
-        "spatie/laravel-markdown": "^2.0"
+        "spatie/laravel-markdown": "^2.0",
+        "symfony/yaml": "^6.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.3",
