@@ -15,7 +15,7 @@ class NavItem implements NavItemInterface
         public ?array $children = null,
     ) {}
 
-    public static function make(string $title, ?string $url = null): self
+    public static function make(string $title, ?string $url = ''): self
     {
         return new self($title, $url);
     }

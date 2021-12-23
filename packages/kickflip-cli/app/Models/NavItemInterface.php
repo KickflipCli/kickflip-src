@@ -4,7 +4,7 @@ namespace Kickflip\Models;
 
 interface NavItemInterface
 {
-    public static function make(string $title, ?string $url = null): NavItemInterface;
+    public static function make(string $title, ?string $url = ''): NavItemInterface;
 
     /**
      * @param array<NavItemInterface> $children
