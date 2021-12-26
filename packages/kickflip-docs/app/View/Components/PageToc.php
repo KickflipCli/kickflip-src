@@ -15,7 +15,7 @@ class PageToc extends Component
 
     public function __construct()
     {
-        $this->htmlRenderer = new HtmlRenderer(app(MarkdownRenderer::class)->getMarkdownConverter()->getEnvironment());
+        $this->htmlRenderer = new HtmlRenderer(app(MarkdownRenderer::class)->getMarkdownEnvironment());
     }
 
     /**
