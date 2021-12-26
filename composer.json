@@ -20,14 +20,14 @@
         "illuminate/support": "^8.0",
         "illuminate/view": "^8.0",
         "laravel-zero/framework": "^8.9",
-        "league/commonmark": "^2.0",
+        "league/commonmark": "^2.1",
         "mallardduck/blade-boxicons": "^2.1.2",
         "mallardduck/blade-emoji-icons": "^1.0",
         "mallardduck/laravel-traits": "dev-main",
-        "samdark/sitemap": "^2.2.1",
+        "samdark/sitemap": "^2.4",
         "spatie/emoji": "^2.3",
-        "spatie/enum": "^3.9",
-        "spatie/laravel-markdown": "^2.0",
+        "spatie/enum": "^3.11",
+        "spatie/laravel-markdown": "^2.1",
         "symfony/yaml": "^6.0"
     },
     "replace": {
