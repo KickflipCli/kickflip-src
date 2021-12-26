@@ -22,7 +22,6 @@
 
         <title>{{ isset($page->title) && ! empty($page->title) ?  $page->title . ' | ' : '' }}{{ $site->siteName }}</title>
     @isset($site->baseUrl)
-        <base href="{{ rtrim($site->baseUrl, '/') . '/' }}">
         <link rel="home" href="{{ $site->baseUrl }}">
     @endisset
         <link rel="icon" href="/favicon.ico">
