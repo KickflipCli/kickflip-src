@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kickflip\Providers;
 
-use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory as ViewFactory;
