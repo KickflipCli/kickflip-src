@@ -6,6 +6,7 @@
  * @var \Kickflip\Providers\KickflipServiceProvider $this
  */
 
+use Kickflip\View\Compilers\ComponentTagCompiler;
 use KickflipDocs\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
@@ -15,6 +16,8 @@ use Kickflip\Events\SiteBuildComplete;
  */
 \Kickflip\Models\PageData::$defaultExtendsView = 'layouts.documentation';
 \Kickflip\Models\PageData::$defaultExtendsSection = 'docs_content';
+
+ComponentTagCompiler::$rootNamespace = 'KickflipDocs';
 
 /**
  * You can run custom code at different stages of the build process by
