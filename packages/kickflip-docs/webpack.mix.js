@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 const path = require("path");
-const tailwindcss = require('tailwindcss');
 const postcssAdvancedVariables = require('@knagis/postcss-advanced-variables');
 
 mix.disableSuccessNotifications();
@@ -14,7 +13,8 @@ mix.js('resources/js/main.js', 'js')
             require('postcss-omit-import-tilde'),
             require('postcss-import'),
             postcssAdvancedVariables(),
-            tailwindcss('./tailwind.config.js'),
+            require('tailwindcss/nesting'),
+            require('tailwindcss')('./tailwind.config.js'),
             require('postcss-nested'),
             require('postcss-custom-selectors')(),
             require('autoprefixer'),

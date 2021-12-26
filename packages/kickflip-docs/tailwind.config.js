@@ -1,26 +1,17 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-    purge: {
-        content: [
-            'cache/**/*.php',
-            'resources/**/*.js',
-            'resources/**/*.pcss',
-            'resources/**/*.php',
-            'source/**/*.html',
-            'source/**/*.md',
-            'source/**/*.js',
-            'source/**/*.php',
-            'source/**/*.vue',
-        ],
-        options: {
-            whitelist: [
-                /language/,
-                /hljs/,
-                /algolia/,
-            ],
-        },
-    },
+    content: [
+        'cache/**/*.php',
+        'resources/**/*.js',
+        'resources/**/*.pcss',
+        'resources/**/*.php',
+        'source/**/*.html',
+        'source/**/*.md',
+        'source/**/*.js',
+        'source/**/*.php',
+        'source/**/*.vue',
+    ],
     theme: {
         extend: {
             typography: (theme) => ({
@@ -35,6 +26,12 @@ module.exports = {
                     },
                 },
             }),
+            screens: {
+                'sm-max': {'min': '640px', 'max': '767px'},
+                'md-max': {'min': '768px', 'max': '1023px'},
+                'lg-max': {'min': '1024px', 'max': '1279px'},
+                'xl-max': {'min': '1280px', 'max': '1535px'},
+            }
         },
     },
     variants: {
