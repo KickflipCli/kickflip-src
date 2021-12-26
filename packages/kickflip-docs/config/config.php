@@ -19,12 +19,6 @@ return [
         BladeEmojiIconsServiceProvider::class,
     ],
 
-    'markdown' => [
-        'code' => [
-            'theme' => __DIR__ . '/github-theme.js',
-        ],
-    ],
-
     // Algolia DocSearch credentials
     'docsearchApiKey' => '',
     'docsearchIndexName' => '',
