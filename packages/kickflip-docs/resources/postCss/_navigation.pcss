@@ -22,3 +22,13 @@
         }
     }
 }
+
+.table-of-contents {
+    list-style: circle;
+    @apply pl-4;
+
+    & li > ul {
+        list-style: inherit;
+        @apply pl-3;
+    }
+}

@@ -15,5 +15,8 @@
             <h1 id="{{ $page->getTitleId() }}">{{ $page->title }}</h1>
             @yield('docs_content')
         </article>
+        <aside class="flex-grow pl-4">
+            <x-page-toc />
+        </aside>
     </section>
 @endsection

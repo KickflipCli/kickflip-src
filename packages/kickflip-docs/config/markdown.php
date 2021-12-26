@@ -1,5 +1,6 @@
 <?php
 
+use KickflipDocs\View\Markdown\TableOfContentsExtension;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkProcessor;
@@ -69,6 +70,7 @@ return [
     'extensions' => [
         AttributesExtension::class,
         HeadingPermalinkExtension::class,
+        TableOfContentsExtension::class,
     ],
 
     /*
