@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\View;
 
+use League\CommonMark\Environment\Environment;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -39,5 +40,13 @@ final class MarkdownRenderer extends BaseMarkdownRenderer
         foreach ($this->inlineRenderers as $inlineRenderer) {
             $environment->addRenderer($inlineRenderer['class'], $inlineRenderer['renderer'], $inlineRenderer['priority'] ?? 0);
         }
+    }
+
+    public function getMarkdownEnvironment(): Environment
+    {
+        $environment = new Environment($this->commonmarkOptions);
+        $this->configureCommonMarkEnvironment($environment);
+
+        return $environment;
     }
 }
