@@ -15,7 +15,7 @@ jobs:
                 dependency-version: [prefer-lowest, prefer-stable]
                 os: [ubuntu-latest]
 
-        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+        name: TEST - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
         steps:
             - name: Checkout code
