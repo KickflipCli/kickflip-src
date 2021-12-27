@@ -97,16 +97,8 @@ class KickflipServiceProvider extends ServiceProvider
     {
         Logger::timing(__METHOD__);
         Logger::debug("Firing " . __METHOD__);
-
-        // TODO: Correct this as kickflip will likely never be in PHAR mode...
-        // We will want to make sure the log goes to useful places tho....
-        # ensure you configure the right channel you use
-        config(['logging.channels.single.path' => \Phar::running()
-            ? dirname(\Phar::running(false)) . '/logs/kickflip.log'
-            : storage_path('logs/kickflip.log')
-        ]);
+        config(['logging.channels.single.path' => KickflipHelper::basePath() . '/kickflip.log']);
         $this->enableBladeMarkdownEngine();
-
         $bootstrapFile = $this->app->get('kickflipCli')->get('paths.bootstrapFile');
         if (File::exists($bootstrapFile)) {
             include $bootstrapFile;
