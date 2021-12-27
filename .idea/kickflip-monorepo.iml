@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/app" isTestSource="false" packagePrefix="Kickflip\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/tests" isTestSource="true" packagePrefix="KickflipTests\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="RepoBuilder\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/kickflip/app" isTestSource="false" packagePrefix="App\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
