@@ -21,10 +21,10 @@ jobs:
             - name: Wait for tests to succeed
               uses: lewagon/wait-on-check-action@v1.1.1
               with:
-                  ref: ${{ github.ref }}
-                  check-name: 'Run tests'
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  wait-interval: 600
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  checkName: tests
+                  ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
             -   uses: actions/checkout@v2
 
             # required for matrix of packages set
@@ -32,6 +32,8 @@ jobs:
                 with:
                     php-version: 8.0
                     coverage: none
+                if: steps.wait-for-build.outputs.conclusion == 'success'
+
 
             -   uses: "ramsey/composer-install@v1"
 
