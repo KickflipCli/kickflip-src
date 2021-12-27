@@ -67,11 +67,11 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                 with:
-                    package-directory: 'packages/${{ matrix.package }}'
-                    split-repository-organization: 'mallardduck'
-                    split-repository-name: '${{ matrix.package }}'
-                    user-name: "MallardDuck"
-                    user-email: "self@danpock.me"
+                    package_directory: 'packages/${{ matrix.package }}'
+                    repository_organization: 'mallardduck'
+                    repository_name: '${{ matrix.package }}'
+                    user_name: "MallardDuck"
+                    user_email: "self@danpock.me"
                     branch: "main"
 
             # with tag
@@ -84,10 +84,8 @@ jobs:
                     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                 with:
                     tag: ${GITHUB_REF#refs/tags/}
-
-                    package-directory: 'packages/${{ matrix.package }}'
-                    split-repository-organization: 'mallardduck'
-                    split-repository-name: '${{ matrix.package }}'
-                    user-name: "MallardDuck"
-                    user-email: "self@danpock.me"
-                    branch: "main"
+                    package_directory: 'packages/${{ matrix.package }}'
+                    repository_organization: 'mallardduck'
+                    repository_name: '${{ matrix.package }}'
+                    user_name: "MallardDuck"
+                    user_email: "self@danpock.me"
