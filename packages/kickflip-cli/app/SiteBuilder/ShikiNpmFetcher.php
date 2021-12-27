@@ -56,12 +56,38 @@ final class ShikiNpmFetcher
      */
     public function isShikiRequired(): bool
     {
+        return $this->isShikiRequiredPackage() || $this->isShikiRequiredPackageLock();
+    }
+
+    public function isShikiRequiredPackage(): bool
+    {
         return $this->projectRootDirectoryFilesystem->exists('package.json') &&
             ($rootNpmPackages = json_decode(file_get_contents($this->getProjectRootDirectory() . '/package.json'))) &&
+            (
+                property_exists($rootNpmPackages, 'dependencies') &&  property_exists($rootNpmPackages->dependencies, 'shiki')||
+                property_exists($rootNpmPackages, 'devDependencies') &&  property_exists($rootNpmPackages->devDependencies, 'shiki')
+            );
+    }
+
+    public function isShikiRequiredPackageLock(): bool
+    {
+        return $this->projectRootDirectoryFilesystem->exists('package-lock.json') &&
+            ($rootNpmPackageLock = json_decode(file_get_contents($this->getProjectRootDirectory() . '/package-lock.json'))) &&
+            (
+                // V2 Package Lock
                 (
-                    property_exists($rootNpmPackages, 'dependencies') &&  property_exists($rootNpmPackages->dependencies, 'shiki')||
-                    property_exists($rootNpmPackages, 'devDependencies') &&  property_exists($rootNpmPackages->devDependencies, 'shiki')
-                );
+                    property_exists($rootNpmPackageLock, 'packages') &&
+                    (
+                        property_exists($rootNpmPackageLock->packages->{''}, 'dependencies') && property_exists($rootNpmPackageLock->packages->{''}->dependencies, 'shiki') ||
+                        property_exists($rootNpmPackageLock->packages->{''}, 'devDependencies') && property_exists($rootNpmPackageLock->packages->{''}->devDependencies, 'shiki')
+                    )
+                ) ||
+                // V1 Package Lock
+                (
+                    property_exists($rootNpmPackageLock, 'dependencies') &&  property_exists($rootNpmPackageLock->dependencies, 'shiki')||
+                    property_exists($rootNpmPackageLock, 'devDependencies') &&  property_exists($rootNpmPackageLock->devDependencies, 'shiki')
+                )
+            );
     }
 
     /**
@@ -124,8 +150,8 @@ final class ShikiNpmFetcher
                 $absolutePath = $this->projectRootDirectoryFilesystem->path($file);
                 if (File::isDirectory($absolutePath)) {
                     File::deleteDirectory($absolutePath);
-                } else {
-                    $this->projectRootDirectoryFilesystem->delete($file);
+                } elseif(File::isFile($absolutePath)) {
+                    File::delete($file);
                 }
             }
         }
