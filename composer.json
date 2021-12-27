@@ -51,12 +51,10 @@
         "vimeo/psalm": "^4.14"
     },
     "replace": {
-        "mallardduck/kickflip": "0.5.2",
-        "mallardduck/kickflip-cli": "0.5.2",
-        "mallardduck/kickflip-docs": "0.5.2"
+        "mallardduck/kickflip": "0.5.3",
+        "mallardduck/kickflip-cli": "0.5.3",
+        "mallardduck/kickflip-docs": "0.5.3"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "packages/kickflip/app/",
@@ -86,5 +84,7 @@
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
         "test": "XDEBUG_MODE=off vendor/bin/pest"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
