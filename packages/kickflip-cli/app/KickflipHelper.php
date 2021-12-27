@@ -65,6 +65,7 @@ final class KickflipHelper
             CliStateDirPaths::NavigationFile => $basePath . '/config/navigation.php',
             CliStateDirPaths::BuildBase => [
                 CliStateDirPaths::BuildSourcePart => $basePath . '/source',
+                CliStateDirPaths::EnvBuildDestinationPart => $basePath . '/build_{env}',
                 CliStateDirPaths::BuildDestinationPart => $basePath . '/build_{env}',
             ]
         ]);

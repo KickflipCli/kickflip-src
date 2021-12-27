@@ -21,4 +21,6 @@ abstract class CliStateDirPaths
     public const BuildSource = self::BuildBase . '.' . self::BuildSourcePart;
     public const BuildDestinationPart = 'destination';
     public const BuildDestination = self::BuildBase . '.' . self::BuildDestinationPart;
+    public const EnvBuildDestinationPart = 'env_' . self::BuildDestinationPart;
+    public const EnvBuildDestination = self::BuildBase . '.' . self::EnvBuildDestinationPart;
 }
