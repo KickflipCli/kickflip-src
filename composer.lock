@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85ef8a12e2962dd5e91b4886f37ed98a",
+    "content-hash": "be4876425561ad438054d1651f8ad066",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -3800,16 +3800,16 @@
         },
         {
             "name": "spatie/laravel-markdown",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-markdown.git",
-                "reference": "34cfb446b94c5a0c595832258e1a4a56c9f34c3f"
+                "reference": "f3d61706ec634122440ac6400914e78600f4ecff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/34cfb446b94c5a0c595832258e1a4a56c9f34c3f",
-                "reference": "34cfb446b94c5a0c595832258e1a4a56c9f34c3f",
+                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/f3d61706ec634122440ac6400914e78600f4ecff",
+                "reference": "f3d61706ec634122440ac6400914e78600f4ecff",
                 "shasum": ""
             },
             "require": {
@@ -3862,7 +3862,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-markdown/tree/2.1.0"
+                "source": "https://github.com/spatie/laravel-markdown/tree/2.1.1"
             },
             "funding": [
                 {
@@ -3870,7 +3870,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-03T19:17:12+00:00"
+            "time": "2021-12-27T15:46:26+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

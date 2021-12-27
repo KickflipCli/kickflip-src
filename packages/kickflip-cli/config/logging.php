@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'stderr'],
+            'channels' => ['stderr'],
             'ignore_exceptions' => false,
         ],
 
