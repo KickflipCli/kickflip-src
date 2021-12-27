@@ -22,7 +22,7 @@ jobs:
               uses: lewagon/wait-on-check-action@v1.1.1
               with:
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  check-regexp: "TEST - P[x\.0-9]+ - L[\*x\.0-9]+ - .* - .*"
+                  check-regexp: "TEST - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
                   ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
             -   uses: actions/checkout@v2
