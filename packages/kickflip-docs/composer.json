@@ -2,6 +2,7 @@
     "name": "mallardduck/kickflip-docs",
     "description": "The docs site/repo for the kickflip cli projects.",
     "license": "MIT",
+    "type": "project",
     "require": {
         "php": "^8.0",
         "codeat3/blade-file-icons": "^1.5",

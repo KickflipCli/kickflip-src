@@ -1,6 +1,6 @@
 {
     "name": "mallardduck/kickflip-cli",
-    "type": "project",
+    "type": "library",
     "description": "A Laravel Zero based static site generator CLI tool.",
     "keywords": ["ssg", "static site generator", "laravel zero", "cli"],
     "license": "MIT",
