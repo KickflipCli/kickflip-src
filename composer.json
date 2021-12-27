@@ -26,7 +26,6 @@
         "mallardduck/blade-emoji-icons": "^1.1",
         "mallardduck/laravel-traits": "dev-main",
         "samdark/sitemap": "^2.4",
-        "spatie/emoji": "^2.3",
         "spatie/enum": "^3.11.1",
         "spatie/laravel-markdown": "^2.1.1",
         "symfony/yaml": "^6.0",
@@ -56,6 +55,8 @@
         "mallardduck/kickflip-cli": "0.5.2",
         "mallardduck/kickflip-docs": "0.5.2"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "packages/kickflip/app/",
@@ -85,7 +86,5 @@
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
         "test": "XDEBUG_MODE=off vendor/bin/pest"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

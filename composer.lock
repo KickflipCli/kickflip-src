@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5690991b3611e6154068d7c5ec01f09",
+    "content-hash": "f9fe14e0422782da8307a8cbfa5e6263",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2340,16 +2340,16 @@
         },
         {
             "name": "mallardduck/blade-emoji-icons",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/blade-emoji-icons.git",
-                "reference": "470e9d88608c54f54828d8703eb20dfcdeb22763"
+                "reference": "9c8571873329739013cfbcf9ed4c613400913165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/blade-emoji-icons/zipball/470e9d88608c54f54828d8703eb20dfcdeb22763",
-                "reference": "470e9d88608c54f54828d8703eb20dfcdeb22763",
+                "url": "https://api.github.com/repos/mallardduck/blade-emoji-icons/zipball/9c8571873329739013cfbcf9ed4c613400913165",
+                "reference": "9c8571873329739013cfbcf9ed4c613400913165",
                 "shasum": ""
             },
             "require": {
@@ -2358,7 +2358,7 @@
                 "illuminate/support": "^8.37",
                 "illuminate/view": "^8.37",
                 "php": "^8.0",
-                "spatie/emoji": "^2.3",
+                "spatie/emoji": "^3.0",
                 "spatie/laravel-package-tools": "^1.5.0"
             },
             "require-dev": {
@@ -2405,7 +2405,7 @@
             ],
             "support": {
                 "issues": "https://github.com/mallardduck/blade-emoji-icons/issues",
-                "source": "https://github.com/mallardduck/blade-emoji-icons/tree/1.0.1"
+                "source": "https://github.com/mallardduck/blade-emoji-icons/tree/1.1.0"
             },
             "funding": [
                 {
@@ -2413,7 +2413,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-27T14:15:33+00:00"
+            "time": "2021-09-27T18:17:04+00:00"
         },
         {
             "name": "mallardduck/laravel-traits",
@@ -3658,16 +3658,16 @@
         },
         {
             "name": "spatie/emoji",
-            "version": "2.3.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/emoji.git",
-                "reference": "f5423bc7764fdd992bb955b6fac5d6675b8969cc"
+                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/emoji/zipball/f5423bc7764fdd992bb955b6fac5d6675b8969cc",
-                "reference": "f5423bc7764fdd992bb955b6fac5d6675b8969cc",
+                "url": "https://api.github.com/repos/spatie/emoji/zipball/69ff9c675d9a732319bf3f6c2d705f376ee7935f",
+                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f",
                 "shasum": ""
             },
             "require": {
@@ -3708,7 +3708,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/emoji/issues",
-                "source": "https://github.com/spatie/emoji/tree/2.3.1"
+                "source": "https://github.com/spatie/emoji/tree/3.0.0"
             },
             "funding": [
                 {
@@ -3720,7 +3720,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-04T14:58:47+00:00"
+            "time": "2021-09-27T17:14:27+00:00"
         },
         {
             "name": "spatie/enum",
@@ -7126,6 +7126,9 @@
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
+            },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
@@ -9636,5 +9639,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
