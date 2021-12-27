@@ -29,6 +29,15 @@ jobs:
 
             -   uses: "ramsey/composer-install@v1"
 
+            - name: Wait for tests to succeed
+              uses: lewagon/wait-on-check-action@v1.1.1
+              with:
+                  ref: ${{ github.ref }}
+                  check-name: 'Run tests'
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  wait-interval: 600
+            -   uses: actions/checkout@v2
+
             # get package json list
             -
                 id: output_data
@@ -48,13 +57,6 @@ jobs:
                 package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
 
         steps:
-            - name: Wait for tests to succeed
-              uses: lewagon/wait-on-check-action@v1.1.1
-              with:
-                  ref: ${{ github.ref }}
-                  check-name: 'Run tests'
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  wait-interval: 600
             -   uses: actions/checkout@v2
 
             # no tag
