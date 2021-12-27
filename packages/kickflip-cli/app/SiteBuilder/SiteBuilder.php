@@ -63,7 +63,7 @@ final class SiteBuilder
 
         View::share(
             'site',
-            SiteData::fromConfig($kickflipCliState->get('site'), $kickflipCliState->get('siteNav'))
+            SiteData::fromConfig($kickflipCliState->get('site'), $kickflipCliState->get('siteNav', []))
         );
     }
 
