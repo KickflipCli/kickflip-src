@@ -1,8 +1,8 @@
 {
     "name": "mallardduck/kickflip-monorepo",
-    "type": "project",
     "description": "A monorepo for kickflip CLI and the docs for it to live in.",
     "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Dan Pock",
@@ -30,10 +30,6 @@
         "spatie/laravel-markdown": "^2.1",
         "symfony/yaml": "^6.0"
     },
-    "replace": {
-        "mallardduck/kickflip-cli": "0.5.0",
-        "mallardduck/kickflip-docs": "0.5.0"
-    },
     "require-dev": {
         "pestphp/pest": "^1.3",
         "pestphp/pest-plugin-mock": "^1.0",
@@ -42,15 +38,12 @@
         "symplify/monorepo-builder": "^10.0",
         "vimeo/psalm": "^4.14"
     },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "pestphp/pest-plugin": true
-        }
+    "replace": {
+        "mallardduck/kickflip-cli": "0.5.0",
+        "mallardduck/kickflip-docs": "0.5.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "KickflipDocs\\": "packages/kickflip-docs/app/",
@@ -67,10 +60,17 @@
             "KickflipTests\\": "packages/kickflip-cli/tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
         "test": "XDEBUG_MODE=off vendor/bin/pest"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
