@@ -2,21 +2,32 @@
 
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
-beforeEach(function () {
-    if (! (new ShikiNpmFetcher())->isShikiDownloaded()) {
-        (new ShikiNpmFetcher())->installShiki();
+afterEach(function () {
+    $shikiFetcher = new ShikiNpmFetcher();
+    if ($shikiFetcher->isShikiDownloaded()) {
+        $shikiFetcher->removeShikiAndNodeModules();
+    }
+    $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
+    if (is_dir($nodeModules)) {
+        rmdir($nodeModules);
     }
 });
 
 it('will remove shiki and node modules', function () {
     $shikiFetcher = new ShikiNpmFetcher();
+    if (! $shikiFetcher->isShikiDownloaded()) {
+        $shikiFetcher->installShiki();
+    }
+
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
         ->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
         ->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')
         ->toBeDirectory()->toBeWritableDirectory();
+
     $shikiFetcher->removeShikiAndNodeModules();
+
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
         ->Not()->toBeFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
@@ -27,6 +38,10 @@ it('will remove shiki and node modules', function () {
 
 it('can find shiki in dependencies or devDependencies', function () {
     $shikiFetcher = new ShikiNpmFetcher();
+    if (! $shikiFetcher->isShikiDownloaded()) {
+        $shikiFetcher->installShiki();
+    }
+
     $filePath = $shikiFetcher->getProjectRootDirectory() . '/package.json';
     expect($filePath)
         ->toBeFile();

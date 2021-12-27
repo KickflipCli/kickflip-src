@@ -2,14 +2,23 @@
 
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
-beforeEach(function () {
-    if ((new ShikiNpmFetcher())->isShikiDownloaded()) {
-        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+afterEach(function () {
+    $shikiFetcher = new ShikiNpmFetcher();
+    if ($shikiFetcher->isShikiDownloaded()) {
+        $shikiFetcher->removeShikiAndNodeModules();
+    }
+    $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
+    if (is_dir($nodeModules)) {
+        rmdir($nodeModules);
     }
 });
 
 it('will remove shiki and node modules', function () {
     $shikiFetcher = new ShikiNpmFetcher();
+
+    if ($shikiFetcher->isShikiDownloaded()) {
+        $shikiFetcher->removeShikiAndNodeModules();
+    }
 
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
         ->Not()->toBeFile();
