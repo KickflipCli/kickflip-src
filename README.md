@@ -8,6 +8,10 @@
 Kickflip is a Laravel Zero based CLI tool that generates a static HTML site from markdown and blade template files.
 This is the monorepo that houses the [Kickflip-cli](https://github.com/mallardduck/kickflip-cli) Site builder and the [docs](https://github.com/mallardduck/kickflip-docs) for it.
 
+### Repositories
+- https://github.com/mallardduck/kickflip-cli - The core Kickflip CLI project that provides the brains of Kickflip, kinda like laravel/framework
+- https://github.com/mallardduck/kickflip-docs - The official documentation for Kickflip
+- https://github.com/mallardduck/kickflip - The starter project for Kickflip, equivilent to laravel/laravel
 
 # Warning
 
