@@ -28,7 +28,7 @@ jobs:
             -   uses: actions/checkout@v2
 
             # required for matrix of packages set
-            -   uses: shivammathur/setup-php@v2.2.0
+            -   uses: shivammathur/setup-php@v2
                 with:
                     php-version: 8.0
                     coverage: none
