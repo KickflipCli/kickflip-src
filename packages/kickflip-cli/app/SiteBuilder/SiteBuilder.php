@@ -69,7 +69,7 @@ final class SiteBuilder
 
     public static function updateBuildPaths(string $env)
     {
-        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::BuildDestination);
+        $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::EnvBuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         // TODO: decide if we need a views entry in here too...
         KickflipHelper::config()->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
