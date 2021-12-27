@@ -6,7 +6,7 @@ on:
         - cron: '0 0 * * *'
 
 jobs:
-    test:
+    tests:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
@@ -20,12 +20,13 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
+              with:
+                path: kickflip-monorepo
+
             - name: Setup NodeJS
               uses: actions/setup-node@v2
               with:
                   node-version: '14'
-            - name: Setup and build node deps
-              run: cd packages/kickflip-docs && npm install && npm run dev
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
@@ -33,6 +34,9 @@ jobs:
                   php-version: ${{ matrix.php }}
                   extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
                   coverage: none
+
+            - name: Setup and build node deps
+              run: cd packages/kickflip-docs && npm install && npm run dev && cd
 
             - name: Setup Problem Matches
               run: |

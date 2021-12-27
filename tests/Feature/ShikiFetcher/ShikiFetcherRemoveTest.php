@@ -1,29 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
 afterEach(function () {
-    $shikiFetcher = new ShikiNpmFetcher();
-    if ($shikiFetcher->isShikiDownloaded()) {
-        $shikiFetcher->removeShikiAndNodeModules();
-    }
-    $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
-    if (File::isDirectory($nodeModules)) {
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package.json');
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
-        File::deleteDirectory($nodeModules);
-    }
+    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+});
+beforeEach(function () {
+    (new ShikiNpmFetcher())->installShiki();
 });
 
 it('will remove shiki and node modules', function () {
     $shikiFetcher = new ShikiNpmFetcher();
-    if (! $shikiFetcher->isShikiDownloaded()) {
-        $shikiFetcher->installShiki();
-    }
-
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
-        ->toBeFile()->toBeReadableFile();
+        ->when(filter_var(Str::of(getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15, fn($path) => $path->toBeFile()->toBeReadableFile());
     expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
         ->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')
@@ -41,17 +32,18 @@ it('will remove shiki and node modules', function () {
 
 it('can find shiki in dependencies or devDependencies', function () {
     $shikiFetcher = new ShikiNpmFetcher();
-    if (! $shikiFetcher->isShikiDownloaded()) {
-        $shikiFetcher->installShiki();
-    }
-
     $filePath = $shikiFetcher->getProjectRootDirectory() . '/package.json';
-    expect($filePath)
-        ->toBeFile();
+    if (!File::exists($filePath)) {
+        $filePath = $shikiFetcher->getProjectRootDirectory() . '/package-lock.json';
+    } else {
+        File::delete($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
+    }
+    expect($filePath)->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->isShikiRequired())->toBeTrue();
+    // Change devDeps to deps...
     file_put_contents($filePath, str_replace('devDependencies', 'dependencies', file_get_contents($filePath)));
     expect($shikiFetcher->isShikiRequired())->toBeTrue();
+    // Change deps to boogers...
     file_put_contents($filePath, str_replace('dependencies', 'boogers', file_get_contents($filePath)));
     expect($shikiFetcher->isShikiRequired())->toBeFalse();
-    $shikiFetcher->removeShikiAndNodeModules();
 });

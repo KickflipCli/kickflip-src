@@ -2,8 +2,17 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
+afterEach(function () {
+    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+    $buildPath = Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
+    if (is_dir($buildPath)) {
+        File::deleteDirectory($buildPath);
+    }
+});
 beforeEach(function () {
+    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
     $buildPath = Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
     if (is_dir($buildPath)) {
         File::deleteDirectory($buildPath);

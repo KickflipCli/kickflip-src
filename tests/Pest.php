@@ -16,6 +16,9 @@ use Illuminate\Support\HtmlString;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 
 uses(KickflipMonoTests\TestCase::class)->in('Feature');
 
@@ -57,14 +60,16 @@ expect()->extend('reflectHasProperty', function (string $property) {
     return $this->and($reflectionClass->hasProperty($property))->toBeTrue();
 });
 
-expect()->extend('reflectExpectProperty', function (string $property) {
+expect()->extend('reflectExpectProperty', function (string $propertyName) {
     /**
      * @var \Pest\Expectation $this
      * @var class-string|object $class
      */
     $class = $this->value;
-    $reflectionClass = new ReflectionClass($class);
-    return $this->and($reflectionClass->getProperty($property)->getValue($class));
+    $reflectionClass = new \ReflectionClass($class);
+    $property = $reflectionClass->getProperty($propertyName);
+    $property->setAccessible(true);
+    return $this->and($property->getValue($class));
 });
 
 expect()->extend('reflectCallMethod', function (string $method) {
@@ -73,7 +78,7 @@ expect()->extend('reflectCallMethod', function (string $method) {
      * @var class-string|object $class
      */
     $class = $this->value;
-    $reflectionClass = new ReflectionClass($class);
+    $reflectionClass = new \ReflectionClass($class);
     $reflectionMethod = $reflectionClass->getMethod($method);
     $reflectionMethod->setAccessible(true);
     return $this->and($reflectionMethod->invoke($class));
@@ -102,4 +107,27 @@ function getTestPageData(int $index = 0): PageData
             ->getFrontMatter() ?? [];
     // Create a PageData object
     return PageData::make($sourcePageMetaData, $frontMatterData);
+}
+
+function getNodeVersion(): string
+{
+    $command = [
+        (new ExecutableFinder)->find('node', 'node', [
+            '/usr/local/bin',
+            '/opt/homebrew/bin',
+        ]),
+        '--version',
+    ];
+
+    $process = new Process(
+        command: $command,
+        cwd: getcwd(),
+        timeout: null,
+    );
+    $process->run();
+
+    if (! $process->isSuccessful()) {
+        throw new ProcessFailedException($process);
+    }
+    return trim($process->getOutput());
 }

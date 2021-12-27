@@ -1,35 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
 afterEach(function () {
-    $shikiFetcher = new ShikiNpmFetcher();
-    if ($shikiFetcher->isShikiDownloaded()) {
-        $shikiFetcher->removeShikiAndNodeModules();
-    }
-    $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
-    if (File::isDirectory($nodeModules)) {
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package.json');
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
-        File::deleteDirectory($nodeModules);
-    }
+    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
 });
-
 beforeEach(function () {
-    $shikiFetcher = new ShikiNpmFetcher();
-    if ($shikiFetcher->isShikiDownloaded()) {
-        $shikiFetcher->removeShikiAndNodeModules();
-    }
-    $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
-    if (File::isDirectory($nodeModules)) {
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package.json');
-        File::delete($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
-        File::deleteDirectory($nodeModules);
-    }
+    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
 });
 
-it('will remove shiki and node modules', function () {
+it('will install shiki and node modules', function () {
     $shikiFetcher = new ShikiNpmFetcher();
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
         ->Not()->toBeFile();
@@ -41,7 +23,7 @@ it('will remove shiki and node modules', function () {
     $shikiFetcher->installShiki();
 
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
-        ->toBeFile()->toBeReadableFile();
+        ->when(filter_var(Str::of(getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15, fn($path) => $path->toBeFile()->toBeReadableFile());
     expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
         ->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')
