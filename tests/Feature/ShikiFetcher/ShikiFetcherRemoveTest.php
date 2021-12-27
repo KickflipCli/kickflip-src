@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
 afterEach(function () {
@@ -8,8 +9,10 @@ afterEach(function () {
         $shikiFetcher->removeShikiAndNodeModules();
     }
     $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
-    if (is_dir($nodeModules)) {
-        rmdir($nodeModules);
+    if (File::isDirectory($nodeModules)) {
+        File::delete($shikiFetcher->getProjectRootDirectory() . '/package.json');
+        File::delete($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
+        File::deleteDirectory($nodeModules);
     }
 });
 
