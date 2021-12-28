@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ba46800e3f6e01746c608e48cc1fdae",
+    "content-hash": "8400722aae6715e027de6608d729be43",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2417,16 +2417,16 @@
         },
         {
             "name": "mallardduck/laravel-traits",
-            "version": "dev-main",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/laravel-traits.git",
-                "reference": "4541eaf895792f1cf2896805064d33320d4d59ca"
+                "reference": "84f13d88780b796532983df89c4e76deaa5b4caa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/laravel-traits/zipball/4541eaf895792f1cf2896805064d33320d4d59ca",
-                "reference": "4541eaf895792f1cf2896805064d33320d4d59ca",
+                "url": "https://api.github.com/repos/mallardduck/laravel-traits/zipball/84f13d88780b796532983df89c4e76deaa5b4caa",
+                "reference": "84f13d88780b796532983df89c4e76deaa5b4caa",
                 "shasum": ""
             },
             "require": {
@@ -2436,7 +2436,6 @@
                 "illuminate/view": "~6.0|~7.0|~8.0",
                 "php": "^7.2|^8.0.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2466,9 +2465,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mallardduck/laravel-traits/issues",
-                "source": "https://github.com/mallardduck/laravel-traits/tree/main"
+                "source": "https://github.com/mallardduck/laravel-traits/tree/0.3.0"
             },
-            "time": "2021-09-12T19:20:41+00:00"
+            "time": "2021-12-28T02:00:19+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -9760,9 +9759,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "mallardduck/laravel-traits": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
