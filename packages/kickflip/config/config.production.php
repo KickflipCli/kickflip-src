@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'baseUrl' => 'http://kickflip.lucidinternets.com/',
+    'baseUrl' => 'http://localhost.test/',
     'production' => true,
 ];
