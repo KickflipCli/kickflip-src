@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'baseUrl' => 'http://kickflip.lucidinternets.com/',
+    'baseUrl' => 'https://kickflip.lucidinternets.com/',
     'production' => true,
 
     // DocSearch credentials
