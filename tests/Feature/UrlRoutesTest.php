@@ -44,7 +44,7 @@ test('check UrlGenerator rebinds routes', function () {
     expect($initialRoutes->getRoutes())->toHaveCount(0);
     app(SourcesLocator::class); // This will force routes to be registered...
     $updatedRoutes = expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
-    expect($updatedRoutes->getRoutes())->toHaveCount(14);
+    expect($updatedRoutes->getRoutes())->toHaveCount(count(app(SourcesLocator::class)->getRenderPageList()));
     // Now that the global routes was updated lets override it with the empty clone...
     app()->instance('routes', $initialRoutes);
     $reboundRoutes = expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
