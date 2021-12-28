@@ -2,20 +2,22 @@ name: Run tests
 
 on:
     push:
-        paths:
+        branches:
+            - main
+        tags:
+            - '*'
+        paths-ignore:
             - packages/kickflip-cli/**/*.php
             - packages/kickflip-docs/**/*.php
-    schedule:
-        - cron: '0 0 * * *'
 
 jobs:
-    tests:
+    mock-tests:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
-                php: [8.1, 8.0]
+                php: [8.1]
                 laravel: [8.*]
-                dependency-version: [prefer-lowest, prefer-stable]
+                dependency-version: [prefer-stable]
                 os: [ubuntu-latest]
 
         name: TEST - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
@@ -48,5 +50,5 @@ jobs:
               run: |
                   composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
-            - name: Execute tests
-              run: vendor/bin/pest
+            - name: Build Docs Site
+              run: cd packages/kickflip-docs && ../kickflip-cli/bin/kickflip build
