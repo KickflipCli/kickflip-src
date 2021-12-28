@@ -54,9 +54,9 @@
         "vimeo/psalm": "^4.14"
     },
     "replace": {
-        "mallardduck/kickflip": "0.6.0",
-        "mallardduck/kickflip-cli": "0.6.0",
-        "mallardduck/kickflip-docs": "0.6.0"
+        "mallardduck/kickflip": "0.6.1",
+        "mallardduck/kickflip-cli": "0.6.1",
+        "mallardduck/kickflip-docs": "0.6.1"
     },
     "autoload": {
         "psr-4": {
