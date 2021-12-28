@@ -5,7 +5,7 @@ use Kickflip\Models\NavItem;
 return [
     NavItem::make('Getting Started', route('docs.getting-started'))
         ->setChildren([
-            NavItem::make('Installation', url('#docs.getting-started-installation')),
+            NavItem::make('Installation', route('docs.getting-started-installation')),
             NavItem::make('Directory Structure', route('docs.getting-started-structure')),
         ]),
     NavItem::make('Building & Previewing', route('docs.building-and-previewing'))
