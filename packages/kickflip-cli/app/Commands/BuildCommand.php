@@ -76,7 +76,7 @@ class BuildCommand extends Command
         $buildDest = KickflipHelper::buildPath();
         if (
             $quiet || !file_exists($buildDest) ||
-            file_exists($buildDest) && $this->confirm('Overwrite "' . $buildDest . '"? ')
+            (file_exists($buildDest) && $this->confirm('Overwrite "' . $buildDest . '"? '))
         ) {
             File::ensureDirectoryExists($buildDest);
             File::cleanDirectory($buildDest);
