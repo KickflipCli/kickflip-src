@@ -6,6 +6,7 @@ namespace Kickflip\Providers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\View\Factory as ViewFactory;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
@@ -37,7 +38,12 @@ class KickflipServiceProvider extends ServiceProvider
         if (file_exists($configPath = $kickflipCliState->get('paths.config'))) {
             $config = include $configPath;
             $kickflipCliState->set('site', $config);
-            app('config')->set('app.url',$kickflipCliState->get('site.baseUrl'));
+            $baseUrl = $kickflipCliState->get('site.baseUrl');
+            if ($baseUrl === '') {
+                $baseUrl = (string) Str::of($kickflipCliState->get('site.baseUrl'))->rtrim('/')->append('/');
+                $kickflipCliState->set('site.baseUrl', $baseUrl);
+            }
+            app('config')->set('app.url', $baseUrl);
         }
 
         # Implement the kickflip level autoloading...

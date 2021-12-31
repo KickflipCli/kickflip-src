@@ -21,6 +21,7 @@ use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
 uses(KickflipMonoTests\TestCase::class)->in('Feature');
+uses(KickflipMonoTests\DocsTestCase::class)->in('Feature\Docs');
 
 /*
 |--------------------------------------------------------------------------

@@ -20,9 +20,9 @@ test('KickflipHelper::config', function ($input, $expected) {
     expect(KickflipHelper::config('paths.' . $input))
         ->toBeString()->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['baseDir', '/packages/kickflip-docs'],
-    ['cache', '/packages/kickflip-docs/cache'],
-    ['env_config', '/packages/kickflip-docs/config/config.{env}.php'],
+    ['baseDir', '/packages/kickflip'],
+    ['cache', '/packages/kickflip/cache'],
+    ['env_config', '/packages/kickflip/config/config.{env}.php'],
 ]);
 
 test('KickflipHelper::namedPath', function ($input, $expected) {
@@ -30,18 +30,18 @@ test('KickflipHelper::namedPath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    [CliStateDirPaths::Base, '/packages/kickflip-docs'],
-    [CliStateDirPaths::Config, '/packages/kickflip-docs/config/config.php'],
-    [CliStateDirPaths::BootstrapFile, '/packages/kickflip-docs/config/bootstrap.php'],
+    [CliStateDirPaths::Base, '/packages/kickflip'],
+    [CliStateDirPaths::Config, '/packages/kickflip/config/config.php'],
+    [CliStateDirPaths::BootstrapFile, '/packages/kickflip/config/bootstrap.php'],
 ]);
 
 test('KickflipHelper::assetUrl', function ($input, $expected) {
     expect(KickflipHelper::assetUrl($input))
         ->isHtmlStringOf($expected);
 })->with([
-    ['', 'http://kickflip-docs.test/assets/'],
-    ['blue', 'http://kickflip-docs.test/assets/blue'],
-    ['hello/world', 'http://kickflip-docs.test/assets/hello/world'],
+    ['', 'http://kickflip.test/assets/'],
+    ['blue', 'http://kickflip.test/assets/blue'],
+    ['hello/world', 'http://kickflip.test/assets/hello/world'],
 ]);
 
 test('KickflipHelper::resourcePath', function ($input, $expected) {
@@ -49,9 +49,9 @@ test('KickflipHelper::resourcePath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/packages/kickflip-docs/resources'],
-    ['blue', '/packages/kickflip-docs/resources/blue'],
-    ['hello/world', '/packages/kickflip-docs/resources/hello/world'],
+    ['', '/packages/kickflip/resources'],
+    ['blue', '/packages/kickflip/resources/blue'],
+    ['hello/world', '/packages/kickflip/resources/hello/world'],
 ]);
 
 test('KickflipHelper::sourcePath', function ($input, $expected) {
@@ -59,9 +59,9 @@ test('KickflipHelper::sourcePath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/packages/kickflip-docs/source'],
-    ['blue', '/packages/kickflip-docs/source/blue'],
-    ['hello/world', '/packages/kickflip-docs/source/hello/world'],
+    ['', '/packages/kickflip/source'],
+    ['blue', '/packages/kickflip/source/blue'],
+    ['hello/world', '/packages/kickflip/source/hello/world'],
 ]);
 
 test('KickflipHelper::buildPath', function ($input, $expected) {
@@ -69,9 +69,9 @@ test('KickflipHelper::buildPath', function ($input, $expected) {
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', '/packages/kickflip-docs/build_{env}'],
-    ['blue', '/packages/kickflip-docs/build_{env}/blue'],
-    ['hello/world', '/packages/kickflip-docs/build_{env}/hello/world'],
+    ['', '/packages/kickflip/build_{env}'],
+    ['blue', '/packages/kickflip/build_{env}/blue'],
+    ['hello/world', '/packages/kickflip/build_{env}/hello/world'],
 ]);
 
 test('KickflipHelper::buildPath macro replaceEnv', function ($buildPathInput, $envInput, $expected) {
@@ -79,7 +79,7 @@ test('KickflipHelper::buildPath macro replaceEnv', function ($buildPathInput, $e
         ->toBeString()
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
-    ['', 'prod', '/packages/kickflip-docs/build_prod'],
-    ['blue', 'site', '/packages/kickflip-docs/build_site/blue'],
-    ['hello/world', 'dev', '/packages/kickflip-docs/build_dev/hello/world'],
+    ['', 'prod', '/packages/kickflip/build_prod'],
+    ['blue', 'site', '/packages/kickflip/build_site/blue'],
+    ['hello/world', 'dev', '/packages/kickflip/build_dev/hello/world'],
 ]);

@@ -63,7 +63,7 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
 })->with([
     [0, 'content', 'layouts.master'],
     [1, 'postContent', 'layouts.post'],
-    [6, 'docs_content', 'layouts.documentation'],
+    [6, 'body', 'layouts.master'],
 ]);
 
 it('can make a view', function () {
