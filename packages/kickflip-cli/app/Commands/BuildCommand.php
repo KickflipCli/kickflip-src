@@ -66,12 +66,12 @@ class BuildCommand extends Command
         $prettyUrls = filter_var($this->input->getOption('pretty'), FILTER_VALIDATE_BOOL);
         $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
 
-        # Load in the global site nav
-        SiteBuilder::loadNav();
-
         # Load in the local projects config based on env...
         SiteBuilder::includeEnvironmentConfig($env);
         SiteBuilder::updateBuildPaths($env);
+
+        # Load in the global site nav
+        SiteBuilder::loadNav();
 
         $buildDest = KickflipHelper::buildPath();
         if (
