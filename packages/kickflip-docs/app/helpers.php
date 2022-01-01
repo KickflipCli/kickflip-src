@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
-use Kickflip\Models\NavItem;
 use Kickflip\Models\PageInterface;
+use Kickflip\RouterNavPlugin\Models\NavItem;
 
 /**
  * Get the path to a versioned Mix file.
