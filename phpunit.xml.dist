@@ -20,6 +20,7 @@
         <include>
             <directory suffix=".php">packages/kickflip-cli/app</directory>
             <directory suffix=".php">packages/kickflip-cli/bootstrap</directory>
+            <directory suffix=".php">packages/kickflip-router-nav-plugin/src</directory>
         </include>
         <report>
             <html outputDirectory="build/coverage"/>
