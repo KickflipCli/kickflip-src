@@ -1,5 +1,12 @@
-* text=auto
-*.css linguist-vendored
-*.scss linguist-vendored
-*.js linguist-vendored
-CHANGELOG.md export-ignore
+*                   text=auto
+*.css               linguist-vendored
+*.scss              linguist-vendored
+*.js                linguist-vendored
+.github             export-ignore
+.gitattributes      export-ignore
+_ide_helper.php     export-ignore
+.styleci.yml        export-ignore
+.scrutinizer.yml    export-ignore
+BACKERS.md          export-ignore
+CONTRIBUTING.md     export-ignore
+CHANGELOG.md        export-ignore
