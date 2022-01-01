@@ -8,7 +8,7 @@
     <section class="flex flex-col lg:flex-row">
         <aside id="js-nav-menu" class="hidden lg:inline-flex nav-menu">
             <nav>
-                @include('nav.menu', ['items' => $site->navigation])
+                @include('nav.menu', ['items' => $navigation])
             </nav>
         </aside>
         <article class="DocSearch-content w-full break-words mb-16 mx-auto lg:ml-4 prose px-3 py-8 bg-white border rounded">

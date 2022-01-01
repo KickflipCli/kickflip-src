@@ -31,7 +31,7 @@ test('KickflipHelper::namedPath', function ($input, $expected) {
         ->toBe(dirname(__DIR__, 2) . $expected);
 })->with([
     [CliStateDirPaths::Base, '/packages/kickflip'],
-    [CliStateDirPaths::Config, '/packages/kickflip/config/config.php'],
+    [CliStateDirPaths::ConfigFile, '/packages/kickflip/config/config.php'],
     [CliStateDirPaths::BootstrapFile, '/packages/kickflip/config/bootstrap.php'],
 ]);
 

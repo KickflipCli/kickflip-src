@@ -59,10 +59,10 @@ final class KickflipHelper
             CliStateDirPaths::Base => $basePath,
             CliStateDirPaths::Cache => $basePath . '/cache',
             CliStateDirPaths::Resources => $basePath . '/resources',
-            CliStateDirPaths::Config => $basePath . '/config/config.php',
+            CliStateDirPaths::Config => $basePath . '/config',
+            CliStateDirPaths::ConfigFile => $basePath . '/config/config.php',
             CliStateDirPaths::EnvConfig => $basePath . '/config/config.{env}.php',
             CliStateDirPaths::BootstrapFile => $basePath . '/config/bootstrap.php',
-            CliStateDirPaths::NavigationFile => $basePath . '/config/navigation.php',
             CliStateDirPaths::BuildBase => [
                 CliStateDirPaths::BuildSourcePart => $basePath . '/source',
                 CliStateDirPaths::EnvBuildDestinationPart => $basePath . '/build_{env}',
@@ -79,7 +79,7 @@ final class KickflipHelper
                 KickflipHelper::resourcePath('views'),
                 KickflipHelper::sourcePath(),
             ]);
-            $config->set('view.compiled', KickflipHelper::namedPath(CliStateDirPaths::Config));
+            $config->set('view.compiled', KickflipHelper::namedPath(CliStateDirPaths::ConfigFile));
         }
     }
 
@@ -127,6 +127,17 @@ final class KickflipHelper
                 ->prepend('assets/')
                 ->prepend(KickflipHelper::config('site.baseUrl'))
         );
+    }
+
+    /**
+     * Get a file path inside the kickflip working config dir.
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function configPath(string $path = ''): string
+    {
+        return KickflipHelper::namedPath(CliStateDirPaths::Config).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**

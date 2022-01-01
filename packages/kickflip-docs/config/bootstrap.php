@@ -6,10 +6,10 @@
  * @var \Kickflip\Providers\KickflipServiceProvider $this
  */
 
-use Kickflip\View\Compilers\ComponentTagCompiler;
-use KickflipDocs\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
-use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Events\{PageDataCreated,SiteBuildStarted,SiteBuildComplete};
+use KickflipDocs\Listeners\{BuildSiteNavRoutes,GenerateSitemap,SetupSiteNav};
+use Kickflip\View\Compilers\ComponentTagCompiler;
 
 /**
  * Here is a good place to adjust global defaults, like:
@@ -28,4 +28,6 @@ ComponentTagCompiler::$rootNamespace = 'KickflipDocs';
  *     // Your code here
  * });
  */
+Event::listen(PageDataCreated::class, BuildSiteNavRoutes::class);
+Event::listen(SiteBuildStarted::class, SetupSiteNav::class);
 Event::listen(SiteBuildComplete::class, GenerateSitemap::class);

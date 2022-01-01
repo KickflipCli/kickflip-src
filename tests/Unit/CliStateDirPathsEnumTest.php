@@ -13,9 +13,9 @@ test('verify CliStateDirPaths constants', function (string $constName) {
     'Cache',
     'Resources',
     'Config',
+    'ConfigFile',
     'EnvConfig',
     'BootstrapFile',
-    'NavigationFile',
     'BuildBase',
     'BuildSourcePart',
     'BuildSource',
@@ -40,7 +40,11 @@ test('verify CliStateDirPaths constant values', function (string $constName, str
     ],
     [
         'Config',
-        'config'
+        'config_dir'
+    ],
+    [
+        'ConfigFile',
+        'config_file'
     ],
     [
         'EnvConfig',
@@ -49,10 +53,6 @@ test('verify CliStateDirPaths constant values', function (string $constName, str
     [
         'BootstrapFile',
         'bootstrapFile'
-    ],
-    [
-        'NavigationFile',
-        'navigationFile'
     ],
     [
         'BuildBase',

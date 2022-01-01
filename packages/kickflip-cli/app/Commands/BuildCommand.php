@@ -6,8 +6,7 @@ namespace Kickflip\Commands;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use Kickflip\Enums\CliStateDirPaths;
+use Kickflip\Events\BeforeConfigurationLoads;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
@@ -54,24 +53,12 @@ class BuildCommand extends Command
     public function handle()
     {
         Logger::setOutput($this->output);
-        /**
-         * @var string $env
-         */
-        $env = $this->input->getArgument('env');
-        /**
-         * @var bool $quiet
-         */
-        $quiet = filter_var($this->input->getOption('quiet'), FILTER_VALIDATE_BOOL);
-        # Set global state of pretty URL status
-        $prettyUrls = filter_var($this->input->getOption('pretty'), FILTER_VALIDATE_BOOL);
-        $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
+        [$env, $quiet, $prettyUrls] = $this->initCommandVars();
 
+        BeforeConfigurationLoads::dispatch();
         # Load in the local projects config based on env...
         SiteBuilder::includeEnvironmentConfig($env);
         SiteBuilder::updateBuildPaths($env);
-
-        # Load in the global site nav
-        SiteBuilder::loadNav();
 
         $buildDest = KickflipHelper::buildPath();
         if (
@@ -89,5 +76,26 @@ class BuildCommand extends Command
         $this->output->error("Done, did not build.");
 
         return static::FAILURE;
+    }
+
+    /**
+     * @return array{env: string, quiet:bool, prettyUrls: bool,}
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    private function initCommandVars(): array
+    {
+        /**
+         * @var string $env
+         */
+        $env = $this->input->getArgument('env');
+        /**
+         * @var bool $quiet
+         */
+        $quiet = filter_var($this->input->getOption('quiet'), FILTER_VALIDATE_BOOL);
+        # Set global state of pretty URL status
+        $prettyUrls = filter_var($this->input->getOption('pretty'), FILTER_VALIDATE_BOOL);
+        $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
+        return [$env, $quiet, $prettyUrls];
     }
 }

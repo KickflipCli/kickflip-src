@@ -39,16 +39,6 @@ final class SiteBuilder
         }
     }
 
-    public static function loadNav()
-    {
-        app()->make(SourcesLocator::class); // This forces the singleton to be initialized, must be done after Pretty URL setting loaded
-        # Load base nav config into state
-        if (file_exists($navConfigPath = KickflipHelper::namedPath(CliStateDirPaths::NavigationFile))) {
-            $navConfig = include $navConfigPath;
-            KickflipHelper::config()->set('siteNav', $navConfig);
-        }
-    }
-
     public static function includeEnvironmentConfig(string $env)
     {
         /**
@@ -61,18 +51,23 @@ final class SiteBuilder
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
         }
 
+        // Share site config into global View data...
         View::share(
             'site',
-            SiteData::fromConfig($kickflipCliState->get('site'), $kickflipCliState->get('siteNav', []))
+            SiteData::fromConfig($kickflipCliState->get('site'))
         );
     }
 
     public static function updateBuildPaths(string $env)
     {
+        /**
+         * @var Repository $kickflipCliState
+         */
+        $kickflipCliState = KickflipHelper::config();
         $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::EnvBuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         // TODO: decide if we need a views entry in here too...
-        KickflipHelper::config()->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
+        $kickflipCliState->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
     }
 
     public function build($consoleOutput): void

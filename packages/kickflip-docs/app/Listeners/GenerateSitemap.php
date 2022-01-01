@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipDocs\Listeners;
 
 use Illuminate\Support\Facades\Storage;

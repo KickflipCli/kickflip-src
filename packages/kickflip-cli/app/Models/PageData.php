@@ -6,6 +6,7 @@ namespace Kickflip\Models;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Kickflip\Events\PageDataCreated;
 use Kickflip\KickflipHelper;
 
 /**
@@ -84,13 +85,7 @@ class PageData implements PageInterface
         self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'section');
         self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'autoExtend');
 
-        # Register thin route for URL generating...
-        if ($url === '/') {
-            $routeName = 'index';
-        } else {
-            $routeName = (string) Str::of($url)->trim('/')->replace('/', '.');
-        }
-        Route::name($routeName)->get($newPageData->getUrl(), static fn() => '');
+        PageDataCreated::dispatch($newPageData);
 
         return $newPageData;
     }
