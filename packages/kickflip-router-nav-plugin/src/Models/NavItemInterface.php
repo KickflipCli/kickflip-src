@@ -1,6 +1,6 @@
 <?php
 
-namespace Kickflip\Models;
+namespace Kickflip\RouterNavPlugin\Models;
 
 interface NavItemInterface
 {
