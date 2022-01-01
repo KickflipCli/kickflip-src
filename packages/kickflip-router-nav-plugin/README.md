@@ -1,5 +1,5 @@
-# Kickflip
-#### A static site generator for Laravel developers
+# Kickflip CLI Router Nav Plugin
+#### A plugin to provide Kickflip with psudo-router functionality.
 
 ------
 
