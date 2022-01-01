@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\View\Engine;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
@@ -14,7 +15,7 @@ trait MarkdownHelpers
 {
     public function isAutoExtendEnabled(SiteData $siteData, PageData $pageData): bool
     {
-        return $siteData->autoExtendMarkdown === true && $pageData->autoExtend === true;
+        return $siteData->autoExtendMarkdown === true && $pageData->autoExtend !== false;
     }
 
     public function isPageExtendEnabled(PageData $pageData, $renderedMarkdown): bool
@@ -23,36 +24,41 @@ trait MarkdownHelpers
                     $pageData->autoExtend === true;
     }
 
-    public function prepareExtendedRender(RenderedContentInterface $renderedMarkdown): array
+    /**
+     * @param PageData                 $pageData
+     * @param RenderedContentInterface $renderedMarkdown
+     *
+     * @return array
+     */
+    public function prepareExtendedRender(PageData $pageData, RenderedContentInterface $renderedMarkdown): array
     {
         // Prepare view data based on which instance it is
         if ($renderedMarkdown instanceof RenderedContentWithFrontMatter) {
-            $frontMatter = $renderedMarkdown->getFrontMatter();
-            $section = $frontMatter['section'] ?? PageData::$defaultExtendsSection;
-            $content = (string) $renderedMarkdown->getContent();
-            $extends = $frontMatter['extends'] ?? PageData::$defaultExtendsView;
+            $content = $renderedMarkdown->getContent();
         } else {
-            $section = PageData::$defaultExtendsSection;
             $content = (string) $renderedMarkdown;
-            $extends = PageData::$defaultExtendsView;
         }
 
         return [
-            $section,
+            $pageData->getExtendsSection(),
             $content,
-            $extends,
+            $pageData->getExtendsView(),
         ];
     }
 
-    public function makeView(array $data, RenderedContentInterface $renderedMarkdown)
+    public function makeView(array $data, RenderedContentInterface $renderedMarkdown): View
     {
         /**
          * @var Factory $viewFactory
          */
         $viewFactory = $data['__env'];
 
-        // Prepare view data based on which instance it is
-        [ $section, $content, $extends ] = $this->prepareExtendedRender($renderedMarkdown);
+        /**
+         * @var string $section
+         * @var string $content
+         * @var string $extends
+         */
+        [ $section, $content, $extends ] = $this->prepareExtendedRender($data['page'], $renderedMarkdown);
 
         // "Push" the section content in a way that respects the rendered HTML from markdown
         $viewFactory->startSection($section);

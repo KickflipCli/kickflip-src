@@ -49,9 +49,8 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
         ->convertToHtml(
             file_get_contents($mockPageData->source->getFullPath())
         );
-
     $markdownHelpers = new MarkdownHelpersMock;
-    $preparedExtendedRender = $markdownHelpers->prepareExtendedRender($renderedPageMarkdown);
+    $preparedExtendedRender = $markdownHelpers->prepareExtendedRender($mockPageData, $renderedPageMarkdown);
     expect($preparedExtendedRender)
         ->toBeArray()->toHaveCount(3);
     expect($preparedExtendedRender[0])
@@ -65,6 +64,23 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
     [1, 'postContent', 'layouts.post'],
     [5, 'body', 'layouts.master'],
 ]);
+
+it('throws an exception with non-extended PageData', function () {
+    $mockSiteData = SiteData::fromConfig([
+        'baseUrl' => 'http://example.com',
+        'production' => true,
+        'siteName' => 'Example Site',
+        'siteDescription' => 'This is an example site.',
+    ]);
+    $mockPageData = getTestPageData(6);
+    $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
+        ->convertToHtml(
+            file_get_contents($mockPageData->source->getFullPath())
+        );
+    $markdownHelpers = new MarkdownHelpersMock;
+    $this->expectError();
+    $markdownHelpers->prepareExtendedRender($mockPageData, $renderedPageMarkdown);
+});
 
 it('can make a view', function () {
     $mockSiteData = SiteData::fromConfig([

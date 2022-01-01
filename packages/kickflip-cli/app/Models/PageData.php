@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kickflip\Models;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Kickflip\Events\PageDataCreated;
 use Kickflip\KickflipHelper;
@@ -22,9 +21,9 @@ class PageData implements PageInterface
         public string $url,
         public string $title,
         public ?string $description = null,
+        public bool $autoExtend = true,
         public ?string $extends = null,
         public ?string $section = null,
-        public bool $autoExtend = true,
         /**
          * @var array<string, mixed>|null
          */
@@ -68,9 +67,9 @@ class PageData implements PageInterface
         unset(
             $frontMatterData['title'],
             $frontMatterData['description'],
+            $frontMatterData['autoExtend'],
             $frontMatterData['extends'],
             $frontMatterData['section'],
-            $frontMatterData['autoExtend'],
         );
 
         $newPageData = new self(
@@ -81,12 +80,12 @@ class PageData implements PageInterface
         );
 
         self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'description');
-        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'extends');
-        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'section');
         self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'autoExtend');
-
+        if ($newPageData->autoExtend) {
+            $newPageData->extends = $frontMatter['extends'] ?? self::$defaultExtendsView;
+            $newPageData->section = $frontMatter['section'] ?? self::$defaultExtendsSection;
+        }
         PageDataCreated::dispatch($newPageData);
-
         return $newPageData;
     }
 
@@ -128,12 +127,12 @@ class PageData implements PageInterface
 
     public function getExtendsView(): string
     {
-        return $this->extends ?? self::$defaultExtendsView;
+        return $this->extends;
     }
 
     public function getExtendsSection(): string
     {
-        return $this->section ?? self::$defaultExtendsSection;
+        return $this->section;
     }
 
     public function getTitleId(): string
