@@ -58,7 +58,6 @@ return [
         \Illuminate\Filesystem\FilesystemServiceProvider::class,
         \Illuminate\Log\LogServiceProvider::class,
         \Illuminate\Events\EventServiceProvider::class,
-        \Kickflip\Providers\RoutingServiceProvider::class,
         \Kickflip\Providers\ViewServiceProvider::class,
         \Spatie\LaravelMarkdown\MarkdownServiceProvider::class,
         \Kickflip\Providers\KickflipServiceProvider::class,

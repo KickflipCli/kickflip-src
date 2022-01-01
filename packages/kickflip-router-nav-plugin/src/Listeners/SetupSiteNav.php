@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-namespace KickflipDocs\Listeners;
+namespace Kickflip\RouterNavPlugin\Listeners;
 
 use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\View;
 use Kickflip\KickflipHelper;
 use Kickflip\SiteBuilder\SourcesLocator;
 
+/**
+ * An event handler that will listen for SiteBuildStarted events.
+ *
+ * This find a `navigation.php` config file and load it into KickflipCLI state and as a View variable.
+ */
 class SetupSiteNav
 {
     public function handle()

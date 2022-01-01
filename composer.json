@@ -56,19 +56,21 @@
     "replace": {
         "mallardduck/kickflip": "0.6.2",
         "mallardduck/kickflip-cli": "0.6.2",
-        "mallardduck/kickflip-docs": "0.6.2"
+        "mallardduck/kickflip-docs": "0.6.2",
+        "mallardduck/kickflip-router-nav-plugin": "self.version"
     },
     "autoload": {
+        "files": [
+            "packages/kickflip-docs/app/helpers.php",
+            "packages/kickflip/app/helpers.php"
+        ],
         "psr-4": {
             "App\\": "packages/kickflip/app/",
             "KickflipDocs\\": "packages/kickflip-docs/app/",
             "Kickflip\\": "packages/kickflip-cli/app/",
+            "Kickflip\\RouterNavPlugin\\": "packages/kickflip-router-nav-plugin/src/",
             "RepoBuilder\\": "src/"
-        },
-        "files": [
-            "packages/kickflip-docs/app/helpers.php",
-            "packages/kickflip/app/helpers.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

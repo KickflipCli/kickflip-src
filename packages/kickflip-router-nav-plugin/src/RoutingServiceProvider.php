@@ -1,6 +1,6 @@
 <?php
 
-namespace Kickflip\Providers;
+namespace Kickflip\RouterNavPlugin;
 
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
 use Illuminate\Http\Request;

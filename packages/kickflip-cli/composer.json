@@ -16,7 +16,6 @@
         "ext-json": "*",
         "illuminate/events": "^8.74",
         "illuminate/log": "^8.74",
-        "illuminate/routing": "^8.74",
         "illuminate/support": "^8.74",
         "illuminate/view": "^8.74",
         "laravel-zero/framework": "^8.9.1",

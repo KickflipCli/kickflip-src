@@ -7,8 +7,8 @@
  */
 
 use Illuminate\Support\Facades\Event;
-use Kickflip\Events\{PageDataCreated,SiteBuildStarted,SiteBuildComplete};
-use KickflipDocs\Listeners\{BuildSiteNavRoutes,GenerateSitemap,SetupSiteNav};
+use Kickflip\Events\SiteBuildComplete;
+use KickflipDocs\Listeners\GenerateSitemap;
 use Kickflip\View\Compilers\ComponentTagCompiler;
 
 /**
@@ -28,6 +28,4 @@ ComponentTagCompiler::$rootNamespace = 'KickflipDocs';
  *     // Your code here
  * });
  */
-Event::listen(PageDataCreated::class, BuildSiteNavRoutes::class);
-Event::listen(SiteBuildStarted::class, SetupSiteNav::class);
 Event::listen(SiteBuildComplete::class, GenerateSitemap::class);
