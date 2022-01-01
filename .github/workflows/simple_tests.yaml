@@ -7,8 +7,8 @@ on:
         tags:
             - '*'
         paths-ignore:
-            - packages/kickflip-cli/**/*.php
-            - packages/kickflip-docs/**/*.php
+            - packages/**/*.php
+            - tests/**/*.php
 
 jobs:
     mock-tests:

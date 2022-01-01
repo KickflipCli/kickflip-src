@@ -3,9 +3,7 @@ name: Run tests
 on:
     push:
         paths:
-            - packages/kickflip/**/*.php
-            - packages/kickflip-cli/**/*.php
-            - packages/kickflip-docs/**/*.php
+            - packages/**/*.php
             - tests/**/*.php
     schedule:
         - cron: '0 0 * * *'
