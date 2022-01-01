@@ -1,5 +1,5 @@
 {
-    "name": "mallardduck/kickflip-router-nav-plugin",
+    "name": "kickflip/kickflip-router-nav-plugin",
     "description": "A Kickflip CLI plugin which provides psuedo-router functionality with helpful URL and Nav generation features.",
     "keywords": ["kickflip plugin", "kickflip cli plugin", "static site generator plugin"],
     "license": "MIT",
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "mallardduck/kickflip-cli": "^0.7",
+        "kickflip/kickflip-cli": "^0.7",
         "illuminate/routing": "^8.74",
         "illuminate/support": "^8.74"
     },

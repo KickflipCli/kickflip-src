@@ -1,5 +1,5 @@
 {
-    "name": "mallardduck/kickflip-cli",
+    "name": "kickflip/kickflip-cli",
     "type": "library",
     "description": "A Laravel Zero based static site generator CLI tool.",
     "keywords": ["ssg", "static site generator", "laravel zero", "cli"],

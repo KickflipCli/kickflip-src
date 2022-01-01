@@ -1,5 +1,5 @@
 {
-    "name": "mallardduck/kickflip-monorepo",
+    "name": "kickflip/kickflip-src",
     "description": "A monorepo for kickflip CLI and the docs for it to live in.",
     "license": "MIT",
     "type": "project",
@@ -54,10 +54,10 @@
         "vimeo/psalm": "^4.14"
     },
     "replace": {
-        "mallardduck/kickflip": "0.6.2",
-        "mallardduck/kickflip-cli": "0.6.2",
-        "mallardduck/kickflip-docs": "0.6.2",
-        "mallardduck/kickflip-router-nav-plugin": "self.version"
+        "kickflip/kickflip": "0.6.2",
+        "kickflip/kickflip-cli": "0.6.2",
+        "kickflip/kickflip-docs": "0.6.2",
+        "kickflip/kickflip-router-nav-plugin": "self.version"
     },
     "autoload": {
         "files": [
