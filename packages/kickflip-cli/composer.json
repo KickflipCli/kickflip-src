@@ -52,6 +52,9 @@
             "KickflipTests\\": "tests/"
         }
     },
+    "replace": {
+        "mallardduck/kickflip-cli": "*"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "bin": [

@@ -17,6 +17,9 @@
             "app/helpers.php"
         ]
     },
+    "replace": {
+        "mallardduck/kickflip": "*"
+    },
     "scripts": {
         "build": "./vendor/bin/kickflip build",
         "prod": "./vendor/bin/kickflip build production",
