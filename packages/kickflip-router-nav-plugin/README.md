@@ -1,5 +1,5 @@
 # Kickflip CLI Router Nav Plugin
-#### A plugin to provide Kickflip with psudo-router functionality.
+#### A plugin to provide Kickflip with pseudo-router functionality.
 
 ------
 
