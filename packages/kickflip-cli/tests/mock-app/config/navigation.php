@@ -1,6 +1,6 @@
 <?php
 
-use Kickflip\Models\NavItem;
+use Kickflip\RouterNavPlugin\Models\NavItem;
 
 return [
     NavItem::make('Getting Started', '/docs/getting-started')
