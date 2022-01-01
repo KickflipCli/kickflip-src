@@ -15,7 +15,7 @@ it('can make a view', function () {
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData(0);
 
     $data = [
@@ -35,7 +35,7 @@ it('can make a non-extended view', function () {
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData(6);
 
     $data = [

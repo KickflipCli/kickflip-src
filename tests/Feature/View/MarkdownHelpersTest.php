@@ -11,7 +11,7 @@ it('can determine if autoExtend is enabled', function () {
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData();
 
     $markdownHelpers = new MarkdownHelpersMock;
@@ -25,7 +25,7 @@ it('can determine if page has Extend enabled', function () {
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData();
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
@@ -43,7 +43,7 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData($pageId);
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
@@ -63,7 +63,7 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
 })->with([
     [0, 'content', 'layouts.master'],
     [1, 'postContent', 'layouts.post'],
-    [6, 'body', 'layouts.master'],
+    [5, 'body', 'layouts.master'],
 ]);
 
 it('can make a view', function () {
@@ -72,7 +72,7 @@ it('can make a view', function () {
         'production' => true,
         'siteName' => 'Example Site',
         'siteDescription' => 'This is an example site.',
-    ], []);
+    ]);
     $mockPageData = getTestPageData();
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(

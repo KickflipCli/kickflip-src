@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 it('throws exception when creating empty SiteData', function () {
-    SiteData::fromConfig([], []);
+    SiteData::fromConfig([]);
 })->throws(\Exception::class, 'Cannot initialize SiteData with empty site config array.');
 
 test('can instantiate a SourcePageMetaData', function (SplFileInfo $splFileInfo) {

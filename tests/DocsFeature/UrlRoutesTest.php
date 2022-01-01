@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Container\Container;
 use Illuminate\Routing\RouteCollection;
-use Illuminate\Support\Str;
-use Kickflip\Enums\CliStateDirPaths;
-use Kickflip\KickflipHelper;
 use Kickflip\SiteBuilder\SourcesLocator;
 
 test('check UrlGenerator session resolver is null', function () {
@@ -13,7 +9,7 @@ test('check UrlGenerator session resolver is null', function () {
      */
     $url = app('url');
     expect($url)->reflectCallMethod('getSession')->toBeNull();
-})->skip('Skipping while URL and Route stuff is refactored...');
+});
 
 test('check UrlGenerator key resolver', function () {
     /**
@@ -30,7 +26,7 @@ test('check UrlGenerator key resolver', function () {
     $key2 = $keyResolver();
     expect($key1)->toStartWith('base64:')->not()->toEqual($key2);
     expect($key2)->toStartWith('base64:')->not()->toEqual($keyResolver());
-})->skip('Skipping while URL and Route stuff is refactored...');
+});
 
 test('check UrlGenerator rebinds routes', function () {
     /**
@@ -49,4 +45,4 @@ test('check UrlGenerator rebinds routes', function () {
     app()->instance('routes', $initialRoutes);
     $reboundRoutes = expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
     expect($reboundRoutes->getRoutes())->toHaveCount(0);
-})->skip('Skipping while URL and Route stuff is refactored...');
+});
