@@ -6,12 +6,17 @@
 ## About
 
 Kickflip is a Laravel Zero based CLI tool that generates a static HTML site from markdown and blade template files.
-This is the monorepo that houses the [Kickflip-cli](https://github.com/mallardduck/kickflip-cli) Site builder and the [docs](https://github.com/mallardduck/kickflip-docs) for it.
+This is the monorepo that houses the [Kickflip-cli](https://github.com/KickflipCli/kickflip-cli) Site builder and the [docs](https://github.com/KickflipCli/kickflip-docs) for it.
 
 ### Repositories
-- [kickflip-cli](https://github.com/mallardduck/kickflip-cli) - The core Kickflip CLI project that provides the brains of Kickflip, kinda like laravel/framework
-- [kickflip-docs](https://github.com/mallardduck/kickflip-docs) - The official documentation for Kickflip
-- [kickflip](https://github.com/mallardduck/kickflip) - The starter project for Kickflip, equivilent to laravel/laravel
+- [kickflip-cli](https://github.com/KickflipCli/kickflip-cli) - The core Kickflip CLI project that provides the brains of Kickflip, kinda like laravel/framework
+- [kickflip-docs](https://github.com/KickflipCli/kickflip-docs) - The official documentation for Kickflip
+- [kickflip](https://github.com/KickflipCli/kickflip) - The starter project for Kickflip, equivilent to laravel/laravel
+- [kickflip-router-nav-plugin](https://github.com/KickflipCli/kickflip-router-nav-plugin) - The official plugin for Router/Nav features
+
+## Documentation
+
+The official Kickflip Docs are at: https://kickflip.lucidinternets.com/
 
 # Warning
 
