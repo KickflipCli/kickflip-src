@@ -2,32 +2,53 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Unit\Models;
+
 use Kickflip\Models\SourcePageMetaData;
+use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\ReflectionHelpers;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-test('SourcePageMetaData class exists', function () {
-    expect(SourcePageMetaData::class)->toBeString();
-    $this->assertTrue(class_exists(SourcePageMetaData::class));
-});
+class SourcePageMetaDataTest extends TestCase {
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
-it('throws an error instantiating SourcePageMetaData with new', function () {
-    new SourcePageMetaData('', '', '', '');
-})->throws(\Error::class);
+    public function testVerifyClassExists()
+    {
+        self::assertClassExists(SourcePageMetaData::class);
+    }
 
-it('can getType from SourcePageMetaData instances', function (SplFileInfo $splFileInfo) {
-    $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
-    expect($sourcePageMetaData)->toHaveProperties(['viewName', 'implicitExtension']);
-    expect($sourcePageMetaData->getName())->toBeString();
-    expect($sourcePageMetaData->getFilename())->toBeString();
-    expect($sourcePageMetaData->getFullPath())->toBeString();
-    expect($sourcePageMetaData->getExtension())->toBeString();
-    expect($sourcePageMetaData->getMimeExtension())->toBeString();
-    expect($sourcePageMetaData->getType())->toBeString();
-})->with(
-    Finder::create()
-    ->files()
-    ->in(dirname(__DIR__, 2) . '/sources')
-    ->ignoreDotFiles(true)
-    ->getIterator()
-);
+    public function testItThrowsWhenCreatingInvalidMetaData()
+    {
+        $this->expectError();
+        new SourcePageMetaData('', '', '', '');
+    }
+
+    /**
+     * @dataProvider sourceIteratorProvider
+     */
+    public function testItCanGetTypeFromSourcePageMetaData(SplFileInfo $splFileInfo)
+    {
+        $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
+        self::assertHasProperties($sourcePageMetaData, ['viewName', 'implicitExtension']);
+        self::assertIsString($sourcePageMetaData->getName());
+        self::assertIsString($sourcePageMetaData->getFilename());
+        self::assertIsString($sourcePageMetaData->getFullPath());
+        self::assertIsString($sourcePageMetaData->getExtension());
+        self::assertIsString($sourcePageMetaData->getMimeExtension());
+        self::assertIsString($sourcePageMetaData->getType());
+    }
+
+    public function sourceIteratorProvider()
+    {
+        return $this->autoAddDataProviderKeys(iterator_to_array(
+            Finder::create()
+                ->files()
+                ->in(dirname(__DIR__, 2) . '/sources')
+                ->ignoreDotFiles(true)
+                ->getIterator()
+        ));
+    }
+}

@@ -2,50 +2,58 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Feature\View;
+
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\MarkdownEngine;
+use KickflipMonoTests\TestCase;
 
-it('can instantiate MarkdownEngine', function () {
-    $markdownEngine = app(MarkdownEngine::class);
-    expect($markdownEngine)->toBeInstanceOf(MarkdownEngine::class);
-});
+class MarkdownEngineTest extends TestCase {
+    public function testCanInstantiateMarkdownEngine()
+    {
+        $markdownEngine = app(MarkdownEngine::class);
+        self::assertInstanceOf(MarkdownEngine::class, $markdownEngine);
+    }
 
-it('can make a view', function () {
-    $mockSiteData = SiteData::fromConfig([
-        'baseUrl' => 'http://example.com',
-        'production' => true,
-        'siteName' => 'Example Site',
-        'siteDescription' => 'This is an example site.',
-    ]);
-    $mockPageData = getTestPageData(0);
+    public function testCanMakeAView()
+    {
+        $mockSiteData = SiteData::fromConfig([
+            'baseUrl' => 'http://example.com',
+            'production' => true,
+            'siteName' => 'Example Site',
+            'siteDescription' => 'This is an example site.',
+        ]);
+        $mockPageData = $this->getTestPageData(0);
 
-    $data = [
-        '__env' => app('view'),
-        'app' => app(),
-        'site' => $mockSiteData,
-        'page' => $mockPageData,
-    ];
+        $data = [
+            '__env' => app('view'),
+            'app' => app(),
+            'site' => $mockSiteData,
+            'page' => $mockPageData,
+        ];
 
-    $markdownEngine = app(MarkdownEngine::class);
-    expect($markdownEngine->get($mockPageData->source->getFullPath(), $data))->toBeString();
-});
+        $markdownEngine = app(MarkdownEngine::class);
+        self::assertIsString($markdownEngine->get($mockPageData->source->getFullPath(), $data));
+    }
 
-it('can make a non-extended view', function () {
-    $mockSiteData = SiteData::fromConfig([
-        'baseUrl' => 'http://example.com',
-        'production' => true,
-        'siteName' => 'Example Site',
-        'siteDescription' => 'This is an example site.',
-    ]);
-    $mockPageData = getTestPageData(6);
+    public function testCanMakeNonExtendedView()
+    {
+        $mockSiteData = SiteData::fromConfig([
+            'baseUrl' => 'http://example.com',
+            'production' => true,
+            'siteName' => 'Example Site',
+            'siteDescription' => 'This is an example site.',
+        ]);
+        $mockPageData = $this->getTestPageData(6);
 
-    $data = [
-        '__env' => app('view'),
-        'app' => app(),
-        'site' => $mockSiteData,
-        'page' => $mockPageData,
-    ];
+        $data = [
+            '__env' => app('view'),
+            'app' => app(),
+            'site' => $mockSiteData,
+            'page' => $mockPageData,
+        ];
 
-    $markdownEngine = app(MarkdownEngine::class);
-    expect($markdownEngine->get($mockPageData->source->getFullPath(), $data))->toBeString();
-});
+        $markdownEngine = app(MarkdownEngine::class);
+        self::assertIsString($markdownEngine->get($mockPageData->source->getFullPath(), $data));
+    }
+}

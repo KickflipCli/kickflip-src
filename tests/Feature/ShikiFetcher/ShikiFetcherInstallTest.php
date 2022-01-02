@@ -2,31 +2,43 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Feature\ShikiFetcher;
+
 use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use KickflipMonoTests\NpmHelpers;
+use KickflipMonoTests\TestCase;
 
-afterEach(function () {
-    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-});
-beforeEach(function () {
-    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-});
+class ShikiFetcherInstallTest extends TestCase {
+    use NpmHelpers;
 
-it('will install shiki and node modules', function () {
-    $shikiFetcher = new ShikiNpmFetcher();
-    expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
-        ->Not()->toBeFile();
-    expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
-        ->Not()->toBeFile()->Not()->toBeReadableFile();
-    expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')
-        ->Not()->toBeDirectory()->Not()->toBeWritableDirectory();
+    public function setUp(): void
+    {
+        parent::setUp();
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+    }
 
-    $shikiFetcher->installShiki();
+    public function tearDown(): void
+    {
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+        parent::tearDown();
+    }
 
-    expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
-        ->when(filter_var(Str::of(getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15, fn ($path) => $path->toBeFile()->toBeReadableFile());
-    expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
-        ->toBeFile()->toBeReadableFile();
-    expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')
-        ->toBeDirectory()->toBeWritableDirectory();
-});
+    public function testInstallingShikiAndNodeModules()
+    {
+        $shikiFetcher = new ShikiNpmFetcher();
+        // preinstall tests
+        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . '/package.json');
+        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
+        self::assertDirectoryDoesNotExist($shikiFetcher->getProjectRootDirectory() . '/node_modules');
+
+        $shikiFetcher->installShiki();
+
+        // post install tests
+        if (filter_var(Str::of($this->getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15) {
+            self::assertFileIsReadable($shikiFetcher->getProjectRootDirectory() . '/package.json');
+        }
+        self::assertFileIsWritable($shikiFetcher->getProjectRootDirectory() . '/package-lock.json');
+        self::assertDirectoryIsWritable($shikiFetcher->getProjectRootDirectory() . '/node_modules');
+    }
+}

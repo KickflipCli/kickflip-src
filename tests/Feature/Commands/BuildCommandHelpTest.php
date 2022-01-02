@@ -2,24 +2,20 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
+namespace KickflipMonoTests\Feature\Commands;
 
-beforeEach(function () {
-    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('local');
-    if (is_dir($buildPath)) {
-        File::deleteDirectory($buildPath);
-    }
-});
+use KickflipMonoTests\TestCase;
 
-test('build command help flag', function () {
-    /**
-     * @var \Illuminate\Testing\PendingCommand $pendingCommand
-     */
-    $pendingCommand = $this->artisan('build', ['--help'])
-        ->assertExitCode(0);
+class BuildCommandHelpTest extends TestCase {
+    public function testBuildCommandHelpFlag()
+    {
+        /**
+         * @var \Illuminate\Testing\PendingCommand $pendingCommand
+         */
+        $pendingCommand = $this->artisan('build', ['--help'])
+            ->assertExitCode(0);
 
-$expectedLines = collect(explode("\n", <<<HEREDOC
+        $expectedOutput = <<<HEREDOC
 Description:
   Build your website project.
 
@@ -38,7 +34,10 @@ Options:
   -n, --no-interaction   Do not ask any interactive question
       --env[=ENV]        The environment the command should run under
   -v|vv|vvv, --verbose   Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-HEREDOC))
-    ->filter(fn($value) => '' !== $value)
-    ->map(fn($value) => $pendingCommand->expectsOutput($value));
-});
+HEREDOC;
+
+        $expectedLines = collect(explode("\n", $expectedOutput))
+            ->filter(fn($value) => '' !== $value)
+            ->map(fn($value) => $pendingCommand->expectsOutput($value));
+    }
+}

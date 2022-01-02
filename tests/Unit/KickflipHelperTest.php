@@ -2,91 +2,159 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Unit;
+
 use Kickflip\KickflipHelper;
+use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\ReflectionHelpers;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
+use PHPUnit\Framework\TestCase;
 
-beforeAll(static function () {
-    KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
-});
+class KickflipHelperTest extends TestCase {
+    use DataProviderHelpers, ReflectionHelpers;
+    /**
+     * @before
+     */
+    public function setBasePath()
+    {
+        KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
+    }
 
-test('default KickflipHelper::basePath', function () {
-    expect(KickflipHelper::basePath())
-        ->toBeString()
-        ->toBe(dirname(__DIR__, 2) . '/packages/kickflip-docs');
-});
+    public function testDefaultBasePath()
+    {
+        $basePath = KickflipHelper::basePath();
+        self::assertIsString($basePath);
+        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-docs', $basePath);
+    }
 
-test('custom KickflipHelper::basePath', function ($input, $expected) {
-    expect(KickflipHelper::basePath($input))
-        ->toBeString()
-        ->toBe(dirname(__DIR__, 2) . $expected);
-})->with([
-    [null, '/packages/kickflip-docs'],
-    ['./', ''],
-    ['./packages/kickflip-docs', '/packages/kickflip-docs'],
-]);
+    /**
+     * @dataProvider basePathProvider
+     */
+    public function testCustomBasePath(?string $input, string $expected)
+    {
+        $basePath = KickflipHelper::basePath($input);
+        self::assertIsString($basePath);
+        self::assertEquals(dirname(__DIR__, 2) . $expected, $basePath);
+    }
 
-test('KickflipHelper::rootPackagePath', function () {
-    expect(KickflipHelper::rootPackagePath())
-        ->toBeString()
-        ->toBe(dirname(__DIR__, 2) . '/packages/kickflip-cli');
-});
+    public function basePathProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            [null, '/packages/kickflip-docs'],
+            ['./', ''],
+            ['./packages/kickflip-docs', '/packages/kickflip-docs'],
+        ]);
+    }
 
-test('helper to kebab', function ($input, $expected) {
-    expect(KickflipHelper::toKebab($input))
-        ->toBeString()
-        ->toBe($expected);
-})->with([
-    ['Hello World', 'hello-world'],
-    ['Hello Kickflip!', 'hello-kickflip!'],
-    ['Hello World, from kickflip!', 'hello-world,-from-kickflip!'],
-]);
+    public function testRootPackagePath()
+    {
+        $rootPackagePath = KickflipHelper::rootPackagePath();
+        self::assertIsString($rootPackagePath);
+        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-cli', $rootPackagePath);
+    }
 
-test('KickflipHelper::getFrontmatterParser', function () {
-    expect(KickflipHelper::getFrontMatterParser())
-        ->toBeInstanceOf(FrontMatterParserInterface::class);
-});
+    /**
+     * @dataProvider kebabStringProvider
+     */
+    public function testHelperToKebab(string $input, string $expected)
+    {
+        $kebabString = KickflipHelper::toKebab($input);
+        self::assertIsString($kebabString);
+        self::assertEquals($expected, $kebabString);
+    }
 
-test('KickflipHelper::leftTrimPath', function (string $input, string $expected) {
-    expect(KickflipHelper::leftTrimPath($input))
-        ->toBeString()
-        ->toBe($expected);
-})->with([
-    ['hello', 'hello'],
-    ['/hello', 'hello'],
-    ['/hello/', 'hello/'],
-    ['hello/', 'hello/'],
-]);
+    public function kebabStringProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['Hello World', 'hello-world'],
+            ['Hello Kickflip!', 'hello-kickflip!'],
+            ['Hello World, from kickflip!', 'hello-world,-from-kickflip!'],
+        ]);
+    }
 
-test('KickflipHelper::rightTrimPath', function (string $input, string $expected) {
-    expect(KickflipHelper::rightTrimPath($input))
-        ->toBeString()
-        ->toBe($expected);
-})->with([
-    ['hello', 'hello'],
-    ['/hello', '/hello'],
-    ['/hello/', '/hello'],
-    ['hello/', 'hello'],
-]);
+    public function testGettingFrontmatterParser()
+    {
+        self::assertInstanceOf(FrontMatterParserInterface::class, KickflipHelper::getFrontMatterParser());
+    }
 
-test('KickflipHelper::trimPath', function (string $input, string $expected) {
-    expect(KickflipHelper::trimPath($input))
-        ->toBeString()
-        ->toBe($expected);
-})->with([
-    ['hello', 'hello'],
-    ['/hello', 'hello'],
-    ['/hello/', 'hello'],
-    ['hello/', 'hello'],
-]);
+    /**
+     * @dataProvider leftTrimPathProvider
+     */
+    public function testHelperLeftTrimPath(string $input, string $expected)
+    {
+        $leftTrimString = KickflipHelper::leftTrimPath($input);
+        self::assertIsString($leftTrimString);
+        self::assertEquals($expected, $leftTrimString);
+    }
 
-test('KickflipHelper::relativeUrl', function (string $input, string $expected) {
-    expect(KickflipHelper::relativeUrl($input))
-        ->toBeString()
-        ->toBe($expected);
-})->with([
-    ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
-    ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
-    ['/half-life/blackmesa/', 'half-life/blackmesa'],
-    ['/hello-world/', 'hello-world'],
-    ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
-]);
+    public function leftTrimPathProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['hello', 'hello'],
+            ['/hello', 'hello'],
+            ['/hello/', 'hello/'],
+            ['hello/', 'hello/'],
+        ]);
+    }
+
+    /**
+     * @dataProvider rightTrimPathProvider
+     */
+    public function testHelperRightTrimPath(string $input, string $expected)
+    {
+        $rightTrimPath = KickflipHelper::rightTrimPath($input);
+        self::assertIsString($rightTrimPath);
+        self::assertEquals($expected, $rightTrimPath);
+    }
+
+    public function rightTrimPathProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['hello', 'hello'],
+            ['/hello', '/hello'],
+            ['/hello/', '/hello'],
+            ['hello/', 'hello'],
+        ]);
+    }
+
+    /**
+     * @dataProvider trimPathProvider
+     */
+    public function testHelperTrimPath(string $input, string $expected)
+    {
+        $leftTrimString = KickflipHelper::trimPath($input);
+        self::assertIsString($leftTrimString);
+        self::assertEquals($expected, $leftTrimString);
+    }
+
+    public function trimPathProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['hello', 'hello'],
+            ['/hello', 'hello'],
+            ['/hello/', 'hello'],
+            ['hello/', 'hello'],
+        ]);
+    }
+
+    /**
+     * @dataProvider relativeUrlProvider
+     */
+    public function testHelperRelativeUrl(string $input, string $expected)
+    {
+        $leftTrimString = KickflipHelper::relativeUrl($input);
+        self::assertIsString($leftTrimString);
+        self::assertEquals($expected, $leftTrimString);
+    }
+
+    public function relativeUrlProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
+            ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
+            ['/half-life/blackmesa/', 'half-life/blackmesa'],
+            ['/hello-world/', 'hello-world'],
+            ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
+        ]);
+    }
+}

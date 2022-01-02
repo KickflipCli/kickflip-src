@@ -2,50 +2,69 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\DocsFeature;
+
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\UrlGenerator;
 use Kickflip\SiteBuilder\SourcesLocator;
+use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\DocsTestCase;
+use KickflipMonoTests\ReflectionHelpers;
 
-test('check UrlGenerator session resolver is null', function () {
-    /**
-     * @var UrlGenerator $url
-     */
-    $url = app('url');
-    expect($url)->reflectCallMethod('getSession')->toBeNull();
-});
+class UrlRoutesTest extends DocsTestCase {
+    use DataProviderHelpers, ReflectionHelpers;
 
-test('check UrlGenerator key resolver', function () {
-    /**
-     * @var UrlGenerator $url
-     */
-    $url = app('url');
-    expect($url)
-        ->reflectHasProperty('keyResolver');
-    $keyResolver = expect($url)
-        ->reflectExpectProperty('keyResolver')
-        ->toBeCallable()->value;
-    expect($keyResolver())->toBeString()->toStartWith('base64:');
-    $key1 = $keyResolver();
-    $key2 = $keyResolver();
-    expect($key1)->toStartWith('base64:')->not()->toEqual($key2);
-    expect($key2)->toStartWith('base64:')->not()->toEqual($keyResolver());
-});
+    public function testEnsureUrlGeneratorSessionResolverIsNull()
+    {
+        /**
+         * @var UrlGenerator $url
+         */
+        $url = app('url');
+        $results = self::reflectionCallMethod($url, 'getSession');
+        self::assertNull($results);
+    }
 
-test('check UrlGenerator rebinds routes', function () {
-    /**
-     * @var UrlGenerator $url
-     */
-    $url = app('url');
-    /**
-     * @var RouteCollection $initialRoutes
-     */
-    $initialRoutes = clone expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
-    expect($initialRoutes->getRoutes())->toHaveCount(0);
-    app(SourcesLocator::class); // This will force routes to be registered...
-    $updatedRoutes = expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
-    expect($updatedRoutes->getRoutes())->toHaveCount(count(app(SourcesLocator::class)->getRenderPageList()));
-    // Now that the global routes was updated lets override it with the empty clone...
-    app()->instance('routes', $initialRoutes);
-    $reboundRoutes = expect($url)->reflectExpectProperty('routes')->toBeInstanceOf(RouteCollection::class)->value;
-    expect($reboundRoutes->getRoutes())->toHaveCount(0);
-});
+    public function testUrlGeneratorKeyResolverConfigs()
+    {
+        /**
+         * @var UrlGenerator $url
+         */
+        $url = app('url');
+        $keyResolver = self::assertHasNonPublicProperty($url, 'keyResolver');
+        self::assertIsCallable($keyResolver);
+        $value = $keyResolver();
+        self::assertIsString($value);
+        self::assertStringStartsWith('base64:', $value);
+        // Assert keys change
+        $key1 = $keyResolver();
+        $key2 = $keyResolver();
+        self::assertStringStartsWith('base64:', $key1);
+        self::assertStringStartsWith('base64:', $key2);
+        self::assertNotEquals($key1, $key2);
+        self::assertNotEquals($key2, $keyResolver());
+    }
+
+    public function testCheckUrlGeneratorRebindsRoutes()
+    {
+        /**
+         * @var UrlGenerator $url
+         */
+        $url = app('url');
+        /**
+         * @var RouteCollection $initialRoutes
+         */
+        $initialRoutes = clone self::assertHasNonPublicProperty($url, 'routes');
+        self::assertInstanceOf(RouteCollection::class, $initialRoutes);
+        self::assertCount(0, $initialRoutes->getRoutes());
+        // This will force routes to be registered...
+        app(SourcesLocator::class);
+        $updatedRoutes = clone self::assertHasNonPublicProperty($url, 'routes');
+        self::assertInstanceOf(RouteCollection::class, $updatedRoutes);
+        self::assertCount(count(app(SourcesLocator::class)->getRenderPageList()), $updatedRoutes->getRoutes());
+        // Now that the global routes was updated lets override it with the empty clone...
+        app()->instance('routes', $initialRoutes);
+        $reboundRoutes = clone self::assertHasNonPublicProperty($url, 'routes');
+        self::assertInstanceOf(RouteCollection::class, $reboundRoutes);
+        self::assertCount(0, $reboundRoutes->getRoutes());
+    }
+}

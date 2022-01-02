@@ -1,42 +1,60 @@
 <?php
 
+declare(strict_types=1);
+
+namespace KickflipMonoTests\DocsFeature;
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use KickflipMonoTests\DocsTestCase;
 
-afterEach(function () {
-    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
-    if (is_dir($buildPath)) {
-        File::deleteDirectory($buildPath);
+class BuildCommandProdTest extends DocsTestCase {
+    private const BUILD_ENV = 'production';
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        if (is_dir($buildPath)) {
+            File::deleteDirectory($buildPath);
+        }
     }
-});
-beforeEach(function () {
-    (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
-    if (is_dir($buildPath)) {
-        File::deleteDirectory($buildPath);
+
+    public function tearDown(): void
+    {
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        if (is_dir($buildPath)) {
+            File::deleteDirectory($buildPath);
+        }
+        parent::tearDown();
     }
-});
 
-test('build command', function () {
-    $this->artisan('build production')
-        ->assertExitCode(0);
-});
+    public function testBuildCommand()
+    {
+        $this->artisan('build ' . self::BUILD_ENV)
+            ->assertSuccessful();
+    }
 
-test('test successful fake dirty build command', function () {
-    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
-    mkdir($buildPath);
+    public function testSuccessfulFakeDirtyBuild()
+    {
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        mkdir($buildPath);
 
-    $this->artisan('build production')
-        ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'yes')
-        ->assertExitCode(0);
-});
+        $this->artisan('build ' . static::BUILD_ENV)
+            ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'yes')
+            ->assertSuccessful();
+    }
 
-test('test denied fake dirty build command', function () {
-    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('production');
-    mkdir($buildPath);
-    $this->artisan('build production')
-        ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'no')
-        ->assertExitCode(1);
-});
+    public function testDeniedFakeDirtyBuild()
+    {
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        mkdir($buildPath);
+
+        $this->artisan('build ' . static::BUILD_ENV)
+            ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'no')
+            ->assertFailed();
+    }
+}

@@ -2,26 +2,53 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Unit;
+
 use Kickflip\Logger;
+use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\ReflectionHelpers;
+use PHPUnit\Framework\TestCase;
 
-test('Logger class exists', function () {
-    $this->assertTrue(class_exists(Logger::class));
-    expect(Logger::class)->toBeString()->reflectHasProperty('consoleOutput');
-});
+class LoggerTest extends TestCase {
+    use DataProviderHelpers, ReflectionHelpers;
 
-it('fails without access to global kickflipCli', function (string $logLevel) {
-    Logger::{$logLevel}('test');
-})->throws(Exception::class, 'Target class [kickflipCli] does not exist.')->with([
-    'debug',
-    'veryVerbose',
-    'verbose',
-    'info',
-]);
+    public function testCanVerifyClassExists(): void
+    {
+        self::assertClassExists(Logger::class);
+        self::assertHasProperty(Logger::class, 'consoleOutput');
+    }
 
-it('fails veryVerboseTable without access to global kickflipCli', function () {
-    Logger::veryVerboseTable([], []);
-})->throws(Exception::class, 'Target class [kickflipCli] does not exist.');
+    /**
+     * @dataProvider logLevelDataProvider
+     */
+    public function testItFailsWithoutAccessToKickflip(string $logLevel)
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
+        Logger::{$logLevel}('test');
+    }
 
-it('fails timing without access to global kickflipTimings', function () {
-    Logger::timing('yeetBoy', 'NotStatic');
-})->throws(Exception::class, 'Target class [kickflipTimings] does not exist.');
+    public function logLevelDataProvider()
+    {
+        return $this->autoAddDataProviderKeys([
+            ['debug'],
+            ['veryVerbose'],
+            ['verbose'],
+            ['info'],
+        ]);
+    }
+
+    public function testTablesFailWithoutKickflip()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
+        Logger::veryVerboseTable([], []);
+    }
+
+    public function testtimingFailWithoutKickflipTimings()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Target class [kickflipTimings] does not exist.');
+        Logger::timing('yeetBoy', 'NotStatic');
+    }
+}

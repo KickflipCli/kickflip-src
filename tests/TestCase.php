@@ -6,9 +6,11 @@ namespace KickflipMonoTests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
+use Kickflip\Models\SourcePageMetaData;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
@@ -72,6 +74,20 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $process->getOutput();
+    }
+
+    public function getTestPageData(int $index = 0): PageData
+    {
+        // Fetch a single Symfony SplFileInfo object
+        $splFileInfo = File::files(__DIR__ . '/sources/')[$index];
+        // Create a SourcePageMetaData object
+        $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
+        // Parse out the frontmatter page meta data
+        $frontMatterData = KickflipHelper::getFrontMatterParser()
+                ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
+                ->getFrontMatter() ?? [];
+        // Create a PageData object
+        return PageData::make($sourcePageMetaData, $frontMatterData);
     }
 
     protected function callAfterResolving($app, $name, $callback)

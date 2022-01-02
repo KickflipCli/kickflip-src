@@ -2,36 +2,48 @@
 
 declare(strict_types=1);
 
+namespace KickflipMonoTests\Unit\SiteBuilder;
+
 use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\SourcesLocator;
+use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\ReflectionHelpers;
+use KickflipMonoTests\TestCase;
 
-// We do this to have access to laravel's filesystem facade used by SourcesLocator
-uses(KickflipMonoTests\TestCase::class);
+class SourcesLocatorTest extends TestCase {
+    use DataProviderHelpers, ReflectionHelpers;
+    public function testCanVerifyClassExists()
+    {
+        self::assertClassExists(SourcesLocator::class);
+    }
 
-test('SourcesLocator class exists', function () {
-    expect(SourcesLocator::class)->toBeString();
-});
+    public function testItCanCreateSourcesLocator()
+    {
+        self::assertInstanceOf(SourcesLocator::class, new SourcesLocator(dirname(__DIR__, 2) . '/sources'));
+    }
 
-test('SourcesLocator can be constructed', function () {
-    expect(new SourcesLocator(dirname(__DIR__, 2) . '/sources'))
-        ->toBeInstanceOf(SourcesLocator::class);
-});
+    public function testCanVerifySourcesLocatorProperties()
+    {
+        self::assertHasProperties(
+            new SourcesLocator(dirname(__DIR__, 2) . '/sources'),
+            [
+                'sourcesBasePath',
+                'renderPageList',
+                'bladeSources',
+                'markdownSources',
+                'markdownBladeSources',
+            ]
+        );
+    }
 
-test('SourcesLocator has expected properties', function () {
-    expect(new SourcesLocator(dirname(__DIR__, 2) . '/sources'))
-        ->toHaveProperties([
-            'sourcesBasePath',
-            'renderPageList',
-            'bladeSources',
-            'markdownSources',
-            'markdownBladeSources',
-        ]);
-});
-
-test('SourcesLocator has expected methods', function () {
-    $sourcesLocator = new SourcesLocator(dirname(__DIR__, 2) . '/sources');
-    expect($sourcesLocator->getRenderPageList())
-        ->toBeArray()
-        ->toHaveCount(7)
-        ->each->toBeInstanceOf(PageData::class);
-});
+    public function testCanVerifySourcesLocatorMethods()
+    {
+        $sourceLocator = new SourcesLocator(dirname(__DIR__, 2) . '/sources');
+        self::assertIsArray($sourceLocator->getRenderPageList());
+        self::assertCount(7, $sourceLocator->getRenderPageList());
+        foreach ($sourceLocator->getRenderPageList() as $pageData) {
+            self::assertInstanceOf(PageData::class, $pageData);
+        }
+        self::assertIsArray($sourceLocator->getCopyFileList());
+    }
+}
