@@ -5,6 +5,7 @@ namespace KickflipMonoTests;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
+use Kickflip\Models\PageData;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
@@ -19,6 +20,10 @@ abstract class TestCase extends BaseTestCase
      */
     public function createApplication()
     {
+        // Reset PageData to defaults
+        PageData::$defaultExtendsView = 'layouts.master';
+        PageData::$defaultExtendsSection = 'body';
+
         if (!file_exists(__DIR__ . '/../packages/kickflip/source/assets/build/mix-manifest.json')) {
             $this->callNpmProcess('install');
             $this->callNpmProcess('run', 'prod');
