@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;

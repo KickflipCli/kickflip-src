@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use Kickflip\Enums\ConsoleVerbosity;
 use Symfony\Component\Console\Input\ArgvInput;
 
@@ -8,7 +11,7 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
     expect($argvInput)->toBeInstanceOf(ArgvInput::class);
     $parsedArgvInput = Str::of((string) $argvInput);
     expect($parsedArgvInput)
-        ->toBeInstanceOf(\Illuminate\Support\Stringable::class);
+        ->toBeInstanceOf(Stringable::class);
     expect($parsedArgvInput->findVerbosity())
         ->toBeInstanceOf(ConsoleVerbosity::class)
         ->toBe($expected);
@@ -19,7 +22,7 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
             'build',
             '-q',
         ]),
-        ConsoleVerbosity::quiet()
+        ConsoleVerbosity::quiet(),
     ],
     [
         new ArgvInput([
@@ -27,14 +30,14 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
             'build',
             '--quiet',
         ]),
-        ConsoleVerbosity::quiet()
+        ConsoleVerbosity::quiet(),
     ],
     [
         new ArgvInput([
             './kickflip',
             'build',
         ]),
-        ConsoleVerbosity::normal()
+        ConsoleVerbosity::normal(),
     ],
     [
         new ArgvInput([
@@ -42,7 +45,7 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
             'build',
             '-v',
         ]),
-        ConsoleVerbosity::verbose()
+        ConsoleVerbosity::verbose(),
     ],
     [
         new ArgvInput([
@@ -50,7 +53,7 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
             'build',
             '-vv',
         ]),
-        ConsoleVerbosity::veryVerbose()
+        ConsoleVerbosity::veryVerbose(),
     ],
     [
         new ArgvInput([
@@ -58,7 +61,7 @@ test('we can mock a realistic ArgvInput', function ($argvInput, $expected) {
             'build',
             '-vvv',
         ]),
-        ConsoleVerbosity::debug()
+        ConsoleVerbosity::debug(),
     ],
 ]);
 

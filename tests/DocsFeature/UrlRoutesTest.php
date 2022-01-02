@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Routing\RouteCollection;
+use Illuminate\Routing\UrlGenerator;
 use Kickflip\SiteBuilder\SourcesLocator;
 
 test('check UrlGenerator session resolver is null', function () {
     /**
-     * @var \Illuminate\Routing\UrlGenerator $url
+     * @var UrlGenerator $url
      */
     $url = app('url');
     expect($url)->reflectCallMethod('getSession')->toBeNull();
@@ -13,7 +16,7 @@ test('check UrlGenerator session resolver is null', function () {
 
 test('check UrlGenerator key resolver', function () {
     /**
-     * @var \Illuminate\Routing\UrlGenerator $url
+     * @var UrlGenerator $url
      */
     $url = app('url');
     expect($url)
@@ -30,7 +33,7 @@ test('check UrlGenerator key resolver', function () {
 
 test('check UrlGenerator rebinds routes', function () {
     /**
-     * @var \Illuminate\Routing\UrlGenerator $url
+     * @var UrlGenerator $url
      */
     $url = app('url');
     /**

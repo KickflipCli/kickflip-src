@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\RouterNavPlugin\Models\NavItem;
 
 test('a basic NavItem can be created', function($title, $url) {

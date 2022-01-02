@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipMonoTests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
@@ -11,12 +14,14 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function file_exists;
+
 abstract class TestCase extends BaseTestCase
 {
     /**
      * Creates the application.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return Application
      */
     public function createApplication()
     {
@@ -31,7 +36,7 @@ abstract class TestCase extends BaseTestCase
         /**
          * @var \LaravelZero\Framework\Application $app
          */
-        $app = require __DIR__.'/../packages/kickflip-cli/bootstrap/app.php';
+        $app = require __DIR__ . '/../packages/kickflip-cli/bootstrap/app.php';
         KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip'));
         $app->make(Kernel::class)->bootstrap();
         $this->callAfterResolving($app, 'view', function ($view) {
@@ -40,13 +45,14 @@ abstract class TestCase extends BaseTestCase
              */
             $view->addLocation(__DIR__ . '/views');
         });
+
         return $app;
     }
 
     protected function callNpmProcess(...$args)
     {
         $command = [
-            (new ExecutableFinder)->find('npm', 'npm', [
+            (new ExecutableFinder())->find('npm', 'npm', [
                 '/usr/local/bin',
                 '/opt/homebrew/bin',
             ]),

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 beforeEach(function () {
-    $buildPath = Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('local');
+    $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv('local');
     if (is_dir($buildPath)) {
         File::deleteDirectory($buildPath);
     }

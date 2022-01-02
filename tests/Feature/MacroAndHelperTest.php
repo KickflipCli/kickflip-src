@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 
 test('string macro replaceEnv', function ($input, $expected) {
-    $stringFormat = Str::of("Hello, {env}");
+    $stringFormat = Str::of('Hello, {env}');
     expect((string) $stringFormat->replaceEnv($input))
         ->toBeString()
         ->toBe($expected);

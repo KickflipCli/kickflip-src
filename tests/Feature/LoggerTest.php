@@ -1,12 +1,14 @@
 <?php
 
-use Kickflip\Enums\ConsoleVerbosity;
+declare(strict_types=1);
+
+use Illuminate\Config\Repository;
 use Kickflip\Logger;
 
 it('Logger::timing works correctly', function () {
     $timingsRepo = app('kickflipTimings');
     expect($timingsRepo)
-        ->toBeInstanceOf(\Illuminate\Config\Repository::class)
+        ->toBeInstanceOf(Repository::class)
         ->and($timingsRepo->all())
         ->toHaveCount(4);
     Logger::timing('NotStatic::stepOne');
