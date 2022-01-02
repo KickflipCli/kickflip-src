@@ -8,3 +8,8 @@
 /.vagrant
 .php-cs-fixer.cache
 .phpunit.result.cache
+/captainhook.config.json
+/composer.lock
+/phpcs.xml
+/phpunit.xml
+/vendor/

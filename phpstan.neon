@@ -1,5 +1,7 @@
 parameters:
-	level: 0
+	tmpDir: ./build/cache/phpstan
+	level: max
 	paths:
 		- tests
 		- packages/kickflip-cli/app
+		- packages/kickflip-router-nav-plugin/src
