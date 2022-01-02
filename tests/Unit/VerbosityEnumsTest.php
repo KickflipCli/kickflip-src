@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\Enums\ConsoleVerbosity;
 use Kickflip\Enums\VerbosityFlag;
 

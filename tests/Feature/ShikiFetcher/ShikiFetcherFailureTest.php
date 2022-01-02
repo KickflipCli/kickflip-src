@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\File;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 afterEach(function () {
     (new ShikiNpmFetcher())->removeShikiAndNodeModules();
@@ -17,7 +20,7 @@ it('will throw an exception if shiki fetcher fails', function () {
     $packageJson = $shikiFetcher->getProjectRootDirectory() . '/package.json';
     $packageLock = $shikiFetcher->getProjectRootDirectory() . '/package-lock.json';
     // Setup directory that will cause failure...
-    mkdir($nodeModules, '0500');
+    mkdir($nodeModules, 0500);
     touch($packageJson);
     touch($packageLock);
     chmod($packageJson, 0400);
@@ -25,7 +28,7 @@ it('will throw an exception if shiki fetcher fails', function () {
     chmod($nodeModules, 0400);
     expect($nodeModules)->toBeDirectory();
     // Expect the exception and trigger the failure
-    $this->expectException(\Symfony\Component\Process\Exception\ProcessFailedException::class);
+    $this->expectException(ProcessFailedException::class);
     $shikiFetcher->installShiki();
     // Ensure 0500 perms directory is removed
     chmod($packageJson, 0700);

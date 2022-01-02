@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
 
-use Kickflip\Events\SiteBuildStarted;
 use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Events\SiteBuildStarted;
 
 it('can verify Event classes exist', function () {
     expect(new SiteBuildStarted())->toBeInstanceOf(SiteBuildStarted::class);

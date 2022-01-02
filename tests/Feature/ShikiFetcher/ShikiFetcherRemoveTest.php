@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
@@ -14,7 +16,7 @@ beforeEach(function () {
 it('will remove shiki and node modules', function () {
     $shikiFetcher = new ShikiNpmFetcher();
     expect($shikiFetcher->getProjectRootDirectory() . '/package.json')
-        ->when(filter_var(Str::of(getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15, fn($path) => $path->toBeFile()->toBeReadableFile());
+        ->when(filter_var(Str::of(getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15, fn ($path) => $path->toBeFile()->toBeReadableFile());
     expect($shikiFetcher->getProjectRootDirectory() . '/package-lock.json')
         ->toBeFile()->toBeReadableFile();
     expect($shikiFetcher->getProjectRootDirectory() . '/node_modules')

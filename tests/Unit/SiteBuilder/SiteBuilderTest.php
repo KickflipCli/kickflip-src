@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // We do this to have access to laravel's filesystem facade used by SourcesLocator
 use Kickflip\SiteBuilder\SiteBuilder;
 

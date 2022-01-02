@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\View\View;
+declare(strict_types=1);
+
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\MarkdownEngine;
 

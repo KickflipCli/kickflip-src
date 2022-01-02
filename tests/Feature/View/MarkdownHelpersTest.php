@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\View\View;
 use Kickflip\Models\SiteData;
 use KickflipMonoTests\Mocks\MarkdownHelpersMock;
@@ -14,7 +16,7 @@ it('can determine if autoExtend is enabled', function () {
     ]);
     $mockPageData = getTestPageData();
 
-    $markdownHelpers = new MarkdownHelpersMock;
+    $markdownHelpers = new MarkdownHelpersMock();
     expect($markdownHelpers->isAutoExtendEnabled($mockSiteData, $mockPageData))
         ->toBeTrue();
 });
@@ -29,10 +31,10 @@ it('can determine if page has Extend enabled', function () {
     $mockPageData = getTestPageData();
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
-            file_get_contents($mockPageData->source->getFullPath())
+            file_get_contents($mockPageData->source->getFullPath()),
         );
 
-    $markdownHelpers = new MarkdownHelpersMock;
+    $markdownHelpers = new MarkdownHelpersMock();
     expect($markdownHelpers->isPageExtendEnabled($mockPageData, $renderedPageMarkdown))
         ->toBeTrue();
 });
@@ -47,9 +49,9 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
     $mockPageData = getTestPageData($pageId);
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
-            file_get_contents($mockPageData->source->getFullPath())
+            file_get_contents($mockPageData->source->getFullPath()),
         );
-    $markdownHelpers = new MarkdownHelpersMock;
+    $markdownHelpers = new MarkdownHelpersMock();
     $preparedExtendedRender = $markdownHelpers->prepareExtendedRender($mockPageData, $renderedPageMarkdown);
     expect($preparedExtendedRender)
         ->toBeArray()->toHaveCount(3);
@@ -75,9 +77,9 @@ it('throws an exception with non-extended PageData', function () {
     $mockPageData = getTestPageData(6);
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
-            file_get_contents($mockPageData->source->getFullPath())
+            file_get_contents($mockPageData->source->getFullPath()),
         );
-    $markdownHelpers = new MarkdownHelpersMock;
+    $markdownHelpers = new MarkdownHelpersMock();
     $this->expectError();
     $markdownHelpers->prepareExtendedRender($mockPageData, $renderedPageMarkdown);
 });
@@ -92,10 +94,10 @@ it('can make a view', function () {
     $mockPageData = getTestPageData();
     $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
         ->convertToHtml(
-            file_get_contents($mockPageData->source->getFullPath())
+            file_get_contents($mockPageData->source->getFullPath()),
         );
 
-    $markdownHelpers = new MarkdownHelpersMock;
+    $markdownHelpers = new MarkdownHelpersMock();
     $preparedExtendedRender = $markdownHelpers->makeView([
         '__env' => app('view'),
         'app' => app(),

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\KickflipHelper;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 
-beforeAll(static function() {
+beforeAll(static function () {
     KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
 });
 

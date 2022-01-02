@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\Enums\CliStateDirPaths;
 
 test('verify CliStateDirPaths enum exists', function () {
@@ -28,50 +30,50 @@ test('verify CliStateDirPaths constant values', function (string $constName, str
 })->with([
     [
         'Base',
-        'baseDir'
+        'baseDir',
     ],
     [
         'Cache',
-        'cache'
+        'cache',
     ],
     [
         'Resources',
-        'resources'
+        'resources',
     ],
     [
         'Config',
-        'config_dir'
+        'config_dir',
     ],
     [
         'ConfigFile',
-        'config_file'
+        'config_file',
     ],
     [
         'EnvConfig',
-        'env_config'
+        'env_config',
     ],
     [
         'BootstrapFile',
-        'bootstrapFile'
+        'bootstrapFile',
     ],
     [
         'BuildBase',
-        'build'
+        'build',
     ],
     [
         'BuildSourcePart',
-        'source'
+        'source',
     ],
     [
         'BuildSource',
-        'build.source'
+        'build.source',
     ],
     [
         'BuildDestinationPart',
-        'destination'
+        'destination',
     ],
     [
         'BuildDestination',
-        'build.destination'
+        'build.destination',
     ],
 ]);

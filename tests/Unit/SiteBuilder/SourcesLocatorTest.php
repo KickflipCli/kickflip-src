@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\SourcesLocator;
 
