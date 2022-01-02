@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/tests" isTestSource="true" packagePrefix="KickflipTests\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="RepoBuilder\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-router-nav-plugin/src" isTestSource="false" packagePrefix="Kickflip\RouterNavPlugin\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
@@ -116,7 +117,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/path-util" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest-plugin" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest-plugin-mock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/language-server-protocol" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/advanced-json-rpc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
@@ -149,7 +149,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php81" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest-plugin-faker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
