@@ -12,6 +12,7 @@ use KickflipMonoTests\TestCase;
 
 class SourcesLocatorTest extends TestCase {
     use DataProviderHelpers, ReflectionHelpers;
+
     public function testCanVerifyClassExists()
     {
         self::assertClassExists(SourcesLocator::class);

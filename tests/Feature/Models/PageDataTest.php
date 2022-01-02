@@ -17,6 +17,10 @@ class PageDataTest extends TestCase {
     {
         $this->expectError();
         $this->expectErrorMessage('Call to private Kickflip\Models\PageData::__construct() from scope KickflipMonoTests\Feature\Models\PageDataTest');
+        /**
+         * @psalm-suppress InaccessibleMethod
+         * @psalm-suppress TooFewArguments
+         */
         new PageData();
     }
 

@@ -32,7 +32,7 @@ trait ReflectionHelpers
         Assert::assertTrue($reflectionClass->hasProperty($property));
         $reflectionProperty = $reflectionClass->getProperty($property);
         if ($reflectionProperty->isStatic()) {
-            return $reflectionProperty->getValue(null);
+            return $reflectionProperty->getValue();
         }
         return $reflectionProperty->getValue($objectOrClassName);
     }

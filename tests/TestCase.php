@@ -51,14 +51,14 @@ abstract class TestCase extends BaseTestCase
         return $app;
     }
 
-    protected function callNpmProcess(...$args)
+    protected function callNpmProcess()
     {
         $command = [
             (new ExecutableFinder())->find('npm', 'npm', [
                 '/usr/local/bin',
                 '/opt/homebrew/bin',
             ]),
-            ...$args,
+            ...func_get_args(),
         ];
 
         $process = new Process(

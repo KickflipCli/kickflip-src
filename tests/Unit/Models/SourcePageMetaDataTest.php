@@ -23,6 +23,9 @@ class SourcePageMetaDataTest extends TestCase {
     public function testItThrowsWhenCreatingInvalidMetaData()
     {
         $this->expectError();
+        /**
+         * @psalm-suppress InaccessibleMethod
+         */
         new SourcePageMetaData('', '', '', '');
     }
 

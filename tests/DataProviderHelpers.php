@@ -2,19 +2,15 @@
 
 namespace KickflipMonoTests;
 
-use Kickflip\KickflipHelper;
-use Kickflip\Models\PageData;
-use Kickflip\Models\SourcePageMetaData;
 use SebastianBergmann\Exporter\Exporter;
-use Illuminate\Support\Facades\File;
 
 trait DataProviderHelpers
 {
     /**
-     * @template T
-     * @param array $array<array-key, T>
+     * @psalm-template  T
+     * @param array $array<array-key, array<array-key T>>
      *
-     * @return array<string, T>
+     * @return array<string, array<array-key T>>
      */
     public function autoAddDataProviderKeys(array $array)
     {
