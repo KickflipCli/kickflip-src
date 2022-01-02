@@ -62,7 +62,7 @@ it('can prepare extended rendered for markdown', function (int $pageId, string $
 })->with([
     [0, 'content', 'layouts.master'],
     [1, 'postContent', 'layouts.post'],
-    [5, 'body', 'layouts.master'],
+    [4, 'postContent', 'layouts.post'],
 ]);
 
 it('throws an exception with non-extended PageData', function () {

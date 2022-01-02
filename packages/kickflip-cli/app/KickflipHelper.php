@@ -70,6 +70,9 @@ final class KickflipHelper
             ]
         ]);
 
+        // Set the base storage path
+        app()->useStoragePath($basePath . DIRECTORY_SEPARATOR . 'storage');
+
         if (app()->hasBeenBootstrapped()) {
             /**
              * @var Repository $config

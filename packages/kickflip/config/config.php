@@ -3,7 +3,7 @@
 use MallardDuck\BladeEmojiIcons\BladeEmojiIconsServiceProvider;
 
 return [
-    'baseUrl' => '',
+    'baseUrl' => 'http://kickflip.test',
     'production' => false,
     'siteName' => 'Kickflip',
     'siteDescription' => 'The static site generation based on Laravel Zero',

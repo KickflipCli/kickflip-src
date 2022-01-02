@@ -39,7 +39,7 @@ class KickflipServiceProvider extends ServiceProvider
             $config = include $configPath;
             $kickflipCliState->set('site', $config);
             $baseUrl = $kickflipCliState->get('site.baseUrl');
-            if ($baseUrl === '') {
+            if ($baseUrl !== '') {
                 $baseUrl = (string) Str::of($kickflipCliState->get('site.baseUrl'))->rtrim('/')->append('/');
                 $kickflipCliState->set('site.baseUrl', $baseUrl);
             }

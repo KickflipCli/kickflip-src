@@ -29,10 +29,6 @@ abstract class TestCase extends BaseTestCase
         $app = require __DIR__.'/../packages/kickflip-cli/bootstrap/app.php';
         KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip'));
         $app->make(Kernel::class)->bootstrap();
-        // Setup the mock test URL
-        $kickflipCli = $app->get('kickflipCli');
-        $kickflipCli->set('site.baseUrl', 'http://kickflip.test/');
-        app('config')->set('app.url', 'http://kickflip.test/');
         $this->callAfterResolving($app, 'view', function ($view) {
             /**
              * @var Factory $view

@@ -43,7 +43,7 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('kickflip.log'),
             'level' => 'debug',
         ],
 
@@ -73,9 +73,7 @@ return [
 
         // TODO figure out how I want this to work...
         'emergency' => [
-            'path' => \Phar::running()
-                ? dirname(\Phar::running(false)) . 'kickflip-cli.log'
-                : storage_path('logs/laravel.log'),
+            'path' => storage_path('kickflip.log'),
         ],
     ],
 

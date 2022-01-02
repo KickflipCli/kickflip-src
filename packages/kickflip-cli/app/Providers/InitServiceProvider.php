@@ -21,7 +21,6 @@ class InitServiceProvider extends ServiceProvider
     {
         Logger::timing(__METHOD__);
         Logger::debug("Firing " . __METHOD__);
-        # Set a relevant paths
         $this->app->instance('cwd', getcwd());
         KickflipHelper::setPaths(KickflipHelper::basePath());
 
