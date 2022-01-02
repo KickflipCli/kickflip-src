@@ -115,8 +115,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/amphp/amp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/path-util" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest-plugin" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/language-server-protocol" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/advanced-json-rpc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />

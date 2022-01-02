@@ -52,7 +52,6 @@
         "laravel-zero/foundation": "^8.74",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.10",
-        "pestphp/pest": "^1.21.1",
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "ramsey/devtools": "^1.7",
@@ -95,10 +94,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "scripts": {
-        "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
-        "test": "XDEBUG_MODE=off vendor/bin/pest"
-    },
     "extra": {
         "captainhook": {
             "force-install": true

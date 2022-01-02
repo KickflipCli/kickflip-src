@@ -117,8 +117,6 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/amphp/amp" />
       <path value="$PROJECT_DIR$/vendor/webmozart/path-util" />
-      <path value="$PROJECT_DIR$/vendor/pestphp/pest-plugin" />
-      <path value="$PROJECT_DIR$/vendor/pestphp/pest" />
       <path value="$PROJECT_DIR$/vendor/felixfbecker/language-server-protocol" />
       <path value="$PROJECT_DIR$/vendor/felixfbecker/advanced-json-rpc" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
@@ -215,6 +213,7 @@
       <path value="$PROJECT_DIR$/vendor/slevomat/coding-standard" />
       <path value="$PROJECT_DIR$/vendor/ergebnis/composer-normalize" />
       <path value="$PROJECT_DIR$/vendor/madewithlove/license-checker" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
