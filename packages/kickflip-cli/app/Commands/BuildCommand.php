@@ -10,8 +10,15 @@ use Kickflip\Events\BeforeConfigurationLoads;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
-use MallardDuck\LaravelTraits\Console\CommandManagesSections;
 use LaravelZero\Framework\Commands\Command;
+use MallardDuck\LaravelTraits\Console\CommandManagesSections;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+
+use function file_exists;
+use function filter_var;
+
+use const FILTER_VALIDATE_BOOL;
 
 class BuildCommand extends Command
 {
@@ -56,7 +63,7 @@ class BuildCommand extends Command
         [$env, $quiet, $prettyUrls] = $this->initCommandVars();
 
         BeforeConfigurationLoads::dispatch();
-        # Load in the local projects config based on env...
+        // Load in the local projects config based on env...
         SiteBuilder::includeEnvironmentConfig($env);
         SiteBuilder::updateBuildPaths($env);
 
@@ -70,18 +77,20 @@ class BuildCommand extends Command
             $this->output->writeln('<info>Starting site build...</info>');
             $siteBuilder = new SiteBuilder($prettyUrls);
             $siteBuilder->build($this->output);
-            $this->output->success("Completed building site.");
+            $this->output->success('Completed building site.');
+
             return static::SUCCESS;
         }
-        $this->output->error("Done, did not build.");
+        $this->output->error('Done, did not build.');
 
         return static::FAILURE;
     }
 
     /**
      * @return array{env: string, quiet:bool, prettyUrls: bool,}
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     private function initCommandVars(): array
     {
@@ -93,9 +102,10 @@ class BuildCommand extends Command
          * @var bool $quiet
          */
         $quiet = filter_var($this->input->getOption('quiet'), FILTER_VALIDATE_BOOL);
-        # Set global state of pretty URL status
+        // Set global state of pretty URL status
         $prettyUrls = filter_var($this->input->getOption('pretty'), FILTER_VALIDATE_BOOL);
         $this->app->get('kickflipCli')->set('prettyUrls', $prettyUrls);
+
         return [$env, $quiet, $prettyUrls];
     }
 }

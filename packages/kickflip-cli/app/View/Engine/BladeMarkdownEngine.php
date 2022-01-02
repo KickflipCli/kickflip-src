@@ -9,10 +9,11 @@ use Illuminate\View\Compilers\CompilerInterface;
 use Illuminate\View\Engines\CompilerEngine;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
+use function array_merge;
+
 final class BladeMarkdownEngine extends CompilerEngine
 {
     private BaseMarkdownRenderer $markdown;
-
     use MarkdownHelpers;
 
     public function __construct(CompilerInterface $compilerEngine, Filesystem $files, BaseMarkdownRenderer $markdownRenderer)

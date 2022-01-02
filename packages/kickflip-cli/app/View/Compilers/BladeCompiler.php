@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\View\Compilers;
 
 use Illuminate\View\Compilers\BladeCompiler as BaseBladeCompiler;
@@ -19,7 +21,9 @@ class BladeCompiler extends BaseBladeCompiler
         }
 
         return (new ComponentTagCompiler(
-            $this->classComponentAliases, $this->classComponentNamespaces, $this
+            $this->classComponentAliases,
+            $this->classComponentNamespaces,
+            $this,
         ))->compile($value);
     }
 }

@@ -58,7 +58,7 @@ trait MarkdownHelpers
          * @var string $content
          * @var string $extends
          */
-        [ $section, $content, $extends ] = $this->prepareExtendedRender($data['page'], $renderedMarkdown);
+        [$section, $content, $extends] = $this->prepareExtendedRender($data['page'], $renderedMarkdown);
 
         // "Push" the section content in a way that respects the rendered HTML from markdown
         $viewFactory->startSection($section);

@@ -6,15 +6,11 @@ namespace Kickflip\View\Engine;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Engines\FileEngine;
-use Illuminate\View\Factory;
-use Kickflip\Models\PageData;
-use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
 final class MarkdownEngine extends FileEngine
 {
     private BaseMarkdownRenderer $markdown;
-
     use MarkdownHelpers;
 
     /**

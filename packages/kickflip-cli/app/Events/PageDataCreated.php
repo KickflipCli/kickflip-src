@@ -10,5 +10,6 @@ final class PageDataCreated extends BaseEvent
 {
     public function __construct(
         public PageData $pageData
-    ) {}
+    ) {
+    }
 }

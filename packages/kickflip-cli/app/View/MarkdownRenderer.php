@@ -13,6 +13,9 @@ use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 use Spatie\LaravelMarkdown\Renderers\AnchorHeadingRenderer;
 
+use function class_exists;
+use function is_string;
+
 final class MarkdownRenderer extends BaseMarkdownRenderer
 {
     protected function configureCommonMarkEnvironment(EnvironmentBuilderInterface $environment): void
