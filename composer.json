@@ -73,6 +73,10 @@
         "files": [
             "packages/kickflip-docs/app/helpers.php",
             "packages/kickflip/app/helpers.php"
+        ],
+        "exclude-from-classmap": [
+            "vendor/laravel/framework/src/Illuminate/Foundation/*.php",
+            "vendor/laravel/framework/src/Illuminate/Foundation/**/*.php"
         ]
     },
     "autoload-dev": {
@@ -93,6 +97,7 @@
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",
+        "process-timeout": 300,
         "sort-packages": true
     },
     "extra": {
