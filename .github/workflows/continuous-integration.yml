@@ -107,6 +107,11 @@ jobs:
       - name: "Checkout repository"
         uses: "actions/checkout@v2"
 
+      - name: "Setup NodeJS"
+        uses: "actions/setup-node@v2"
+        with:
+          node-version: '14'
+
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
         with:
@@ -116,6 +121,9 @@ jobs:
 
       - name: "Install dependencies (Composer)"
         uses: "ramsey/composer-install@v2"
+
+      - name: "Setup and build node deps"
+        run: "cd packages/kickflip-docs && npm install && npm run dev && cd"
 
       - name: "Run unit tests (PHPUnit)"
         shell: "bash"
@@ -155,6 +163,11 @@ jobs:
       - name: "Checkout repository"
         uses: "actions/checkout@v2"
 
+      - name: "Setup NodeJS"
+        uses: "actions/setup-node@v2"
+        with:
+          node-version: '14'
+
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
         with:
@@ -166,6 +179,9 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "${{ matrix.composer-options }}"
+
+      - name: "Setup and build node deps"
+        run: "cd packages/kickflip-docs && npm install && npm run dev && cd"
 
       - name: "Run unit tests (PHPUnit)"
         shell: "bash"
