@@ -16,6 +16,9 @@
     <rule ref="Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase">
         <exclude-pattern>packages/kickflip-cli/app/Enums/CliStateDirPaths.php</exclude-pattern>
     </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable">
+        <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
+    </rule>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix">
         <exclude-pattern>packages/kickflip-cli/app/Models/*Interface.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-router-nav-plugin/src/Models/NavItemInterface.php</exclude-pattern>
@@ -25,9 +28,13 @@
         <exclude-pattern>packages/kickflip-cli/app/Commands/BuildCommand.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/Providers/*.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/Compilers/BladeCompiler.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/Engine/*Engine.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint">
+        <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
         <exclude-pattern>packages/kickflip-cli/app/View/Compilers/*.php</exclude-pattern>

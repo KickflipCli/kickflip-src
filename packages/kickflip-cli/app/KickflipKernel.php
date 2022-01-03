@@ -55,13 +55,11 @@ class KickflipKernel extends BaseKernel
 
     /**
      * @param ArgvInput $input
+     *
      * @return int
      */
     public function handle($input, $output = null)
     {
-        /**
-         * @var ArgvInput $input
-         */
         $castInput = (string) $input;
         Logger::timing(__METHOD__);
         // Globally sets the verbosity so that the app itself, not just commands know the verbosity level
