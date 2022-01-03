@@ -20,7 +20,7 @@ jobs:
                 dependency-version: [prefer-stable]
                 os: [ubuntu-latest]
 
-        name: TEST - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+        name: "Unit tests - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}"
 
         steps:
             - name: Checkout code
@@ -48,7 +48,7 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+                  composer update --${{ matrix.dependency-version }} --no-dev --prefer-dist --no-interaction
 
             - name: Build Docs Site
               run: cd packages/kickflip-docs && ../kickflip-cli/bin/kickflip build
