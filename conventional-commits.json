@@ -14,9 +14,9 @@
     "scopeCase": "kebab",
     "scopeRequired": false,
     "scopes": [
-        "core/cli",
+        "core-cli",
         "docs",
-        "plugins/router-nav",
+        "plugins-router-nav",
         "starter"
     ],
     "descriptionCase": null,
