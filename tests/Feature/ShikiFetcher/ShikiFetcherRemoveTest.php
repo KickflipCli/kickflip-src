@@ -10,8 +10,17 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\NpmHelpers;
 use KickflipMonoTests\TestCase;
 
-class ShikiFetcherRemoveTest extends TestCase {
+use function file_get_contents;
+use function file_put_contents;
+use function filter_var;
+use function str_replace;
+
+use const FILTER_VALIDATE_INT;
+
+class ShikiFetcherRemoveTest extends TestCase
+{
     use NpmHelpers;
+
     public function setUp(): void
     {
         parent::setUp();

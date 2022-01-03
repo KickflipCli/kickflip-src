@@ -8,7 +8,10 @@ use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use KickflipMonoTests\TestCase;
 
-class BladeMarkdownEngineTest extends TestCase {
+use function app;
+
+class BladeMarkdownEngineTest extends TestCase
+{
     public function testCanInstantiateMarkdownEngine()
     {
         $bladeMarkdownEngine = app(BladeMarkdownEngine::class);

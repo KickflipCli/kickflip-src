@@ -9,7 +9,8 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
 
-class NavItemTest extends TestCase {
+class NavItemTest extends TestCase
+{
     use DataProviderHelpers;
     use ReflectionHelpers;
 
@@ -51,7 +52,7 @@ class NavItemTest extends TestCase {
     {
         $basicPage = NavItem::make('Basic Page', '/basic');
         $basicPage->setChildren([
-            NavItem::make('Another Page', '/another-page')
+            NavItem::make('Another Page', '/another-page'),
         ]);
 
         self::assertTrue($basicPage->hasChildren());

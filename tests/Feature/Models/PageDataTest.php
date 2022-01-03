@@ -11,8 +11,13 @@ use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 use Throwable;
 
-class PageDataTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function dirname;
+
+class PageDataTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
+
     public function testThrowsUsingNewOnPageData()
     {
         $this->expectError();
@@ -62,6 +67,7 @@ class PageDataTest extends TestCase {
 
         /**
          * check tags
+         *
          * @phpstan-ignore-next-line
          */
         self::assertIsArray($pageData->tags);

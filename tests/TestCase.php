@@ -17,6 +17,8 @@ use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
 use function file_exists;
+use function file_get_contents;
+use function func_get_args;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -86,6 +88,7 @@ abstract class TestCase extends BaseTestCase
         $frontMatterData = KickflipHelper::getFrontMatterParser()
                 ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
                 ->getFrontMatter() ?? [];
+
         // Create a PageData object
         return PageData::make($sourcePageMetaData, $frontMatterData);
     }

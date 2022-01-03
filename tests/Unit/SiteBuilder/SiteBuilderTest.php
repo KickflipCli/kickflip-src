@@ -9,7 +9,8 @@ use Kickflip\SiteBuilder\SiteBuilder;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 
-class SiteBuilderTest extends TestCase {
+class SiteBuilderTest extends TestCase
+{
     use ReflectionHelpers;
 
     public function testItCanInstantiateSiteBuilder()

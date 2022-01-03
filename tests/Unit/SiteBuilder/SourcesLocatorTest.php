@@ -10,8 +10,12 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 
-class SourcesLocatorTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function dirname;
+
+class SourcesLocatorTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
     public function testCanVerifyClassExists()
     {
@@ -33,7 +37,7 @@ class SourcesLocatorTest extends TestCase {
                 'bladeSources',
                 'markdownSources',
                 'markdownBladeSources',
-            ]
+            ],
         );
     }
 

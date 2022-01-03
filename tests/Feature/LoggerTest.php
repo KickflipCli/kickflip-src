@@ -8,7 +8,10 @@ use Illuminate\Config\Repository;
 use Kickflip\Logger;
 use KickflipMonoTests\TestCase;
 
-class LoggerTest extends TestCase {
+use function app;
+
+class LoggerTest extends TestCase
+{
     public function testLoggerTimingWorksCorrectly()
     {
         $timingsRepo = app('kickflipTimings');

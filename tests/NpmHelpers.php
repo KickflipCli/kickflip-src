@@ -1,17 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipMonoTests;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function getcwd;
+use function trim;
+
 trait NpmHelpers
 {
     public function getNodeVersion(): string
     {
         $command = [
-            (new ExecutableFinder)->find('node', 'node', [
+            (new ExecutableFinder())->find('node', 'node', [
                 '/usr/local/bin',
                 '/opt/homebrew/bin',
             ]),
@@ -28,6 +33,7 @@ trait NpmHelpers
         if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
+
         return trim($process->getOutput());
     }
 }

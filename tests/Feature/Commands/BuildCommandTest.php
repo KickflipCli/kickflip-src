@@ -6,17 +6,23 @@ namespace KickflipMonoTests\Feature\Commands;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Kickflip\Enums\CliStateDirPaths;
+use Kickflip\KickflipHelper;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\TestCase;
 
-class BuildCommandTest extends TestCase {
+use function is_dir;
+use function mkdir;
+
+class BuildCommandTest extends TestCase
+{
     private const BUILD_ENV = 'local';
 
     public function setUp(): void
     {
         parent::setUp();
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -25,7 +31,7 @@ class BuildCommandTest extends TestCase {
     public function tearDown(): void
     {
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -40,7 +46,7 @@ class BuildCommandTest extends TestCase {
 
     public function testSuccessfulFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
         $this->artisan('build')
@@ -50,7 +56,7 @@ class BuildCommandTest extends TestCase {
 
     public function testDeniedFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
         $this->artisan('build')

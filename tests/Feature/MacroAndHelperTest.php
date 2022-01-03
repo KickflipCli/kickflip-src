@@ -12,8 +12,12 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 
-class MacroAndHelperTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function dirname;
+
+class MacroAndHelperTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
     /**
      * @dataProvider replaceEnvProvider

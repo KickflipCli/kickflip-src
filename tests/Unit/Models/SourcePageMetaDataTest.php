@@ -11,7 +11,11 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class SourcePageMetaDataTest extends TestCase {
+use function dirname;
+use function iterator_to_array;
+
+class SourcePageMetaDataTest extends TestCase
+{
     use DataProviderHelpers;
     use ReflectionHelpers;
 
@@ -52,7 +56,7 @@ class SourcePageMetaDataTest extends TestCase {
                 ->files()
                 ->in(dirname(__DIR__, 2) . '/sources')
                 ->ignoreDotFiles(true)
-                ->getIterator()
+                ->getIterator(),
         ));
     }
 }

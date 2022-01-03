@@ -11,7 +11,8 @@ use Kickflip\Events\SiteBuildStarted;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\TestCase;
 
-class BasicEventTest extends TestCase {
+class BasicEventTest extends TestCase
+{
     use DataProviderHelpers;
 
     public function testVerifyBeforeConfigurationLoadsExists()

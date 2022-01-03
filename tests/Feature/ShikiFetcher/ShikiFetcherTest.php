@@ -10,8 +10,13 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 
-class ShikiFetcherTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function dirname;
+
+class ShikiFetcherTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
+
     public function setUp(): void
     {
         parent::setUp();

@@ -10,12 +10,12 @@ use Kickflip\Enums\ConsoleVerbosity;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
-use ReflectionClass;
 use Symfony\Component\Console\Input\ArgvInput;
 
 class ConsoleVerbosityTest extends TestCase
 {
-    use DataProviderHelpers, ReflectionHelpers;
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
     public function testConsoleVerbosityEnumValues()
     {

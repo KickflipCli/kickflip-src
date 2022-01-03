@@ -10,8 +10,13 @@ use KickflipMonoTests\ReflectionHelpers;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use PHPUnit\Framework\TestCase;
 
-class KickflipHelperTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function dirname;
+
+class KickflipHelperTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
+
     /**
      * @before
      */

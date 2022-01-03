@@ -11,8 +11,13 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\DocsTestCase;
 use KickflipMonoTests\ReflectionHelpers;
 
-class UrlRoutesTest extends DocsTestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+use function app;
+use function count;
+
+class UrlRoutesTest extends DocsTestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
     public function testEnsureUrlGeneratorSessionResolverIsNull()
     {

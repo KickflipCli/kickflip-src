@@ -8,8 +8,10 @@ use Kickflip\Models\SiteData;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
-class SiteDataTest extends TestCase {
+class SiteDataTest extends TestCase
+{
     use DataProviderHelpers;
     use ReflectionHelpers;
 
@@ -20,7 +22,7 @@ class SiteDataTest extends TestCase {
 
     public function testItThrowsWhenCreatingEmptySiteData()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Cannot initialize SiteData with empty site config array.');
         SiteData::fromConfig([]);
     }
@@ -30,7 +32,7 @@ class SiteDataTest extends TestCase {
      */
     public function testItThrowsWhenMissingRequiredParams(array $siteConfig)
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Cannot initialize SiteData due to missing required parameter. Must include: baseUrl, production, siteName, siteDescription.');
         SiteData::fromConfig($siteConfig);
     }

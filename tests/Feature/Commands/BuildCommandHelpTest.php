@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\Commands;
 
+use Illuminate\Testing\PendingCommand;
 use KickflipMonoTests\TestCase;
 
-class BuildCommandHelpTest extends TestCase {
+use function collect;
+use function explode;
+
+class BuildCommandHelpTest extends TestCase
+{
     public function testBuildCommandHelpFlag()
     {
         /**
-         * @var \Illuminate\Testing\PendingCommand $pendingCommand
+         * @var PendingCommand $pendingCommand
          */
         $pendingCommand = $this->artisan('build', ['--help'])
             ->assertExitCode(0);
 
-        $expectedOutput = <<<HEREDOC
+        $expectedOutput = <<<'HEREDOC'
 Description:
   Build your website project.
 
@@ -37,7 +42,7 @@ Options:
 HEREDOC;
 
         $expectedLines = collect(explode("\n", $expectedOutput))
-            ->filter(fn($value) => '' !== $value)
-            ->map(fn($value) => $pendingCommand->expectsOutput($value));
+            ->filter(fn ($value) => '' !== $value)
+            ->map(fn ($value) => $pendingCommand->expectsOutput($value));
     }
 }

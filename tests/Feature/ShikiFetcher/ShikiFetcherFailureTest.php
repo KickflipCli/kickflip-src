@@ -9,7 +9,12 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\TestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class ShikiFetcherFailureTest extends TestCase {
+use function chmod;
+use function mkdir;
+use function touch;
+
+class ShikiFetcherFailureTest extends TestCase
+{
     public function setUp(): void
     {
         parent::setUp();
@@ -47,6 +52,5 @@ class ShikiFetcherFailureTest extends TestCase {
         File::delete($packageLock);
         File::deleteDirectory($nodeModules);
         self::assertDirectoryDoesNotExist($nodeModules);
-
     }
 }

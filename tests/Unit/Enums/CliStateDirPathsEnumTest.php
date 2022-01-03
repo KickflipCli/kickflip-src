@@ -9,6 +9,9 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
 
+use function constant;
+use function defined;
+
 class CliStateDirPathsEnumTest extends TestCase
 {
     use DataProviderHelpers;

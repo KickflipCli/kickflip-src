@@ -8,9 +8,12 @@ use Kickflip\Logger;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
-class LoggerTest extends TestCase {
-    use DataProviderHelpers, ReflectionHelpers;
+class LoggerTest extends TestCase
+{
+    use DataProviderHelpers;
+    use ReflectionHelpers;
 
     public function testCanVerifyClassExists(): void
     {
@@ -23,7 +26,7 @@ class LoggerTest extends TestCase {
      */
     public function testItFailsWithoutAccessToKickflip(string $logLevel)
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
         Logger::{$logLevel}('test');
     }
@@ -40,14 +43,14 @@ class LoggerTest extends TestCase {
 
     public function testTablesFailWithoutKickflip()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
         Logger::veryVerboseTable([], []);
     }
 
     public function testtimingFailWithoutKickflipTimings()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipTimings] does not exist.');
         Logger::timing('yeetBoy', 'NotStatic');
     }

@@ -9,7 +9,12 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\NpmHelpers;
 use KickflipMonoTests\TestCase;
 
-class ShikiFetcherInstallTest extends TestCase {
+use function filter_var;
+
+use const FILTER_VALIDATE_INT;
+
+class ShikiFetcherInstallTest extends TestCase
+{
     use NpmHelpers;
 
     public function setUp(): void

@@ -11,8 +11,13 @@ use KickflipMonoTests\Mocks\MarkdownHelpersMock;
 use KickflipMonoTests\TestCase;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
-class MarkdownHelpersTest extends TestCase {
+use function app;
+use function file_get_contents;
+
+class MarkdownHelpersTest extends TestCase
+{
     use DataProviderHelpers;
+
     public function testDetermineAutoExtendEnabled()
     {
         $mockSiteData = SiteData::fromConfig([
