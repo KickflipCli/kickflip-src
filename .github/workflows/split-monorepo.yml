@@ -36,7 +36,7 @@ jobs:
 
             -   uses: "ramsey/composer-install@v2"
                 with:
-                  dependency-versions: "highest"
+                  dependency-versions: "lowest"
 
             # get package json list
             -
