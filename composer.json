@@ -52,6 +52,8 @@
         "laravel-zero/foundation": "^8.74",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.10",
+        "nunomaduro/larastan": "^1.0",
+        "orchestra/testbench": "^6.23",
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "ramsey/devtools": "^1.7",
