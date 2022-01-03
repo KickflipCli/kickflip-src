@@ -1,6 +1,9 @@
+includes:
+	- phpstan-baseline.neon
+
 parameters:
 	tmpDir: ./build/cache/phpstan
-	level: 6
+	level: 4
 	paths:
 		- tests
 		- packages/kickflip-cli/app

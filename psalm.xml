@@ -6,7 +6,7 @@
        cacheDirectory="./build/cache/psalm"
        resolveFromConfigFile="true"
        phpVersion="8.0"
-       errorLevel="6"
+       errorLevel="5"
 >
     <projectFiles>
         <directory name="packages/kickflip-cli/app" />
