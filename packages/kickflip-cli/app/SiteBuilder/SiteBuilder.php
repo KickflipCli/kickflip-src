@@ -17,19 +17,26 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
+
+use function app;
+use function array_merge;
 use function collect;
+use function count;
+use function dirname;
+use function file_exists;
+use function file_put_contents;
+use function is_dir;
+use function mkdir;
+use function sprintf;
 use function view;
 
 final class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
-    /**
-     * @var ShikiNpmFetcher
-     */
     private ShikiNpmFetcher $shikiNpmFetcher;
 
-    public function __construct(
-    ) {
+    public function __construct()
+    {
         $this->sourcesLocator = app(SourcesLocator::class);
 
         $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
@@ -53,7 +60,7 @@ final class SiteBuilder
         // Share site config into global View data...
         View::share(
             'site',
-            SiteData::fromConfig($kickflipCliState->get('site'))
+            SiteData::fromConfig($kickflipCliState->get('site')),
         );
     }
 
@@ -69,7 +76,7 @@ final class SiteBuilder
         $kickflipCliState->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
     }
 
-    public function build($consoleOutput): void
+    public function build(OutputStyle $consoleOutput): void
     {
         $this->fireEvent(SiteBuildStarted::class)
             ->copyAssets($consoleOutput)
@@ -78,12 +85,15 @@ final class SiteBuilder
             ->cleanup();
     }
 
+    /**
+     * @param class-string&BaseEvent $eventClass
+     *
+     * @return $this
+     */
     private function fireEvent(string $eventClass): self
     {
-        /**
-         * @var BaseEvent $eventClass
-         */
         $eventClass::dispatch();
+
         return $this;
     }
 
@@ -92,21 +102,19 @@ final class SiteBuilder
         $renderPageList = $this->sourcesLocator->getRenderPageList();
         $consoleOutput->writeln(sprintf('<info>Found %d pages to render into HTML...</info>', count($renderPageList)));
         Logger::veryVerboseTable(
-            ["Page Title", "Page URL", "Page Source", "Source Type"],
-            collect($renderPageList)->sortBy('url')->map(function (PageData $page) {
-                return [$page->title, $page->url, $page->source->getFilename(), $page->source->getType()];
-            })->toArray()
+            ['Page Title', 'Page URL', 'Page Source', 'Source Type'],
+            collect($renderPageList)->sortBy('url')->map(fn (PageData $page) => [$page->title, $page->url, $page->source->getFilename(), $page->source->getType()])->toArray(),
         );
         /**
          * @var PageData $page
          */
         foreach ($renderPageList as $page) {
             $consoleOutput->writeln(sprintf('Rendering page from %s', $page->source->getFilename()));
-            Logger::verbose("Building " . $page->source->getName() . ":" . $page->url . ":" . $page->title);
+            Logger::verbose('Building ' . $page->source->getName() . ':' . $page->url . ':' . $page->title);
             $outputFile = $page->getOutputPath();
             $outputDir = dirname($outputFile);
             $view = view($page->source->getName(), [
-                'page' => $page
+                'page' => $page,
             ]);
             if (!is_dir($outputDir)) {
                 mkdir(directory: $outputDir, recursive: true);
@@ -131,12 +139,12 @@ final class SiteBuilder
         $kickflipBuildDir = KickflipHelper::buildPath('assets');
 
         if (File::isDirectory($kickflipSourceDir)) {
-            $consoleOutput->writeln("Assets folder found, copying to build dir.");
+            $consoleOutput->writeln('Assets folder found, copying to build dir.');
             Logger::verbose("Copying assets from {$kickflipSourceDir} to {$kickflipBuildDir}");
             File::copyDirectory($kickflipSourceDir, $kickflipBuildDir);
-            $consoleOutput->writeln("Assets folder copied to build dir.");
+            $consoleOutput->writeln('Assets folder copied to build dir.');
         } else {
-            $consoleOutput->warning("Assets folder NOT found, these may be missing.");
+            $consoleOutput->warning('Assets folder NOT found, these may be missing.');
         }
 
         $rootBuildDir = KickflipHelper::buildPath();

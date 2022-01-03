@@ -11,7 +11,8 @@ class BladeCompiler extends BaseBladeCompiler
     /**
      * Compile the component tags.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     protected function compileComponentTags($value)

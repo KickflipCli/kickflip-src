@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Kickflip;
 
-use Illuminate\Console\OutputStyle;
-use Kickflip\Enums\ConsoleVerbosity;
 use Illuminate\Config\Repository;
-use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
+use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use Kickflip\Enums\ConsoleVerbosity;
+
+use function app;
+use function microtime;
 
 class Logger
 {
@@ -22,15 +24,14 @@ class Logger
          */
         $timingsRepo = app('kickflipTimings');
         $index = Str::of($methodName)->afterLast('\\')->replace('::', '.');
-        if (null !== $static) {
+        if ($static !== null) {
             $index = $index->replaceFirst(
                 '.',
-                Str::of($static)->afterLast('\\')->prepend('.extended.')->append('.')
+                Str::of($static)->afterLast('\\')->prepend('.extended.')->append('.'),
             );
         }
         $timingsRepo->set((string) $index, microtime(true));
     }
-
 
     public static function setOutput(OutputStyle $output)
     {

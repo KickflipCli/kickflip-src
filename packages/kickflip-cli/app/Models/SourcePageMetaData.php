@@ -7,6 +7,8 @@ namespace Kickflip\Models;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\SplFileInfo;
 
+use const DIRECTORY_SEPARATOR;
+
 final class SourcePageMetaData
 {
     private string $viewName;
@@ -19,8 +21,11 @@ final class SourcePageMetaData
         private string $fullPath,
     ) {
         $this->implicitExtension = (string) Str::of($filename)->after('.')->lower();
-        $baseViewName = ('' === $relativePath) ? Str::of($filename)->lower() : Str::of($filename)->prepend($this->relativePath . DIRECTORY_SEPARATOR)->lower();
-        $this->viewName = (string) $baseViewName->beforeLast('.' . $this->implicitExtension)->replace(DIRECTORY_SEPARATOR, '.')->lower();
+        $baseViewName = $relativePath === '' ?
+            Str::of($filename)->lower() :
+            Str::of($filename)->prepend($this->relativePath . DIRECTORY_SEPARATOR)->lower();
+        $this->viewName = (string) $baseViewName->beforeLast('.' . $this->implicitExtension)
+            ->replace(DIRECTORY_SEPARATOR, '.')->lower();
     }
 
     public static function fromSplFileInfo(SplFileInfo $fileInfo): self

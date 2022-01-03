@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -10,9 +12,11 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
+use Illuminate\Config\Repository;
+use Kickflip\Enums\ConsoleVerbosity;
 
 $app = new LaravelZero\Framework\Application(
-    dirname(__DIR__)
+    dirname(__DIR__),
 );
 
 /*
@@ -28,12 +32,12 @@ $app = new LaravelZero\Framework\Application(
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    Kickflip\KickflipKernel::class
+    Kickflip\KickflipKernel::class,
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    Illuminate\Foundation\Exceptions\Handler::class
+    Illuminate\Foundation\Exceptions\Handler::class,
 );
 
 /*
@@ -44,9 +48,9 @@ $app->singleton(
 | Setup both of the kickflip config repos; one for debug timings and one for CLI data/state.
 |
 */
-$app->singleton('kickflipTimings', static fn () => new \Illuminate\Config\Repository());
-$app->singleton('kickflipCli', static fn () => new \Illuminate\Config\Repository());
-app('kickflipCli')->set('output.verbosity', \Kickflip\Enums\ConsoleVerbosity::normal());
+$app->singleton('kickflipTimings', static fn () => new Repository());
+$app->singleton('kickflipCli', static fn () => new Repository());
+app('kickflipCli')->set('output.verbosity', ConsoleVerbosity::normal());
 
 /*
 |--------------------------------------------------------------------------

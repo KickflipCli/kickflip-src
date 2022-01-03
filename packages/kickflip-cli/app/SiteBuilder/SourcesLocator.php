@@ -11,7 +11,9 @@ use Kickflip\Models\ContentFileData;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\SplFileInfo;
+
 use function collect;
+use function file_get_contents;
 
 final class SourcesLocator
 {
@@ -44,11 +46,9 @@ final class SourcesLocator
         private string $sourcesBasePath,
     ) {
         // Filter out anything in the assets' folder - these were compiled from mix into that folder before compiling the site.
-        $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))->filter(static function ($value) {
-            return ! Str::of($value->getRelativePath())->startsWith('assets');
-        });
+        $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))->filter(static fn ($value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
         $sourcesCount = $allSourceFiles->count();
-        for ($i=0;$i<$sourcesCount;$i++) {
+        for ($i = 0; $i < $sourcesCount; $i++) {
             /**
              * @var SplFileInfo $fileInfo
              */
@@ -77,7 +77,7 @@ final class SourcesLocator
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
                 $bladeSource,
-                $frontMatterData
+                $frontMatterData,
             );
         }
         unset($bladeSource, $frontMatterData);
@@ -91,7 +91,7 @@ final class SourcesLocator
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
                 $markdownSource,
-                $frontMatterData
+                $frontMatterData,
             );
         }
         unset($markdownSource, $frontMatterData);
@@ -105,7 +105,7 @@ final class SourcesLocator
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
                 $markdownBladeSource,
-                $frontMatterData
+                $frontMatterData,
             );
         }
         unset($markdownBladeSource, $frontMatterData);

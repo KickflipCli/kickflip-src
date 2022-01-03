@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Kickflip\Models;
 
+use Exception;
 use Illuminate\Support\Str;
 use Kickflip\Events\PageDataCreated;
 use Kickflip\KickflipHelper;
+
+use function array_key_exists;
+use function debug_backtrace;
 
 /**
  * @property string $sourceFile The path to the source file for this page.
@@ -16,13 +20,13 @@ class PageData implements PageInterface
     public static string $defaultExtendsView = 'layouts.master';
     public static string $defaultExtendsSection = 'body';
 
+    /**
+     * @param array<string, mixed> $data
+     */
     private function __construct(
         public SourcePageMetaData $source,
         public string $url,
         public string $title,
-        /**
-         * @var array<string, mixed> $data
-         */
         public array $data = [],
         public ?string $description = null,
         public bool $autoExtend = true,
@@ -33,7 +37,7 @@ class PageData implements PageInterface
 
     protected static function determineMetaDataUrl(SourcePageMetaData $metaData): string
     {
-        return ('index' === $metaData->getName()) ? '/' :
+        return $metaData->getName() === 'index' ? '/' :
             (string) Str::of($metaData->getName())
                         ->replace('.', '/')
                         ->prepend('/');
@@ -42,6 +46,7 @@ class PageData implements PageInterface
     protected static function determineMetaDataTitle(SourcePageMetaData $metaData): string
     {
         $sourceString = Str::of($metaData->getName())->afterLast('.');
+
         return (string) $sourceString
                 ->replace('-', ' ')
                 ->replace('.', ' ')
@@ -49,9 +54,7 @@ class PageData implements PageInterface
     }
 
     /**
-     * @param SourcePageMetaData    $metaData
-     * @param array<string, mixed>  $frontMatter
-     * @return PageData
+     * @param array<string, mixed> $frontMatter
      */
     public static function make(SourcePageMetaData $metaData, array $frontMatter = []): PageData
     {
@@ -75,23 +78,26 @@ class PageData implements PageInterface
             data: $frontMatterData,
         );
 
-        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'description');
-        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter,'autoExtend');
+        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter, 'description');
+        self::setOnInstanceFromFrontMatterIfNotNull($newPageData, $frontMatter, 'autoExtend');
         if ($newPageData->autoExtend) {
             $newPageData->extends = $frontMatter['extends'] ?? self::$defaultExtendsView;
             $newPageData->section = $frontMatter['section'] ?? self::$defaultExtendsSection;
         }
         PageDataCreated::dispatch($newPageData);
+
         return $newPageData;
     }
 
     /**
      * @param PageData $instance
      * @param array<string, mixed> $frontMatterData
-     * @param string $propertyName
      */
-    private static function setOnInstanceFromFrontMatterIfNotNull(self $instance, array $frontMatterData, string $propertyName): void
-    {
+    private static function setOnInstanceFromFrontMatterIfNotNull(
+        self $instance,
+        array $frontMatterData,
+        string $propertyName
+    ): void {
         if (
             isset($frontMatterData[$propertyName]) &&
             $frontMatterData[$propertyName] !== null
@@ -110,6 +116,7 @@ class PageData implements PageInterface
         if (KickflipHelper::config('prettyUrls', true) === true) {
             return $relUrl;
         }
+
         return (string) Str::of($relUrl)->append('.html');
     }
 
@@ -122,15 +129,16 @@ class PageData implements PageInterface
         if (KickflipHelper::config('prettyUrls', true) === true) {
             $url .= '/index.html';
         }
+
         return KickflipHelper::buildPath($url);
     }
 
-    public function getExtendsView(): null|string
+    public function getExtendsView(): string | null
     {
         return $this->extends;
     }
 
-    public function getExtendsSection(): null|string
+    public function getExtendsSection(): string | null
     {
         return $this->section;
     }
@@ -140,16 +148,18 @@ class PageData implements PageInterface
         return KickflipHelper::toKebab($this->title);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getExtraData(): array
     {
         return $this->data;
     }
 
     /**
-     * @param string $name
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __get(string $name)
     {
@@ -158,9 +168,11 @@ class PageData implements PageInterface
         }
 
         $trace = debug_backtrace();
-        throw new \Exception(
+
+        throw new Exception(
             'Undefined property via __get(): ' . $name .
             ' in ' . $trace[0]['file'] .
-            ' on line ' . $trace[0]['line']);
+            ' on line ' . $trace[0]['line'],
+        );
     }
 }

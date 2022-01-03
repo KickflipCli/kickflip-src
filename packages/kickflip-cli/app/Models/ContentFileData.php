@@ -18,15 +18,11 @@ class ContentFileData implements ContentItemInterface
     ) {
     }
 
-    /**
-     * @param SourcePageMetaData $metaData
-     *
-     * @return self
-     */
     public static function make(SourcePageMetaData $metaData): self
     {
         $fileUrl = (string) Str::of($metaData->getFullPath())
                 ->after(KickflipHelper::sourcePath());
+
         return new self(
             source: $metaData,
             url: $fileUrl,

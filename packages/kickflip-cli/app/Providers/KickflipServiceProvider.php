@@ -6,17 +6,29 @@ namespace Kickflip\Providers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\Factory as ViewFactory;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
-use Illuminate\Support\ServiceProvider;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SourcesLocator;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use Kickflip\View\Engine\MarkdownEngine;
+use ReflectionClass;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
+use Spatie\LaravelMarkdown\MarkdownServiceProvider;
+
+use function app;
+use function collect;
+use function config;
+use function count;
+use function dirname;
+use function file_exists;
+use function implode;
+
+use const DIRECTORY_SEPARATOR;
 
 class KickflipServiceProvider extends ServiceProvider
 {
@@ -28,13 +40,13 @@ class KickflipServiceProvider extends ServiceProvider
     public function register()
     {
         Logger::timing(__METHOD__);
-        Logger::debug("Firing " . __METHOD__);
+        Logger::debug('Firing ' . __METHOD__);
         $kickflipCliState = KickflipHelper::config();
 
-        # Correct the public_path helper
+        // Correct the public_path helper
         $this->app->instance('path.public', KickflipHelper::namedPath(CliStateDirPaths::BuildSource));
 
-        # Load base app config into state
+        // Load base app config into state
         if (file_exists($configPath = KickflipHelper::namedPath(CliStateDirPaths::ConfigFile))) {
             $config = include $configPath;
             $kickflipCliState->set('site', $config);
@@ -48,6 +60,7 @@ class KickflipServiceProvider extends ServiceProvider
 
         /**
          * Kickflip level autoloading...
+         *
          * @var array<class-string> $packages
          */
         $packages = KickflipHelper::config('site.providePackages', []);
@@ -55,13 +68,10 @@ class KickflipServiceProvider extends ServiceProvider
             $this->registerSemiAutoloadProviders($packages);
         }
 
-        $this->app->singleton(ShikiNpmFetcher::class, static fn() => new ShikiNpmFetcher());
+        $this->app->singleton(ShikiNpmFetcher::class, static fn () => new ShikiNpmFetcher());
         $this->registerBladeEngines();
-        $this->app->singleton(SourcesLocator::class, function($app) {
-            return new SourcesLocator(KickflipHelper::sourcePath());
-        });
+        $this->app->singleton(SourcesLocator::class, fn ($app) => new SourcesLocator(KickflipHelper::sourcePath()));
         $this->loadProjectMarkdownConfig();
-
     }
 
     /**
@@ -84,7 +94,7 @@ class KickflipServiceProvider extends ServiceProvider
     public function boot()
     {
         Logger::timing(__METHOD__);
-        Logger::debug("Firing " . __METHOD__);
+        Logger::debug('Firing ' . __METHOD__);
         config(['logging.channels.single.path' => KickflipHelper::basePath() . '/kickflip.log']);
         $this->enableBladeMarkdownEngine();
         $bootstrapFile = KickflipHelper::namedPath(CliStateDirPaths::BootstrapFile);
@@ -100,41 +110,27 @@ class KickflipServiceProvider extends ServiceProvider
          * @var ViewFactory $view
          */
         $view = $this->app->get('view');
-        $view->addExtension('md', 'markdown', function () use ($app) {
-            return $app->get(MarkdownEngine::class);
-        });
+        $view->addExtension('md', 'markdown', fn () => $app->get(MarkdownEngine::class));
         $view->addExtension('markdown', 'markdown');
 
-        $view->addExtension('blade.md', 'blademd', function () use ($app) {
-            return $app->get(BladeMarkdownEngine::class);
-        });
+        $view->addExtension('blade.md', 'blademd', fn () => $app->get(BladeMarkdownEngine::class));
         $view->addExtension('blade.markdown', 'blademd');
         $view->addExtension('md.blade.php', 'blademd');
     }
 
-    /**
-     * @return void
-     */
     private function registerBladeEngines(): void
     {
-        $this->app->singleton(BladeMarkdownEngine::class, function ($app) {
-            return new BladeMarkdownEngine(
-                $app->get('blade.compiler'),
-                $app->get(Filesystem::class),
-                $app->get(MarkdownRenderer::class)
-            );
-        });
-        $this->app->singleton(MarkdownEngine::class, function ($app) {
-            return new MarkdownEngine(
-                $app->get(Filesystem::class),
-                $app->get(MarkdownRenderer::class)
-            );
-        });
+        $this->app->singleton(BladeMarkdownEngine::class, fn ($app) => new BladeMarkdownEngine(
+            $app->get('blade.compiler'),
+            $app->get(Filesystem::class),
+            $app->get(MarkdownRenderer::class),
+        ));
+        $this->app->singleton(MarkdownEngine::class, fn ($app) => new MarkdownEngine(
+            $app->get(Filesystem::class),
+            $app->get(MarkdownRenderer::class),
+        ));
     }
 
-    /**
-     * @return void
-     */
     private function loadProjectMarkdownConfig(): void
     {
         // Check for local markdown config file and merge on top if exists...
@@ -149,7 +145,7 @@ class KickflipServiceProvider extends ServiceProvider
             $kickflipMarkdownConfig = KickflipHelper::rootPackagePath() . '/config/markdown.php';
             $this->mergeConfigFrom($kickflipMarkdownConfig, 'markdown');
             // Finally load the Spatie default configs...
-            $basePackageConfig = dirname((new \ReflectionClass(\Spatie\LaravelMarkdown\MarkdownServiceProvider::class))->getFileName(), 2) .
+            $basePackageConfig = dirname((new ReflectionClass(MarkdownServiceProvider::class))->getFileName(), 2) .
                 '/config/markdown.php';
             $this->mergeConfigFrom($basePackageConfig, 'markdown');
         }

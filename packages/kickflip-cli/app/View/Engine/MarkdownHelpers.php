@@ -18,16 +18,13 @@ trait MarkdownHelpers
         return $siteData->autoExtendMarkdown === true && $pageData->autoExtend !== false;
     }
 
-    public function isPageExtendEnabled(PageData $pageData, $renderedMarkdown): bool
+    public function isPageExtendEnabled(PageData $pageData, RenderedContentInterface $renderedMarkdown): bool
     {
         return $renderedMarkdown instanceof RenderedContentWithFrontMatter &&
                     $pageData->autoExtend === true;
     }
 
     /**
-     * @param PageData                 $pageData
-     * @param RenderedContentInterface $renderedMarkdown
-     *
      * @return array
      */
     public function prepareExtendedRender(PageData $pageData, RenderedContentInterface $renderedMarkdown): array

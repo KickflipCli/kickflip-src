@@ -4,12 +4,24 @@ declare(strict_types=1);
 
 namespace Kickflip;
 
+use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
+
+use function app;
+use function dirname;
+use function getcwd;
+use function is_null;
+use function ltrim;
+use function mix;
+use function realpath;
+use function rtrim;
+
+use const DIRECTORY_SEPARATOR;
 
 final class KickflipHelper
 {
@@ -18,10 +30,12 @@ final class KickflipHelper
     /**
      * Get the path relative to the kickflip working dir.
      *
+     * @param string|null $key Identifier of the entry to look for.
+     * @param T|null $default
+     *
+     * @return Repository|T|null
+     *
      * @template T
-     * @param  null|string  $key Identifier of the entry to look for.
-     * @param  null|T  $default
-     * @return Repository|null|T
      */
     public static function config(?string $key = null, mixed $default = null)
     {
@@ -37,24 +51,23 @@ final class KickflipHelper
     }
 
     /**
-     * @param string|null $basePath
-     * @return string
      * @internal
      */
     public static function basePath(?string $basePath = null): string
     {
         if (
-            isset(KickflipHelper::$basePath) === false ||
+            isset(self::$basePath) === false ||
             $basePath !== null
         ) {
-            KickflipHelper::$basePath = realpath($basePath ?? getcwd());
+            self::$basePath = realpath($basePath ?? getcwd());
         }
-        return KickflipHelper::$basePath;
+
+        return self::$basePath;
     }
 
     public static function setPaths(string $basePath): void
     {
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = self::config();
         $kickflipCliState->set('paths', [
             CliStateDirPaths::Base => $basePath,
             CliStateDirPaths::Cache => $basePath . '/cache',
@@ -67,7 +80,7 @@ final class KickflipHelper
                 CliStateDirPaths::BuildSourcePart => $basePath . '/source',
                 CliStateDirPaths::EnvBuildDestinationPart => $basePath . '/build_{env}',
                 CliStateDirPaths::BuildDestinationPart => $basePath . '/build_{env}',
-            ]
+            ],
         ]);
 
         // Set the base storage path
@@ -79,110 +92,90 @@ final class KickflipHelper
              */
             $config = app('config');
             $config->set('view.paths', [
-                KickflipHelper::resourcePath('views'),
-                KickflipHelper::sourcePath(),
+                self::resourcePath('views'),
+                self::sourcePath(),
             ]);
-            $config->set('view.compiled', KickflipHelper::namedPath(CliStateDirPaths::ConfigFile));
+            $config->set('view.compiled', self::namedPath(CliStateDirPaths::ConfigFile));
         }
     }
 
     /**
      * Get the named kickflip path.
-     *
-     * @param string $name
-     * @return string
      */
     public static function namedPath(string $name): string
     {
         /**
          * @var string $path
          */
-        $path = KickflipHelper::config('paths.' . $name);
+        $path = self::config('paths.' . $name);
+
         return $path;
     }
 
     /**
      * Get the path to a versioned Mix file.
      *
-     * @param string $path
-     * @return HtmlString|string
-     *
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function mix(string $path): HtmlString|string
+    public static function mix(string $path): HtmlString | string
     {
         static $baseUrl;
         if (is_null($baseUrl)) {
-            $baseUrl = KickflipHelper::config('site.baseUrl', '');
+            $baseUrl = self::config('site.baseUrl', '');
         }
 
         return new HtmlString(
-            $baseUrl . mix($path, 'assets/build')
+            $baseUrl . mix($path, 'assets/build'),
         );
     }
 
     /**
      * Get the path to a versioned Mix file.
-     *
-     * @param  string  $path
-     * @return HtmlString
      */
     public static function assetUrl(string $path): HtmlString
     {
         return new HtmlString(
             Str::of($path)->ltrim('/')
                 ->prepend('assets/')
-                ->prepend(KickflipHelper::config('site.baseUrl'))
+                ->prepend(self::config('site.baseUrl')),
         );
     }
 
     /**
      * Get a file path inside the kickflip working config dir.
-     *
-     * @param string $path
-     * @return string
      */
     public static function configPath(string $path = ''): string
     {
-        return KickflipHelper::namedPath(CliStateDirPaths::Config).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return self::namedPath(CliStateDirPaths::Config) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 
     /**
      * Get the path relative to the kickflip working dir.
-     *
-     * @param string $path
-     * @return string
      */
     public static function resourcePath(string $path = ''): string
     {
-        return KickflipHelper::namedPath(CliStateDirPaths::Resources).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return self::namedPath(CliStateDirPaths::Resources) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 
     /**
      * Get the path relative to the kickflip working dir.
-     *
-     * @param  string  $path
-     * @return string
      */
     public static function sourcePath(string $path = ''): string
     {
-        return KickflipHelper::namedPath(CliStateDirPaths::BuildSource).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return self::namedPath(CliStateDirPaths::BuildSource) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 
     /**
      * Get the path relative to the kickflip working dir.
-     *
-     * @param string|null $path
-     * @return string
      */
     public static function buildPath(?string $path = ''): string
     {
-        return KickflipHelper::namedPath(CliStateDirPaths::BuildDestination).($path ? DIRECTORY_SEPARATOR.KickflipHelper::trimPath($path) : $path);
+        return self::namedPath(CliStateDirPaths::BuildDestination) .
+            ($path ? DIRECTORY_SEPARATOR . self::trimPath($path) : $path);
     }
 
     /**
      * Return the path to the root of the `kickflip-cli` package.
-     * @return string
      */
     public static function rootPackagePath(): string
     {
@@ -211,7 +204,7 @@ final class KickflipHelper
 
     public static function relativeUrl(string $url): string
     {
-        return Str::startsWith($url, 'http') ? $url : KickflipHelper::trimPath($url);
+        return Str::startsWith($url, 'http') ? $url : self::trimPath($url);
     }
 
     public static function toKebab(string $string): string

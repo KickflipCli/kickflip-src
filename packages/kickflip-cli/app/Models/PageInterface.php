@@ -7,13 +7,19 @@ namespace Kickflip\Models;
 interface PageInterface extends ContentItemInterface
 {
     /**
-     * @param array<string, mixed>  $frontMatter
+     * @param array<string, mixed> $frontMatter
      */
     public static function make(SourcePageMetaData $metaData, array $frontMatter = []): PageInterface;
+
     public function getUrl(): string;
+
     public function getOutputPath(): string;
-    public function getExtendsView(): null|string;
-    public function getExtendsSection(): null|string;
+
+    public function getExtendsView(): string | null;
+
+    public function getExtendsSection(): string | null;
+
     public function getTitleId(): string;
+
     public function __get(string $name);
 }

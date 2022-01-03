@@ -6,6 +6,8 @@ namespace Kickflip\Models;
 
 use Exception;
 
+use function count;
+
 final class SiteData
 {
     private function __construct(
@@ -19,7 +21,7 @@ final class SiteData
 
     /**
      * @param array<void>|array{baseUrl: string, production: bool, siteName: string, siteDescription: string, autoExtendMarkdown: bool} $siteConfig
-     * @return self
+     *
      * @throws Exception
      */
     public static function fromConfig(array $siteConfig): self
@@ -27,7 +29,15 @@ final class SiteData
         if (count($siteConfig) === 0) {
             throw new Exception('Cannot initialize SiteData with empty site config array.');
         }
-        if (!isset($siteConfig['baseUrl'], $siteConfig['production'], $siteConfig['siteName'], $siteConfig['siteDescription'])) {
+        if (
+            !isset(
+                $siteConfig['baseUrl'],
+                $siteConfig['production'],
+                $siteConfig['siteName'],
+                $siteConfig['siteDescription'],
+            )
+        ) {
+            // phpcs:ignore
             throw new Exception('Cannot initialize SiteData due to missing required parameter. Must include: baseUrl, production, siteName, siteDescription.');
         }
 

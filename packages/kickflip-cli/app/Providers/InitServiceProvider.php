@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Kickflip\Providers;
 
 use Illuminate\Config\Repository;
+use Illuminate\Support\ServiceProvider;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
-use Illuminate\Support\ServiceProvider;
+
+use function app;
+use function getcwd;
 
 class InitServiceProvider extends ServiceProvider
 {
@@ -20,7 +23,7 @@ class InitServiceProvider extends ServiceProvider
     public function register()
     {
         Logger::timing(__METHOD__);
-        Logger::debug("Firing " . __METHOD__);
+        Logger::debug('Firing ' . __METHOD__);
         $this->app->instance('cwd', getcwd());
         KickflipHelper::setPaths(KickflipHelper::basePath());
 
@@ -42,7 +45,7 @@ class InitServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Logger::debug("Firing " . __METHOD__);
+        Logger::debug('Firing ' . __METHOD__);
         Logger::timing(__METHOD__);
     }
 }

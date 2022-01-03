@@ -10,13 +10,13 @@ use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 
 final class MarkdownEngine extends FileEngine
 {
-    private BaseMarkdownRenderer $markdown;
     use MarkdownHelpers;
+
+    private BaseMarkdownRenderer $markdown;
 
     /**
      * Create a new file engine instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
     public function __construct(Filesystem $files, BaseMarkdownRenderer $markdownRenderer)
@@ -28,8 +28,9 @@ final class MarkdownEngine extends FileEngine
     /**
      * Get the evaluated contents of the view.
      *
-     * @param  string  $path
-     * @param  array<array-key|string, mixed>  $data
+     * @param string $path
+     * @param array<array-key|string, mixed> $data
+     *
      * @return string
      */
     public function get($path, array $data = [])

@@ -13,11 +13,15 @@ use function array_merge;
 
 final class BladeMarkdownEngine extends CompilerEngine
 {
-    private BaseMarkdownRenderer $markdown;
     use MarkdownHelpers;
 
-    public function __construct(CompilerInterface $compilerEngine, Filesystem $files, BaseMarkdownRenderer $markdownRenderer)
-    {
+    private BaseMarkdownRenderer $markdown;
+
+    public function __construct(
+        CompilerInterface $compilerEngine,
+        Filesystem $files,
+        BaseMarkdownRenderer $markdownRenderer
+    ) {
         $this->markdown = $markdownRenderer;
 
         parent::__construct($compilerEngine, $files);
@@ -27,7 +31,7 @@ final class BladeMarkdownEngine extends CompilerEngine
      * Get the evaluated contents of the view.
      *
      * @param string $path
-     * @param array  $data
+     * @param array $data
      *
      * @return string
      */

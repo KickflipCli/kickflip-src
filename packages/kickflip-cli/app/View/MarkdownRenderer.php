@@ -37,11 +37,19 @@ final class MarkdownRenderer extends BaseMarkdownRenderer
         }
 
         foreach ($this->blockRenderers as $blockRenderer) {
-            $environment->addRenderer($blockRenderer['class'], $blockRenderer['renderer'], $blockRenderer['priority'] ?? 0);
+            $environment->addRenderer(
+                $blockRenderer['class'],
+                $blockRenderer['renderer'],
+                $blockRenderer['priority'] ?? 0,
+            );
         }
 
         foreach ($this->inlineRenderers as $inlineRenderer) {
-            $environment->addRenderer($inlineRenderer['class'], $inlineRenderer['renderer'], $inlineRenderer['priority'] ?? 0);
+            $environment->addRenderer(
+                $inlineRenderer['class'],
+                $inlineRenderer['renderer'],
+                $inlineRenderer['priority'] ?? 0,
+            );
         }
     }
 
