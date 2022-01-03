@@ -46,7 +46,8 @@ final class SourcesLocator
         private string $sourcesBasePath,
     ) {
         // Filter out anything in the assets' folder - these were compiled from mix into that folder before compiling the site.
-        $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))->filter(static fn ($value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
+        $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))
+            ->filter(static fn ($value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
         $sourcesCount = $allSourceFiles->count();
         for ($i = 0; $i < $sourcesCount; $i++) {
             /**

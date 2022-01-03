@@ -11,13 +11,12 @@ use function array_map;
 use function array_values;
 use function is_array;
 use function is_int;
-use function is_string;
 use function sprintf;
 
 trait DataProviderHelpers
 {
     /**
-     * @param array<string, array<array-key, mixed>> $array
+     * @param array<string|string|int, array<array-key, mixed>> $array
      *
      * @return array<string, array<array-key, mixed>>
      */
@@ -26,9 +25,7 @@ trait DataProviderHelpers
         $exporter = new Exporter();
         $normalizedKeys = [];
         foreach ($array as $key => $data) {
-            if (is_string($key)) {
-                $normalizedKeys[] = $key;
-            } elseif (is_int($key)) {
+            if (is_int($key)) {
                 $normalizedKeys[] = sprintf('(%s)', $exporter->shortenedRecursiveExport($data));
             } else {
                 $normalizedKeys[] = sprintf('data set "%s"', $key);

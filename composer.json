@@ -1,8 +1,8 @@
 {
     "name": "kickflip/kickflip-src",
-    "type": "project",
     "description": "A monorepo for kickflip CLI and the docs for it to live in.",
     "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Dan Pock",
@@ -33,12 +33,6 @@
         "symfony/yaml": "^5.0",
         "vlucas/phpdotenv": "^5.3.1"
     },
-    "replace": {
-        "kickflip/kickflip": "0.6.3",
-        "kickflip/kickflip-cli": "0.6.3",
-        "kickflip/kickflip-docs": "0.6.3",
-        "kickflip/kickflip-router-nav-plugin": "0.6.3"
-    },
     "require-dev": {
         "illuminate/bus": "^8.74",
         "illuminate/collections": "^8.74",
@@ -60,21 +54,14 @@
         "symplify/monorepo-builder": "^10.0",
         "vimeo/psalm": "^4.14"
     },
-    "config": {
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "ergebnis/composer-normalize": true,
-            "captainhook/plugin-composer": true,
-            "ramsey/devtools": true,
-            "ramsey/composer-repl": true,
-            "pestphp/pest-plugin": true
-        },
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
+    "replace": {
+        "kickflip/kickflip": "0.6.3",
+        "kickflip/kickflip-cli": "0.6.3",
+        "kickflip/kickflip-docs": "0.6.3",
+        "kickflip/kickflip-router-nav-plugin": "0.6.3"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "packages/kickflip/app/",
@@ -90,12 +77,24 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KickflipMonoTests\\": "tests/",
-            "KickflipTests\\": "packages/kickflip-cli/tests/"
+            "KickflipMonoTests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "captainhook/plugin-composer": true,
+            "composer/package-versions-deprecated": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true,
+            "ramsey/composer-repl": true,
+            "ramsey/devtools": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
     "extra": {
         "captainhook": {
             "force-install": true

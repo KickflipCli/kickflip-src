@@ -54,7 +54,10 @@ class Logger
      */
     public static function veryVerboseTable(array $headers, array $rows): void
     {
-        if (ConsoleVerbosity::veryVerbose() <= app('kickflipCli')->get('output.verbosity') && isset(static::$consoleOutput)) {
+        if (
+            ConsoleVerbosity::veryVerbose() <= app('kickflipCli')->get('output.verbosity') &&
+            isset(static::$consoleOutput)
+        ) {
             static::$consoleOutput->table($headers, $rows);
         }
     }

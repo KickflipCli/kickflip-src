@@ -72,7 +72,6 @@ final class SiteBuilder
         $kickflipCliState = KickflipHelper::config();
         $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::EnvBuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
-        // TODO: decide if we need a views entry in here too...
         $kickflipCliState->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
     }
 
@@ -86,13 +85,17 @@ final class SiteBuilder
     }
 
     /**
-     * @param class-string&BaseEvent $eventClass
+     * @param class-string $eventClass
      *
      * @return $this
      */
     private function fireEvent(string $eventClass): self
     {
-        $eventClass::dispatch();
+        /**
+         * @var BaseEvent $eventClassName
+         */
+        $eventClassName = $eventClass;
+        $eventClassName::dispatch();
 
         return $this;
     }
@@ -103,7 +106,19 @@ final class SiteBuilder
         $consoleOutput->writeln(sprintf('<info>Found %d pages to render into HTML...</info>', count($renderPageList)));
         Logger::veryVerboseTable(
             ['Page Title', 'Page URL', 'Page Source', 'Source Type'],
-            collect($renderPageList)->sortBy('url')->map(fn (PageData $page) => [$page->title, $page->url, $page->source->getFilename(), $page->source->getType()])->toArray(),
+            collect($renderPageList)
+                ->sortBy('url')
+                // phpcs:disable
+                ->map(function (PageData $page) {
+                    return [
+                        $page->title,
+                        $page->url,
+                        $page->source->getFilename(),
+                        $page->source->getType(),
+                    ];
+                })
+                // phpcs:enable
+                ->toArray(),
         );
         /**
          * @var PageData $page
