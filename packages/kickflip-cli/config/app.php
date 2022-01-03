@@ -1,5 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Events\EventServiceProvider;
+use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\Log\LogServiceProvider;
+use Kickflip\Providers\InitServiceProvider;
+use Kickflip\Providers\KickflipServiceProvider;
+use Kickflip\Providers\ViewServiceProvider;
+use Spatie\LaravelMarkdown\MarkdownServiceProvider;
+
 return [
 
     /*
@@ -54,17 +64,17 @@ return [
     */
 
     'providers' => [
-        \Kickflip\Providers\InitServiceProvider::class,
-        \Illuminate\Filesystem\FilesystemServiceProvider::class,
-        \Illuminate\Log\LogServiceProvider::class,
-        \Illuminate\Events\EventServiceProvider::class,
-        \Kickflip\Providers\ViewServiceProvider::class,
-        \Spatie\LaravelMarkdown\MarkdownServiceProvider::class,
-        \Kickflip\Providers\KickflipServiceProvider::class,
+        InitServiceProvider::class,
+        FilesystemServiceProvider::class,
+        LogServiceProvider::class,
+        EventServiceProvider::class,
+        ViewServiceProvider::class,
+        MarkdownServiceProvider::class,
+        KickflipServiceProvider::class,
     ],
 
     'aliases' => [
         'KickflipHelper' => Kickflip\KickflipHelper::class,
-    ]
+    ],
 
 ];

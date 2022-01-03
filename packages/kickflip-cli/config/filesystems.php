@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'default' => 'local',
     'disks' => [
         'app' => [
             'driver' => 'local',
-            'root' => getenv("HOME"). DIRECTORY_SEPARATOR . ".kickflip-cli",
+            'root' => getenv('HOME') . DIRECTORY_SEPARATOR . '.kickflip-cli',
         ],
         'kickflip' => [
             'driver' => 'local',

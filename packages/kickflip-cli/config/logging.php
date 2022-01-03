@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
@@ -71,7 +72,6 @@ return [
             'handler' => NullHandler::class,
         ],
 
-        // TODO figure out how I want this to work...
         'emergency' => [
             'path' => storage_path('kickflip.log'),
         ],
