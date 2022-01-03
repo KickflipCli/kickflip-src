@@ -12,7 +12,7 @@ final class AutoloadIncluder
     /**
      * @var string[]
      */
-    private $alreadyLoadedAutoloadFiles = [];
+    private array $alreadyLoadedAutoloadFiles = [];
 
     public function includeCwdVendorAutoloadIfExists(): void
     {
@@ -74,7 +74,7 @@ final class AutoloadIncluder
 |
 */
 
-# init autoload includer
+// init autoload includer
 $autoloadIncluder = new AutoloadIncluder();
 
 $autoloadIncluder->includeCwdVendorAutoloadIfExists();
@@ -97,8 +97,8 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
 $status = $kernel->handle(
-    $input = new Symfony\Component\Console\Input\ArgvInput,
-    new Symfony\Component\Console\Output\ConsoleOutput
+    $input = new Symfony\Component\Console\Input\ArgvInput(),
+    new Symfony\Component\Console\Output\ConsoleOutput(),
 );
 
 /*

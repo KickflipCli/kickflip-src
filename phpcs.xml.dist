@@ -5,7 +5,7 @@
     <arg name="extensions" value="php"/>
     <arg name="colors"/>
     <arg value="sp"/>
-    <arg name="ignore" value="./tests/*.blade.php" />
+    <arg name="ignore" value="./tests/*.blade.php,./packages/kickflip-cli/bin/kickflip.php" />
 
     <file>./packages/kickflip-cli</file>
     <file>./packages/kickflip-router-nav-plugin</file>
@@ -18,5 +18,6 @@
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
         <exclude-pattern>packages/kickflip-router-nav-plugin/src/*ServiceProvider.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Commands/BuildCommand.php</exclude-pattern>
     </rule>
 </ruleset>

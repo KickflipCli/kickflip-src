@@ -60,7 +60,7 @@ class BuildCommand extends Command
     public function handle()
     {
         Logger::setOutput($this->output);
-        [$env, $quiet, $prettyUrls] = $this->initCommandVars();
+        [$env, $quiet] = $this->initCommandVars();
 
         BeforeConfigurationLoads::dispatch();
         // Load in the local projects config based on env...
