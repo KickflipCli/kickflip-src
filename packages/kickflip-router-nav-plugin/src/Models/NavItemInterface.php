@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\RouterNavPlugin\Models;
 
 interface NavItemInterface
@@ -7,8 +9,7 @@ interface NavItemInterface
     public static function make(string $title, ?string $url = ''): NavItemInterface;
 
     /**
-     * @param array<NavItemInterface> $children
-     * @return NavItemInterface
+     * @param array<array-key, NavItem> $children
      */
     public function setChildren(array $children): NavItemInterface;
 

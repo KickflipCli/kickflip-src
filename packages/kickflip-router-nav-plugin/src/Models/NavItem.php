@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Kickflip\RouterNavPlugin\Models;
 
+use function count;
+
 class NavItem implements NavItemInterface
 {
     public function __construct(
         public string $title,
         public string $url = '',
         /**
-         * @var ?array<NavItem>
+         * @var array<array-key, NavItem>|null
          */
         public ?array $children = null,
-    ) {}
+    ) {
+    }
 
     public static function make(string $title, ?string $url = ''): self
     {
@@ -22,11 +25,13 @@ class NavItem implements NavItemInterface
 
     /**
      * @param array<self> $children
+     *
      * @return $this
      */
     public function setChildren(array $children): self
     {
         $this->children = $children;
+
         return $this;
     }
 
@@ -42,11 +47,11 @@ class NavItem implements NavItemInterface
 
     public function hasUrl(): bool
     {
-        return !empty($this->url);
+        return $this->url !== '';
     }
 
     public function hasChildren(): bool
     {
-        return null !== $this->children && count($this->children) > 0;
+        return $this->children !== null && count($this->children) > 0;
     }
 }

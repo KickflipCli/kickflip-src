@@ -12,4 +12,10 @@
 
     <rule ref="Ramsey"/>
 
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix">
+        <exclude-pattern>packages/kickflip-router-nav-plugin/src/Models/NavItemInterface.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>packages/kickflip-router-nav-plugin/src/*ServiceProvider.php</exclude-pattern>
+    </rule>
 </ruleset>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\RouterNavPlugin;
 
 use Illuminate\Support\AggregateServiceProvider;

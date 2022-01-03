@@ -23,12 +23,12 @@ class BuildSiteNavRoutes
          */
         $pageData = $event->pageData;
         $url = $pageData->getUrl();
-        # Register thin route for URL generating...
+        // Register thin route for URL generating...
         if ($url === '/') {
             $routeName = 'index';
         } else {
             $routeName = (string) Str::of($url)->trim('/')->replace('/', '.');
         }
-        Route::name($routeName)->get($pageData->getUrl(), static fn() => '');
+        Route::name($routeName)->get($pageData->getUrl(), static fn () => '');
     }
 }

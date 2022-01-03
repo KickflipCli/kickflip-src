@@ -33,6 +33,5 @@ class RoutingEventsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

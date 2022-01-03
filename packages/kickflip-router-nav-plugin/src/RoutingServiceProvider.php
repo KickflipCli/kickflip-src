@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\RouterNavPlugin;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RoutingServiceProvider as BaseRoutingServiceProvider;
 use Illuminate\Routing\UrlGenerator;
 use Kickflip\KickflipHelper;
+
+use function base64_encode;
+use function parse_url;
+use function random_bytes;
+
+use const PHP_URL_HOST;
 
 class RoutingServiceProvider extends BaseRoutingServiceProvider
 {
@@ -30,7 +39,7 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
     {
         $this->app->singleton('url', function ($app) {
             /**
-             * @var \Illuminate\Contracts\Foundation\Application $app
+             * @var Application $app
              */
             $routes = $app['router']->getRoutes();
 
@@ -39,11 +48,16 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
             // and all the registered routes will be available to the generator.
             $app->instance('routes', $routes);
 
+            // phpcs:disable
             $_SERVER['HTTP_HOST'] = parse_url(KickflipHelper::config('site.baseUrl'), PHP_URL_HOST);
             $_SERVER['SERVER_PORT'] = '80';
             $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
+            // phpcs:enable
+
             return new UrlGenerator(
-                $routes, Request::capture(), $app['config']['app.asset_url']
+                $routes,
+                Request::capture(),
+                $app['config']['app.asset_url'],
             );
         });
 
@@ -51,15 +65,11 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
             // Next we will set a few service resolvers on the URL generator so it can
             // get the information it needs to function. This just provides some of
             // the convenience features to this URL generator like "signed" URLs.
-            $url->setSessionResolver(function () {
-                return null;
-            });
+            $url->setSessionResolver(fn () => null);
 
-            $url->setKeyResolver(function () {
-                return 'base64:'.base64_encode(
-                        random_bytes(32)
-                    );
-            });
+            $url->setKeyResolver(fn () => 'base64:' . base64_encode(
+                random_bytes(32),
+            ));
 
             // If the route collection is "rebound", for example, when the routes stay
             // cached for the application, we will need to rebind the routes on the
@@ -71,5 +81,4 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
             return $url;
         });
     }
-
 }

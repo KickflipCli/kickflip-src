@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\View;
 use Kickflip\KickflipHelper;
 use Kickflip\SiteBuilder\SourcesLocator;
 
+use function app;
+use function file_exists;
+
 /**
  * An event handler that will listen for SiteBuildStarted events.
  *
@@ -34,7 +37,7 @@ class SetupSiteNav
         // Share site nav into global View data...
         View::share(
             'navigation',
-            $kickflipCliState->get('siteNav')
+            $kickflipCliState->get('siteNav'),
         );
     }
 }
