@@ -41,6 +41,7 @@ trait ReflectionHelpers
         $reflectionClass = new ReflectionClass($objectOrClassName);
         Assert::assertTrue($reflectionClass->hasProperty($property));
         $reflectionProperty = $reflectionClass->getProperty($property);
+        $reflectionProperty->setAccessible(true);
         if ($reflectionProperty->isStatic()) {
             return $reflectionProperty->getValue();
         }
