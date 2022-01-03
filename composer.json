@@ -103,7 +103,12 @@
             "configFile": "conventional-commits.json"
         },
         "ramsey/devtools": {
-            "command-prefix": "dev"
+            "command-prefix": "dev",
+            "commands": {
+                "analyze:phpstan": {
+                    "script": "./vendor/bin/phpstan analyse --ansi --memory-limit 2G"
+                }
+            }
         }
     }
 }
