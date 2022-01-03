@@ -25,11 +25,14 @@ class CliStateDirPathsEnumTest extends TestCase
     /**
      * @dataProvider cliStateDirPathsConstantsProvider
      */
-    public function testItCanVerifyCliStateDirPathsConstants(string $constName)
+    public function testItCanVerifyCliStateDirPathsConstants(string $constName): void
     {
         self::assertTrue(defined('Kickflip\Enums\CliStateDirPaths::' . $constName));
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function cliStateDirPathsConstantsProvider(): array
     {
         return $this->autoAddDataProviderKeys([
@@ -51,11 +54,14 @@ class CliStateDirPathsEnumTest extends TestCase
     /**
      * @dataProvider cliStateDirPathsValuesProvider
      */
-    public function testItCanVerifyCliStateDirPathsValues(string $constName, string $expected)
+    public function testItCanVerifyCliStateDirPathsValues(string $constName, string $expected): void
     {
         self::assertEquals($expected, constant('Kickflip\Enums\CliStateDirPaths::' . $constName));
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function cliStateDirPathsValuesProvider(): array
     {
         return $this->autoAddDataProviderKeys([

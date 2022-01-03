@@ -19,12 +19,12 @@ class SourcePageMetaDataTest extends TestCase
     use DataProviderHelpers;
     use ReflectionHelpers;
 
-    public function testVerifyClassExists()
+    public function testVerifyClassExists(): void
     {
         self::assertClassExists(SourcePageMetaData::class);
     }
 
-    public function testItThrowsWhenCreatingInvalidMetaData()
+    public function testItThrowsWhenCreatingInvalidMetaData(): void
     {
         $this->expectError();
         /**
@@ -37,7 +37,7 @@ class SourcePageMetaDataTest extends TestCase
     /**
      * @dataProvider sourceIteratorProvider
      */
-    public function testItCanGetTypeFromSourcePageMetaData(SplFileInfo $splFileInfo)
+    public function testItCanGetTypeFromSourcePageMetaData(SplFileInfo $splFileInfo): void
     {
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
         self::assertHasProperties($sourcePageMetaData, ['viewName', 'implicitExtension']);
@@ -49,7 +49,10 @@ class SourcePageMetaDataTest extends TestCase
         self::assertIsString($sourcePageMetaData->getType());
     }
 
-    public function sourceIteratorProvider()
+    /**
+     * @return array<array-key, SplFileInfo[]>
+     */
+    public function sourceIteratorProvider(): array
     {
         return $this->autoAddDataProviderKeys(iterator_to_array(
             Finder::create()

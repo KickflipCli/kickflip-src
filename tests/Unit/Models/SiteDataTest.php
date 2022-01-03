@@ -15,12 +15,12 @@ class SiteDataTest extends TestCase
     use DataProviderHelpers;
     use ReflectionHelpers;
 
-    public function testVerifyClassExists()
+    public function testVerifyClassExists(): void
     {
         self::assertClassExists(SiteData::class);
     }
 
-    public function testItThrowsWhenCreatingEmptySiteData()
+    public function testItThrowsWhenCreatingEmptySiteData(): void
     {
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Cannot initialize SiteData with empty site config array.');
@@ -28,16 +28,22 @@ class SiteDataTest extends TestCase
     }
 
     /**
+     * @param array<array-key, array<array-key, string[]>> $siteConfig
+     *
      * @dataProvider invalidSiteConfigProviders
      */
-    public function testItThrowsWhenMissingRequiredParams(array $siteConfig)
+    public function testItThrowsWhenMissingRequiredParams(array $siteConfig): void
     {
         $this->expectException(Throwable::class);
+        // phpcs:ignore
         $this->expectExceptionMessage('Cannot initialize SiteData due to missing required parameter. Must include: baseUrl, production, siteName, siteDescription.');
         SiteData::fromConfig($siteConfig);
     }
 
-    public function invalidSiteConfigProviders()
+    /**
+     * @return array<array-key, array<array-key, string[]>>
+     */
+    public function invalidSiteConfigProviders(): array
     {
         return $this->autoAddDataProviderKeys([
             [['yeet']],
@@ -49,7 +55,7 @@ class SiteDataTest extends TestCase
         ]);
     }
 
-    public function testItCanCreateAValidSiteData()
+    public function testItCanCreateAValidSiteData(): void
     {
         $siteData = SiteData::fromConfig([
             'baseUrl' => 'http://example.com',

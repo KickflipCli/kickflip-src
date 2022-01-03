@@ -7,6 +7,7 @@ namespace KickflipMonoTests;
 use Illuminate\Support\HtmlString;
 use PHPUnit\Framework\Assert;
 use ReflectionClass;
+use ReflectionException;
 
 use function class_exists;
 use function func_num_args;
@@ -20,7 +21,10 @@ trait ReflectionHelpers
         Assert::assertTrue(class_exists($className));
     }
 
-    public static function isHtmlStringOf(string $expected, $actual)
+    /**
+     * @return void
+     */
+    public static function isHtmlStringOf(string $expected, HtmlString $actual)
     {
         self::assertInstanceOf(HtmlString::class, $actual);
         $castString = (string) $actual;
@@ -44,6 +48,11 @@ trait ReflectionHelpers
         return $reflectionProperty->getValue($objectOrClassName);
     }
 
+    /**
+     * @return mixed
+     *
+     * @throws ReflectionException
+     */
     public static function reflectionGetPropertyValue(object | string $objectOrClassName, string $propertyName)
     {
         $reflectionClass = new ReflectionClass($objectOrClassName);
@@ -53,6 +62,11 @@ trait ReflectionHelpers
         return $property->getValue($reflectionClass);
     }
 
+    /**
+     * @return mixed
+     *
+     * @throws ReflectionException
+     */
     public static function reflectionCallMethod(object | string $objectOrClassName, string $method)
     {
         $reflectionClass = new ReflectionClass($objectOrClassName);

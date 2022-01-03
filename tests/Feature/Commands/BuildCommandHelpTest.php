@@ -20,6 +20,7 @@ class BuildCommandHelpTest extends TestCase
         $pendingCommand = $this->artisan('build', ['--help'])
             ->assertExitCode(0);
 
+        // phpcs:disable
         $expectedOutput = <<<'HEREDOC'
 Description:
   Build your website project.
@@ -40,8 +41,9 @@ Options:
       --env[=ENV]        The environment the command should run under
   -v|vv|vvv, --verbose   Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 HEREDOC;
+        // phpcs:enable
 
-        $expectedLines = collect(explode("\n", $expectedOutput))
+        collect(explode("\n", $expectedOutput))
             ->filter(fn ($value) => '' !== $value)
             ->map(fn ($value) => $pendingCommand->expectsOutput($value));
     }

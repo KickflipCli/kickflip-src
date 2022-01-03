@@ -30,7 +30,10 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals($expected, $results);
     }
 
-    public function replaceEnvProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function replaceEnvProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['world', 'Hello, world'],
@@ -54,7 +57,10 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals(dirname(__DIR__, 2) . $expected, $path);
     }
 
-    public function kickflipHelperConfigProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function kickflipHelperConfigProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['baseDir', '/packages/kickflip'],
@@ -63,7 +69,10 @@ class MacroAndHelperTest extends TestCase
         ]);
     }
 
-    public function kickflipHelperNamedConfigProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function kickflipHelperNamedConfigProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             [CliStateDirPaths::Base, '/packages/kickflip'],
@@ -92,6 +101,9 @@ class MacroAndHelperTest extends TestCase
         self::isHtmlStringOf($expected, $assetUrl);
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function assetUrlProviders()
     {
         return $this->autoAddDataProviderKeys([
@@ -111,6 +123,9 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals(dirname(__DIR__, 2) . $expected, $resourcePath);
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function resourcePathProviders()
     {
         return $this->autoAddDataProviderKeys([
@@ -130,6 +145,9 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals(dirname(__DIR__, 2) . $expected, $sourcePath);
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function sourcePathProviders()
     {
         return $this->autoAddDataProviderKeys([
@@ -149,6 +167,9 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals(dirname(__DIR__, 2) . $expected, $sourcePath);
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function buildPathProviders()
     {
         return $this->autoAddDataProviderKeys([
@@ -168,6 +189,9 @@ class MacroAndHelperTest extends TestCase
         self::assertEquals(dirname(__DIR__, 2) . $expected, $buildPath);
     }
 
+    /**
+     * @return array<array-key, string[]>
+     */
     public function buildPathReplacedProviders()
     {
         return $this->autoAddDataProviderKeys([

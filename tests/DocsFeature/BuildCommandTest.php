@@ -22,7 +22,9 @@ class BuildCommandTest extends DocsTestCase
     {
         parent::setUp();
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(
+            KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
+        )->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -31,7 +33,9 @@ class BuildCommandTest extends DocsTestCase
     public function tearDown(): void
     {
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(
+            KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
+        )->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -46,7 +50,9 @@ class BuildCommandTest extends DocsTestCase
 
     public function testSuccessfulFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(
+            KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
+        )->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
         $this->artisan('build')
@@ -56,7 +62,9 @@ class BuildCommandTest extends DocsTestCase
 
     public function testDeniedFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
+        $buildPath = (string) Str::of(
+            KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
+        )->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
         $this->artisan('build')

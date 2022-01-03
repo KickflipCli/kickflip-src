@@ -26,7 +26,7 @@ class ConsoleVerbosityTest extends TestCase
     /**
      * @dataProvider mockedArgvProvider
      */
-    public function testCanMockRealisticArgvInput($argvInput, $expected)
+    public function testCanMockRealisticArgvInput(ArgvInput $argvInput, ConsoleVerbosity $expected)
     {
         self::assertInstanceOf(ArgvInput::class, $argvInput);
         $parsedArgvInput = Str::of((string) $argvInput);
@@ -36,7 +36,10 @@ class ConsoleVerbosityTest extends TestCase
         self::assertEquals($expected, $parsedVerbosity);
     }
 
-    public function mockedArgvProvider()
+    /**
+     * @return array<array-key, array<array-key, ArgvInput|ConsoleVerbosity>>
+     */
+    public function mockedArgvProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             [

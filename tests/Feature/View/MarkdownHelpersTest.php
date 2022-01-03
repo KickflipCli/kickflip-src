@@ -34,12 +34,6 @@ class MarkdownHelpersTest extends TestCase
 
     public function testCanDetermineIfPageExtendIsEnabled()
     {
-        $mockSiteData = SiteData::fromConfig([
-            'baseUrl' => 'http://example.com',
-            'production' => true,
-            'siteName' => 'Example Site',
-            'siteDescription' => 'This is an example site.',
-        ]);
         $mockPageData = $this->getTestPageData();
         $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
             ->convertToHtml(
@@ -53,14 +47,11 @@ class MarkdownHelpersTest extends TestCase
     /**
      * @dataProvider siteDataProvider
      */
-    public function testCanPrepareExtendedRenderedFromMarkdown(int $pageId, string $expectedSection, string $expectedExtends)
-    {
-        $mockSiteData = SiteData::fromConfig([
-            'baseUrl' => 'http://example.com',
-            'production' => true,
-            'siteName' => 'Example Site',
-            'siteDescription' => 'This is an example site.',
-        ]);
+    public function testCanPrepareExtendedRenderedFromMarkdown(
+        int $pageId,
+        string $expectedSection,
+        string $expectedExtends
+    ) {
         $mockPageData = $this->getTestPageData($pageId);
         $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
             ->convertToHtml(
@@ -78,7 +69,10 @@ class MarkdownHelpersTest extends TestCase
         self::assertEquals($expectedExtends, $preparedExtendedRender[2]);
     }
 
-    public function siteDataProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function siteDataProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             [0, 'content', 'layouts.master'],

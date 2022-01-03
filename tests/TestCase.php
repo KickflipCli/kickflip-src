@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace KickflipMonoTests;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
+use LaravelZero\Framework\Application;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
@@ -38,7 +38,7 @@ abstract class TestCase extends BaseTestCase
             $this->callNpmProcess('run', 'prod');
         }
         /**
-         * @var \LaravelZero\Framework\Application $app
+         * @var Application $app
          */
         $app = require __DIR__ . '/../packages/kickflip-cli/bootstrap/app.php';
         KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip'));
@@ -53,7 +53,7 @@ abstract class TestCase extends BaseTestCase
         return $app;
     }
 
-    protected function callNpmProcess()
+    protected function callNpmProcess(): string
     {
         $command = [
             (new ExecutableFinder())->find('npm', 'npm', [
@@ -93,7 +93,7 @@ abstract class TestCase extends BaseTestCase
         return PageData::make($sourcePageMetaData, $frontMatterData);
     }
 
-    protected function callAfterResolving($app, $name, $callback)
+    protected function callAfterResolving(Application $app, string $name, callable $callback): void
     {
         $app->afterResolving($name, $callback);
 

@@ -20,12 +20,12 @@ class KickflipHelperTest extends TestCase
     /**
      * @before
      */
-    public function setBasePath()
+    public function setBasePath(): void
     {
         KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
     }
 
-    public function testDefaultBasePath()
+    public function testDefaultBasePath(): void
     {
         $basePath = KickflipHelper::basePath();
         self::assertIsString($basePath);
@@ -35,14 +35,17 @@ class KickflipHelperTest extends TestCase
     /**
      * @dataProvider basePathProvider
      */
-    public function testCustomBasePath(?string $input, string $expected)
+    public function testCustomBasePath(?string $input, string $expected): void
     {
         $basePath = KickflipHelper::basePath($input);
         self::assertIsString($basePath);
         self::assertEquals(dirname(__DIR__, 2) . $expected, $basePath);
     }
 
-    public function basePathProvider()
+    /**
+     * @return array<array-key, ?string[]>
+     */
+    public function basePathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             [null, '/packages/kickflip-docs'],
@@ -51,7 +54,7 @@ class KickflipHelperTest extends TestCase
         ]);
     }
 
-    public function testRootPackagePath()
+    public function testRootPackagePath(): void
     {
         $rootPackagePath = KickflipHelper::rootPackagePath();
         self::assertIsString($rootPackagePath);
@@ -68,7 +71,10 @@ class KickflipHelperTest extends TestCase
         self::assertEquals($expected, $kebabString);
     }
 
-    public function kebabStringProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function kebabStringProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['Hello World', 'hello-world'],
@@ -77,7 +83,7 @@ class KickflipHelperTest extends TestCase
         ]);
     }
 
-    public function testGettingFrontmatterParser()
+    public function testGettingFrontmatterParser(): void
     {
         self::assertInstanceOf(FrontMatterParserInterface::class, KickflipHelper::getFrontMatterParser());
     }
@@ -85,14 +91,17 @@ class KickflipHelperTest extends TestCase
     /**
      * @dataProvider leftTrimPathProvider
      */
-    public function testHelperLeftTrimPath(string $input, string $expected)
+    public function testHelperLeftTrimPath(string $input, string $expected): void
     {
         $leftTrimString = KickflipHelper::leftTrimPath($input);
         self::assertIsString($leftTrimString);
         self::assertEquals($expected, $leftTrimString);
     }
 
-    public function leftTrimPathProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function leftTrimPathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['hello', 'hello'],
@@ -105,14 +114,17 @@ class KickflipHelperTest extends TestCase
     /**
      * @dataProvider rightTrimPathProvider
      */
-    public function testHelperRightTrimPath(string $input, string $expected)
+    public function testHelperRightTrimPath(string $input, string $expected): void
     {
         $rightTrimPath = KickflipHelper::rightTrimPath($input);
         self::assertIsString($rightTrimPath);
         self::assertEquals($expected, $rightTrimPath);
     }
 
-    public function rightTrimPathProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function rightTrimPathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['hello', 'hello'],
@@ -125,14 +137,17 @@ class KickflipHelperTest extends TestCase
     /**
      * @dataProvider trimPathProvider
      */
-    public function testHelperTrimPath(string $input, string $expected)
+    public function testHelperTrimPath(string $input, string $expected): void
     {
         $leftTrimString = KickflipHelper::trimPath($input);
         self::assertIsString($leftTrimString);
         self::assertEquals($expected, $leftTrimString);
     }
 
-    public function trimPathProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function trimPathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['hello', 'hello'],
@@ -145,14 +160,17 @@ class KickflipHelperTest extends TestCase
     /**
      * @dataProvider relativeUrlProvider
      */
-    public function testHelperRelativeUrl(string $input, string $expected)
+    public function testHelperRelativeUrl(string $input, string $expected): void
     {
         $leftTrimString = KickflipHelper::relativeUrl($input);
         self::assertIsString($leftTrimString);
         self::assertEquals($expected, $leftTrimString);
     }
 
-    public function relativeUrlProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function relativeUrlProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],

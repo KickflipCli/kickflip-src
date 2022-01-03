@@ -26,6 +26,9 @@ class VerbosityEnumsTest extends TestCase
         self::assertEquals($expected, $input->value);
     }
 
+    /**
+     * @return array<array-key, array<array-key, VerbosityFlag|string>>
+     */
     public function verbosityFlagProvider(): array
     {
         return $this->autoAddDataProviderKeys([
@@ -37,7 +40,7 @@ class VerbosityEnumsTest extends TestCase
         ]);
     }
 
-    public function testItCanVerifyEnumValues()
+    public function testItCanVerifyEnumValues(): void
     {
         self::assertIsArray(self::reflectionCallMethod(VerbosityFlag::class, 'values'));
     }
@@ -53,6 +56,9 @@ class VerbosityEnumsTest extends TestCase
         self::assertEquals($expected, $input->value);
     }
 
+    /**
+     * @return array<array-key, array<array-key, int|ConsoleVerbosity>>
+     */
     public function consoleVerbosityProvider(): array
     {
         return $this->autoAddDataProviderKeys([
@@ -72,13 +78,18 @@ class VerbosityEnumsTest extends TestCase
     /**
      * @dataProvider consoleVerbosityFromVerbosityFlagProvider
      */
-    public function testItCanConstructConsoleVerbosityFromVerbosityFlag($input, $expected)
-    {
+    public function testItCanConstructConsoleVerbosityFromVerbosityFlag(
+        VerbosityFlag $input,
+        ConsoleVerbosity $expected
+    ): void {
         $consoleVerbosity = ConsoleVerbosity::fromFlag($input);
         self::assertInstanceOf(ConsoleVerbosity::class, $consoleVerbosity);
         self::assertEquals($expected, $consoleVerbosity);
     }
 
+    /**
+     * @return array<array-key, array<array-key, VerbosityFlag|ConsoleVerbosity>>
+     */
     public function consoleVerbosityFromVerbosityFlagProvider(): array
     {
         return $this->autoAddDataProviderKeys([
@@ -88,7 +99,7 @@ class VerbosityEnumsTest extends TestCase
         ]);
     }
 
-    public function testConsoleVerbosityValues()
+    public function testConsoleVerbosityValues(): void
     {
         $values = ConsoleVerbosity::toValues();
         self::assertIsArray($values);
@@ -100,7 +111,7 @@ class VerbosityEnumsTest extends TestCase
         self::assertContains(256, $values);
     }
 
-    public function testConsoleVerbosityLabels()
+    public function testConsoleVerbosityLabels(): void
     {
         $labels = ConsoleVerbosity::toLabels();
         self::assertIsArray($labels);
@@ -112,7 +123,7 @@ class VerbosityEnumsTest extends TestCase
         self::assertContains('debug', $labels);
     }
 
-    public function testVerbosityFlagValues()
+    public function testVerbosityFlagValues(): void
     {
         $values = VerbosityFlag::toValues();
         self::assertIsArray($values);
@@ -124,7 +135,7 @@ class VerbosityEnumsTest extends TestCase
         self::assertContains('vvv', $values);
     }
 
-    public function testVerbosityFlagLabels()
+    public function testVerbosityFlagLabels(): void
     {
         $labels = VerbosityFlag::toLabels();
         self::assertIsArray($labels);

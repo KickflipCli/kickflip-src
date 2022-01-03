@@ -24,14 +24,17 @@ class LoggerTest extends TestCase
     /**
      * @dataProvider logLevelDataProvider
      */
-    public function testItFailsWithoutAccessToKickflip(string $logLevel)
+    public function testItFailsWithoutAccessToKickflip(string $logLevel): void
     {
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
         Logger::{$logLevel}('test');
     }
 
-    public function logLevelDataProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function logLevelDataProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['debug'],
@@ -41,14 +44,14 @@ class LoggerTest extends TestCase
         ]);
     }
 
-    public function testTablesFailWithoutKickflip()
+    public function testTablesFailWithoutKickflip(): void
     {
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
         Logger::veryVerboseTable([], []);
     }
 
-    public function testtimingFailWithoutKickflipTimings()
+    public function testtimingFailWithoutKickflipTimings(): void
     {
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipTimings] does not exist.');

@@ -21,6 +21,7 @@ class PageDataTest extends TestCase
     public function testThrowsUsingNewOnPageData()
     {
         $this->expectError();
+        // phpcs:ignore
         $this->expectErrorMessage('Call to private Kickflip\Models\PageData::__construct() from scope KickflipMonoTests\Feature\Models\PageDataTest');
         /**
          * @psalm-suppress InaccessibleMethod
@@ -48,12 +49,18 @@ class PageDataTest extends TestCase
         // Temporary set Pretty URLs to false...
         KickflipHelper::config()->set('prettyUrls', false);
         self::assertIsString($pageData->getOutputPath());
-        self::assertEquals(dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic.html', $pageData->getOutputPath());
+        self::assertEquals(
+            dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic.html',
+            $pageData->getOutputPath(),
+        );
 
         // Change Pretty URLs back
         KickflipHelper::config()->set('prettyUrls', true);
         self::assertIsString($pageData->getOutputPath());
-        self::assertEquals(dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic/index.html', $pageData->getOutputPath());
+        self::assertEquals(
+            dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic/index.html',
+            $pageData->getOutputPath(),
+        );
 
         // Check Extends values
         self::assertIsString($pageData->getExtendsView());
@@ -82,7 +89,11 @@ class PageDataTest extends TestCase
         $pageData = $this->getTestPageData();
 
         $this->expectException(Throwable::class);
-        $this->expectExceptionMessage('Undefined property via __get(): nana in ' . dirname(__FILE__, 4) . '/tests/Feature/Models/PageDataTest.php');
+        $this->expectExceptionMessage(
+            'Undefined property via __get(): nana in ' .
+            dirname(__FILE__, 4) .
+            '/tests/Feature/Models/PageDataTest.php',
+        );
         /**
          * @phpstan-ignore-next-line
          */

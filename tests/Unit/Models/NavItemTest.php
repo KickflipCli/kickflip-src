@@ -14,7 +14,7 @@ class NavItemTest extends TestCase
     use DataProviderHelpers;
     use ReflectionHelpers;
 
-    public function testVerifyClassExists()
+    public function testVerifyClassExists(): void
     {
         self::assertClassExists(NavItem::class);
     }
@@ -22,7 +22,7 @@ class NavItemTest extends TestCase
     /**
      * @dataProvider navItemRawDataProvider
      */
-    public function testBasicNavItemCanBeCreated(string $title, string $url)
+    public function testBasicNavItemCanBeCreated(string $title, string $url): void
     {
         $navItem = NavItem::make($title, $url);
         // Verify title
@@ -40,7 +40,10 @@ class NavItemTest extends TestCase
         self::assertFalse($navItem->hasChildren());
     }
 
-    public function navItemRawDataProvider()
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function navItemRawDataProvider(): array
     {
         return $this->autoAddDataProviderKeys([
             ['Basic Page', '/basic'],
@@ -48,7 +51,7 @@ class NavItemTest extends TestCase
         ]);
     }
 
-    public function testAnAdvancedNavItemCanBeMade()
+    public function testAnAdvancedNavItemCanBeMade(): void
     {
         $basicPage = NavItem::make('Basic Page', '/basic');
         $basicPage->setChildren([
