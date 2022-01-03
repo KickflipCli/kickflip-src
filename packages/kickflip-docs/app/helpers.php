@@ -47,7 +47,7 @@ function isActiveParent(PageInterface $page, NavItem $menuItem): bool
 
 function getDocUrl(string $routeName, ?string $anchorLink = null): string
 {
-    $pageExists = static function(string $routeName) {
+    $pageExists = static function(string $routeName): string {
         $sourceDocs = new DirectoryIterator(KickflipHelper::sourcePath('docs'));
         foreach ($sourceDocs as $fileInfo) {
             if ($fileInfo->isDot()) {

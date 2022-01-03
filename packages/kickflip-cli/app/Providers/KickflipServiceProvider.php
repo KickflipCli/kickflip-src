@@ -46,7 +46,10 @@ class KickflipServiceProvider extends ServiceProvider
             app('config')->set('app.url', $baseUrl);
         }
 
-        # Implement the kickflip level autoloading...
+        /**
+         * Kickflip level autoloading...
+         * @var array<class-string> $packages
+         */
         $packages = KickflipHelper::config('site.providePackages', []);
         if (count($packages) > 0) {
             $this->registerSemiAutoloadProviders($packages);

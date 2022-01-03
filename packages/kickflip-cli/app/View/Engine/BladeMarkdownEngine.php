@@ -27,7 +27,7 @@ final class BladeMarkdownEngine extends CompilerEngine
      * Get the evaluated contents of the view.
      *
      * @param string $path
-     * @param array<string, mixed>  $data
+     * @param array  $data
      *
      * @return string
      */

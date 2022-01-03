@@ -25,6 +25,7 @@ class SourcePageMetaDataTest extends TestCase {
         $this->expectError();
         /**
          * @psalm-suppress InaccessibleMethod
+         * @phpstan-ignore-next-line
          */
         new SourcePageMetaData('', '', '', '');
     }

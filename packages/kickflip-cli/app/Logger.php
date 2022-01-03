@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class Logger
 {
-    private static OutputStyle $consoleOutput;
+    protected static OutputStyle $consoleOutput;
 
     public static function timing(string $methodName, ?string $static = null): void
     {

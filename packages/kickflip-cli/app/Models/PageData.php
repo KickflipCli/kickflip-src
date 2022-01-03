@@ -20,18 +20,18 @@ class PageData implements PageInterface
         public SourcePageMetaData $source,
         public string $url,
         public string $title,
+        /**
+         * @var array<string, mixed> $data
+         */
+        public array $data = [],
         public ?string $description = null,
         public bool $autoExtend = true,
         public ?string $extends = null,
         public ?string $section = null,
-        /**
-         * @var array<string, mixed>|null
-         */
-        public ?array $data = [],
     ) {
     }
 
-    private static function determineMetaDataUrl(SourcePageMetaData $metaData): string
+    protected static function determineMetaDataUrl(SourcePageMetaData $metaData): string
     {
         return ('index' === $metaData->getName()) ? '/' :
             (string) Str::of($metaData->getName())
@@ -39,7 +39,7 @@ class PageData implements PageInterface
                         ->prepend('/');
     }
 
-    private static function determineMetaDataTitle(SourcePageMetaData $metaData): string
+    protected static function determineMetaDataTitle(SourcePageMetaData $metaData): string
     {
         $sourceString = Str::of($metaData->getName())->afterLast('.');
         return (string) $sourceString
@@ -49,20 +49,16 @@ class PageData implements PageInterface
     }
 
     /**
-     * @param SourcePageMetaData $metaData
-     * @param array<string, mixed> $frontMatter
-     *
-     * @return self
+     * @param SourcePageMetaData    $metaData
+     * @param array<string, mixed>  $frontMatter
+     * @return PageData
      */
-    public static function make(SourcePageMetaData $metaData, array $frontMatter = []): self
+    public static function make(SourcePageMetaData $metaData, array $frontMatter = []): PageData
     {
         $url = $frontMatter['url'] ?? static::determineMetaDataUrl($metaData);
 
         $title = $frontMatter['title'] ?? static::determineMetaDataTitle($metaData);
 
-        /**
-         * @var array<string, mixed> $frontMatterData
-         */
         $frontMatterData = $frontMatter;
         unset(
             $frontMatterData['title'],
@@ -123,18 +119,18 @@ class PageData implements PageInterface
             return KickflipHelper::buildPath('index.html');
         }
         $url = $this->getUrl();
-        if (KickflipHelper::config('prettyUrls') === true) {
+        if (KickflipHelper::config('prettyUrls', true) === true) {
             $url .= '/index.html';
         }
         return KickflipHelper::buildPath($url);
     }
 
-    public function getExtendsView(): string
+    public function getExtendsView(): null|string
     {
         return $this->extends;
     }
 
-    public function getExtendsSection(): string
+    public function getExtendsSection(): null|string
     {
         return $this->section;
     }

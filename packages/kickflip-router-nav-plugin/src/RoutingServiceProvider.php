@@ -28,9 +28,6 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
      */
     protected function registerUrlGenerator()
     {
-        /**
-         * @var \Illuminate\Contracts\Foundation\Application $app
-         */
         $this->app->singleton('url', function ($app) {
             /**
              * @var \Illuminate\Contracts\Foundation\Application $app

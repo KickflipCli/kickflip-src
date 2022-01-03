@@ -16,7 +16,7 @@ class BuildCommandProdTest extends DocsTestCase {
     {
         parent::setUp();
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -25,7 +25,7 @@ class BuildCommandProdTest extends DocsTestCase {
     public function tearDown(): void
     {
         (new ShikiNpmFetcher())->removeShikiAndNodeModules();
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         if (is_dir($buildPath)) {
             File::deleteDirectory($buildPath);
         }
@@ -40,20 +40,20 @@ class BuildCommandProdTest extends DocsTestCase {
 
     public function testSuccessfulFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
-        $this->artisan('build ' . static::BUILD_ENV)
+        $this->artisan('build ' . self::BUILD_ENV)
             ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'yes')
             ->assertSuccessful();
     }
 
     public function testDeniedFakeDirtyBuild()
     {
-        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(static::BUILD_ENV);
+        $buildPath = (string) Str::of(\Kickflip\KickflipHelper::namedPath(\Kickflip\Enums\CliStateDirPaths::BuildDestination))->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
-        $this->artisan('build ' . static::BUILD_ENV)
+        $this->artisan('build ' . self::BUILD_ENV)
             ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'no')
             ->assertFailed();
     }

@@ -67,7 +67,8 @@ trait ReflectionHelpers
     {
         Assert::assertTrue(property_exists($object, $name));
 
-        if (func_num_args() > 2 && (Assert::assertIsObject($object) ?? true)) {
+        if (func_num_args() > 2) {
+            Assert::assertIsObject($object);
             /* @phpstan-ignore-next-line */
             Assert::assertEquals($value, $object->{$name});
         }

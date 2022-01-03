@@ -29,7 +29,6 @@ final class SiteBuilder
     private ShikiNpmFetcher $shikiNpmFetcher;
 
     public function __construct(
-        private bool $prettyUrls,
     ) {
         $this->sourcesLocator = app(SourcesLocator::class);
 
@@ -104,7 +103,7 @@ final class SiteBuilder
         foreach ($renderPageList as $page) {
             $consoleOutput->writeln(sprintf('Rendering page from %s', $page->source->getFilename()));
             Logger::verbose("Building " . $page->source->getName() . ":" . $page->url . ":" . $page->title);
-            $outputFile = $page->getOutputPath($this->prettyUrls);
+            $outputFile = $page->getOutputPath();
             $outputDir = dirname($outputFile);
             $view = view($page->source->getName(), [
                 'page' => $page

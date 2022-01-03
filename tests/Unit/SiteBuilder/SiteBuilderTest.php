@@ -15,11 +15,8 @@ class SiteBuilderTest extends TestCase {
     public function testItCanInstantiateSiteBuilder()
     {
         self::assertClassExists(SiteBuilder::class);
-        $siteBuilder = new SiteBuilder(false);
+        $siteBuilder = new SiteBuilder();
         self::assertInstanceOf(SiteBuilder::class, $siteBuilder);
-        self::assertHasProperties($siteBuilder, [
-            'prettyUrls',
-            'sourcesLocator',
-        ]);
+        self::assertHasProperty($siteBuilder, 'sourcesLocator');
     }
 }

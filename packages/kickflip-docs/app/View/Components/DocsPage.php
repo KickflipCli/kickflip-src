@@ -2,7 +2,9 @@
 
 namespace KickflipDocs\View\Components;
 
+use Closure;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class DocsPage extends Component
 {
@@ -28,9 +30,9 @@ class DocsPage extends Component
     }
 
     /**
-     * @inheritDoc
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): string|Closure|View
     {
         return view('layouts.documentation');
     }

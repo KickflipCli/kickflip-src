@@ -16,7 +16,7 @@ use Spatie\Enum\Enum;
 final class VerbosityFlag extends Enum
 {
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     protected static function values(): array
     {

@@ -20,7 +20,6 @@ class ContentFileData implements ContentItemInterface
 
     /**
      * @param SourcePageMetaData $metaData
-     * @param array<string, mixed> $frontMatter
      *
      * @return self
      */

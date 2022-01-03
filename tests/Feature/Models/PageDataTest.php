@@ -20,6 +20,7 @@ class PageDataTest extends TestCase {
         /**
          * @psalm-suppress InaccessibleMethod
          * @psalm-suppress TooFewArguments
+         * @phpstan-ignore-next-line
          */
         new PageData();
     }
@@ -59,7 +60,10 @@ class PageDataTest extends TestCase {
         self::assertIsString($pageData->getTitleId());
         self::assertEquals('basic', $pageData->getTitleId());
 
-        // check tags
+        /**
+         * check tags
+         * @phpstan-ignore-next-line
+         */
         self::assertIsArray($pageData->tags);
         self::assertEquals([
             'test',
@@ -73,6 +77,9 @@ class PageDataTest extends TestCase {
 
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Undefined property via __get(): nana in ' . dirname(__FILE__, 4) . '/tests/Feature/Models/PageDataTest.php');
+        /**
+         * @phpstan-ignore-next-line
+         */
         $pageData->nana;
     }
 }

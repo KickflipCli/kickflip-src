@@ -9,6 +9,9 @@ use Illuminate\Support\Stringable;
 use Kickflip\Enums\ConsoleVerbosity;
 use Kickflip\Enums\VerbosityFlag;
 use LaravelZero\Framework\Kernel as BaseKernel;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class KickflipKernel extends BaseKernel
 {
@@ -34,7 +37,7 @@ class KickflipKernel extends BaseKernel
              */
             $flags = $this->explode(' ')->map(static fn ($value) => ltrim($value, '-'));
             $flags->shift();
-            $flags = $flags->intersect(['q', ...VerbosityFlag::toValues()])
+            $flags = $flags->intersect(['q', ...array_values(VerbosityFlag::toValues())])
                 ->map(static fn ($value) => ('q' === $value) ? 'quiet' : $value)
                 ->map(static fn ($value) => VerbosityFlag::from($value));
 
@@ -52,15 +55,20 @@ class KickflipKernel extends BaseKernel
     }
 
     /**
-     * {@inheritdoc}
-     * @param \Symfony\Component\Console\Input\ArgvInput $input
+     * @param  InputInterface  $input
+     * @param  OutputInterface|null  $output
+     * @return int
      */
     public function handle($input, $output = null)
     {
+        /**
+         * @var ArgvInput $input
+         */
+        $castInput = (string) $input;
         Logger::timing(__METHOD__);
         # Globally sets the verbosity so that the app itself, not just commands know the verbosity level
         $this->app->get('kickflipCli')
-            ->set('output.verbosity', Str::of((string) $input)->findVerbosity());
+            ->set('output.verbosity', Str::of($castInput)->findVerbosity());
         return parent::handle($input, $output);
     }
 }

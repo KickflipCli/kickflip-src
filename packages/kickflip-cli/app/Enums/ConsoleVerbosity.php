@@ -21,7 +21,7 @@ final class ConsoleVerbosity extends Enum
     }
 
     /**
-     * @return int[]
+     * @return array<string, int>
      */
     protected static function values(): array
     {

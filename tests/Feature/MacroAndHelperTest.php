@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
@@ -41,6 +42,9 @@ class MacroAndHelperTest extends TestCase {
      */
     public function testKickflipHelperConfigPaths(string $input, string $expected)
     {
+        /**
+         * @var string|Repository|null
+         */
         $path = KickflipHelper::config('paths.' . $input);
         self::assertIsString($path);
         self::assertEquals(dirname(__DIR__, 2) . $expected, $path);

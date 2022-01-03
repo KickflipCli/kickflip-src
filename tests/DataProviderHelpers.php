@@ -7,10 +7,9 @@ use SebastianBergmann\Exporter\Exporter;
 trait DataProviderHelpers
 {
     /**
-     * @psalm-template  T
-     * @param array $array<array-key, array<array-key T>>
+     * @param array $array<array-key, array>
      *
-     * @return array<string, array<array-key T>>
+     * @return array<string, array>
      */
     public function autoAddDataProviderKeys(array $array)
     {

@@ -82,24 +82,6 @@ class MarkdownHelpersTest extends TestCase {
         ]);
     }
 
-    public function testThrowsExceptionWithNonExtendedPageData()
-    {
-        $mockSiteData = SiteData::fromConfig([
-            'baseUrl' => 'http://example.com',
-            'production' => true,
-            'siteName' => 'Example Site',
-            'siteDescription' => 'This is an example site.',
-        ]);
-        $mockPageData = $this->getTestPageData(6);
-        $renderedPageMarkdown = app(BaseMarkdownRenderer::class)
-            ->convertToHtml(
-                file_get_contents($mockPageData->source->getFullPath()),
-            );
-        $markdownHelpers = new MarkdownHelpersMock();
-        $this->expectError();
-        $markdownHelpers->prepareExtendedRender($mockPageData, $renderedPageMarkdown);
-    }
-
     public function testCanMakeAView()
     {
         $mockSiteData = SiteData::fromConfig([

@@ -4,6 +4,7 @@ namespace Kickflip\SiteBuilder;
 
 use Composer\InstalledVersions;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ShikiPhp\Shiki;
@@ -17,6 +18,9 @@ use Symfony\Component\Process\Process;
 final class ShikiNpmFetcher
 {
     private string $projectRootDirectory;
+    /**
+     * @var Filesystem|FilesystemAdapter
+     */
     private Filesystem $projectRootDirectoryFilesystem;
     private bool $isNpmUsedByProject;
 
@@ -135,7 +139,6 @@ final class ShikiNpmFetcher
 
     /**
      * Completely remove node_modules and package.json.
-     * @return string
      * @throws \Exception
      */
     public function removeShikiAndNodeModules(): void

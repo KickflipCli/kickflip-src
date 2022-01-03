@@ -94,7 +94,11 @@ final class KickflipHelper
      */
     public static function namedPath(string $name): string
     {
-        return KickflipHelper::config('paths.' . $name);
+        /**
+         * @var string $path
+         */
+        $path = KickflipHelper::config('paths.' . $name);
+        return $path;
     }
 
     /**
