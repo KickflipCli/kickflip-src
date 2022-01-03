@@ -7,12 +7,12 @@ namespace Kickflip\Providers;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Illuminate\View\Factory as ViewFactory;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use Kickflip\View\Engine\MarkdownEngine;
@@ -20,7 +20,6 @@ use ReflectionClass;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
 use Spatie\LaravelMarkdown\MarkdownServiceProvider;
 
-use function app;
 use function collect;
 use function config;
 use function count;
@@ -50,12 +49,7 @@ class KickflipServiceProvider extends ServiceProvider
         if (file_exists($configPath = KickflipHelper::namedPath(CliStateDirPaths::ConfigFile))) {
             $config = include $configPath;
             $kickflipCliState->set('site', $config);
-            $baseUrl = $kickflipCliState->get('site.baseUrl');
-            if ($baseUrl !== '') {
-                $baseUrl = (string) Str::of($kickflipCliState->get('site.baseUrl'))->rtrim('/')->append('/');
-                $kickflipCliState->set('site.baseUrl', $baseUrl);
-            }
-            app('config')->set('app.url', $baseUrl);
+            SiteBuilder::updateAppUrl();
         }
 
         /**

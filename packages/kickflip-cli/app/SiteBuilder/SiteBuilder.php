@@ -45,7 +45,7 @@ final class SiteBuilder
         }
     }
 
-    public static function includeEnvironmentConfig(string $env)
+    public static function includeEnvironmentConfig(string $env): void
     {
         /**
          * @var Repository $kickflipCliState
@@ -55,6 +55,7 @@ final class SiteBuilder
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
+            self::updateAppUrl();
         }
 
         // Share site config into global View data...
@@ -64,7 +65,21 @@ final class SiteBuilder
         );
     }
 
-    public static function updateBuildPaths(string $env)
+    public static function updateAppUrl(): void
+    {
+        /**
+         * @var Repository $kickflipCliState
+         */
+        $kickflipCliState = KickflipHelper::config();
+        $baseUrl = $kickflipCliState->get('site.baseUrl');
+        if ($baseUrl !== '') {
+            $baseUrl = (string) Str::of($kickflipCliState->get('site.baseUrl'))->rtrim('/')->append('/');
+            $kickflipCliState->set('site.baseUrl', $baseUrl);
+        }
+        app('config')->set('app.url', $baseUrl);
+    }
+
+    public static function updateBuildPaths(string $env): void
     {
         /**
          * @var Repository $kickflipCliState
