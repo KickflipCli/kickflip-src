@@ -7,7 +7,6 @@ namespace Kickflip\RouterNavPlugin\Listeners;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Kickflip\Events\PageDataCreated;
-use Kickflip\Models\PageData;
 
 /**
  * An event handler that will listen for PageDataCreated events.
@@ -18,9 +17,6 @@ class BuildSiteNavRoutes
 {
     public function handle(PageDataCreated $event)
     {
-        /**
-         * @var PageData $pageData
-         */
         $pageData = $event->pageData;
         $url = $pageData->getUrl();
         // Register thin route for URL generating...

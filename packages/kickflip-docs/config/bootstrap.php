@@ -1,25 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
+// phpcs:disable
 /**
  * This file is loaded at the very end of the KickflipServiceProvider::boot() method.
- *
- * @var \Kickflip\Providers\KickflipServiceProvider $this
+ * @var KickflipServiceProvider $this
  */
+// phpcs:enable
 
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
-use KickflipDocs\Listeners\GenerateSitemap;
+use Kickflip\Models\PageData;
+use Kickflip\Providers\KickflipServiceProvider;
 use Kickflip\View\Compilers\ComponentTagCompiler;
+use KickflipDocs\Listeners\GenerateSitemap;
 
-/**
+/*
  * Here is a good place to adjust global defaults, like:
  */
-\Kickflip\Models\PageData::$defaultExtendsView = 'layouts.documentation';
-\Kickflip\Models\PageData::$defaultExtendsSection = 'docs_content';
+PageData::$defaultExtendsView = 'layouts.documentation';
+PageData::$defaultExtendsSection = 'docs_content';
 
 ComponentTagCompiler::$rootNamespace = 'KickflipDocs';
 
-/**
+/*
  * You can run custom code at different stages of the build process by
  * listening to the BuildStarted::class, CollectionsBuilt::class, and SiteBuilt::class events.
  *

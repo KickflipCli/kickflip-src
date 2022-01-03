@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Codeat3\BladeFileIcons\BladeFileIconsServiceProvider;
 use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;

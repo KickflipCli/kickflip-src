@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use KickflipDocs\View\Markdown\TableOfContentsExtension;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
