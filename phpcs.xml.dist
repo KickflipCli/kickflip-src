@@ -4,6 +4,7 @@
     <arg name="extensions" value="php"/>
     <arg name="colors"/>
     <arg value="sp"/>
+    <arg name="ignore" value="./tests/*.blade.php" />
 
     <file>./packages/kickflip-cli</file>
     <file>./packages/kickflip-router-nav-plugin</file>
