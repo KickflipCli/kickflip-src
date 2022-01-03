@@ -1,4 +1,4 @@
-name: Run simple tests
+name: "Run simple tests"
 
 on:
     push:
