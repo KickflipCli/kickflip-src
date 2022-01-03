@@ -173,7 +173,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/pds/skeleton" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/captainhook/captainhook" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/captainhook/plugin-composer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/devtools-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/devtools" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/coding-standard" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/conventional-commits" />

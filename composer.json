@@ -110,8 +110,12 @@
         "ramsey/devtools": {
             "command-prefix": "dev",
             "commands": {
-                "analyze:phpstan": {
-                    "script": "./vendor/bin/phpstan analyse --ansi --memory-limit 2G"
+                "test:coverage:ci": {
+                    "override": true,
+                    "script": [
+                        "Composer\\Config::disableProcessTimeout",
+                        "./vendor/bin/phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml"
+                    ]
                 }
             }
         }

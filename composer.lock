@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b79c694c71eb1389fcce3ce82e36aa06",
+    "content-hash": "6e5b861a203dce01ed76338d9cf0f9ae",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -149,16 +149,16 @@
         },
         {
             "name": "codeat3/blade-file-icons",
-            "version": "1.5.1",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-file-icons.git",
-                "reference": "71b4785c9adc87cbfd1b0d254d00ee56e031a860"
+                "reference": "6b65077e8b93ad45f2e9c482bf1e4edd7f0c4350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-file-icons/zipball/71b4785c9adc87cbfd1b0d254d00ee56e031a860",
-                "reference": "71b4785c9adc87cbfd1b0d254d00ee56e031a860",
+                "url": "https://api.github.com/repos/codeat3/blade-file-icons/zipball/6b65077e8b93ad45f2e9c482bf1e4edd7f0c4350",
+                "reference": "6b65077e8b93ad45f2e9c482bf1e4edd7f0c4350",
                 "shasum": ""
             },
             "require": {
@@ -208,9 +208,15 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-file-icons/issues",
-                "source": "https://github.com/codeat3/blade-file-icons/tree/1.5.1"
+                "source": "https://github.com/codeat3/blade-file-icons/tree/1.6.1"
             },
-            "time": "2021-08-27T07:42:23+00:00"
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/swapnilsarwe",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-01-03T10:52:18+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8300,23 +8306,23 @@
         },
         {
             "name": "madewithlove/license-checker",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/madewithlove/license-checker-php.git",
-                "reference": "e184e3120f06cc89e0255faaeae63446829c7be8"
+                "reference": "5856b78dc43fa66faf05ec1cd272679649cd20cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/madewithlove/license-checker-php/zipball/e184e3120f06cc89e0255faaeae63446829c7be8",
-                "reference": "e184e3120f06cc89e0255faaeae63446829c7be8",
+                "url": "https://api.github.com/repos/madewithlove/license-checker-php/zipball/5856b78dc43fa66faf05ec1cd272679649cd20cf",
+                "reference": "5856b78dc43fa66faf05ec1cd272679649cd20cf",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.0",
-                "symfony/console": "^4.0 || ^5.0",
-                "symfony/process": "^4.0 || ^5.0",
-                "symfony/yaml": "^4.0 || ^5.0"
+                "symfony/console": "^4.0 || ^5.0 || ^6.0",
+                "symfony/process": "^4.0 || ^5.0 || ^6.0",
+                "symfony/yaml": "^4.0 || ^5.0 || ^6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.18",
@@ -8346,9 +8352,9 @@
             "description": "CLI tool to verify allowed licenses for composer dependencies",
             "support": {
                 "issues": "https://github.com/madewithlove/license-checker-php/issues",
-                "source": "https://github.com/madewithlove/license-checker-php/tree/v1.1"
+                "source": "https://github.com/madewithlove/license-checker-php/tree/v1.2"
             },
-            "time": "2021-04-26T19:08:28+00:00"
+            "time": "2022-01-03T08:02:44+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -11494,16 +11500,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.0",
+            "version": "v0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "c9a85cd388afde68721d304bbb3257a068f5ab05"
+                "reference": "570292577277f06f590635381a7f761a6cf4f026"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/c9a85cd388afde68721d304bbb3257a068f5ab05",
-                "reference": "c9a85cd388afde68721d304bbb3257a068f5ab05",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/570292577277f06f590635381a7f761a6cf4f026",
+                "reference": "570292577277f06f590635381a7f761a6cf4f026",
                 "shasum": ""
             },
             "require": {
@@ -11563,9 +11569,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.0"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.1"
             },
-            "time": "2021-12-05T06:09:05+00:00"
+            "time": "2022-01-03T13:58:38+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -11770,12 +11776,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/conventional-commits.git",
-                "reference": "7a50acf3a59fdf0f24a6fce5078903d2ebf67baf"
+                "reference": "c7e7aa7db315cec7d49b32e0379e6db8be111aa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/conventional-commits/zipball/7a50acf3a59fdf0f24a6fce5078903d2ebf67baf",
-                "reference": "7a50acf3a59fdf0f24a6fce5078903d2ebf67baf",
+                "url": "https://api.github.com/repos/ramsey/conventional-commits/zipball/c7e7aa7db315cec7d49b32e0379e6db8be111aa8",
+                "reference": "c7e7aa7db315cec7d49b32e0379e6db8be111aa8",
                 "shasum": ""
             },
             "require": {
@@ -11857,7 +11863,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-03T04:53:00+00:00"
+            "time": "2022-01-03T20:54:57+00:00"
         },
         {
             "name": "ramsey/devtools",
@@ -13458,16 +13464,16 @@
         },
         {
             "name": "sebastianfeldmann/camino",
-            "version": "0.9.4",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianfeldmann/camino.git",
-                "reference": "3b611368e22e8565c3a6504613136402ed9e6f69"
+                "reference": "bf2e4c8b2a029e9eade43666132b61331e3e8184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianfeldmann/camino/zipball/3b611368e22e8565c3a6504613136402ed9e6f69",
-                "reference": "3b611368e22e8565c3a6504613136402ed9e6f69",
+                "url": "https://api.github.com/repos/sebastianfeldmann/camino/zipball/bf2e4c8b2a029e9eade43666132b61331e3e8184",
+                "reference": "bf2e4c8b2a029e9eade43666132b61331e3e8184",
                 "shasum": ""
             },
             "require": {
@@ -13502,7 +13508,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianfeldmann/camino/issues",
-                "source": "https://github.com/sebastianfeldmann/camino/tree/0.9.4"
+                "source": "https://github.com/sebastianfeldmann/camino/tree/0.9.5"
             },
             "funding": [
                 {
@@ -13510,7 +13516,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-08T09:25:24+00:00"
+            "time": "2022-01-03T13:15:10+00:00"
         },
         {
             "name": "sebastianfeldmann/cli",
