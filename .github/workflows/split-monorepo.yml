@@ -25,7 +25,7 @@ jobs:
                   check-regexp: "Unit tests - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
                   ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-            -   uses: actions/checkout@v2
+            -   uses: "actions/checkout@v2"
 
             # required for matrix of packages set
             -   uses: "shivammathur/setup-php@v2"
@@ -34,8 +34,9 @@ jobs:
                     coverage: "none"
                 if: steps.wait-for-build.outputs.conclusion == 'success'
 
-
             -   uses: "ramsey/composer-install@v2"
+                with:
+                  dependency-versions: "highest"
 
             # get package json list
             -
@@ -56,7 +57,7 @@ jobs:
                 package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
 
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: "actions/checkout@v2"
 
             # no tag
             -
