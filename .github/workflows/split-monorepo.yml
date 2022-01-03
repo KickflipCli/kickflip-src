@@ -28,14 +28,14 @@ jobs:
             -   uses: actions/checkout@v2
 
             # required for matrix of packages set
-            -   uses: shivammathur/setup-php@v2
+            -   uses: "shivammathur/setup-php@v2"
                 with:
-                    php-version: 8.0
-                    coverage: none
+                    php-version: "8.0"
+                    coverage: "none"
                 if: steps.wait-for-build.outputs.conclusion == 'success'
 
 
-            -   uses: "ramsey/composer-install@v1"
+            -   uses: "ramsey/composer-install@v2"
 
             # get package json list
             -
