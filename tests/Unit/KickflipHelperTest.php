@@ -29,11 +29,7 @@ class KickflipHelperTest extends TestCase
     {
         $basePath = KickflipHelper::basePath();
         self::assertIsString($basePath);
-        self::assertEquals(
-            dirname(__DIR__, 2) .
-            DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, ['packages', 'kickflip-docs']),
-            $basePath
-        );
+        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-docs', $basePath);
     }
 
     /**
@@ -52,9 +48,9 @@ class KickflipHelperTest extends TestCase
     public function basePathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            [null, DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, ['packages', 'kickflip-docs'])],
+            [null, '/packages/kickflip-docs'],
             ['./', ''],
-            ['./packages/kickflip', DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, ['packages', 'kickflip'])],
+            ['./packages/kickflip-docs', '/packages/kickflip-docs'],
         ]);
     }
 
@@ -62,11 +58,7 @@ class KickflipHelperTest extends TestCase
     {
         $rootPackagePath = KickflipHelper::rootPackagePath();
         self::assertIsString($rootPackagePath);
-        self::assertEquals(
-            dirname(__DIR__, 2) . DIRECTORY_SEPARATOR .
-            implode(DIRECTORY_SEPARATOR, ['packages', 'kickflip-cli']),
-            $rootPackagePath
-        );
+        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-cli', $rootPackagePath);
     }
 
     /**
