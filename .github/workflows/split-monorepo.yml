@@ -1,93 +1,77 @@
-name: Split Monorepo
+name: "Split Monorepo"
 
 on:
-    push:
-        branches:
-            - main
-        tags:
-            - '*'
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
 
 env:
-    # 1. for Github split
-    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
-    provide_packages_json:
-        # see json juggling: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-6
-        # see https://stackoverflow.com/a/62953566/1348344
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Wait for tests to succeed
-              uses: lewagon/wait-on-check-action@v1.1.1
-              with:
-                  ref: ${{ github.event.pull_request.head.sha || github.sha }}
-                  check-regexp: "Unit tests - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  wait-interval: 10
-
-            -   uses: "actions/checkout@v2"
-
-            # required for matrix of packages set
-            -   uses: "shivammathur/setup-php@v2"
-                with:
-                    php-version: "8.0"
-                    coverage: "none"
-                if: steps.wait-for-build.outputs.conclusion == 'success'
-
-            -   uses: "ramsey/composer-install@v2"
-                with:
-                  dependency-versions: "lowest"
-
-            # get package json list
-            -
-                id: output_data
-                run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package easy-coding-standard --exclude-package monorepo-builder --exclude-package config-transformer)"
-
-        # this step is needed, so the output gets to the next defined job
-        outputs:
-            matrix: ${{ steps.output_data.outputs.matrix }}
-
-    split_monorepo:
-        needs: provide_packages_json
-
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
-
-        steps:
-            -   uses: "actions/checkout@v2"
-
-            # no tag
-            -
-                if: "!startsWith(github.ref, 'refs/tags/')"
-                # Uses an action in the root directory
-                name: Monorepo Split of ${{ matrix.package }}
-                uses: symplify/github-action-monorepo-split@2.1
-                env:
-                    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-                with:
-                    package_directory: 'packages/${{ matrix.package }}'
-                    repository_organization: 'KickflipCli'
-                    repository_name: '${{ matrix.package }}'
-                    user_name: "MallardDuck"
-                    user_email: "self@danpock.me"
-                    branch: "main"
-
-            # with tag
-            -
-                if: "startsWith(github.ref, 'refs/tags/')"
-                # Uses an action in the root directory
-                name: Monorepo Tagged Split of ${{ matrix.package }}
-                uses: symplify/github-action-monorepo-split@2.1
-                env:
-                    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-                with:
-                    tag: ${GITHUB_REF#refs/tags/}
-                    package_directory: 'packages/${{ matrix.package }}'
-                    repository_organization: 'KickflipCli'
-                    repository_name: '${{ matrix.package }}'
-                    user_name: "MallardDuck"
-                    user_email: "self@danpock.me"
+  provide_packages_json:
+    outputs:
+      matrix: "${{ steps.output_data.outputs.matrix }}"
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: "Wait for tests to succeed"
+        uses: lewagon/wait-on-check-action@v1.1.1
+        with:
+          check-regexp: "Unit tests - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          wait-interval: 10
+      -
+        uses: actions/checkout@v2
+      -
+        if: "steps.wait-for-build.outputs.conclusion == 'success'"
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: none
+          php-version: "8.0"
+      -
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: lowest
+      -
+        id: output_data
+        run: "echo \"::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package easy-coding-standard --exclude-package monorepo-builder --exclude-package config-transformer)\""
+  split_monorepo:
+    needs: provide_packages_json
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v2
+      -
+        env:
+          GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        name: "Monorepo Split of ${{ matrix.package }}"
+        uses: symplify/github-action-monorepo-split@2.1
+        with:
+          branch: main
+          package_directory: "packages/${{ matrix.package }}"
+          repository_name: "${{ matrix.package }}"
+          repository_organization: KickflipCli
+          user_email: self@danpock.me
+          user_name: MallardDuck
+      -
+        env:
+          GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+        if: "startsWith(github.ref, 'refs/tags/')"
+        name: "Monorepo Tagged Split of ${{ matrix.package }}"
+        uses: symplify/github-action-monorepo-split@2.1
+        with:
+          package_directory: "packages/${{ matrix.package }}"
+          repository_name: "${{ matrix.package }}"
+          repository_organization: KickflipCli
+          tag: "${GITHUB_REF#refs/tags/}"
+          user_email: self@danpock.me
+          user_name: MallardDuck
+    strategy:
+      fail-fast: false
+      matrix:
+        package: "${{fromJson(needs.provide_packages_json.outputs.matrix)}}"
