@@ -12,8 +12,6 @@ use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
 use LaravelZero\Framework\Commands\Command;
 use MallardDuck\LaravelTraits\Console\CommandManagesSections;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 use function file_exists;
 use function filter_var;
@@ -88,9 +86,6 @@ class BuildCommand extends Command
 
     /**
      * @return array{0: string, 1:bool, 2: bool,}
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     private function initCommandVars(): array
     {
