@@ -184,7 +184,8 @@ class MacroAndHelperTest extends TestCase
      */
     public function testKickflipHelperBuildReplacedPath(string $buildPathInput, string $envInput, string $expected)
     {
-        $buildPath = (string) Str::of(KickflipHelper::buildPath($buildPathInput))->replaceEnv($envInput);
+        $agnosticPath = KickflipHelper::buildPath(static::agnosticPath($buildPathInput));
+        $buildPath = (string) Str::of($agnosticPath)->replaceEnv($envInput);
         self::assertIsString($buildPath);
         self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $buildPath);
     }
