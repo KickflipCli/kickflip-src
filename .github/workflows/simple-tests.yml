@@ -1,54 +1,54 @@
 name: "Run simple tests"
 
 on:
-    push:
-        branches:
-            - main
-        tags:
-            - '*'
-        paths-ignore:
-            - packages/**/*.php
-            - tests/**/*.php
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths-ignore:
+      - packages/**/*.php
+      - tests/**/*.php
 
 jobs:
-    mock-tests:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                php: [8.0]
-                laravel: [8.*]
-                dependency-version: [prefer-stable]
-                os: [ubuntu-latest]
+  mock-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        php: [8.0]
+        laravel: [8.*]
+        dependency-version: [prefer-stable]
+        os: [ubuntu-latest]
 
-        name: "Unit tests - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}"
+    name: "Faux tests - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}"
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Setup NodeJS
-              uses: actions/setup-node@v2
-              with:
-                  node-version: '14'
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+            node-version: '14'
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-                  coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: ${{ matrix.php }}
+            extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+            coverage: none
 
-            - name: Setup and build node deps
-              run: cd packages/kickflip-docs && npm install && npm run dev && cd
+      - name: Setup and build node deps
+        run: cd packages/kickflip-docs && npm install && npm run dev && cd
 
-            - name: Setup Problem Matches
-              run: |
-                  echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-                  echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Setup Problem Matches
+        run: |
+            echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+            echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Install dependencies
-              run: |
-                  composer update --${{ matrix.dependency-version }} --no-dev --prefer-dist --no-interaction
+      - name: Install dependencies
+        run: |
+            composer update --${{ matrix.dependency-version }} --no-dev --prefer-dist --no-interaction
 
-            - name: Build Docs Site
-              run: cd packages/kickflip-docs && ../kickflip-cli/bin/kickflip build
+      - name: Build Docs Site
+        run: cd packages/kickflip-docs && ../kickflip-cli/bin/kickflip build
