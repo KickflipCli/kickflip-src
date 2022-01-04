@@ -2,6 +2,7 @@ codecov:
   require_ci_to_pass: true
 
 coverage:
+  paths:
   precision: 2
   round: down
   range: "70...100"
@@ -31,3 +32,7 @@ comment:
 fixes:
   - "/home/circleci/::"
   - "/home/runner/work/kickflip-src/::"
+  - "/Users/danpock/GitProjects/::"
+
+ignore:
+  - "packages/**/node_modules/*"
