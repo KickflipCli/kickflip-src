@@ -26,7 +26,8 @@ class SetupSiteNav
          */
         $kickflipCliState = KickflipHelper::config();
         $navConfigPath = KickflipHelper::configPath('navigation.php');
-        app()->make(SourcesLocator::class); // This forces the singleton to be initialized, must be done after Pretty URL setting loaded
+        // This forces the singleton to be initialized, must be done after Pretty URL setting loaded
+        app()->make(SourcesLocator::class);
 
         // Load base nav config into state
         if (file_exists($navConfigPath)) {

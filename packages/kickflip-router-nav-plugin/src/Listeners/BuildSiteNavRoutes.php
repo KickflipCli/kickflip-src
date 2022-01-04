@@ -11,7 +11,8 @@ use Kickflip\Events\PageDataCreated;
 /**
  * An event handler that will listen for PageDataCreated events.
  *
- * This listener will determine the appropriate route name from a PageData's URL, then registers a faux GET route with laravels router.
+ * This listener will determine the appropriate route name from a PageData's URL,
+ * then registers a faux GET route with laravel's router.
  */
 class BuildSiteNavRoutes
 {

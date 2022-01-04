@@ -13,6 +13,9 @@
 
     <rule ref="Ramsey"/>
 
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>packages/kickflip-cli/app/Models/SiteData.php</exclude-pattern>
+    </rule>
     <rule ref="Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase">
         <exclude-pattern>packages/kickflip-cli/app/Enums/CliStateDirPaths.php</exclude-pattern>
     </rule>
