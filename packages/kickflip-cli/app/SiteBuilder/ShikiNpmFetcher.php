@@ -21,6 +21,8 @@ use function file_get_contents;
 use function json_decode;
 use function property_exists;
 
+use const DIRECTORY_SEPARATOR;
+
 /**
  * This class is responsible for fetching Shiki to ensure code highlighting always works
  */
@@ -73,8 +75,10 @@ final class ShikiNpmFetcher
 
     public function isShikiRequiredPackage(): bool
     {
+        $packageJsonPath = $this->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+
         return $this->projectRootDirectoryFilesystem->exists('package.json') &&
-            ($rootNpmPackages = json_decode(file_get_contents($this->getProjectRootDirectory() . '/package.json'))) &&
+            ($rootNpmPackages = json_decode(file_get_contents($packageJsonPath))) &&
             (
                 (
                     property_exists($rootNpmPackages, 'dependencies') &&
@@ -89,9 +93,11 @@ final class ShikiNpmFetcher
 
     public function isShikiRequiredPackageLock(): bool
     {
+        $packageJsonLockPath = $this->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
+
         return $this->projectRootDirectoryFilesystem->exists('package-lock.json') &&
             ($rootNpmPackageLock = json_decode(
-                file_get_contents($this->getProjectRootDirectory() . '/package-lock.json'),
+                file_get_contents($packageJsonLockPath),
             )) &&
             (
                 // V2 Package Lock
@@ -122,7 +128,7 @@ final class ShikiNpmFetcher
     public function isShikiDownloaded(): bool
     {
         return $this->projectRootDirectoryFilesystem->exists('node_modules') &&
-            $this->projectRootDirectoryFilesystem->exists('node_modules/shiki');
+            $this->projectRootDirectoryFilesystem->exists('node_modules' . DIRECTORY_SEPARATOR . 'shiki');
     }
 
     /**
