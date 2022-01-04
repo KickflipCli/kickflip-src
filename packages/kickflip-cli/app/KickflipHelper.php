@@ -15,6 +15,7 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use function app;
 use function dirname;
 use function getcwd;
+use function implode;
 use function is_null;
 use function ltrim;
 use function mix;
