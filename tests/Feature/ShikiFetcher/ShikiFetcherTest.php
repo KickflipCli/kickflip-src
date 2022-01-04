@@ -12,6 +12,8 @@ use KickflipMonoTests\TestCase;
 
 use function dirname;
 
+use const DIRECTORY_SEPARATOR;
+
 class ShikiFetcherTest extends TestCase
 {
     use DataProviderHelpers;
