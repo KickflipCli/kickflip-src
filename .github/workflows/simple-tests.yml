@@ -1,4 +1,4 @@
-name: "Run simple tests"
+name: "Run simple site build tests"
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     tags:
       - '*'
     paths-ignore:
-      - packages/**/*.php
+      - packages/**/*
       - tests/**/*.php
 
 jobs:

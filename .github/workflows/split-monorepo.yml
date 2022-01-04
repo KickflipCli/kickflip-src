@@ -2,6 +2,8 @@ name: "Split Monorepo"
 
 on:
   push:
+    paths:
+      - packages/**/*
     branches:
       - main
     tags:
