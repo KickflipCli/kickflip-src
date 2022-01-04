@@ -6,6 +6,7 @@ namespace KickflipMonoTests\Unit;
 
 use Kickflip\KickflipHelper;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use PHPUnit\Framework\TestCase;
@@ -16,6 +17,7 @@ class KickflipHelperTest extends TestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;
+    use PlatformAgnosticHelpers;
 
     /**
      * @before
@@ -29,7 +31,7 @@ class KickflipHelperTest extends TestCase
     {
         $basePath = KickflipHelper::basePath();
         self::assertIsString($basePath);
-        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-docs', $basePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath('/packages/kickflip-docs'), $basePath);
     }
 
     /**
@@ -39,7 +41,7 @@ class KickflipHelperTest extends TestCase
     {
         $basePath = KickflipHelper::basePath($input);
         self::assertIsString($basePath);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $basePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $basePath);
     }
 
     /**
@@ -58,7 +60,7 @@ class KickflipHelperTest extends TestCase
     {
         $rootPackagePath = KickflipHelper::rootPackagePath();
         self::assertIsString($rootPackagePath);
-        self::assertEquals(dirname(__DIR__, 2) . '/packages/kickflip-cli', $rootPackagePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath('/packages/kickflip-cli'), $rootPackagePath);
     }
 
     /**

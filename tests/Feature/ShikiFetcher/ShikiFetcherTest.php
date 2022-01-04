@@ -71,8 +71,8 @@ class ShikiFetcherTest extends TestCase
         $shikiFetcher->installShiki();
         $rootPath = $shikiFetcher->getProjectRootDirectory();
         unset($shikiFetcher);
-        if (File::isFile($rootPath . '/package.json')) {
-            File::delete($rootPath . '/package.json');
+        if (File::isFile($rootPath . DIRECTORY_SEPARATOR . 'package.json')) {
+            File::delete($rootPath . DIRECTORY_SEPARATOR . 'package.json');
         }
 
         // After file env matches the bug create a new fetcher

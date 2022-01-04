@@ -54,7 +54,7 @@ class MacroAndHelperTest extends TestCase
          */
         $path = KickflipHelper::config('paths.' . $input);
         self::assertIsString($path);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $path);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $path);
     }
 
     /**
@@ -89,7 +89,7 @@ class MacroAndHelperTest extends TestCase
     {
         $path = KickflipHelper::namedPath($input);
         self::assertIsString($path);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $path);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $path);
     }
 
     /**
@@ -120,7 +120,7 @@ class MacroAndHelperTest extends TestCase
     {
         $resourcePath = KickflipHelper::resourcePath($input);
         self::assertIsString($resourcePath);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $resourcePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $resourcePath);
     }
 
     /**
@@ -142,7 +142,7 @@ class MacroAndHelperTest extends TestCase
     {
         $sourcePath = KickflipHelper::sourcePath($input);
         self::assertIsString($sourcePath);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $sourcePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $sourcePath);
     }
 
     /**
@@ -164,7 +164,7 @@ class MacroAndHelperTest extends TestCase
     {
         $sourcePath = KickflipHelper::buildPath($input);
         self::assertIsString($sourcePath);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $sourcePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $sourcePath);
     }
 
     /**
@@ -186,7 +186,7 @@ class MacroAndHelperTest extends TestCase
     {
         $buildPath = (string) Str::of(KickflipHelper::buildPath($buildPathInput))->replaceEnv($envInput);
         self::assertIsString($buildPath);
-        self::assertEquals(dirname(__DIR__, 2) . $expected, $buildPath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $buildPath);
     }
 
     /**
