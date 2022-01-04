@@ -118,7 +118,7 @@ class MacroAndHelperTest extends TestCase
      */
     public function testKickflipHelperResourcePath(string $input, string $expected)
     {
-        $resourcePath = KickflipHelper::resourcePath($input);
+        $resourcePath = KickflipHelper::resourcePath(static::agnosticPath($input));
         self::assertIsString($resourcePath);
         self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $resourcePath);
     }
@@ -140,7 +140,7 @@ class MacroAndHelperTest extends TestCase
      */
     public function testKickflipHelperSourcePath(string $input, string $expected)
     {
-        $sourcePath = KickflipHelper::sourcePath($input);
+        $sourcePath = KickflipHelper::sourcePath(static::agnosticPath($input));
         self::assertIsString($sourcePath);
         self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $sourcePath);
     }
@@ -162,7 +162,7 @@ class MacroAndHelperTest extends TestCase
      */
     public function testKickflipHelperBuildPath(string $input, string $expected)
     {
-        $sourcePath = KickflipHelper::buildPath($input);
+        $sourcePath = KickflipHelper::buildPath(static::agnosticPath($input));
         self::assertIsString($sourcePath);
         self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath($expected), $sourcePath);
     }

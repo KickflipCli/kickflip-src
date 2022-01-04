@@ -194,7 +194,7 @@ final class KickflipHelper
 
     public static function leftTrimPath(string $path): string
     {
-        return ltrim($path, ' \\/');
+        return ltrim($path, ' .\\/');
     }
 
     public static function rightTrimPath(string $path): string
@@ -204,7 +204,7 @@ final class KickflipHelper
 
     public static function trimPath(string $path): string
     {
-        return rtrim(ltrim($path, ' \\/'), ' .\\/');
+        return rtrim(ltrim($path, ' .\\/'), ' .\\/');
     }
 
     public static function relativeUrl(string $url): string

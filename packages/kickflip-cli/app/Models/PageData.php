@@ -12,6 +12,8 @@ use Kickflip\KickflipHelper;
 use function array_key_exists;
 use function debug_backtrace;
 
+use const DIRECTORY_SEPARATOR;
+
 /**
  * @property string $sourceFile The path to the source file for this page.
  */
@@ -127,7 +129,7 @@ class PageData implements PageInterface
         }
         $url = $this->getUrl();
         if (KickflipHelper::config('prettyUrls', true) === true) {
-            $url .= '/index.html';
+            $url .= DIRECTORY_SEPARATOR . 'index.html';
         }
 
         return KickflipHelper::buildPath($url);
