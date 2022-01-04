@@ -58,6 +58,7 @@
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "ramsey/devtools": "^1.7",
+        "ramsey/devtools-lib": "dev-global-timeout-increase as 1.2",
         "symplify/monorepo-builder": "^10.0.3",
         "vimeo/psalm": "^4.14"
     },
@@ -84,16 +85,7 @@
             "configFile": "conventional-commits.json"
         },
         "ramsey/devtools": {
-            "command-prefix": "dev",
-            "commands": {
-                "test:coverage:ci": {
-                    "override": true,
-                    "script": [
-                        "Composer\\Config::disableProcessTimeout",
-                        "./vendor/bin/phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml"
-                    ]
-                }
-            }
+            "command-prefix": "dev"
         }
     },
     "autoload": {
@@ -118,6 +110,12 @@
             "KickflipMonoTests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mallardduck/devtools-lib"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
