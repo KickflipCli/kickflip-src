@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "ext-fileinfo": "*",
         "ext-filter": "*",
         "ext-json": "*",
         "codeat3/blade-file-icons": "^1.5",
