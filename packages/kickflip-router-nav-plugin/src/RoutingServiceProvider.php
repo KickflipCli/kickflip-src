@@ -21,8 +21,6 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register(): void
     {
