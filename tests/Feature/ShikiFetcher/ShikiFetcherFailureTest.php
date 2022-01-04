@@ -13,6 +13,8 @@ use function chmod;
 use function mkdir;
 use function touch;
 
+use const DIRECTORY_SEPARATOR;
+
 class ShikiFetcherFailureTest extends TestCase
 {
     public function setUp(): void

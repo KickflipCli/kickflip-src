@@ -37,26 +37,28 @@ class ShikiFetcherRemoveTest extends TestCase
     {
         $shikiFetcher = new ShikiNpmFetcher();
         if (filter_var(Str::of($this->getNodeVersion())->before('.')->after('v'), FILTER_VALIDATE_INT) >= 15) {
-            self::assertFileIsReadable($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json');
+            self::assertFileIsReadable($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package.json'));
         }
-        self::assertFileIsReadable($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json');
-        self::assertDirectoryIsWritable($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules');
+        self::assertFileIsReadable($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package-lock.json'));
+        self::assertDirectoryIsWritable($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/node_modules'));
 
         $shikiFetcher->removeShikiAndNodeModules();
 
-        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json');
-        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json');
-        self::assertDirectoryDoesNotExist($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules');
+        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package.json'));
+        // phpcs:ignore
+        self::assertFileDoesNotExist($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package-lock.json'));
+        // phpcs:ignore
+        self::assertDirectoryDoesNotExist($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/node_modules'));
     }
 
     public function testCanFindShikiInDepsOrDevDeps()
     {
         $shikiFetcher = new ShikiNpmFetcher();
-        $filePath = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+        $filePath = $shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package.json');
         if (!File::exists($filePath)) {
-            $filePath = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
+            $filePath = $shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package-lock.json');
         } else {
-            File::delete($shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json');
+            File::delete($shikiFetcher->getProjectRootDirectory() . self::agnosticPath('/package-lock.json'));
         }
         // Initial test
         self::assertFileIsReadable($filePath);
