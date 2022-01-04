@@ -133,7 +133,7 @@ jobs:
       - name: "Publish coverage report to Codecov"
         uses: "codecov/codecov-action@v2.1.0"
         with:
-          directory: ./build
+          directory: ./build/coverage
 
   unit-tests:
     name: "Unit tests - P${{ matrix.php-version }} - L${{ matrix.laravel-version }} - ${{ matrix.dependencies }} - ${{ matrix.operating-system }}"
