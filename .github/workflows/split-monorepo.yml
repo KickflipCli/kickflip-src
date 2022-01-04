@@ -19,11 +19,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: "Wait for static analysis to succeed"
+        uses: lewagon/wait-on-check-action@v1.1.1
+        with:
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
+          check-name: "Static analysis"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          wait-interval: 10
+      -
+        name: "Wait for Code coverage to succeed"
+        uses: lewagon/wait-on-check-action@v1.1.1
+        with:
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
+          check-name: "Code coverage"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          wait-interval: 10
+      -
         name: "Wait for tests to succeed"
         uses: lewagon/wait-on-check-action@v1.1.1
         with:
-          check-regexp: "Unit tests - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
           ref: "${{ github.event.pull_request.head.sha || github.sha }}"
+          check-regexp: "Unit tests - P[x\\.0-9]+ - L[x\\*\\.0-9]+ - .* - .*"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           wait-interval: 10
       -
