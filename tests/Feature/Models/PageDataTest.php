@@ -50,7 +50,7 @@ class PageDataTest extends TestCase
         KickflipHelper::config()->set('prettyUrls', false);
         self::assertIsString($pageData->getOutputPath());
         self::assertEquals(
-            dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic.html',
+            dirname(__FILE__, 4) . self::agnosticPath('/packages/kickflip/build_{env}/basic.html'),
             $pageData->getOutputPath(),
         );
 
@@ -58,7 +58,7 @@ class PageDataTest extends TestCase
         KickflipHelper::config()->set('prettyUrls', true);
         self::assertIsString($pageData->getOutputPath());
         self::assertEquals(
-            dirname(__FILE__, 4) . '/packages/kickflip/build_{env}/basic/index.html',
+            dirname(__FILE__, 4) . self::agnosticPath('/packages/kickflip/build_{env}/basic/index.html'),
             $pageData->getOutputPath(),
         );
 
@@ -92,7 +92,7 @@ class PageDataTest extends TestCase
         $this->expectExceptionMessage(
             'Undefined property via __get(): nana in ' .
             dirname(__FILE__, 4) .
-            '/tests/Feature/Models/PageDataTest.php',
+            self::agnosticPath('/tests/Feature/Models/PageDataTest.php'),
         );
         /**
          * @phpstan-ignore-next-line

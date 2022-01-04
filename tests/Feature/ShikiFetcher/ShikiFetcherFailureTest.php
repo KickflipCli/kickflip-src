@@ -31,9 +31,9 @@ class ShikiFetcherFailureTest extends TestCase
     {
         // Create shiki fetcher
         $shikiFetcher = new ShikiNpmFetcher();
-        $nodeModules = $shikiFetcher->getProjectRootDirectory() . '/node_modules';
-        $packageJson = $shikiFetcher->getProjectRootDirectory() . '/package.json';
-        $packageLock = $shikiFetcher->getProjectRootDirectory() . '/package-lock.json';
+        $nodeModules = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules';
+        $packageJson = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+        $packageLock = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
         // Setup directory that will cause failure...
         mkdir($nodeModules, 0500);
         touch($packageJson);
