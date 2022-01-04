@@ -8,12 +8,12 @@ use function count;
 
 class NavItem implements NavItemInterface
 {
+    /**
+     * @param array<array-key, NavItem>|null $children
+     */
     public function __construct(
         public string $title,
         public string $url = '',
-        /**
-         * @var array<array-key, NavItem>|null
-         */
         public ?array $children = null,
     ) {
     }
