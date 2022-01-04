@@ -17,3 +17,4 @@ insert_final_newline = false
 
 [*.{yml,yaml,neon}]
 indent_size = 2
+insert_final_newline = false

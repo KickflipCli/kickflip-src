@@ -27,3 +27,7 @@ comment:
   layout: "reach,diff,flags,tree"
   behavior: default
   require_changes: false
+
+fixes:
+  - "/home/circleci/::"
+  - "/home/runner/work/kickflip-src/::"
