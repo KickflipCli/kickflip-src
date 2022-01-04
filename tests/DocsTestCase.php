@@ -11,6 +11,8 @@ use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 
 abstract class DocsTestCase extends BaseTestCase
 {
+    use PlatformAgnosticHelpers;
+
     /**
      * Creates the application.
      *

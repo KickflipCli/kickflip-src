@@ -22,6 +22,8 @@ use function func_get_args;
 
 abstract class TestCase extends BaseTestCase
 {
+    use PlatformAgnosticHelpers;
+
     /**
      * Creates the application.
      *
