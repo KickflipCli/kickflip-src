@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
 use Kickflip\Models\PageData;
+use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
@@ -14,6 +15,10 @@ use KickflipMonoTests\TestCase;
 use function app;
 use function view;
 
+/**
+ * The goal of this test is to add more layers to SiteBuilder prod tests.
+ * Secondarily, the test should trigger the Router Plugins URL code.
+ */
 class SiteBuilderProdTest extends TestCase
 {
     use DataProviderHelpers;
@@ -23,13 +28,19 @@ class SiteBuilderProdTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        SiteBuilder::includeEnvironmentConfig(static::ENV);
-        SiteBuilder::updateBuildPaths(static::ENV);
-        SiteBuilder::updateAppUrl();
+        $this->prepareProdEnv();
         $shikiNpmFetcher = app(ShikiNpmFetcher::class);
         if (!$shikiNpmFetcher->isShikiDownloaded()) {
             $shikiNpmFetcher->installShiki();
         }
+    }
+
+    protected function prepareProdEnv()
+    {
+        $this->app->register(KickflipRouterNavServiceProvider::class);
+        SiteBuilder::includeEnvironmentConfig(static::ENV);
+        SiteBuilder::updateBuildPaths(static::ENV);
+        SiteBuilder::updateAppUrl();
     }
 
     public function tearDown(): void
@@ -59,6 +70,8 @@ class SiteBuilderProdTest extends TestCase
     public function renderListDataProvider(): array
     {
         $this->refreshApplication();
+        $this->prepareProdEnv();
+        $this->app->register(KickflipRouterNavServiceProvider::class);
         /**
          * @var SourcesLocator $sourceLocator
          */

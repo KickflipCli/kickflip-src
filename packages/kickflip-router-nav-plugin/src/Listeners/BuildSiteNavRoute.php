@@ -23,7 +23,6 @@ class BuildSiteNavRoute
 {
     public function handle(PageDataCreated $event)
     {
-        $baseDirectory = parse_url(KickflipHelper::config('site.baseUrl'), PHP_URL_PATH);
         $pageData = $event->pageData;
         $url = $pageData->getUrl();
 
@@ -35,6 +34,7 @@ class BuildSiteNavRoute
         }
 
         // Register a thin route based on the file name...
+        $baseDirectory = parse_url(KickflipHelper::config('site.baseUrl', ''), PHP_URL_PATH);
         if ($baseDirectory !== null && $baseDirectory !== '/') {
             Route::name($routeName)->prefix($baseDirectory)->get($pageData->getUrl(), static fn () => '');
         } else {

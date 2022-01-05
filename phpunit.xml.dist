@@ -29,7 +29,7 @@
             <directory suffix=".php">packages/kickflip-router-nav-plugin/src</directory>
         </include>
         <report>
-            <html outputDirectory="build/coverage"/>
+            <html outputDirectory="build/coverage/coverage-html"/>
             <text outputFile="build/coverage.txt"/>
         </report>
     </coverage>
