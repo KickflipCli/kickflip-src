@@ -136,6 +136,15 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./build/coverage
 
+      - name: "Publish coverage report to CodeClimate"
+        uses: "paambaati/codeclimate-action@v3"
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/build/coverage/clover.xml:clover
+            ${{github.workspace}}/build/coverage/cobertura.xml:cobertura
+
   unit-tests:
     name: "Unit tests - P${{ matrix.php-version }} - L${{ matrix.laravel-version }} - ${{ matrix.dependencies }} - ${{ matrix.operating-system }}"
 
