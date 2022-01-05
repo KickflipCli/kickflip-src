@@ -8,10 +8,12 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Kickflip\KickflipHelper;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
+use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class DocsTestCase extends BaseTestCase
 {
     use PlatformAgnosticHelpers;
+    use MatchesSnapshots;
 
     /**
      * Creates the application.

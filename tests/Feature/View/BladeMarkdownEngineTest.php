@@ -37,6 +37,7 @@ class BladeMarkdownEngineTest extends TestCase
 
         $bladeMarkdownEngine = app(BladeMarkdownEngine::class);
         self::assertIsString($bladeMarkdownEngine->get($mockPageData->source->getFullPath(), $data));
+        self::assertMatchesHtmlSnapshot($bladeMarkdownEngine->get($mockPageData->source->getFullPath(), $data));
     }
 
     public function testCanMakeNonExtendedView()
@@ -56,7 +57,8 @@ class BladeMarkdownEngineTest extends TestCase
             'page' => $mockPageData,
         ];
 
-        $markdownEngine = app(BladeMarkdownEngine::class);
-        self::assertIsString($markdownEngine->get($mockPageData->source->getFullPath(), $data));
+        $bladeMarkdownEngine = app(BladeMarkdownEngine::class);
+        self::assertIsString($bladeMarkdownEngine->get($mockPageData->source->getFullPath(), $data));
+        self::assertMatchesHtmlSnapshot($bladeMarkdownEngine->get($mockPageData->source->getFullPath(), $data));
     }
 }

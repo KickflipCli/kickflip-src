@@ -12,6 +12,7 @@ use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use LaravelZero\Framework\Application;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
+use Spatie\Snapshots\MatchesSnapshots;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -25,6 +26,7 @@ use const DIRECTORY_SEPARATOR;
 abstract class TestCase extends BaseTestCase
 {
     use PlatformAgnosticHelpers;
+    use MatchesSnapshots;
 
     /**
      * Creates the application.
