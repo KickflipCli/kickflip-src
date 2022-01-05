@@ -7,7 +7,7 @@ namespace Kickflip\RouterNavPlugin;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Kickflip\Events\PageDataCreated;
 use Kickflip\Events\SiteBuildStarted;
-use Kickflip\RouterNavPlugin\Listeners\BuildSiteNavRoutes;
+use Kickflip\RouterNavPlugin\Listeners\BuildSiteNavRoute;
 use Kickflip\RouterNavPlugin\Listeners\SetupSiteNav;
 
 class RoutingEventsServiceProvider extends ServiceProvider
@@ -19,7 +19,7 @@ class RoutingEventsServiceProvider extends ServiceProvider
      */
     protected $listen = [
         PageDataCreated::class => [
-            BuildSiteNavRoutes::class,
+            BuildSiteNavRoute::class,
         ],
         SiteBuildStarted::class => [
             SetupSiteNav::class,
