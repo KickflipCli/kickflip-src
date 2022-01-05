@@ -15,7 +15,6 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use function app;
 use function dirname;
 use function getcwd;
-use function implode;
 use function is_null;
 use function ltrim;
 use function mix;
@@ -122,10 +121,7 @@ final class KickflipHelper
      */
     public static function mix(string $path): HtmlString | string
     {
-        return mix($path, implode(DIRECTORY_SEPARATOR, [
-            'assets',
-            'build',
-        ]));
+        return mix($path, 'assets/build');
     }
 
     /**
