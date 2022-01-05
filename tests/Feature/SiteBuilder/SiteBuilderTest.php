@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
-use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
@@ -10,9 +11,13 @@ use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\TestCase;
 
+use function app;
+use function view;
+
 class SiteBuilderTest extends TestCase
 {
     use DataProviderHelpers;
+
     protected const ENV = 'local';
 
     public function setUp(): void
@@ -47,10 +52,17 @@ class SiteBuilderTest extends TestCase
         self::assertMatchesHtmlSnapshot($view->render());
     }
 
-    public function renderListDataProvider()
+    /**
+     * @return array<string, array{PageData}>
+     */
+    public function renderListDataProvider(): array
     {
         $this->refreshApplication();
+        /**
+         * @var SourcesLocator $sourceLocator
+         */
         $sourceLocator = app(SourcesLocator::class);
+
         return self::autoAddDataProviderKeys($sourceLocator->getRenderPageList());
     }
 }

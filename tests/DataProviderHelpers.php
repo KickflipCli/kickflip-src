@@ -13,6 +13,7 @@ use function array_values;
 use function is_array;
 use function is_int;
 use function sprintf;
+use function str_replace;
 
 trait DataProviderHelpers
 {
