@@ -35,7 +35,7 @@ class BuildSiteNavRoute
         }
 
         // Register a thin route based on the file name...
-        if ($baseDirectory !== null) {
+        if ($baseDirectory !== null && $baseDirectory !== '/') {
             Route::name($routeName)->prefix($baseDirectory)->get($pageData->getUrl(), static fn () => '');
         } else {
             Route::name($routeName)->get($pageData->getUrl(), static fn () => '');
