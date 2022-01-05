@@ -56,8 +56,7 @@ trait DataProviderHelpers
     public static function stripMixIdsFromHtml(string $htmlString): string
     {
         $resultLines = explode(PHP_EOL, $htmlString);
-        $resultLines = preg_replace('/href="(.*)\?id=(.*)"/', 'href="$1"', $resultLines);
-        $resultLines = preg_replace('/src="(.*)\?id=(.*)"/', 'href="$1"', $resultLines);
+        $resultLines = preg_replace('/(href|src)="(.*)\?id=(.*)"/', '$1="$2"', $resultLines);
 
         return implode(PHP_EOL, $resultLines);
     }
