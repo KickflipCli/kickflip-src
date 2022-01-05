@@ -6,12 +6,15 @@ namespace KickflipMonoTests\Feature\View;
 
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\MarkdownEngine;
+use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\TestCase;
 
 use function app;
 
 class MarkdownEngineTest extends TestCase
 {
+    use DataProviderHelpers;
+
     public function testCanInstantiateMarkdownEngine()
     {
         $markdownEngine = app(MarkdownEngine::class);
@@ -37,7 +40,9 @@ class MarkdownEngineTest extends TestCase
 
         $markdownEngine = app(MarkdownEngine::class);
         self::assertIsString($markdownEngine->get($mockPageData->source->getFullPath(), $data));
-        self::assertMatchesHtmlSnapshot($markdownEngine->get($mockPageData->source->getFullPath(), $data));
+        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml(
+            $markdownEngine->get($mockPageData->source->getFullPath(), $data),
+        ));
     }
 
     public function testCanMakeNonExtendedView()
