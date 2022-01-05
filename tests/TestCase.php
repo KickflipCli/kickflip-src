@@ -43,13 +43,13 @@ abstract class TestCase extends BaseTestCase
          * @var Application $app
          */
         $app = require __DIR__ . '/../packages/kickflip-cli/bootstrap/app.php';
-        KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip'));
+        KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . self::agnosticPath('/../packages/kickflip')));
         $app->make(Kernel::class)->bootstrap();
         $this->callAfterResolving($app, 'view', function ($view) {
             /**
              * @var Factory $view
              */
-            $view->addLocation(__DIR__ . '/views');
+            $view->addLocation(__DIR__ . self::agnosticPath('/views'));
         });
 
         return $app;
@@ -67,7 +67,7 @@ abstract class TestCase extends BaseTestCase
 
         $process = new Process(
             command: $command,
-            cwd: __DIR__ . '/../packages/kickflip',
+            cwd: __DIR__ . self::agnosticPath('/../packages/kickflip'),
             timeout: null,
         );
 
@@ -83,10 +83,11 @@ abstract class TestCase extends BaseTestCase
     public function getTestPageData(int $index = 0): PageData
     {
         // Fetch a single Symfony SplFileInfo object
-        $splFileInfo = File::files(__DIR__ . '/sources/')[$index];
+        $splFileInfo = File::files(__DIR__ . DIRECTORY_SEPARATOR . 'sources')[$index];
         // Create a SourcePageMetaData object
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
-        // Parse out the frontmatter page meta data
+        $fileContent = file_get_contents($sourcePageMetaData->getFullPath());
+        // Parse out the front matter page metadata
         $frontMatterData = KickflipHelper::getFrontMatterParser()
                 ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
                 ->getFrontMatter() ?? [];

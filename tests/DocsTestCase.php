@@ -24,7 +24,7 @@ abstract class DocsTestCase extends BaseTestCase
          * @var \LaravelZero\Framework\Application $app
          */
         $app = require __DIR__ . '/../packages/kickflip-cli/bootstrap/app.php';
-        KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . '/../packages/kickflip-docs'));
+        KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . self::agnosticPath('/../packages/kickflip-docs')));
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
