@@ -122,7 +122,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-info" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/serializer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-access" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/phpunit-snapshot-assertions" />
@@ -210,6 +209,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ergebnis/json-printer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jolicode/jolinotif" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/inflector" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

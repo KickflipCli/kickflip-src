@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d91d2008463bba3d5b08814c1846609",
+    "content-hash": "b428af4a1a179d50bba45b29aed186ba",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -11032,16 +11032,16 @@
         },
         {
             "name": "ramsey/devtools-lib",
-            "version": "dev-global-timeout-increase",
+            "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mallardduck/devtools-lib.git",
-                "reference": "032983fc85bc145137e2252a5374a88874c2558e"
+                "url": "https://github.com/ramsey/devtools-lib.git",
+                "reference": "cbbcdd9c1a02c55162557131269e891ad593308d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/devtools-lib/zipball/032983fc85bc145137e2252a5374a88874c2558e",
-                "reference": "032983fc85bc145137e2252a5374a88874c2558e",
+                "url": "https://api.github.com/repos/ramsey/devtools-lib/zipball/cbbcdd9c1a02c55162557131269e891ad593308d",
+                "reference": "cbbcdd9c1a02c55162557131269e891ad593308d",
                 "shasum": ""
             },
             "require": {
@@ -11074,6 +11074,7 @@
             "require-dev": {
                 "composer/composer": "^1.10.22 || ^2.0.13"
             },
+            "default-branch": true,
             "bin": [
                 "bin/devtools"
             ],
@@ -11094,16 +11095,7 @@
                     "Ramsey\\Dev\\Tools\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Ramsey\\Test\\Dev\\Tools\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "bin/devtools test:all"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -11120,15 +11112,16 @@
                 "tools"
             ],
             "support": {
-                "source": "https://github.com/mallardduck/devtools-lib/tree/global-timeout-increase"
+                "issues": "https://github.com/ramsey/devtools-lib/issues",
+                "source": "https://github.com/ramsey/devtools-lib/tree/main"
             },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/ramsey"
+                    "url": "https://github.com/ramsey",
+                    "type": "github"
                 }
             ],
-            "time": "2022-01-04T04:17:45+00:00"
+            "time": "2022-01-05T18:25:46+00:00"
         },
         {
             "name": "roave/security-advisories",
@@ -11136,12 +11129,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "31d9d9e2977ae7d796d82271be09e46f4bdf41b3"
+                "reference": "926f263c0e50a30797761bbec10ea2dc665d63ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/31d9d9e2977ae7d796d82271be09e46f4bdf41b3",
-                "reference": "31d9d9e2977ae7d796d82271be09e46f4bdf41b3",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/926f263c0e50a30797761bbec10ea2dc665d63ba",
+                "reference": "926f263c0e50a30797761bbec10ea2dc665d63ba",
                 "shasum": ""
             },
             "conflict": {
@@ -11153,6 +11146,7 @@
                 "amphp/artax": "<1.0.6|>=2,<2.0.6",
                 "amphp/http": "<1.0.1",
                 "amphp/http-client": ">=4,<4.4",
+                "anchorcms/anchor-cms": "<=0.12.7",
                 "api-platform/core": ">=2.2,<2.2.10|>=2.3,<2.3.6",
                 "area17/twill": "<1.2.5|>=2,<2.5.3",
                 "asymmetricrypt/asymmetricrypt": ">=0,<9.9.99",
@@ -11178,6 +11172,7 @@
                 "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
                 "codeception/codeception": "<3.1.3|>=4,<4.1.22",
                 "codeigniter/framework": "<=3.0.6",
+                "codeigniter4/framework": "<4.1.6",
                 "codiad/codiad": "<=2.8.4",
                 "composer/composer": "<1.10.23|>=2-alpha.1,<2.1.9",
                 "concrete5/concrete5": "<8.5.5",
@@ -11561,7 +11556,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-22T21:13:38+00:00"
+            "time": "2022-01-05T15:16:14+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -13065,27 +13060,26 @@
         },
         {
             "name": "spatie/phpunit-snapshot-assertions",
-            "version": "4.2.9",
+            "version": "4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/phpunit-snapshot-assertions.git",
-                "reference": "a259df1bb5ccf272bacafcee7fdb0eb703d9b1cc"
+                "reference": "b8a978cebdeaaaedd90731ac2d8e71f58b170b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/a259df1bb5ccf272bacafcee7fdb0eb703d9b1cc",
-                "reference": "a259df1bb5ccf272bacafcee7fdb0eb703d9b1cc",
+                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/b8a978cebdeaaaedd90731ac2d8e71f58b170b2e",
+                "reference": "b8a978cebdeaaaedd90731ac2d8e71f58b170b2e",
                 "shasum": ""
             },
             "require": {
-                "composer-runtime-api": "^2.0",
                 "ext-dom": "*",
                 "ext-json": "*",
-                "php": "^7.3|^7.4|^8.0",
+                "php": "^7.4|^8.0",
                 "phpunit/phpunit": "^8.3|^9.0",
-                "symfony/property-access": "^4.0|^5.0|^6.0",
-                "symfony/serializer": "^4.0|^5.0|^6.0",
-                "symfony/yaml": "^4.0|^5.0|^6.0"
+                "symfony/property-access": "^4.0|^5.0",
+                "symfony/serializer": "^4.0|^5.0",
+                "symfony/yaml": "^4.0|^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.1.0"
@@ -13120,7 +13114,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/phpunit-snapshot-assertions/issues",
-                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.9"
+                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.3"
             },
             "funding": [
                 {
@@ -13128,7 +13122,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-12-03T19:21:19+00:00"
+            "time": "2020-11-03T10:17:39+00:00"
         },
         {
             "name": "spatie/ray",
@@ -13329,6 +13323,67 @@
             "time": "2020-05-30T20:35:19+00:00"
         },
         {
+            "name": "symfony/inflector",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/inflector.git",
+                "reference": "8b7161c60d9481f8564df09987fe51e7edfadfce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/inflector/zipball/8b7161c60d9481f8564df09987fe51e7edfadfce",
+                "reference": "8b7161c60d9481f8564df09987fe51e7edfadfce",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Inflector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Inflector Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "inflection",
+                "pluralize",
+                "singularize",
+                "string",
+                "symfony",
+                "words"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/inflector/tree/3.4"
+            },
+            "abandoned": "use `EnglishInflector` from the String component instead",
+            "time": "2017-08-03T09:34:20+00:00"
+        },
+        {
             "name": "symfony/options-resolver",
             "version": "v3.4.20",
             "source": {
@@ -13387,29 +13442,34 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v6.0.2",
+            "version": "v4.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "3f237ffd38a54592181ac62f63c6cabbca00051f"
+                "reference": "e6d51a8845b862835f5fcaf3c1030a50dc7cc70f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/3f237ffd38a54592181ac62f63c6cabbca00051f",
-                "reference": "3f237ffd38a54592181ac62f63c6cabbca00051f",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/e6d51a8845b862835f5fcaf3c1030a50dc7cc70f",
+                "reference": "e6d51a8845b862835f5fcaf3c1030a50dc7cc70f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2",
-                "symfony/property-info": "^5.4|^6.0"
+                "php": ">=7.1.3",
+                "symfony/inflector": "^3.4|^4.0|^5.0"
             },
             "require-dev": {
-                "symfony/cache": "^5.4|^6.0"
+                "symfony/cache": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "psr/cache-implementation": "To cache access methods."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\PropertyAccess\\": ""
@@ -13432,7 +13492,7 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Provides functions to read and write from/to an object or array using a simple string notation",
+            "description": "Symfony PropertyAccess Component",
             "homepage": "https://symfony.com",
             "keywords": [
                 "access",
@@ -13446,7 +13506,7 @@
                 "reflection"
             ],
             "support": {
-                "source": "https://github.com/symfony/property-access/tree/v6.0.2"
+                "source": "https://github.com/symfony/property-access/tree/4.4"
             },
             "funding": [
                 {
@@ -13462,156 +13522,56 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-11T16:36:28+00:00"
-        },
-        {
-            "name": "symfony/property-info",
-            "version": "v5.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/property-info.git",
-                "reference": "a32f813896ffb3b4710fca5af5b05bef600cf4f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/a32f813896ffb3b4710fca5af5b05bef600cf4f0",
-                "reference": "a32f813896ffb3b4710fca5af5b05bef600cf4f0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "symfony/deprecation-contracts": "^2.1|^3",
-                "symfony/polyfill-php80": "^1.16",
-                "symfony/string": "^5.1|^6.0"
-            },
-            "conflict": {
-                "phpdocumentor/reflection-docblock": "<3.2.2",
-                "phpdocumentor/type-resolver": "<1.4.0",
-                "symfony/dependency-injection": "<4.4"
-            },
-            "require-dev": {
-                "doctrine/annotations": "^1.10.4",
-                "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
-                "phpstan/phpdoc-parser": "^1.0",
-                "symfony/cache": "^4.4|^5.0|^6.0",
-                "symfony/dependency-injection": "^4.4|^5.0|^6.0",
-                "symfony/serializer": "^4.4|^5.0|^6.0"
-            },
-            "suggest": {
-                "phpdocumentor/reflection-docblock": "To use the PHPDoc",
-                "psr/cache-implementation": "To cache results",
-                "symfony/doctrine-bridge": "To use Doctrine metadata",
-                "symfony/serializer": "To use Serializer metadata"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\PropertyInfo\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kévin Dunglas",
-                    "email": "dunglas@gmail.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Extracts information about PHP class' properties using metadata of popular sources",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "doctrine",
-                "phpdoc",
-                "property",
-                "symfony",
-                "type",
-                "validator"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/property-info/tree/v5.4.2"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2021-12-26T13:30:54+00:00"
+            "time": "2020-05-30T18:50:54+00:00"
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.4.2",
+            "version": "v4.4.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "2dba9731463e0bb4fa9568ce67887ed6fa08e9bc"
+                "reference": "1b2ae02cb1b923987947e013688c51954a80b751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/2dba9731463e0bb4fa9568ce67887ed6fa08e9bc",
-                "reference": "2dba9731463e0bb4fa9568ce67887ed6fa08e9bc",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/1b2ae02cb1b923987947e013688c51954a80b751",
+                "reference": "1b2ae02cb1b923987947e013688c51954a80b751",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
-                "symfony/deprecation-contracts": "^2.1|^3",
+                "php": ">=7.1.3",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-php80": "^1.16"
             },
             "conflict": {
-                "doctrine/annotations": "<1.12",
-                "phpdocumentor/reflection-docblock": "<3.2.2",
-                "phpdocumentor/type-resolver": "<1.4.0",
-                "symfony/dependency-injection": "<4.4",
-                "symfony/property-access": "<5.4",
-                "symfony/property-info": "<5.3",
-                "symfony/uid": "<5.3",
-                "symfony/yaml": "<4.4"
+                "phpdocumentor/reflection-docblock": "<3.0|>=3.2.0,<3.2.2",
+                "phpdocumentor/type-resolver": "<0.3.0|1.3.*",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/property-access": "<3.4",
+                "symfony/property-info": "<3.4",
+                "symfony/yaml": "<3.4"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.12",
+                "doctrine/annotations": "^1.10.4",
                 "phpdocumentor/reflection-docblock": "^3.2|^4.0|^5.0",
-                "symfony/cache": "^4.4|^5.0|^6.0",
-                "symfony/config": "^4.4|^5.0|^6.0",
-                "symfony/dependency-injection": "^4.4|^5.0|^6.0",
-                "symfony/error-handler": "^4.4|^5.0|^6.0",
-                "symfony/filesystem": "^4.4|^5.0|^6.0",
-                "symfony/form": "^4.4|^5.0|^6.0",
-                "symfony/http-foundation": "^4.4|^5.0|^6.0",
-                "symfony/http-kernel": "^4.4|^5.0|^6.0",
-                "symfony/mime": "^4.4|^5.0|^6.0",
-                "symfony/property-access": "^5.4|^6.0",
-                "symfony/property-info": "^5.3|^6.0",
-                "symfony/uid": "^5.3|^6.0",
-                "symfony/validator": "^4.4|^5.0|^6.0",
-                "symfony/var-dumper": "^4.4|^5.0|^6.0",
-                "symfony/var-exporter": "^4.4|^5.0|^6.0",
-                "symfony/yaml": "^4.4|^5.0|^6.0"
+                "symfony/cache": "^3.4|^4.0|^5.0",
+                "symfony/config": "^3.4|^4.0|^5.0",
+                "symfony/dependency-injection": "^3.4|^4.0|^5.0",
+                "symfony/error-handler": "^4.4|^5.0",
+                "symfony/http-foundation": "^3.4|^4.0|^5.0",
+                "symfony/mime": "^4.4|^5.0",
+                "symfony/property-access": "^3.4.41|^4.4.9|^5.0.9",
+                "symfony/property-info": "^3.4.13|~4.0|^5.0",
+                "symfony/validator": "^3.4|^4.0|^5.0",
+                "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
+                "doctrine/annotations": "For using the annotation mapping.",
                 "psr/cache-implementation": "For using the metadata cache.",
                 "symfony/config": "For using the XML mapping loader.",
-                "symfony/mime": "For using a MIME type guesser within the DataUriNormalizer.",
+                "symfony/http-foundation": "For using a MIME type guesser within the DataUriNormalizer.",
                 "symfony/property-access": "For using the ObjectNormalizer.",
                 "symfony/property-info": "To deserialize relations.",
-                "symfony/var-exporter": "For using the metadata compiler.",
                 "symfony/yaml": "For using the default YAML mapping loader."
             },
             "type": "library",
@@ -13640,7 +13600,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v5.4.2"
+                "source": "https://github.com/symfony/serializer/tree/v4.4.35"
             },
             "funding": [
                 {
@@ -13656,7 +13616,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-25T19:17:31+00:00"
+            "time": "2021-11-24T08:12:42+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -14235,20 +14195,13 @@
             "time": "2020-08-10T18:59:43+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "ramsey/devtools-lib",
-            "version": "dev-global-timeout-increase",
-            "alias": "1.2",
-            "alias_normalized": "1.2.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "ramsey/devtools-lib": 20
     },
     "prefer-stable": true,
-    "prefer-lowest": false,
+    "prefer-lowest": true,
     "platform": {
         "php": "^8.0",
         "ext-fileinfo": "*",
