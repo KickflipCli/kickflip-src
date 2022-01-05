@@ -50,6 +50,7 @@
         "illuminate/database": "^8.74",
         "illuminate/filesystem": "^8.74",
         "illuminate/testing": "^8.74",
+        "jetbrains/phpstorm-attributes": "^1.0",
         "laravel-zero/foundation": "^8.74",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.10",

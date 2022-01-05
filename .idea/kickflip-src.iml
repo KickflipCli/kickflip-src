@@ -210,6 +210,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jolicode/jolinotif" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jetbrains/phpstorm-attributes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

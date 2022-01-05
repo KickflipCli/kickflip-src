@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kickflip\RouterNavPlugin\Models;
 
+use JetBrains\PhpStorm\Pure;
+
 use function count;
 
 class NavItem implements NavItemInterface
@@ -18,6 +20,7 @@ class NavItem implements NavItemInterface
     ) {
     }
 
+    #[Pure]
     public static function make(string $title, ?string $url = ''): self
     {
         return new self($title, $url);
