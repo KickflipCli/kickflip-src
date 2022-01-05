@@ -1,6 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 return [
-    'baseUrl' => 'http://localhost.test/',
+    'baseUrl' => 'http://kickflip.test/prod/',
     'production' => true,
 ];

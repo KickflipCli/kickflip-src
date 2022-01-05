@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is loaded at the very end of the KickflipServiceProvider::boot() method.
  *
- * @var \Kickflip\Providers\KickflipServiceProvider $this
+ * @var KickflipServiceProvider $this
  */
 
 use App\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Providers\KickflipServiceProvider;
 
-/**
+/*
  * You can run custom code at different stages of the build process by
  * listening to the BuildStarted::class, CollectionsBuilt::class, and SiteBuilt::class events.
  *
@@ -19,4 +22,5 @@ use Kickflip\Events\SiteBuildComplete;
  *     // Your code here
  * });
  */
+
 Event::listen(SiteBuildComplete::class, GenerateSitemap::class);

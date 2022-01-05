@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 
 return [
