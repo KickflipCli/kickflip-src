@@ -23,9 +23,9 @@ This is the monorepo that houses the [Kickflip-cli](https://github.com/KickflipC
 
 ### Repositories
 - [kickflip-cli](https://github.com/KickflipCli/kickflip-cli) - The core Kickflip CLI project that provides the brains of Kickflip, kinda like laravel/framework
-- [kickflip-docs](https://github.com/KickflipCli/kickflip-docs) - The official documentation for Kickflip
 - [kickflip-router-nav-plugin](https://github.com/KickflipCli/kickflip-router-nav-plugin) - The official plugin for Router/Nav features
 - [kickflip](https://github.com/KickflipCli/kickflip) - The starter project for Kickflip, equivilent to laravel/laravel
+- [kickflip-docs](https://github.com/KickflipCli/kickflip-docs) - The official documentation for Kickflip
 
 ## Documentation
 
