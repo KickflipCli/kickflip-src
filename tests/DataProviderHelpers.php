@@ -18,7 +18,7 @@ use function str_replace;
 trait DataProviderHelpers
 {
     /**
-     * @param array<string|string|int, array<array-key, mixed>> $array
+     * @param array<string|string|int, object|array<array-key, mixed>> $array
      *
      * @return array<string, array<array-key, mixed>>
      */
@@ -27,7 +27,10 @@ trait DataProviderHelpers
         $exporter = new Exporter();
         $normalizedKeys = [];
         foreach ($array as $key => $data) {
-            if (!is_array($data) && $data instanceof PageData) {
+            if (!is_array($data) && !($data instanceof PageData)) {
+                $wrapped = [$data];
+                $normalizedKeys[] = $exporter->shortenedRecursiveExport($wrapped);
+            } elseif ($data instanceof PageData) {
                 $wrapped = [$data];
                 $exportedName = $exporter->shortenedRecursiveExport($wrapped);
                 $normalizedKeys[] = str_replace('...', $data->getTitleId(), $exportedName);
