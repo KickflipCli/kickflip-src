@@ -105,6 +105,6 @@ class MarkdownHelpersTest extends TestCase
         ], $renderedPageMarkdown);
         self::assertInstanceOf(View::class, $preparedExtendedRender);
         self::assertIsString($preparedExtendedRender->render());
-        self::assertMatchesHtmlSnapshot($preparedExtendedRender->render());
+        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml($preparedExtendedRender->render()));
     }
 }

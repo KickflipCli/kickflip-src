@@ -49,7 +49,8 @@ class SiteBuilderTest extends TestCase
         $view = view($page->source->getName(), [
             'page' => $page,
         ]);
-        self::assertMatchesHtmlSnapshot($view->render());
+
+        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml($view->render()));
     }
 
     /**

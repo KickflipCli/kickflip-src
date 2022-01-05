@@ -10,10 +10,15 @@ use SebastianBergmann\Exporter\Exporter;
 use function array_combine;
 use function array_map;
 use function array_values;
+use function explode;
+use function implode;
 use function is_array;
 use function is_int;
+use function preg_replace;
 use function sprintf;
 use function str_replace;
+
+use const PHP_EOL;
 
 trait DataProviderHelpers
 {
@@ -46,5 +51,14 @@ trait DataProviderHelpers
         }
 
         return array_combine($normalizedKeys, $array);
+    }
+
+    public static function stripMixIdsFromHtml(string $htmlString): string
+    {
+        $resultLines = explode(PHP_EOL, $htmlString);
+        $resultLines = preg_replace('/href="(.*)\?id=(.*)"/', 'href="$1"', $resultLines);
+        $resultLines = preg_replace('/src="(.*)\?id=(.*)"/', 'href="$1"', $resultLines);
+
+        return implode(PHP_EOL, $resultLines);
     }
 }
