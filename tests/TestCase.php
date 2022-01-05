@@ -20,6 +20,8 @@ use function file_exists;
 use function file_get_contents;
 use function func_get_args;
 
+use const DIRECTORY_SEPARATOR;
+
 abstract class TestCase extends BaseTestCase
 {
     use PlatformAgnosticHelpers;
@@ -86,7 +88,6 @@ abstract class TestCase extends BaseTestCase
         $splFileInfo = File::files(__DIR__ . DIRECTORY_SEPARATOR . 'sources')[$index];
         // Create a SourcePageMetaData object
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
-        $fileContent = file_get_contents($sourcePageMetaData->getFullPath());
         // Parse out the front matter page metadata
         $frontMatterData = KickflipHelper::getFrontMatterParser()
                 ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
