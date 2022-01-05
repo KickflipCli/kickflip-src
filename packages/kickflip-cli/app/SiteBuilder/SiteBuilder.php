@@ -77,6 +77,12 @@ final class SiteBuilder
             $kickflipCliState->set('site.baseUrl', $baseUrl);
         }
         app('config')->set('app.url', $baseUrl);
+        if ($kickflipCliState->has('site.mixUrl')) {
+            $mixUrl = rtrim($kickflipCliState->get('site.mixUrl'), '/');
+        } else {
+            $mixUrl = rtrim($baseUrl, '/');
+        }
+        app('config')->set('app.mix_url', $mixUrl);
     }
 
     public static function updateBuildPaths(string $env): void

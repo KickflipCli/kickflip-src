@@ -65,6 +65,7 @@ class MarkdownHelpersTest extends TestCase
         self::assertIsString($preparedExtendedRender[0]);
         self::assertEquals($expectedSection, $preparedExtendedRender[0]);
         self::assertIsString($preparedExtendedRender[1]);
+        self::assertMatchesHtmlSnapshot($preparedExtendedRender[1]);
         self::assertIsString($preparedExtendedRender[2]);
         self::assertEquals($expectedExtends, $preparedExtendedRender[2]);
     }

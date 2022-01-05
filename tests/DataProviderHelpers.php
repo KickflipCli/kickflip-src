@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests;
 
+use Kickflip\Models\PageData;
 use SebastianBergmann\Exporter\Exporter;
 
 use function array_combine;
@@ -25,7 +26,11 @@ trait DataProviderHelpers
         $exporter = new Exporter();
         $normalizedKeys = [];
         foreach ($array as $key => $data) {
-            if (is_int($key)) {
+            if (!is_array($data) && $data instanceof PageData) {
+                $wrapped = [$data];
+                $exportedName = $exporter->shortenedRecursiveExport($wrapped);
+                $normalizedKeys[] = str_replace('...', $data->getTitleId(), $exportedName);
+            } elseif (is_int($key)) {
                 $normalizedKeys[] = sprintf('(%s)', $exporter->shortenedRecursiveExport($data));
             } else {
                 $normalizedKeys[] = sprintf('data set "%s"', $key);

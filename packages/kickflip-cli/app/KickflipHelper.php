@@ -121,17 +121,10 @@ final class KickflipHelper
      */
     public static function mix(string $path): HtmlString | string
     {
-        static $baseUrl;
-        if (is_null($baseUrl)) {
-            $baseUrl = self::config('site.baseUrl', '');
-        }
-
-        return new HtmlString(
-            $baseUrl . mix($path, implode(DIRECTORY_SEPARATOR, [
-                'assets',
-                'build',
-            ])),
-        );
+        return mix($path, implode(DIRECTORY_SEPARATOR, [
+            'assets',
+            'build',
+        ]));
     }
 
     /**
