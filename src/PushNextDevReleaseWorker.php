@@ -33,8 +33,8 @@ final class PushNextDevReleaseWorker implements ReleaseWorkerInterface
     {
         $versionInString = $this->getVersionDev($version);
         $gitAddCommitCommand = 'git add .';
-        $gitAddCommitCommand .= sprintf(' && git commit --allow-empty -m "open %s"', $versionInString);
-        $gitAddCommitCommand .= sprintf(' && git push origin "%s"', $this->branchName);
+        $gitAddCommitCommand .= sprintf(' && git commit --no-verify --allow-empty -m "open %s"', $versionInString);
+        $gitAddCommitCommand .= sprintf(' && git push --no-verify origin "%s"', $this->branchName);
         $this->processRunner->run($gitAddCommitCommand);
     }
 
