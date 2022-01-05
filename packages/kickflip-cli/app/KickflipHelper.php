@@ -68,6 +68,7 @@ final class KickflipHelper
 
     public static function setPaths(string $basePath): void
     {
+        Application::$localBase = $basePath;
         $kickflipCliState = self::config();
         $baseConfigPath = $basePath . DIRECTORY_SEPARATOR . 'config';
         $kickflipCliState->set('paths', [

@@ -15,7 +15,7 @@ declare(strict_types=1);
 use Illuminate\Config\Repository;
 use Kickflip\Enums\ConsoleVerbosity;
 
-$app = new LaravelZero\Framework\Application(
+$app = new Kickflip\Application(
     dirname(__DIR__),
 );
 
