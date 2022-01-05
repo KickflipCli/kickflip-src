@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.0",
         "mallardduck/blade-emoji-icons": "^1.1",
-        "kickflip/kickflip-cli": "^0.6.4",
+        "kickflip/kickflip-cli": "^0.7",
         "samdark/sitemap": "^2.4"
     },
     "autoload": {
