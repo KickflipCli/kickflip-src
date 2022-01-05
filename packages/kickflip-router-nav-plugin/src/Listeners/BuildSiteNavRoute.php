@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kickflip\RouterNavPlugin\Listeners;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use Kickflip\Events\PageDataCreated;
 use Kickflip\KickflipHelper;
 
@@ -23,22 +22,19 @@ class BuildSiteNavRoute
 {
     public function handle(PageDataCreated $event)
     {
-        $pageData = $event->pageData;
-        $url = $pageData->getUrl();
-
-        // Ensure index route has index name...
-        if ($url === '/') {
-            $routeName = 'index';
-        } else {
-            $routeName = (string) Str::of($url)->trim('/')->replace('/', '.');
-        }
-
+        // Determine if site config specifies baseUrl with subdirectory path
+        $baseDirectory = parse_url(
+            KickflipHelper::config('site.baseUrl', ''),
+            PHP_URL_PATH,
+        );
         // Register a thin route based on the file name...
-        $baseDirectory = parse_url(KickflipHelper::config('site.baseUrl', ''), PHP_URL_PATH);
         if ($baseDirectory !== null && $baseDirectory !== '/') {
-            Route::name($routeName)->prefix($baseDirectory)->get($pageData->getUrl(), static fn () => '');
+            Route::name(KickflipHelper::pageRouteName($event->pageData))
+                ->prefix($baseDirectory)
+                ->get($event->pageData->getUrl(), static fn () => '');
         } else {
-            Route::name($routeName)->get($pageData->getUrl(), static fn () => '');
+            Route::name(KickflipHelper::pageRouteName($event->pageData))
+                ->get($event->pageData->getUrl(), static fn () => '');
         }
     }
 }

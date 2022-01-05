@@ -9,6 +9,7 @@ use Illuminate\Config\Repository;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
+use Kickflip\Models\PageData;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 
@@ -195,6 +196,19 @@ final class KickflipHelper
     public static function trimPath(string $path): string
     {
         return rtrim(ltrim($path, ' .\\/'), ' .\\/');
+    }
+
+    public static function pageRouteName(PageData $pageData): string
+    {
+        $url = $pageData->getUrl();
+        // Ensure index route has index name...
+        if ($url === '/') {
+            return 'index';
+        }
+
+        return (string) Str::of($url)
+                    ->trim('/')
+                    ->replace('/', '.');
     }
 
     public static function relativeUrl(string $url): string
