@@ -230,3 +230,4 @@ final class KickflipHelper
         return (string) Str::of($string)->kebab();
     }
 }
+class_alias(KickflipHelper::class, '\KickflipHelper', true);
