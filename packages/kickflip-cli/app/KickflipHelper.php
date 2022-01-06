@@ -36,7 +36,7 @@ final class KickflipHelper
      * @param string|null $key Identifier of the entry to look for.
      * @param T|null $default
      *
-     * @return Repository|T|null
+     * @return Repository|T|mixed|null
      *
      * @template T
      */
