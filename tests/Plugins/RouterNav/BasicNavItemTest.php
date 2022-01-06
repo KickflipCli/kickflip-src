@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Unit\Models;
+namespace KickflipMonoTests\Plugins\RouterNav;
 
 use Kickflip\RouterNavPlugin\Models\NavItem;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
 
-class NavItemTest extends TestCase
+class BasicNavItemTest extends TestCase
 {
     use ReflectionHelpers;
 

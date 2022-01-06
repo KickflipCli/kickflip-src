@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Feature\Routes;
+namespace KickflipMonoTests\Plugins\RouterNav;
 
 use Illuminate\Routing\UrlGenerator;
 use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\DocsFeature;
+namespace KickflipMonoTests\DocsSite;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;

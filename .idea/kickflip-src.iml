@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-docs/app" isTestSource="false" packagePrefix="KickflipDocs\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-router-nav-plugin/src" isTestSource="false" packagePrefix="Kickflip\RouterNavPlugin\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip/app" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="RepoBuilder\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="KickflipMonoTests\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process" />
@@ -211,6 +210,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jetbrains/phpstorm-attributes" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

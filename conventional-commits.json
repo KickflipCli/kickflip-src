@@ -8,8 +8,7 @@
         "fix",
         "refactor",
         "security",
-        "style",
-        "test"
+        "style"
     ],
     "scopeCase": "kebab",
     "scopeRequired": false,
@@ -18,7 +17,8 @@
         "kickflip-docs",
         "kickflip-plugins",
         "kickflip-starter",
-        "repo-builder"
+        "repo-builder",
+        "tests"
     ],
     "descriptionCase": null,
     "descriptionEndMark": "",

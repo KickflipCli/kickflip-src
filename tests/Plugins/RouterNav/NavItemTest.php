@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Feature\Models;
+namespace KickflipMonoTests\Plugins\RouterNav;
 
 use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
 use Kickflip\RouterNavPlugin\Models\NavItem;

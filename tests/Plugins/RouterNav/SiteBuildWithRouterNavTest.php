@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Feature\SiteBuilder;
+namespace KickflipMonoTests\Plugins\RouterNav;
 
 use Kickflip\Models\PageData;
 use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
@@ -15,11 +15,7 @@ use KickflipMonoTests\TestCase;
 use function app;
 use function view;
 
-/**
- * The goal of this test is to add more layers to SiteBuilder prod tests.
- * Secondarily, the test should trigger the Router Plugins URL code.
- */
-class SiteBuilderProdTest extends TestCase
+class SiteBuildWithRouterNavTest extends TestCase
 {
     use DataProviderHelpers;
 

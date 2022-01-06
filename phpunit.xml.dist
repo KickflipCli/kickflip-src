@@ -12,14 +12,17 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Docs Site Based Feature">
-            <directory suffix="Test.php">tests/DocsFeature</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">tests/Feature</directory>
         </testsuite>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">tests/Unit</directory>
+        <testsuite name="Plugins Tests">
+            <directory suffix="Test.php">tests/Plugins</directory>
+        </testsuite>
+        <testsuite name="Docs Site Tests">
+            <directory suffix="Test.php">tests/DocsSite</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
