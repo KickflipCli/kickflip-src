@@ -12,6 +12,12 @@ use function sprintf;
 
 final class PushTagReleaseWorker implements ReleaseWorkerInterface
 {
+    /*
+     * Relates to the wait time needed to help prevent overlapping CI jobs.
+     * Currently set to the estimated time to delay the next push until the first push's Unit Tests are part way done.
+     */
+    protected const WAIT_TIME = 60 * 3;
+
     private ProcessRunner $processRunner;
 
     public function __construct(ProcessRunner $processRunner)
@@ -22,6 +28,7 @@ final class PushTagReleaseWorker implements ReleaseWorkerInterface
     public function work(Version $version): void
     {
         $this->processRunner->run('git push --tags --no-verify');
+        SleepBuddy::sleepFor(PushTagReleaseWorker::WAIT_TIME);
     }
 
     public function getDescription(Version $version): string

@@ -15,6 +15,11 @@ use function sprintf;
 
 final class TagVersionReleaseWorker implements ReleaseWorkerInterface
 {
+    /*
+     * Relates to the wait time needed to help prevent overlapping CI jobs.
+     * Currently set to the estimated time for just CS/Security checks.
+     */
+    protected const WAIT_FOR = 60 * 2;
     private string $branchName;
     private ProcessRunner $processRunner;
 
@@ -34,6 +39,7 @@ final class TagVersionReleaseWorker implements ReleaseWorkerInterface
             // nothing to commit
         }
         $this->processRunner->run('git tag ' . $version->getOriginalString());
+        SleepBuddy::sleepFor(TagVersionReleaseWorker::WAIT_FOR);
     }
 
     public function getDescription(Version $version): string
