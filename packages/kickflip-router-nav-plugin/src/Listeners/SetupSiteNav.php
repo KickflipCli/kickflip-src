@@ -17,7 +17,7 @@ use function file_exists;
  *
  * This find a `navigation.php` config file and load it into KickflipCLI state and as a View variable.
  */
-class SetupSiteNav
+final class SetupSiteNav
 {
     public function handle()
     {

@@ -15,9 +15,13 @@ interface NavItemInterface
 
     public function getLabel(): string;
 
+    public function hasUrl(): bool;
+
     public function getUrl(): string;
 
-    public function hasUrl(): bool;
+    public function hasRouteName(): bool;
+
+    public function getRouteName(): ?string;
 
     public function hasChildren(): bool;
 }

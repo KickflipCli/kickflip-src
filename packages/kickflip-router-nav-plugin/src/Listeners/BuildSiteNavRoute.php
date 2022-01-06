@@ -18,7 +18,7 @@ use const PHP_URL_PATH;
  * This listener will determine the appropriate route name from a PageData's URL,
  * then registers a faux GET route with laravel's router.
  */
-class BuildSiteNavRoute
+final class BuildSiteNavRoute
 {
     public function handle(PageDataCreated $event)
     {
