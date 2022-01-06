@@ -15,9 +15,10 @@
     "scopeRequired": false,
     "scopes": [
         "core-cli",
-        "docs",
-        "plugins-router-nav",
-        "starter"
+        "kickflip-docs",
+        "kickflip-plugins",
+        "kickflip-starter",
+        "repo-builder"
     ],
     "descriptionCase": null,
     "descriptionEndMark": "",
