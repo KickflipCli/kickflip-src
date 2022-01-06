@@ -8,8 +8,8 @@ use Kickflip\KickflipHelper;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
+use KickflipMonoTests\TestCase;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
-use PHPUnit\Framework\TestCase;
 
 use function dirname;
 
@@ -19,19 +19,11 @@ class KickflipHelperTest extends TestCase
     use ReflectionHelpers;
     use PlatformAgnosticHelpers;
 
-    /**
-     * @before
-     */
-    public function setBasePath(): void
-    {
-        KickflipHelper::basePath(dirname(__DIR__, 2) . '/packages/kickflip-docs');
-    }
-
     public function testDefaultBasePath(): void
     {
         $basePath = KickflipHelper::basePath();
         self::assertIsString($basePath);
-        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath('/packages/kickflip-docs'), $basePath);
+        self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath('/packages/kickflip'), $basePath);
     }
 
     /**
@@ -50,9 +42,9 @@ class KickflipHelperTest extends TestCase
     public function basePathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            [null, '/packages/kickflip-docs'],
+            [null, '/packages/kickflip'],
             ['./', ''],
-            ['./packages/kickflip-docs', '/packages/kickflip-docs'],
+            ['./packages/kickflip', '/packages/kickflip'],
         ]);
     }
 
@@ -177,9 +169,11 @@ class KickflipHelperTest extends TestCase
         return $this->autoAddDataProviderKeys([
             ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
             ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
-            ['/half-life/blackmesa/', 'half-life/blackmesa'],
-            ['/hello-world/', 'hello-world'],
+            ['/half-life/blackmesa/', 'half-life/blackmesa/'],
+            ['/hello-world/', 'hello-world/'],
             ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
+            ['http://kickflip.test/half-life/blackmesa/', 'half-life/blackmesa/'],
+            ['http://kickflip.test/half-life/blackmesa.html', 'half-life/blackmesa.html'],
         ]);
     }
 }

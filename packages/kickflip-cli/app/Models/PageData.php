@@ -114,12 +114,11 @@ class PageData implements PageInterface
             return $this->url;
         }
 
-        $relUrl = KickflipHelper::relativeUrl($this->url);
         if (KickflipHelper::config('prettyUrls', true) === true) {
-            return $relUrl;
+            return $this->url;
         }
 
-        return (string) Str::of($relUrl)->append('.html');
+        return "{$this->url}.html";
     }
 
     public function getOutputPath(): string

@@ -19,10 +19,12 @@ use function getcwd;
 use function is_null;
 use function ltrim;
 use function mix;
+use function parse_url;
 use function realpath;
 use function rtrim;
 
 use const DIRECTORY_SEPARATOR;
+use const PHP_URL_PATH;
 
 final class KickflipHelper
 {
@@ -213,7 +215,20 @@ final class KickflipHelper
 
     public static function relativeUrl(string $url): string
     {
-        return Str::startsWith($url, 'http') ? $url : self::trimPath($url);
+        $baseUrl = self::config('site.baseUrl', null);
+        if (Str::startsWith($url, 'http')) {
+            return self::leftTrimPath(Str::replaceFirst($baseUrl, '', $url));
+        }
+
+        $baseStringStrip = parse_url(
+            $baseUrl,
+            PHP_URL_PATH,
+        ) ?: '/';
+        if ($baseStringStrip === '/') {
+            return self::leftTrimPath($url);
+        }
+
+        return self::leftTrimPath(Str::replaceFirst($baseStringStrip, '', $url));
     }
 
     public static function toKebab(string $string): string

@@ -39,12 +39,12 @@ class PageDataTest extends TestCase
         // Temporary set Pretty URLs to false..
         KickflipHelper::config()->set('prettyUrls', false);
         self::assertIsString($pageData->getUrl());
-        self::assertEquals('basic.html', $pageData->getUrl());
+        self::assertEquals('/basic.html', $pageData->getUrl());
 
         // Change Pretty URLs back
         KickflipHelper::config()->set('prettyUrls', true);
         self::assertIsString($pageData->getUrl());
-        self::assertEquals('basic', $pageData->getUrl());
+        self::assertEquals('/basic', $pageData->getUrl());
 
         // Temporary set Pretty URLs to false...
         KickflipHelper::config()->set('prettyUrls', false);
