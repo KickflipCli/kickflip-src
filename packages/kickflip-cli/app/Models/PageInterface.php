@@ -21,5 +21,10 @@ interface PageInterface extends ContentItemInterface
 
     public function getTitleId(): string;
 
+    /**
+     * @return array<string, mixed>
+     */
+    public function getExtraData(): array;
+
     public function __get(string $name);
 }
