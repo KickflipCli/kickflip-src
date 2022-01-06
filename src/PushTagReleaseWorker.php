@@ -18,7 +18,7 @@ final class PushTagReleaseWorker implements ReleaseWorkerInterface
      * Relates to the wait time needed to help prevent overlapping CI jobs.
      * Currently set to the estimated time to delay the next push until the first push's Unit Tests are part way done.
      */
-    protected const WAIT_TIME = 60 * 3;
+    protected const WAIT_TIME = 60 * 4;
 
     private ProcessRunner $processRunner;
 

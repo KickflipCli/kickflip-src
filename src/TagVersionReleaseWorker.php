@@ -21,7 +21,7 @@ final class TagVersionReleaseWorker implements ReleaseWorkerInterface
      * Relates to the wait time needed to help prevent overlapping CI jobs.
      * Currently set to the estimated time for just CS/Security checks.
      */
-    protected const WAIT_FOR = 60 * 2;
+    protected const WAIT_FOR = 60 * 2.5;
 
     private string $branchName;
 
