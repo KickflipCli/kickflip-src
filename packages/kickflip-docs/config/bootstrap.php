@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Listeners\GenerateSitemap;
 use Kickflip\Models\PageData;
 use Kickflip\Providers\KickflipServiceProvider;
 use Kickflip\View\Compilers\ComponentTagCompiler;
-use KickflipDocs\Listeners\GenerateSitemap;
 
 /*
  * Here is a good place to adjust global defaults, like:

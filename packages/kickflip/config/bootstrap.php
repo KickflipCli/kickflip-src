@@ -8,9 +8,9 @@ declare(strict_types=1);
  * @var KickflipServiceProvider $this
  */
 
-use App\Listeners\GenerateSitemap;
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
+use Kickflip\Listeners\GenerateSitemap;
 use Kickflip\Providers\KickflipServiceProvider;
 
 /*
