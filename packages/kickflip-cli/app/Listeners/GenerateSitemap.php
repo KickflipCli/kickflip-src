@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kickflip\Listeners;
 
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
@@ -79,6 +81,9 @@ final class GenerateSitemap
      */
     private function getOutputPaths(string $outputBaseDir): array
     {
+        /**
+         * @var FilesystemAdapter|Filesystem $localFilesystem
+         */
         $localFilesystem = Storage::disk('local');
         $relativeDir = Str::of($outputBaseDir)
                         ->after($localFilesystem->path(''));
