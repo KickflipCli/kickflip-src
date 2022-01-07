@@ -37,7 +37,7 @@ The 404 page URL is: {{ KickflipHelper::urlFromSource('404') }}
 
 > Results:  The 404 page URL is: /404
 
-> For a "batteries included" experience that allows you to use the `UrlGenerator` based methods, checkout the optional [KickflipCli/kickflip-router-nav-plugin](https://github.com/KickflipCli/kickflip-router-nav-plugin).
+> For a more "batteries included" experience that allows you to use the `UrlGenerator` based methods, checkout the optional [KickflipCli/kickflip-router-nav-plugin](https://github.com/KickflipCli/kickflip-router-nav-plugin).
 
 
 However, when it comes to asset URLs we do have access to Mix via a conveniently pre-configured `KickflipHelpers::mix()` and `KickflipHelpers::asset()` methods.
@@ -47,7 +47,7 @@ These work the same as they do in Laravel, just pre-configured for Kickflip's fo
 Be cautions to not try and use a package that requires PHP to handle logic.
 Kickflip can only render HTML sites out of your code, but it will not have a API/Backend!
 
-### Registering Laravel Package Servier Providers
+### Registering Laravel Package Service Providers
 Kickflip will allow you to register packages similar to how in Laravel's `config/app.php` file you can register providers.
 Unlike Laravel's `app.providers` config, in kickflip our config file has `providePackages` index.
 
