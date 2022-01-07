@@ -11,6 +11,7 @@ use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
 
 use function app;
+use function dirname;
 
 class UrlHelperTest extends TestCase
 {

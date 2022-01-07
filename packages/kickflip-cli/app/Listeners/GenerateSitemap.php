@@ -17,8 +17,6 @@ use function sprintf;
 use function str_replace;
 use function time;
 
-use const PHP_EOL;
-
 /**
  * This sitemap generator example works based on analyzing the output HTML files.
  * The listener here should be fired when \Kickflip\Events\SiteBuildComplete::class
