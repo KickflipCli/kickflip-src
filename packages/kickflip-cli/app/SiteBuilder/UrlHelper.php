@@ -41,7 +41,8 @@ final class UrlHelper
 
     public static function getPageUrl(PageData $page): string
     {
-        return KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl', '')) .
+        $baseUrl = KickflipHelper::config('site.baseUrl', '');
+        return KickflipHelper::rightTrimPath($baseUrl) .
             '/' .
             KickflipHelper::leftTrimPath($page->getUrl());
     }

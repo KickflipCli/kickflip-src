@@ -208,7 +208,6 @@ final class KickflipHelper
         return $pageData->source->getName();
     }
 
-    #[Pure]
     public static function pageUrl(PageData $pageData): string
     {
         return UrlHelper::getPageUrl($pageData);
