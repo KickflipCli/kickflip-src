@@ -15,8 +15,6 @@ use function base64_encode;
 use function parse_url;
 use function random_bytes;
 
-use const PHP_URL_HOST;
-
 class RoutingServiceProvider extends BaseRoutingServiceProvider
 {
     /**
@@ -44,9 +42,13 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
             // and all the registered routes will be available to the generator.
             $app->instance('routes', $routes);
 
+            $parsedUrlParts = parse_url(KickflipHelper::config('site.baseUrl'));
             // phpcs:disable
-            $_SERVER['HTTP_HOST'] = parse_url(KickflipHelper::config('site.baseUrl'), PHP_URL_HOST);
-            $_SERVER['SERVER_PORT'] = '80';
+            $_SERVER['HTTP_HOST'] = $parsedUrlParts['host'];
+            $_SERVER['SERVER_PORT'] = ($parsedUrlParts['scheme'] === 'https') ? '443' : '80';
+            if ($parsedUrlParts['scheme'] === 'https') {
+                $_SERVER['HTTPS'] = 'on';
+            }
             $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
             // phpcs:enable
 

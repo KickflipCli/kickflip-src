@@ -9,8 +9,8 @@
         <meta property="og:site_name" content="{{ $site->siteName }}"/>
         <meta property="og:title" content="{{ isset($page->title) && ! empty($page->title) ?  $page->title . ' | ' : '' }}{{ $site->siteName }}"/>
         <meta property="og:description" content="{{ $page->description ?? $site->siteDescription }}"/>
-        <meta property="og:url" content="{{ $page->getUrl() }}"/>
-        <meta property="og:image" content="/assets/img/logo.png"/>
+        <meta property="og:url" content="{{ KickflipHelper::pageUrl($page) }}"/>
+        <meta property="og:image" content="{{ KickflipHelper::assetUrl('img/logo.png') }}"/>
         <meta property="og:type" content="website"/>
 
         <meta name="twitter:image:alt" content="{{ $site->siteName }}">
@@ -24,7 +24,7 @@
     @isset($site->baseUrl)
         <link rel="home" href="{{ $site->baseUrl }}">
     @endisset
-        <link rel="icon" href="/favicon.ico">
+        <link rel="icon" href="{{ $site->baseUrl . KickflipHelper::leftTrimPath('/favicon.ico') }}">
 
         @stack('meta')
 

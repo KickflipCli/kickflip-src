@@ -6,6 +6,7 @@ namespace Kickflip\SiteBuilder;
 
 use BadFunctionCallException;
 use Kickflip\KickflipHelper;
+use Kickflip\Models\PageData;
 
 use function app;
 
@@ -36,5 +37,12 @@ final class UrlHelper
         return KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl', '')) .
                     '/' .
                     KickflipHelper::leftTrimPath($page->getUrl());
+    }
+
+    public static function getPageUrl(PageData $page): string
+    {
+        return KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl', '')) .
+            '/' .
+            KickflipHelper::leftTrimPath($page->getUrl());
     }
 }

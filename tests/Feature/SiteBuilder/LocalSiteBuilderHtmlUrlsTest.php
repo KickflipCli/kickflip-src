@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
-class SiteBuilderTest extends BaseSiteBuilderTest
+class LocalSiteBuilderHtmlUrlsTest extends BaseSiteBuilderTest
 {
     protected static ?string $buildEnv = 'local';
+    protected static bool $prettyUrls = false;
 }

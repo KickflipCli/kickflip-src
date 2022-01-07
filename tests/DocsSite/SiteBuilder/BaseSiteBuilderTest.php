@@ -2,41 +2,39 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Plugins\RouterNav;
+namespace KickflipMonoTests\DocsSite\SiteBuilder;
 
+use Kickflip\Events\SiteBuildStarted;
 use Kickflip\Models\PageData;
-use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\TestCase;
+use KickflipMonoTests\DocsTestCase;
 
 use function app;
+use function array_slice;
 use function view;
 
-class SiteBuildWithRouterNavTest extends TestCase
+abstract class BaseSiteBuilderTest extends DocsTestCase
 {
     use DataProviderHelpers;
 
-    protected const ENV = 'production';
+    protected static ?string $buildEnv;
+    protected static bool $prettyUrls = true;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->prepareProdEnv();
+        $this->app->get('kickflipCli')->set('prettyUrls', static::$prettyUrls);
+        SiteBuilder::includeEnvironmentConfig(static::$buildEnv);
+        SiteBuilder::updateBuildPaths(static::$buildEnv);
+        SiteBuilder::updateAppUrl();
         $shikiNpmFetcher = app(ShikiNpmFetcher::class);
         if (!$shikiNpmFetcher->isShikiDownloaded()) {
             $shikiNpmFetcher->installShiki();
         }
-    }
-
-    protected function prepareProdEnv()
-    {
-        $this->app->register(KickflipRouterNavServiceProvider::class);
-        SiteBuilder::includeEnvironmentConfig(static::ENV);
-        SiteBuilder::updateBuildPaths(static::ENV);
-        SiteBuilder::updateAppUrl();
+        SiteBuildStarted::dispatch();
     }
 
     public function tearDown(): void
@@ -66,13 +64,12 @@ class SiteBuildWithRouterNavTest extends TestCase
     public function renderListDataProvider(): array
     {
         $this->refreshApplication();
-        $this->prepareProdEnv();
-        $this->app->register(KickflipRouterNavServiceProvider::class);
         /**
          * @var SourcesLocator $sourceLocator
          */
         $sourceLocator = app(SourcesLocator::class);
+        $testSlice = array_slice($sourceLocator->getRenderPageList(), 0, 4);
 
-        return self::autoAddDataProviderKeys($sourceLocator->getRenderPageList());
+        return self::autoAddDataProviderKeys($testSlice);
     }
 }

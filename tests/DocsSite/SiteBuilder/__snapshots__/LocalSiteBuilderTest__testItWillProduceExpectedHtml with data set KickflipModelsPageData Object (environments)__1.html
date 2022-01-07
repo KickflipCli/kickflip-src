@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="Static site generation based on Laravel Zero">
+
+        <meta property="og:site_name" content="Kickflip">
+        <meta property="og:title" content="Environments | Kickflip">
+        <meta property="og:description" content="Static site generation based on Laravel Zero">
+        <meta property="og:url" content="http://kickflip-docs.test/docs/building-and-previewing-environments">
+        <meta property="og:image" content="http://kickflip-docs.test/assets/img/logo.png">
+        <meta property="og:type" content="website">
+
+        <meta name="twitter:image:alt" content="Kickflip">
+        <meta name="twitter:card" content="summary_large_image">
+
+        
+        <title>Environments | Kickflip</title>
+            <link rel="home" href="http://kickflip-docs.test/">
+            <link rel="icon" href="http://kickflip-docs.test/favicon.ico">
+
+        
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="http://kickflip-docs.test/assets/build/css/main.css">
+
+            </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans">
+        <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
+            <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
+                <div class="flex items-center">
+                    <a href="/" title="Kickflip home" class="inline-flex items-center">
+                        <span class="text-5xl mr-3" alt="Kickflip logo">&#128761;</span>
+
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Kickflip</h1>
+                    </a>
+                </div>
+
+                <div class="flex flex-1 justify-end items-center text-right md:pl-10">
+                                    </div>
+            </div>
+
+                <button class="flex justify-center items-center bg-blue-500 border border-blue-500 h-10 mr-4 px-5 rounded-full lg:hidden focus:outline-none" onclick="navMenu.toggle()">
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg" class="fill-current text-white h-9 w-4" viewbox="0 0 32 32">
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"></path>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg" class="hidden fill-current text-white h-9 w-4" viewbox="0 0 36 30">
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "></polygon>
+    </svg>
+</button>
+
+        </header>
+
+        <main role="main" class="w-full flex-auto">
+                <section class="flex flex-col lg:flex-row">
+        <aside id="js-nav-menu" class="hidden lg:inline-flex nav-menu">
+            <nav>
+                <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/getting-started" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Getting Started</span>
+        </a>
+    
+            
+        <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/getting-started-installation" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Installation</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/getting-started-structure" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Directory Structure</span>
+        </a>
+    
+    </li>
+    </ul>
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/building-and-previewing" class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500">
+            <span>Building &amp; Previewing</span>
+        </a>
+    
+            
+        <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/building-and-previewing-environments" class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500">
+            <span>Environments</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/building-and-previewing-compiling-assets" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Compiling Assets</span>
+        </a>
+    
+    </li>
+    </ul>
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/site-content" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Creating your Site's Content</span>
+        </a>
+    
+            
+        <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/site-content-templates-and-components" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Templates &amp; Components</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="#docs.site-content-markdown" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Markdown</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="#docs.site-content-other-file-types" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Other File Types</span>
+        </a>
+    
+    </li>
+    </ul>
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/template-variables" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Template Variables</span>
+        </a>
+    
+            
+        <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/template-variables-site" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Site Variables</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/template-variables-page" class="lvl1   nav-menu__item hover:text-blue-500">
+            <span>Page Data</span>
+        </a>
+    
+    </li>
+    </ul>
+    </li>
+            <li class="pl-4">
+            
+        <a href="#docs.pretty-urls" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Pretty URLs</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/event-listeners" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Event Listeners</span>
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="https://kickflip-docs.test/docs/navigation" class="lvl0   nav-menu__item hover:text-blue-500">
+            <span>Navigation</span>
+        </a>
+    
+    </li>
+    </ul>
+            </nav>
+        </aside>
+        <article class="DocSearch-content w-full break-words mb-16 mx-auto lg:ml-4 prose px-3 py-8 bg-white border rounded">
+            <h1 id="environments">Environments</h1>
+            <p>Your Kickflip site likely needs to have slightly different configurations in your development and production environments.
+Each environment has a config with the respective name in it, so building for <code>stage</code> will load <code>config/config.stage.php</code></p>
+<p>This can really be used for anything you need, but is most often used for adjusting the base URL.</p>
+<p>Kickflip will always load and requires access to the <code>config/config.php</code> file.
+For any other environment build the respective config will be loaded and merged on top of the global config.</p>
+<p>So if your base <code>config.php</code> file looks like this:</p>
+<pre class="shiki" style="background-color: #f6f8fa"><code><span class="line"><span style="color: #D73A49">&lt;?</span><span style="color: #005CC5">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D73A49">return</span><span style="color: #24292E"> [</span></span>
+<span class="line"><span style="color: #24292E">    </span><span style="color: #032F62">'baseUrl'</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #032F62">'http://kickflip-docs.test/'</span><span style="color: #24292E">,</span></span>
+<span class="line"><span style="color: #24292E">    </span><span style="color: #032F62">'production'</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #005CC5">false</span><span style="color: #24292E">,</span></span>
+<span class="line"><span style="color: #24292E">    </span><span style="color: #032F62">'siteName'</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #032F62">'Kickflip CLI'</span><span style="color: #24292E">,</span></span>
+<span class="line"><span style="color: #24292E">];</span></span>
+<span class="line"></span></code></pre>
+<p>You can then override the <code>production</code> env's variable in the <code>config.production.php</code> file like:</p>
+<pre class="shiki" style="background-color: #f6f8fa"><code><span class="line"><span style="color: #D73A49">&lt;?</span><span style="color: #005CC5">php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D73A49">return</span><span style="color: #24292E"> [</span></span>
+<span class="line"><span style="color: #24292E">    </span><span style="color: #032F62">'baseUrl'</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #032F62">'https://kickflip.lucidinternets.com/'</span><span style="color: #24292E">,</span></span>
+<span class="line"><span style="color: #24292E">    </span><span style="color: #032F62">'production'</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #005CC5">true</span><span style="color: #24292E">,</span></span>
+<span class="line"><span style="color: #24292E">];</span></span>
+<span class="line"></span></code></pre>
+<p>Once merged any values in the production file will take precedent and overwrite base values.
+The effective merged config would look like:</p>
+<pre class="shiki" style="background-color: #f6f8fa"><code><span class="line"><span style="color: #D73A49">array</span><span style="color: #24292E">:</span><span style="color: #005CC5">3</span><span style="color: #24292E"> [</span></span>
+<span class="line"><span style="color: #24292E">  </span><span style="color: #032F62">"baseUrl"</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #032F62">"https://kickflip.lucidinternets.com/"</span></span>
+<span class="line"><span style="color: #24292E">  </span><span style="color: #032F62">"production"</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #005CC5">true</span></span>
+<span class="line"><span style="color: #24292E">  </span><span style="color: #032F62">"siteName"</span><span style="color: #24292E"> </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #032F62">"Kickflip CLI"</span></span>
+<span class="line"><span style="color: #24292E">]</span></span>
+<span class="line"></span></code></pre>
+<h2>Building environment specific files<a id="heading-building-environment-specific-files" href="#heading-building-environment-specific-files" class="heading-permalink" aria-hidden="true" title="Permalink">&para;</a>
+</h2>
+<p>To build the site for a specific environment just pass the environment name as an argument for the <code>build</code> command:</p>
+<pre class="shiki" style="background-color: #f6f8fa"><code><span class="line"><span style="color: #24292E">$ ./vendor/bin/kickflip build production</span></span>
+<span class="line"></span></code></pre>
+<p>This will generate your site into a new folder called <code>build_production</code>, leaving any <code>build_local</code> folder untouched.</p>
+        </article>
+        <aside class="flex-grow pl-4">
+            <ul class="table-of-contents">
+<li>
+<a href="#heading-building-environment-specific-files">Building environment specific files</a>
+</li>
+</ul>        </aside>
+    </section>
+        </main>
+
+        <script src="http://kickflip-docs.test/assets/build/js/main.js"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm py-4 border-t" role="contentinfo">
+    <ul class="flex flex-col md:flex-row justify-center mb-1">
+        <li class="md:mr-2">
+            Built by <a href="https://github.com/mallardduck">MallardDuck</a> with Kickflip!
+        </li>
+
+        <li class="flex flex-col items-center">
+            <a href="https://github.com/mallardduck/kickflip" title="Kickflip on GitHub" target="_blank">
+                <span class="hidden md:inline-block hover:underline">Contribute on GitHub</span>
+                <svg class="md:hidden h-8 md:h-10" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewbox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"></path></svg>            </a>
+        </li>
+    </ul>
+    <ul class="flex flex-col md:flex-row justify-center mt-1">
+        <li>
+            <span>Proudly hosted by </span>
+            <a href="https://www.netlify.com/pricing/" title="Netlify Free Hosting" target="_blank">
+                <span class="hover:underline">Netlify</span>
+            </a>
+        </li>
+    </ul>
+</footer>
+    </body>
+</html>
