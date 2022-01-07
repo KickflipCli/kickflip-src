@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\Models\PageData;
+use Kickflip\SiteBuilder\UrlHelper;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 
@@ -228,6 +229,11 @@ final class KickflipHelper
     public static function toKebab(string $string): string
     {
         return (string) Str::of($string)->kebab();
+    }
+
+    public static function urlFromSource(string $name): string
+    {
+        return UrlHelper::getSourceFileUrl($name);
     }
 }
 class_alias(KickflipHelper::class, '\KickflipHelper', true);

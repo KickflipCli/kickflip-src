@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\SiteBuilder;
 
+use BadMethodCallException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
@@ -119,6 +120,20 @@ final class SourcesLocator
     public function getRenderPageList(): array
     {
         return $this->renderPageList;
+    }
+
+    public function getRenderPageByName(string $name): PageData
+    {
+        $nameKeys = array_flip(array_map(
+            fn(PageData $page) => $page->source->getName(),
+            $this->renderPageList
+        ));
+
+        if (!isset($nameKeys[$name])) {
+            throw new BadMethodCallException("Cannot find source file by name: '$name'");
+        }
+
+        return $this->renderPageList[$nameKeys[$name]];
     }
 
     /**
