@@ -46,13 +46,6 @@ final class GenerateSitemap
         $kickflipConfig = KickflipHelper::config();
         $baseUrl = $kickflipConfig->get('site.baseUrl');
         $outputBaseDir = $kickflipConfig->get('paths.build.destination');
-
-        if (! $baseUrl) {
-            echo PHP_EOL . "To generate a sitemap.xml file, please specify a 'baseUrl' in config.php." . PHP_EOL;
-
-            return;
-        }
-
         $sitemap = new Sitemap($outputBaseDir . '/sitemap.xml');
 
         collect($this->getOutputPaths((string) $outputBaseDir))
