@@ -32,8 +32,7 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
     public function onDocumentParsed(DocumentParsedEvent $event): void
     {
         $document = $event->getDocument();
-        $generator = $this->getTableOfContentsGenerator();
-        $toc = $generator->generate($document);
+        $toc = $this->getTableOfContentsGenerator()->generate($document);
         if ($toc === null) {
             // No linkable headers exist, so no TOC could be generated
             return;
@@ -51,18 +50,15 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
 
         // Add the TOC to the Document
         $position = $this->config->get('table_of_contents/position');
-        if ($position === self::POSITION_TOP) {
-            $document->prependChild($toc);
-        } elseif ($position === self::POSITION_BEFORE_HEADINGS) {
-            $this->insertBeforeFirstLinkedHeading($document, $toc);
-        } elseif ($position === self::POSITION_PLACEHOLDER) {
-            $this->replacePlaceholders($document, $toc);
-        } else {
-            throw InvalidConfigurationException::forConfigOption('table_of_contents/position', $position);
-        }
+        match ($position) {
+            self::POSITION_TOP => $document->prependChild($toc),
+            self::POSITION_BEFORE_HEADINGS => self::insertBeforeFirstLinkedHeading($document, $toc),
+            self::POSITION_PLACEHOLDER => self::replacePlaceholders($document, $toc),
+            default => throw InvalidConfigurationException::forConfigOption('table_of_contents/position', $position),
+        };
     }
 
-    private function insertBeforeFirstLinkedHeading(Document $document, TableOfContents $toc): void
+    private static function insertBeforeFirstLinkedHeading(Document $document, TableOfContents $toc): void
     {
         foreach ($document->iterator(NodeIterator::FLAG_BLOCKS_ONLY) as $node) {
             if (! $node instanceof Heading) {
@@ -79,9 +75,10 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
         }
     }
 
-    private function replacePlaceholders(Document $document, TableOfContents $toc): void
+    private static function replacePlaceholders(Document $document, TableOfContents $toc): void
     {
-        foreach ($document->iterator(NodeIterator::FLAG_BLOCKS_ONLY) as $node) {
+        $nodeIterator = $document->iterator(NodeIterator::FLAG_BLOCKS_ONLY);
+        foreach ($nodeIterator as $node) {
             // Add the block once we find a placeholder
             if (! $node instanceof TableOfContentsPlaceholder) {
                 continue;
