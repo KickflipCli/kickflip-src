@@ -72,9 +72,4 @@ return [
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
     ],
-
-    'aliases' => [
-        'KickflipHelper' => Kickflip\KickflipHelper::class,
-    ],
-
 ];

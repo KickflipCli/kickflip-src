@@ -14,6 +14,11 @@ declare(strict_types=1);
 */
 use Illuminate\Config\Repository;
 use Kickflip\Enums\ConsoleVerbosity;
+use Kickflip\KickflipHelper;
+
+if (!class_exists('\KickflipHelper')) {
+    class_alias(KickflipHelper::class, '\KickflipHelper', true);
+}
 
 $app = new Kickflip\Application(
     dirname(__DIR__),

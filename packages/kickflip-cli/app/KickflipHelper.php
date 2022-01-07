@@ -236,4 +236,3 @@ final class KickflipHelper
         return UrlHelper::getSourceFileUrl($name);
     }
 }
-class_alias(KickflipHelper::class, '\KickflipHelper', true);
