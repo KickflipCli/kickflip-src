@@ -25,7 +25,7 @@ class UrlHelperTest extends DocsTestCase
     {
         $filePath = UrlHelper::sourceFilePath($routeName);
         self::assertEquals(
-            dirname(__DIR__, 2) . "/packages/kickflip-docs/source/{$expected}",
+            dirname(__DIR__, 2) . self::agnosticPath("/packages/kickflip-docs/source/{$expected}"),
             $filePath,
         );
     }
@@ -38,7 +38,7 @@ class UrlHelperTest extends DocsTestCase
         $this->refreshApplication();
         app(SourcesLocator::class);
 
-        return self::autoAddDataProviderKeys([
+        return $this->autoAddDataProviderKeys([
             ['index', 'index.md.blade.php'],
             ['404', '404.blade.php'],
             ['docs.getting-started', 'docs/getting-started.md.blade.php'],

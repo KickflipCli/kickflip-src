@@ -21,11 +21,11 @@ class UrlHelperTest extends TestCase
     /**
      * @dataProvider sourceFilePathHelperDataProvider
      */
-    public function testSourceFilePathHelper(string $routeName, string $expected)
+    public function testSourceFilePathHelper(string $routeName, string $expected): void
     {
         $filePath = UrlHelper::sourceFilePath($routeName);
         self::assertEquals(
-            dirname(__DIR__, 3) . "/packages/kickflip/source/{$expected}",
+            self::agnosticPath(dirname(__DIR__, 3) . "/packages/kickflip/source/{$expected}"),
             $filePath,
         );
     }
@@ -38,7 +38,7 @@ class UrlHelperTest extends TestCase
         $this->refreshApplication();
         app(SourcesLocator::class);
 
-        return self::autoAddDataProviderKeys([
+        return $this->autoAddDataProviderKeys([
             ['index', 'index.md'],
             ['404', '404.blade.php'],
         ]);
