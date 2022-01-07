@@ -35,10 +35,10 @@
         "vlucas/phpdotenv": "^5.3.1"
     },
     "replace": {
-        "kickflip/kickflip": "0.7.6",
-        "kickflip/kickflip-cli": "0.7.6",
-        "kickflip/kickflip-docs": "0.7.6",
-        "kickflip/kickflip-router-nav-plugin": "0.7.6"
+        "kickflip/kickflip": "0.8.0",
+        "kickflip/kickflip-cli": "0.8.0",
+        "kickflip/kickflip-docs": "0.8.0",
+        "kickflip/kickflip-router-nav-plugin": "0.8.0"
     },
     "require-dev": {
         "illuminate/bus": "^8.74",
