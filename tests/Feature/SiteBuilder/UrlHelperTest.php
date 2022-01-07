@@ -23,7 +23,10 @@ class UrlHelperTest extends TestCase
     public function testSourceFilePathHelper(string $routeName, string $expected)
     {
         $filePath = UrlHelper::sourceFilePath($routeName);
-        self::assertEquals("/Users/danpock/GitProjects/kickflip-src/packages/kickflip/source/{$expected}", $filePath);
+        self::assertEquals(
+            dirname(__DIR__, 3) . "/packages/kickflip/source/{$expected}",
+            $filePath,
+        );
     }
 
     /**

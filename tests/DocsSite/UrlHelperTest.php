@@ -24,7 +24,7 @@ class UrlHelperTest extends DocsTestCase
     {
         $filePath = UrlHelper::sourceFilePath($routeName);
         self::assertEquals(
-            "/Users/danpock/GitProjects/kickflip-src/packages/kickflip-docs/source/{$expected}",
+            dirname(__DIR__, 2) . "/packages/kickflip-docs/source/{$expected}",
             $filePath,
         );
     }
