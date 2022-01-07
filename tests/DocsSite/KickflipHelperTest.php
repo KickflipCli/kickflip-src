@@ -18,7 +18,7 @@ class KickflipHelperTest extends DocsTestCase
      */
     public function testPageRouteNameHelper(PageData $page)
     {
-        self::assertEquals($page->getRouteName(), KickflipHelper::pageRouteName($page));
+        self::assertEquals($page->source->getName(), KickflipHelper::pageRouteName($page));
     }
 
     /**
