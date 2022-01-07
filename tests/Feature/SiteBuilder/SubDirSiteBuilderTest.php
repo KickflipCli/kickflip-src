@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
-class SubDirSiteBuilderTest extends AbstractSiteBuilderTest
+class SubDirSiteBuilderTest extends BaseSiteBuilderTest
 {
     protected static ?string $buildEnv = 'production';
 }

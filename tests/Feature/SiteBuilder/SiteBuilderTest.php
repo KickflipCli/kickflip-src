@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
-class SiteBuilderTest extends AbstractSiteBuilderTest
+class SiteBuilderTest extends BaseSiteBuilderTest
 {
     protected static ?string $buildEnv = 'local';
 }

@@ -13,6 +13,8 @@ use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use Symfony\Component\Finder\SplFileInfo;
 
+use function array_flip;
+use function array_map;
 use function collect;
 use function file_get_contents;
 
@@ -125,8 +127,8 @@ final class SourcesLocator
     public function getRenderPageByName(string $name): PageData
     {
         $nameKeys = array_flip(array_map(
-            fn(PageData $page) => $page->source->getName(),
-            $this->renderPageList
+            fn (PageData $page) => $page->source->getName(),
+            $this->renderPageList,
         ));
 
         if (!isset($nameKeys[$name])) {

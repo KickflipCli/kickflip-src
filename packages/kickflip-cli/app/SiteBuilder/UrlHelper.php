@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kickflip\SiteBuilder;
 
 use BadFunctionCallException;
@@ -7,11 +9,11 @@ use DirectoryIterator;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
 
+use function app;
+
 final class UrlHelper
 {
     /**
-     * @param string $routeName
-     * @return string
      * @throws BadFunctionCallException
      */
     public static function sourceFilePath(string $routeName): string
@@ -38,8 +40,9 @@ final class UrlHelper
          */
         $sourcesLocator = app(SourcesLocator::class);
         $page = $sourcesLocator->getRenderPageByName($routeName);
+
         return KickflipHelper::rightTrimPath(KickflipHelper::config('baseUrl', '')) .
-                    "/" .
+                    '/' .
                     KickflipHelper::leftTrimPath($page->getUrl());
     }
 }
