@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Kickflip\KickflipHelper;
+use Kickflip\Models\PageData;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function app;
@@ -33,7 +34,7 @@ class NavItem implements NavItemInterface
         $routeName = null;
         if (
             Str::startsWith($url, [
-                KickflipHelper::config('site.baseUrl'),
+                KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl')),
                 '/',
             ])
         ) {
@@ -94,5 +95,15 @@ class NavItem implements NavItemInterface
     public function hasChildren(): bool
     {
         return $this->children !== null && count($this->children) > 0;
+    }
+
+    #[Pure]
+    public function matchesPage(PageData $page): bool
+    {
+        if ($this->hasRouteName()) {
+            return $this->getRouteName() === KickflipHelper::pageRouteName($page);
+        }
+
+        return false;
     }
 }

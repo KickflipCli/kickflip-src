@@ -10,15 +10,16 @@
         <meta property="og:title" content="Getting Started | Kickflip">
         <meta property="og:description" content="The static site generation based on Laravel Zero">
         <meta property="og:url" content="http://kickflip.test/prod/">
-        <meta property="og:image" content="/assets/img/logo.png">
+        <meta property="og:image" content="http://kickflip.test/prod/assets/img/logo.png">
         <meta property="og:type" content="website">
 
         <meta name="twitter:image:alt" content="Kickflip">
         <meta name="twitter:card" content="summary_large_image">
 
         <title>Getting Started | Kickflip</title>
-            <link rel="home" href="http://kickflip.test/prod/">
-            <link rel="icon" href="/favicon.ico">
+        <base href="http://kickflip.test/prod/">
+        <link rel="home" href="http://kickflip.test/prod/">
+        <link rel="icon" href="http://kickflip.test/prod/favicon.ico">
 
         
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
@@ -46,10 +47,27 @@ Technically you can swap out the style language with anything you like that's su
 <p>The site content is all stored within the <code>source</code> directory.
 Anything in here that's supported by kickflip will be rendered to HTML.
 Or if it's in the <code>source/assets</code> folder it will be copied into the compiled site.</p>
+<h3 id="site-page-and-asset-urls">Site Page and Asset URLs</h3>
+<p>Since by default Kickflip is meant to be a CLI based site generator we don't have a real <code>HttpKernel</code>.
+And as such, we won't have access to Laravel's <code>UrlGenerator</code> based <code>url()</code> and <code>route()</code> helper methods.</p>
+<p>This means that your on-site page links will need to be URLs you manage within your project for the most part.
+However, a very naive URL helper is built-in as <code>KickflipHelper::urlFromSource()</code>.
+This method will accept a source file "name" (determined by the file path with <code>.</code> instead of <code>/</code>).</p>
+<p>On this simple site the only other page is the 404 page, so we'll use that as an example:</p>
+<pre class="shiki" style="background-color: #ffffff"><code><span class="line"><span style="color: #24292F">The 404 page URL is: </span><span style="color: #0550AE">{{</span><span style="color: #24292F"> </span><span style="color: #953800">KickflipHelper</span><span style="color: #CF222E">::</span><span style="color: #8250DF">urlFromSource</span><span style="color: #24292F">(</span><span style="color: #0A3069">'404'</span><span style="color: #24292F">) </span><span style="color: #0550AE">}}</span></span>
+<span class="line"></span></code></pre>
+<blockquote>
+<p>Results:  The 404 page URL is: /404</p>
+</blockquote>
+<blockquote>
+<p>For a more "batteries included" experience that allows you to use the <code>UrlGenerator</code> based methods, checkout the optional <a href="https://github.com/KickflipCli/kickflip-router-nav-plugin">KickflipCli/kickflip-router-nav-plugin</a>.</p>
+</blockquote>
+<p>However, when it comes to asset URLs we do have access to Mix via a conveniently pre-configured <code>KickflipHelpers::mix()</code> and <code>KickflipHelpers::asset()</code> methods.
+These work the same as they do in Laravel, just pre-configured for Kickflip's folder structure. It all even works without the router nav plugin!</p>
 <h2 id="using-laravel-packages">Using Laravel Packages</h2>
 <p>Be cautions to not try and use a package that requires PHP to handle logic.
 Kickflip can only render HTML sites out of your code, but it will not have a API/Backend!</p>
-<h3 id="registering-laravel-package-servier-providers">Registering Laravel Package Servier Providers</h3>
+<h3 id="registering-laravel-package-service-providers">Registering Laravel Package Service Providers</h3>
 <p>Kickflip will allow you to register packages similar to how in Laravel's <code>config/app.php</code> file you can register providers.
 Unlike Laravel's <code>app.providers</code> config, in kickflip our config file has <code>providePackages</code> index.</p>
 <p>To use Blade Icons, for example, require a icon package and then update the config as:</p>
