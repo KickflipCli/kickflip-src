@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipDocs\View\Markdown;
 
-use Illuminate\Support\Facades\View;
 use Kickflip\KickflipHelper;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -21,9 +22,9 @@ use League\Config\Exception\InvalidConfigurationException;
  */
 final class TableOfContentsBuilder implements ConfigurationAwareInterface
 {
-    public const POSITION_TOP             = 'top';
+    public const POSITION_TOP = 'top';
     public const POSITION_BEFORE_HEADINGS = 'before-headings';
-    public const POSITION_PLACEHOLDER     = 'placeholder';
+    public const POSITION_PLACEHOLDER = 'placeholder';
 
     /** @psalm-readonly-allow-private-mutation */
     private ConfigurationInterface $config;
@@ -31,15 +32,7 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
     public function onDocumentParsed(DocumentParsedEvent $event): void
     {
         $document = $event->getDocument();
-
-        $generator = new TableOfContentsGenerator(
-            (string) $this->config->get('table_of_contents/style'),
-            (string) $this->config->get('table_of_contents/normalize'),
-            (int) $this->config->get('table_of_contents/min_heading_level'),
-            (int) $this->config->get('table_of_contents/max_heading_level'),
-            (string) $this->config->get('heading_permalink/fragment_prefix'),
-        );
-
+        $generator = $this->getTableOfContentsGenerator();
         $toc = $generator->generate($document);
         if ($toc === null) {
             // No linkable headers exist, so no TOC could be generated
@@ -101,5 +94,16 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
     public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->config = $configuration;
+    }
+
+    private function getTableOfContentsGenerator(): TableOfContentsGenerator
+    {
+        return new TableOfContentsGenerator(
+            (string) $this->config->get('table_of_contents/style'),
+            (string) $this->config->get('table_of_contents/normalize'),
+            (int) $this->config->get('table_of_contents/min_heading_level'),
+            (int) $this->config->get('table_of_contents/max_heading_level'),
+            (string) $this->config->get('heading_permalink/fragment_prefix'),
+        );
     }
 }

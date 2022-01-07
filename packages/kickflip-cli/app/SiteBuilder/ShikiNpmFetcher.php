@@ -75,19 +75,21 @@ final class ShikiNpmFetcher
 
     public function isShikiRequiredPackage(): bool
     {
-        $packageJsonPath = $this->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+        if (!$this->projectRootDirectoryFilesystem->exists('package.json')) {
+            return false;
+        }
 
-        return $this->projectRootDirectoryFilesystem->exists('package.json') &&
-            ($rootNpmPackages = json_decode(file_get_contents($packageJsonPath))) &&
+        $fileContents = $this->projectRootDirectoryFilesystem->get('package.json');
+        $rootNpmPackages = json_decode($fileContents);
+
+        return ($rootNpmPackages !== false) &&
             (
-                (
-                    property_exists($rootNpmPackages, 'dependencies') &&
-                    property_exists($rootNpmPackages->dependencies, 'shiki')
-                ) ||
-                (
-                    property_exists($rootNpmPackages, 'devDependencies') &&
-                    property_exists($rootNpmPackages->devDependencies, 'shiki')
-                )
+                property_exists($rootNpmPackages, 'dependencies') &&
+                property_exists($rootNpmPackages->dependencies, 'shiki')
+            ) ||
+            (
+                property_exists($rootNpmPackages, 'devDependencies') &&
+                property_exists($rootNpmPackages->devDependencies, 'shiki')
             );
     }
 
@@ -179,13 +181,18 @@ final class ShikiNpmFetcher
         ];
         foreach ($filesToDelete as $file) {
             if ($this->projectRootDirectoryFilesystem->exists($file)) {
-                $absolutePath = $this->projectRootDirectoryFilesystem->path($file);
-                if (File::isDirectory($absolutePath)) {
-                    File::deleteDirectory($absolutePath);
-                } elseif (File::isFile($absolutePath)) {
-                    File::delete($file);
-                }
+                $this->removePath($file);
             }
+        }
+    }
+
+    private function removePath(string $filePath): void
+    {
+        $absolutePath = $this->projectRootDirectoryFilesystem->path($filePath);
+        if (File::isDirectory($absolutePath)) {
+            File::deleteDirectory($absolutePath);
+        } elseif (File::isFile($absolutePath)) {
+            File::delete($absolutePath);
         }
     }
 }
