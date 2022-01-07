@@ -33,14 +33,14 @@ class Logger
         $timingsRepo->set((string) $index, microtime(true));
     }
 
-    public static function setOutput(OutputStyle $output)
+    public static function setOutput(OutputStyle &$output)
     {
         static::$consoleOutput = $output;
     }
 
     public static function debug(string $message): void
     {
-        if (ConsoleVerbosity::debug() <= app('kickflipCli')->get('output.verbosity')) {
+        if (ConsoleVerbosity::debug() <= KickflipHelper::config('output.verbosity')) {
             Log::debug($message);
             if (isset(static::$consoleOutput)) {
                 static::$consoleOutput->warning($message);
@@ -55,7 +55,7 @@ class Logger
     public static function veryVerboseTable(array $headers, array $rows): void
     {
         if (
-            ConsoleVerbosity::veryVerbose() <= app('kickflipCli')->get('output.verbosity') &&
+            ConsoleVerbosity::veryVerbose() <= KickflipHelper::config('output.verbosity') &&
             isset(static::$consoleOutput)
         ) {
             static::$consoleOutput->table($headers, $rows);
@@ -64,7 +64,7 @@ class Logger
 
     public static function veryVerbose(string $message): void
     {
-        if (ConsoleVerbosity::veryVerbose() <= app('kickflipCli')->get('output.verbosity')) {
+        if (ConsoleVerbosity::veryVerbose() <= KickflipHelper::config('output.verbosity')) {
             Log::debug($message);
             if (isset(static::$consoleOutput)) {
                 static::$consoleOutput->info($message);
@@ -74,7 +74,7 @@ class Logger
 
     public static function verbose(string $message): void
     {
-        if (ConsoleVerbosity::verbose() <= app('kickflipCli')->get('output.verbosity')) {
+        if (ConsoleVerbosity::verbose() <= KickflipHelper::config('output.verbosity')) {
             Log::info($message);
             if (isset(static::$consoleOutput)) {
                 static::$consoleOutput->info($message);
@@ -84,7 +84,7 @@ class Logger
 
     public static function info(string $message): void
     {
-        if (ConsoleVerbosity::normal() <= app('kickflipCli')->get('output.verbosity')) {
+        if (ConsoleVerbosity::normal() <= KickflipHelper::config('output.verbosity')) {
             Log::info($message);
             if (isset(static::$consoleOutput)) {
                 static::$consoleOutput->writeln($message);
