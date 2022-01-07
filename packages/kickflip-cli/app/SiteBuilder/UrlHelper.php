@@ -41,7 +41,7 @@ final class UrlHelper
         $sourcesLocator = app(SourcesLocator::class);
         $page = $sourcesLocator->getRenderPageByName($routeName);
 
-        return KickflipHelper::rightTrimPath(KickflipHelper::config('baseUrl', '')) .
+        return KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl', '')) .
                     '/' .
                     KickflipHelper::leftTrimPath($page->getUrl());
     }
