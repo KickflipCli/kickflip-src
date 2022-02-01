@@ -33,9 +33,6 @@ class Logger
         $timingsRepo->set((string) $index, microtime(true));
     }
 
-    /**
-     * @param OutputStyle $output
-     */
     // phpcs:ignore
     public static function setOutput(OutputStyle &$output): void
     {
