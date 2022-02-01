@@ -42,11 +42,11 @@ jobs:
 
       - name: "Check syntax (php-parallel-lint)"
         shell: "bash"
-        run: "composer dev:lint:syntax"
+        run: "composer dev-lint-syntax"
 
       - name: "Check coding standards (PHP_CodeSniffer)"
         shell: "bash"
-        run: "composer dev:lint:style"
+        run: "composer dev-lint-style"
 
   static-analysis:
     name: "Static analysis"
@@ -66,11 +66,11 @@ jobs:
 
       - name: "Statically analyze code (PHPStan)"
         shell: "bash"
-        run: "composer dev:analyze:phpstan"
+        run: "composer dev-analyze-phpstan"
 
       - name: "Statically analyze code (Psalm)"
         shell: "bash"
-        run: "composer dev:analyze:psalm -- --shepherd"
+        run: "composer dev-analyze-psalm -- --shepherd"
 
   security-analysis:
     name: "Security analysis"
@@ -126,7 +126,7 @@ jobs:
 
       - name: "Run unit tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev:test:coverage:ci"
+        run: "composer dev-test-coverage-ci"
 
       - name: "Publish coverage report to Codecov"
         uses: "codecov/codecov-action@v2"
@@ -199,7 +199,7 @@ jobs:
 
       - name: "Run unit tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev:test:unit"
+        run: "composer dev-test-unit"
 
   provide_packages_json:
     needs: unit-tests
