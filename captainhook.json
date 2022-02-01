@@ -17,7 +17,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "composer test"
+                "action": "composer test-temp"
             }
         ]
     },
