@@ -1,6 +1,6 @@
 # GitHub Actions Documentation: https://docs.github.com/en/actions
 
-name: "Run CI Tests"
+name: "Run CI Tests [PRs]"
 
 on:
   pull_request:
