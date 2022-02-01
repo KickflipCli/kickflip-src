@@ -3,15 +3,9 @@
 name: "Run CI Tests"
 
 on:
-  push:
-    paths:
-      - .github/workflows/continuous-integration.yml
-      - packages/**/*.php
-      - tests/**/*.php
+  pull_request:
     branches:
       - "main"
-    tags:
-      - "*"
 
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -200,62 +194,3 @@ jobs:
       - name: "Run unit tests (PHPUnit)"
         shell: "bash"
         run: "composer dev:test:unit"
-
-  provide_packages_json:
-    needs: unit-tests
-    outputs:
-      matrix: "${{ steps.output_data.outputs.matrix }}"
-    runs-on: ubuntu-latest
-    steps:
-      -
-        uses: actions/checkout@v2
-      -
-        if: "steps.wait-for-build.outputs.conclusion == 'success'"
-        uses: shivammathur/setup-php@v2
-        with:
-          coverage: none
-          php-version: "8.0"
-      -
-        uses: ramsey/composer-install@v2
-        with:
-          dependency-versions: lowest
-      -
-        id: output_data
-        run: "echo \"::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package easy-coding-standard --exclude-package monorepo-builder --exclude-package config-transformer)\""
-
-  split_monorepo:
-    needs: provide_packages_json
-    runs-on: ubuntu-latest
-    steps:
-      -
-        uses: actions/checkout@v2
-      -
-        env:
-          GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
-        if: "!startsWith(github.ref, 'refs/tags/')"
-        name: "Monorepo Split of ${{ matrix.package }}"
-        uses: symplify/github-action-monorepo-split@2.1
-        with:
-          branch: main
-          package_directory: "packages/${{ matrix.package }}"
-          repository_name: "${{ matrix.package }}"
-          repository_organization: KickflipCli
-          user_email: self@danpock.me
-          user_name: MallardDuck
-      -
-        env:
-          GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
-        if: "startsWith(github.ref, 'refs/tags/')"
-        name: "Monorepo Tagged Split of ${{ matrix.package }}"
-        uses: symplify/github-action-monorepo-split@2.1
-        with:
-          package_directory: "packages/${{ matrix.package }}"
-          repository_name: "${{ matrix.package }}"
-          repository_organization: KickflipCli
-          tag: "${GITHUB_REF#refs/tags/}"
-          user_email: self@danpock.me
-          user_name: MallardDuck
-    strategy:
-      fail-fast: false
-      matrix:
-        package: "${{fromJson(needs.provide_packages_json.outputs.matrix)}}"
