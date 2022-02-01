@@ -142,6 +142,7 @@ final class SiteBuilder
                 // phpcs:enable
                 ->toArray(),
         );
+        // TODO: figure out if collections need to render page items differently?
         /**
          * @var PageData $page
          */

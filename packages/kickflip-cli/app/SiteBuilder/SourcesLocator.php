@@ -52,6 +52,7 @@ final class SourcesLocator
         // These were compiled from mix into that folder before compiling the site.
         $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))
             ->filter(static fn ($value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
+        // TODO: add a step that adds collection items into their respective collection...
         $sourcesCount = $allSourceFiles->count();
         for ($i = 0; $i < $sourcesCount; $i++) {
             /**
@@ -73,6 +74,7 @@ final class SourcesLocator
 
     private function buildRenderList(): void
     {
+        // TODO: figure out what this should do for collections
         /**
          * @var SourcePageMetaData $bladeSource
          */
@@ -121,6 +123,7 @@ final class SourcesLocator
      */
     public function getRenderPageList(): array
     {
+        // TODO: find a way to make this consider collection pages too
         return $this->renderPageList;
     }
 

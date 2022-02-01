@@ -11,10 +11,6 @@ interface PageInterface extends ContentItemInterface
      */
     public static function make(SourcePageMetaData $metaData, array $frontMatter = []): PageInterface;
 
-    public function getUrl(): string;
-
-    public function getOutputPath(): string;
-
     public function getExtendsView(): string | null;
 
     public function getExtendsSection(): string | null;

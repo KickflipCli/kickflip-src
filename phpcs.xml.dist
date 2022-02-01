@@ -13,6 +13,9 @@
 
     <rule ref="Ramsey"/>
 
+    <rule ref="Generic.Commenting.Todo.TaskFound">
+        <exclude-pattern>packages/kickflip-cli/**/*.php</exclude-pattern>
+    </rule>
     <rule ref="Generic.Files.LineLength.TooLong">
         <exclude-pattern>packages/kickflip-cli/app/Models/SiteData.php</exclude-pattern>
     </rule>
