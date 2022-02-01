@@ -117,8 +117,9 @@
     "scripts": {
         "dev-analyze-phpstan": "phpstan analyse --ansi",
         "dev-analyze-psalm": "psalm --",
-        "dev-lint-style": "phpcs --colors --cache=build/cache/phpcs.cache",
+        "dev-lint-style": "phpcs --colors --cache=build/cache/phpcs.cache --",
         "dev-lint-syntax": "parallel-lint --colors src tests",
+        "dev-lint-syntax-auto": "parallel-lint --colors --",
         "dev-test-coverage-ci": "phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml",
         "dev-test-coverage-html": "phpunit --colors=always --coverage-html build/coverage/coverage-html",
         "dev-test-unit": "phpunit --colors=always --"
