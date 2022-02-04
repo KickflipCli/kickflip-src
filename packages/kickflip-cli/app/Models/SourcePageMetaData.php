@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kickflip\Models;
 
 use Illuminate\Support\Str;
+use Kickflip\KickflipHelper;
 use Symfony\Component\Finder\SplFileInfo;
 
 use const DIRECTORY_SEPARATOR;
@@ -51,6 +52,12 @@ final class SourcePageMetaData
     public function getFullPath(): string
     {
         return $this->fullPath;
+    }
+
+    public function getRelativePath(): string
+    {
+        return (string) Str::of($this->fullPath)
+            ->remove(KickflipHelper::basePath());
     }
 
     public function getExtension(): string
