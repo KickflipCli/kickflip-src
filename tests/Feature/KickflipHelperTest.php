@@ -37,4 +37,30 @@ class KickflipHelperTest extends TestCase
 
         return self::autoAddDataProviderKeys(app(SourcesLocator::class)->getRenderPageList());
     }
+
+    /**
+     * @dataProvider relativeUrlProvider
+     */
+    public function testHelperRelativeUrl(string $input, string $expected): void
+    {
+        $leftTrimString = KickflipHelper::relativeUrl($input);
+        self::assertIsString($leftTrimString);
+        self::assertEquals($expected, $leftTrimString);
+    }
+
+    /**
+     * @return array<array-key, string[]>
+     */
+    public function relativeUrlProvider(): array
+    {
+        return $this->autoAddDataProviderKeys([
+            ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
+            ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
+            ['/half-life/blackmesa/', 'half-life/blackmesa/'],
+            ['/hello-world/', 'hello-world/'],
+            ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
+            ['http://kickflip.test/half-life/blackmesa/', 'half-life/blackmesa/'],
+            ['http://kickflip.test/half-life/blackmesa.html', 'half-life/blackmesa.html'],
+        ]);
+    }
 }

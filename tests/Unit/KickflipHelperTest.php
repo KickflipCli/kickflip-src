@@ -8,8 +8,8 @@ use Kickflip\KickflipHelper;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
+use PHPUnit\Framework\TestCase;
 
 use function dirname;
 
@@ -19,10 +19,20 @@ class KickflipHelperTest extends TestCase
     use ReflectionHelpers;
     use PlatformAgnosticHelpers;
 
+    /**
+     * @after
+     */
+    protected function cleanUp(): void
+    {
+        KickflipHelper::basePath('');
+    }
+
     public function testDefaultBasePath(): void
     {
         $basePath = KickflipHelper::basePath();
         self::assertIsString($basePath);
+        self::assertEquals(dirname(__DIR__, 2), $basePath);
+        $basePath = KickflipHelper::basePath(__DIR__ . '/../../packages/kickflip');
         self::assertEquals(dirname(__DIR__, 2) . static::agnosticPath('/packages/kickflip'), $basePath);
     }
 
@@ -42,9 +52,9 @@ class KickflipHelperTest extends TestCase
     public function basePathProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            [null, '/packages/kickflip'],
-            ['./', ''],
+            [null, ''],
             ['./packages/kickflip', '/packages/kickflip'],
+            ['./packages/kickflip-docs', '/packages/kickflip-docs'],
         ]);
     }
 
@@ -148,32 +158,6 @@ class KickflipHelperTest extends TestCase
             ['/hello', 'hello'],
             ['/hello/', 'hello'],
             ['hello/', 'hello'],
-        ]);
-    }
-
-    /**
-     * @dataProvider relativeUrlProvider
-     */
-    public function testHelperRelativeUrl(string $input, string $expected): void
-    {
-        $leftTrimString = KickflipHelper::relativeUrl($input);
-        self::assertIsString($leftTrimString);
-        self::assertEquals($expected, $leftTrimString);
-    }
-
-    /**
-     * @return array<array-key, string[]>
-     */
-    public function relativeUrlProvider(): array
-    {
-        return $this->autoAddDataProviderKeys([
-            ['http://google.com/half-life/blackmesa/', 'http://google.com/half-life/blackmesa/'],
-            ['https://google.com/half-life/blackmesa/', 'https://google.com/half-life/blackmesa/'],
-            ['/half-life/blackmesa/', 'half-life/blackmesa/'],
-            ['/hello-world/', 'hello-world/'],
-            ['/half-life/blackmesa.html', 'half-life/blackmesa.html'],
-            ['http://kickflip.test/half-life/blackmesa/', 'half-life/blackmesa/'],
-            ['http://kickflip.test/half-life/blackmesa.html', 'half-life/blackmesa.html'],
         ]);
     }
 }
