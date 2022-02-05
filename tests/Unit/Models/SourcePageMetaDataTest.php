@@ -44,6 +44,7 @@ class SourcePageMetaDataTest extends TestCase
         self::assertIsString($sourcePageMetaData->getName());
         self::assertIsString($sourcePageMetaData->getFilename());
         self::assertIsString($sourcePageMetaData->getFullPath());
+        self::assertIsString($sourcePageMetaData->getRelativePath());
         self::assertIsString($sourcePageMetaData->getExtension());
         self::assertIsString($sourcePageMetaData->getMimeExtension());
         self::assertIsString($sourcePageMetaData->getType());
