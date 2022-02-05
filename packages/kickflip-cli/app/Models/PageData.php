@@ -14,9 +14,6 @@ use function debug_backtrace;
 
 use const DIRECTORY_SEPARATOR;
 
-/**
- * @property string $sourceFile The path to the source file for this page.
- */
 class PageData implements PageInterface
 {
     public static string $defaultExtendsView = 'layouts.master';
