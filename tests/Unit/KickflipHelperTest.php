@@ -20,6 +20,7 @@ class KickflipHelperTest extends TestCase
     use PlatformAgnosticHelpers;
 
     /**
+     * @before
      * @after
      */
     protected function cleanUp(): void
