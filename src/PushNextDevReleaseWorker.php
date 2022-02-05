@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RepoBuilder;
 
-use MonorepoBuilder20211216\Symplify\PackageBuilder\Parameter\ParameterProvider;
+use MonorepoBuilder20220204\Symplify\PackageBuilder\Parameter\ParameterProvider;
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
