@@ -193,16 +193,16 @@ jobs:
 
       - name: "Run unit tests (paratest)"
         shell: "bash"
-        run: "./vendor/bin/paratest --testsuite 'Unit'"
+        run: "./vendor/bin/paratest --testsuite 'Unit' --no-coverage"
 
       - name: "Run Plugin Unit tests (paratest)"
         shell: "bash"
-        run: "./vendor/bin/paratest --testsuite 'Plugins Tests'"
+        run: "./vendor/bin/paratest --testsuite 'Plugins Tests' --no-coverage"
 
       - name: "Run Feature tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Features'"
+        run: "composer dev-test-unit -- --testsuite 'Features' --no-coverage"
 
       - name: "Run Docs Site tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Docs Site Tests'"
+        run: "composer dev-test-unit -- --testsuite 'Docs Site Tests' --no-coverage"
