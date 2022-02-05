@@ -35,6 +35,7 @@
         "vlucas/phpdotenv": "^5.3.1"
     },
     "require-dev": {
+        "brianium/paratest": "^6.4",
         "illuminate/bus": "^8.74",
         "illuminate/collections": "^8.74",
         "illuminate/config": "^8.74",
