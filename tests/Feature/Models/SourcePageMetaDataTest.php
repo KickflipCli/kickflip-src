@@ -35,7 +35,7 @@ class SourcePageMetaDataTest extends TestCase
         self::assertInstanceOf(PageData::class, $pageData);
         self::assertIsString($pageData->source->getRelativePath());
         self::assertEquals(
-            'source/404.blade.php',
+            self::agnosticPath('source/404.blade.php'),
             $pageData->source->getRelativePath(),
         );
 
@@ -53,7 +53,7 @@ class SourcePageMetaDataTest extends TestCase
         self::assertInstanceOf(PageData::class, $pageData);
         self::assertIsString($pageData->source->getRelativePath());
         self::assertEquals(
-            'source/index.md',
+            self::agnosticPath('source/index.md'),
             $pageData->source->getRelativePath(),
         );
     }
