@@ -57,7 +57,8 @@ final class SourcePageMetaData
     public function getRelativePath(): string
     {
         return (string) Str::of($this->fullPath)
-            ->remove(KickflipHelper::basePath());
+            ->remove(KickflipHelper::sourcePath())
+            ->prepend('source');
     }
 
     public function getExtension(): string
