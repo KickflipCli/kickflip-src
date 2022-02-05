@@ -11,9 +11,8 @@ use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 use KickflipMonoTests\TestCase;
-use Throwable;
 
-use function dirname;
+use function file_get_contents;
 
 class SourcePageMetaDataTest extends TestCase
 {
@@ -37,7 +36,7 @@ class SourcePageMetaDataTest extends TestCase
         self::assertIsString($pageData->source->getRelativePath());
         self::assertEquals(
             'source/404.blade.php',
-            $pageData->source->getRelativePath()
+            $pageData->source->getRelativePath(),
         );
 
         // Fetch a single Symfony SplFileInfo object
@@ -55,7 +54,7 @@ class SourcePageMetaDataTest extends TestCase
         self::assertIsString($pageData->source->getRelativePath());
         self::assertEquals(
             'source/index.md',
-            $pageData->source->getRelativePath()
+            $pageData->source->getRelativePath(),
         );
     }
 }
