@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Unit\Events;
+namespace KickflipMonoTests\Feature\Events;
 
 use Kickflip\Events\BeforeConfigurationLoads;
 use Kickflip\Events\PageDataCreated;
