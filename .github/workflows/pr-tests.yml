@@ -191,6 +191,18 @@ jobs:
       - name: "Setup and build node deps"
         run: "cd packages/kickflip-docs && npm install && npm run dev && cd"
 
-      - name: "Run unit tests (PHPUnit)"
+      - name: "Run unit tests (paratest)"
         shell: "bash"
-        run: "composer dev-test-unit"
+        run: "./vendor/bin/paratest --testsuite 'Unit'"
+
+      - name: "Run Plugin Unit tests (paratest)"
+        shell: "bash"
+        run: "./vendor/bin/paratest --testsuite 'Plugins Tests'"
+
+      - name: "Run Feature tests (PHPUnit)"
+        shell: "bash"
+        run: "composer dev-test-unit -- --testsuite 'Features'"
+
+      - name: "Run Docs Site tests (PHPUnit)"
+        shell: "bash"
+        run: "composer dev-test-unit -- --testsuite 'Docs Site Tests'"
