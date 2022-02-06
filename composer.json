@@ -60,10 +60,10 @@
         "vimeo/psalm": "^4.14"
     },
     "replace": {
-        "kickflip/kickflip": "0.8.1",
-        "kickflip/kickflip-cli": "0.8.1",
-        "kickflip/kickflip-docs": "0.8.1",
-        "kickflip/kickflip-router-nav-plugin": "0.8.1"
+        "kickflip/kickflip": "0.8.2",
+        "kickflip/kickflip-cli": "0.8.2",
+        "kickflip/kickflip-docs": "0.8.2",
+        "kickflip/kickflip-router-nav-plugin": "0.8.2"
     },
     "autoload": {
         "psr-4": {
