@@ -6,10 +6,10 @@ namespace KickflipMonoTests\Unit\SiteBuilder;
 
 // We do this to have access to laravel's filesystem facade used by SourcesLocator
 use Kickflip\SiteBuilder\SiteBuilder;
-use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
+use PHPUnit\Framework\TestCase;
 
-class SiteBuilderBaseFeatureTest extends BaseFeatureTestCase
+class SiteBuilderBaseFeatureTest extends TestCase
 {
     use ReflectionHelpers;
 

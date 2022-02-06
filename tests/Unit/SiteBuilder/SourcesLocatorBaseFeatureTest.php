@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Unit\SiteBuilder;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 use function dirname;
 
@@ -22,8 +22,8 @@ class SourcesLocatorBaseFeatureTest extends TestCase
 
     public function testExpectsAnException()
     {
-        self::expectException(RuntimeException::class);
-        self::expectExceptionMessage('A facade root has not been set.');
+        self::expectException(BindingResolutionException::class);
+        self::expectExceptionMessage('Target class [kickflipCli] does not exist.');
         new SourcesLocator(dirname(__DIR__, 2) . '/sources');
     }
 }
