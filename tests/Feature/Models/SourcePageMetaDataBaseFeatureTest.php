@@ -9,12 +9,11 @@ use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function file_get_contents;
 
-class SourcePageMetaDataTest extends TestCase
+class SourcePageMetaDataBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

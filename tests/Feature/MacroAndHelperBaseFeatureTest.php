@@ -10,11 +10,9 @@ use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function dirname;
 
-class MacroAndHelperTest extends TestCase
+class MacroAndHelperBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

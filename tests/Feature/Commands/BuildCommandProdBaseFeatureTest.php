@@ -9,14 +9,13 @@ use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function is_dir;
 use function mkdir;
 
-class BuildCommandTest extends TestCase
+class BuildCommandProdBaseFeatureTest extends BaseFeatureTestCase
 {
-    private const BUILD_ENV = 'local';
+    private const BUILD_ENV = 'production';
 
     public function setUp(): void
     {
@@ -44,7 +43,7 @@ class BuildCommandTest extends TestCase
 
     public function testBuildCommand()
     {
-        $this->artisan('build')
+        $this->artisan('build ' . self::BUILD_ENV)
             ->assertSuccessful();
     }
 
@@ -55,7 +54,7 @@ class BuildCommandTest extends TestCase
         )->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
-        $this->artisan('build')
+        $this->artisan('build ' . self::BUILD_ENV)
             ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'yes')
             ->assertSuccessful();
     }
@@ -67,7 +66,7 @@ class BuildCommandTest extends TestCase
         )->replaceEnv(self::BUILD_ENV);
         mkdir($buildPath);
 
-        $this->artisan('build')
+        $this->artisan('build ' . self::BUILD_ENV)
             ->expectsConfirmation('Overwrite "' . $buildPath . '"? ', 'no')
             ->assertFailed();
     }

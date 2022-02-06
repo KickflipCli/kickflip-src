@@ -7,14 +7,13 @@ namespace KickflipMonoTests\Feature\View;
 use Illuminate\View\View;
 use Kickflip\Models\SiteData;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\Mocks\MarkdownHelpersMock;
-use KickflipMonoTests\TestCase;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
-
 use function app;
 use function file_get_contents;
 
-class MarkdownHelpersTest extends TestCase
+class MarkdownHelpersBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 

@@ -7,12 +7,11 @@ namespace KickflipMonoTests\Unit\SiteBuilder;
 use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function dirname;
 
-class SourcesLocatorTest extends TestCase
+class SourcesLocatorBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

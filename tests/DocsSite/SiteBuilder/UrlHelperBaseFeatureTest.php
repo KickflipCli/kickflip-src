@@ -7,13 +7,12 @@ namespace KickflipMonoTests\DocsSite\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use Kickflip\SiteBuilder\UrlHelper;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\DocsSite\DocsTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function app;
 use function dirname;
 
-class UrlHelperTest extends TestCase
+class UrlHelperBaseFeatureTest extends DocsTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;
@@ -25,7 +24,7 @@ class UrlHelperTest extends TestCase
     {
         $filePath = UrlHelper::sourceFilePath($routeName);
         self::assertEquals(
-            self::agnosticPath(dirname(__DIR__, 3) . "/packages/kickflip/source/{$expected}"),
+            self::agnosticPath(dirname(__DIR__, 3) . "/packages/kickflip-docs/source/{$expected}"),
             $filePath,
         );
     }
@@ -39,7 +38,7 @@ class UrlHelperTest extends TestCase
         app(SourcesLocator::class);
 
         return $this->autoAddDataProviderKeys([
-            ['index', 'index.md'],
+            ['index', 'index.md.blade.php'],
             ['404', '404.blade.php'],
         ]);
     }

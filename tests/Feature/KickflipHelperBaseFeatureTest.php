@@ -10,11 +10,9 @@ use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function app;
 
-class KickflipHelperTest extends TestCase
+class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

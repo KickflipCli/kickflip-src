@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Unit;
+namespace KickflipMonoTests\Feature;
 
 use Illuminate\Console\OutputStyle;
 use Kickflip\Enums\ConsoleVerbosity;
@@ -10,12 +10,11 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
 use Mockery;
 use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 
-class MockingLoggerTest extends TestCase
+class MockingLoggerTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

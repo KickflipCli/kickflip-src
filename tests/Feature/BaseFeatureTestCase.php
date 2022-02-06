@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests;
+namespace KickflipMonoTests\Feature;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
+use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
+use KickflipMonoTests\PlatformAgnosticHelpers;
 use LaravelZero\Framework\Application;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
-
 use function file_exists;
 use function file_get_contents;
 use function func_get_args;
-
 use const DIRECTORY_SEPARATOR;
 
-abstract class TestCase extends BaseTestCase
+abstract class BaseFeatureTestCase extends BaseTestCase
 {
     use PlatformAgnosticHelpers;
     use MatchesSnapshots;
@@ -47,8 +47,14 @@ abstract class TestCase extends BaseTestCase
          * @var Application $app
          */
         $app = require __DIR__ . '/../packages/kickflip-cli/bootstrap/app.php';
-        KickflipHelper::setPaths(KickflipHelper::basePath(__DIR__ . self::agnosticPath('/../packages/kickflip')));
-        $app->make(Kernel::class)->bootstrap();
+        $basePath = realpath(__DIR__ . self::agnosticPath('/../packages/kickflip'));
+        KickflipHelper::basePath($basePath);
+        KickflipHelper::setPaths($basePath);
+        /**
+         * @var KickflipKernel $kernel
+         */
+        $kernel = $app->make(Kernel::class);
+        $kernel->bootstrap();
         $this->callAfterResolving($app, 'view', function ($view) {
             /**
              * @var Factory $view

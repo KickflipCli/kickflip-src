@@ -9,12 +9,11 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function app;
 use function view;
 
-abstract class BaseSiteBuilderTest extends TestCase
+abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 

@@ -7,17 +7,15 @@ namespace KickflipMonoTests\Feature\ShikiFetcher;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\NpmHelpers;
-use KickflipMonoTests\TestCase;
-
 use function file_get_contents;
 use function file_put_contents;
 use function filter_var;
 use function str_replace;
-
 use const FILTER_VALIDATE_INT;
 
-class ShikiFetcherRemoveTest extends TestCase
+class ShikiFetcherRemoveBaseFeatureTest extends BaseFeatureTestCase
 {
     use NpmHelpers;
 

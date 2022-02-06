@@ -9,12 +9,11 @@ use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function app;
 
-class SubDirRouteTest extends TestCase
+class SubDirRouteBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

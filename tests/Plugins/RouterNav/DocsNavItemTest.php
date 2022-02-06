@@ -7,8 +7,7 @@ namespace KickflipMonoTests\Plugins\RouterNav;
 use Kickflip\RouterNavPlugin\Models\NavItem;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
-use KickflipMonoTests\DocsTestCase;
-
+use KickflipMonoTests\DocsSite\DocsTestCase;
 use function app;
 use function route;
 

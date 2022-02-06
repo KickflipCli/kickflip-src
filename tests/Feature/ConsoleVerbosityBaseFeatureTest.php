@@ -9,10 +9,9 @@ use Illuminate\Support\Stringable;
 use Kickflip\Enums\ConsoleVerbosity;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
 use Symfony\Component\Console\Input\ArgvInput;
 
-class ConsoleVerbosityTest extends TestCase
+class ConsoleVerbosityBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

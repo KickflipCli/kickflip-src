@@ -7,11 +7,10 @@ namespace KickflipMonoTests\Feature\View;
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\MarkdownEngine;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function app;
 
-class MarkdownEngineTest extends TestCase
+class MarkdownEngineBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 

@@ -6,11 +6,9 @@ namespace KickflipMonoTests\Feature;
 
 use Illuminate\Config\Repository;
 use Kickflip\Logger;
-use KickflipMonoTests\TestCase;
-
 use function app;
 
-class LoggerTest extends TestCase
+class LoggerBaseFeatureTest extends BaseFeatureTestCase
 {
     public function testLoggerTimingWorksCorrectly()
     {

@@ -7,13 +7,12 @@ namespace KickflipMonoTests\Feature\Models;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
 use Throwable;
-
 use function dirname;
 
-class PageDataTest extends TestCase
+class PageDataBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

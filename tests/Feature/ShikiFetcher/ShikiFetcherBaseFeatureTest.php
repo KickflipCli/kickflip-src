@@ -7,14 +7,12 @@ namespace KickflipMonoTests\Feature\ShikiFetcher;
 use Illuminate\Support\Facades\File;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\DataProviderHelpers;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
-use KickflipMonoTests\TestCase;
-
 use function dirname;
-
 use const DIRECTORY_SEPARATOR;
 
-class ShikiFetcherTest extends TestCase
+class ShikiFetcherBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;

@@ -6,14 +6,12 @@ namespace KickflipMonoTests\Feature\ShikiFetcher;
 
 use Illuminate\Support\Str;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\NpmHelpers;
-use KickflipMonoTests\TestCase;
-
 use function filter_var;
-
 use const FILTER_VALIDATE_INT;
 
-class ShikiFetcherInstallTest extends TestCase
+class ShikiFetcherInstallBaseFeatureTest extends BaseFeatureTestCase
 {
     use NpmHelpers;
 

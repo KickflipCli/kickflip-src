@@ -9,9 +9,9 @@ use Kickflip\Events\PageDataCreated;
 use Kickflip\Events\SiteBuildComplete;
 use Kickflip\Events\SiteBuildStarted;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\TestCase;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 
-class BasicEventTest extends TestCase
+class BasicEventBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 

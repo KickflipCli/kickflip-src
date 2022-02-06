@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature\Commands;
 
 use Illuminate\Testing\PendingCommand;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function collect;
 use function explode;
 
-class BuildCommandHelpTest extends TestCase
+class BuildCommandHelpBaseFeatureTest extends BaseFeatureTestCase
 {
     public function testBuildCommandHelpFlag()
     {

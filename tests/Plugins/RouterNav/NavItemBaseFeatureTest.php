@@ -9,12 +9,11 @@ use Kickflip\RouterNavPlugin\Models\NavItem;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function app;
 use function route;
 
-class NavItemTest extends TestCase
+class NavItemBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 

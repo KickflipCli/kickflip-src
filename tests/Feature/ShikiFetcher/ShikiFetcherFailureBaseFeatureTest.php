@@ -6,14 +6,12 @@ namespace KickflipMonoTests\Feature\ShikiFetcher;
 
 use Illuminate\Support\Facades\File;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
-use KickflipMonoTests\TestCase;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
-
 use function touch;
-
 use const DIRECTORY_SEPARATOR;
 
-class ShikiFetcherFailureTest extends TestCase
+class ShikiFetcherFailureBaseFeatureTest extends BaseFeatureTestCase
 {
     public function setUp(): void
     {

@@ -6,11 +6,10 @@ namespace KickflipMonoTests\Feature\View;
 
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\BladeMarkdownEngine;
-use KickflipMonoTests\TestCase;
-
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use function app;
 
-class BladeMarkdownEngineTest extends TestCase
+class BladeMarkdownEngineBaseFeatureTest extends BaseFeatureTestCase
 {
     public function testCanInstantiateMarkdownEngine()
     {
