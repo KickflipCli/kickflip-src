@@ -14,8 +14,10 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\PlatformAgnosticHelpers;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
+
 use function collect;
 use function file_get_contents;
+use function realpath;
 
 abstract class DocsTestCase extends BaseTestCase
 {

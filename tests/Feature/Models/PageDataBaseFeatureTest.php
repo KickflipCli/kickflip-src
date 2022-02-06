@@ -10,6 +10,7 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
 use Throwable;
+
 use function dirname;
 
 class PageDataBaseFeatureTest extends BaseFeatureTestCase
@@ -21,7 +22,7 @@ class PageDataBaseFeatureTest extends BaseFeatureTestCase
     {
         $this->expectError();
         // phpcs:ignore
-        $this->expectErrorMessage('Call to private Kickflip\Models\PageData::__construct() from scope KickflipMonoTests\Feature\Models\PageDataTest');
+        $this->expectErrorMessage('Call to private Kickflip\Models\PageData::__construct() from scope ' . self::class);
         /**
          * @psalm-suppress InaccessibleMethod
          * @psalm-suppress TooFewArguments
@@ -91,7 +92,7 @@ class PageDataBaseFeatureTest extends BaseFeatureTestCase
         $this->expectExceptionMessage(
             'Undefined property via __get(): nana in ' .
             dirname(__FILE__, 4) .
-            self::agnosticPath('/tests/Feature/Models/PageDataTest.php'),
+            self::agnosticPath('/tests/Feature/Models/PageDataBaseFeatureTest.php'),
         );
         /**
          * @phpstan-ignore-next-line

@@ -11,6 +11,7 @@ use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
+
 use function file_get_contents;
 
 class SourcePageMetaDataBaseFeatureTest extends BaseFeatureTestCase

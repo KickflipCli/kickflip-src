@@ -11,6 +11,7 @@ use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\DocsSite\DocsTestCase;
+
 use function app;
 use function array_slice;
 use function view;

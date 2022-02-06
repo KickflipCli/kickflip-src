@@ -12,6 +12,8 @@ use KickflipMonoTests\ReflectionHelpers;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
+use function app;
+
 class LoggerTest extends TestCase
 {
     use DataProviderHelpers;
@@ -37,7 +39,8 @@ class LoggerTest extends TestCase
                 $app = app();
                 $app->flush();
             }
-        } catch (\Throwable) {}
+        } catch (Throwable) {
+        }
         $this->expectException(Throwable::class);
         $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
         Logger::{$logLevel}('test');

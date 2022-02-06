@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Unit\SiteBuilder;
 
-use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\SourcesLocator;
-use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
+
 use function dirname;
 
-class SourcesLocatorBaseFeatureTest extends BaseFeatureTestCase
+class SourcesLocatorBaseFeatureTest extends TestCase
 {
-    use DataProviderHelpers;
     use ReflectionHelpers;
 
     public function testCanVerifyClassExists()
@@ -21,33 +20,10 @@ class SourcesLocatorBaseFeatureTest extends BaseFeatureTestCase
         self::assertClassExists(SourcesLocator::class);
     }
 
-    public function testItCanCreateSourcesLocator()
+    public function testExpectsAnException()
     {
-        self::assertInstanceOf(SourcesLocator::class, new SourcesLocator(dirname(__DIR__, 2) . '/sources'));
-    }
-
-    public function testCanVerifySourcesLocatorProperties()
-    {
-        self::assertHasProperties(
-            new SourcesLocator(dirname(__DIR__, 2) . '/sources'),
-            [
-                'sourcesBasePath',
-                'renderPageList',
-                'bladeSources',
-                'markdownSources',
-                'markdownBladeSources',
-            ],
-        );
-    }
-
-    public function testCanVerifySourcesLocatorMethods()
-    {
-        $sourceLocator = new SourcesLocator(dirname(__DIR__, 2) . '/sources');
-        self::assertIsArray($sourceLocator->getRenderPageList());
-        self::assertCount(7, $sourceLocator->getRenderPageList());
-        foreach ($sourceLocator->getRenderPageList() as $pageData) {
-            self::assertInstanceOf(PageData::class, $pageData);
-        }
-        self::assertIsArray($sourceLocator->getCopyFileList());
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('A facade root has not been set.');
+        new SourcesLocator(dirname(__DIR__, 2) . '/sources');
     }
 }

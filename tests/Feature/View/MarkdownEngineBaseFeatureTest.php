@@ -8,6 +8,7 @@ use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\MarkdownEngine;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
+
 use function app;
 
 class MarkdownEngineBaseFeatureTest extends BaseFeatureTestCase

@@ -6,6 +6,7 @@ namespace KickflipMonoTests\Feature\Commands;
 
 use Illuminate\Testing\PendingCommand;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
+
 use function collect;
 use function explode;
 

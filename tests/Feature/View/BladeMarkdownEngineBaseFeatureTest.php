@@ -7,6 +7,7 @@ namespace KickflipMonoTests\Feature\View;
 use Kickflip\Models\SiteData;
 use Kickflip\View\Engine\BladeMarkdownEngine;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
+
 use function app;
 
 class BladeMarkdownEngineBaseFeatureTest extends BaseFeatureTestCase

@@ -6,6 +6,7 @@ namespace KickflipMonoTests\Feature;
 
 use Illuminate\Config\Repository;
 use Kickflip\Logger;
+
 use function app;
 
 class LoggerBaseFeatureTest extends BaseFeatureTestCase

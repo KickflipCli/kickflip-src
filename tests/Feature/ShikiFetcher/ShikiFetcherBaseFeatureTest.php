@@ -9,7 +9,9 @@ use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
+
 use function dirname;
+
 use const DIRECTORY_SEPARATOR;
 
 class ShikiFetcherBaseFeatureTest extends BaseFeatureTestCase

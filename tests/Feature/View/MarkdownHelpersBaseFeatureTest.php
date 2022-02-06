@@ -10,6 +10,7 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\Mocks\MarkdownHelpersMock;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
+
 use function app;
 use function file_get_contents;
 
