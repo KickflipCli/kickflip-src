@@ -104,6 +104,8 @@ jobs:
         uses: "actions/setup-node@v2"
         with:
           node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: packages/kickflip-docs/package-lock.json
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
@@ -174,6 +176,8 @@ jobs:
         uses: "actions/setup-node@v2"
         with:
           node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: packages/kickflip-docs/package-lock.json
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
