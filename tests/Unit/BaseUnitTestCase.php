@@ -21,7 +21,7 @@ abstract class BaseUnitTestCase extends TestCase
             $propertyReflection = $reflectionObject->getProperty('kickflipState');
             $propertyReflection->setAccessible(true);
             $propertyReflection->setValue(null);
-        } catch (Throwable $throws) {
+        } catch (Throwable) {
         }
 
         try {
@@ -30,7 +30,7 @@ abstract class BaseUnitTestCase extends TestCase
             $propertyReflection = $reflectionObject->getProperty('kickflipTimings');
             $propertyReflection->setAccessible(true);
             $propertyReflection->setValue(null);
-        } catch (Throwable $throws) {
+        } catch (Throwable) {
         }
     }
 }

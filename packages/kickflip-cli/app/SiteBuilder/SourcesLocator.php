@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace Kickflip\SiteBuilder;
 
 use BadMethodCallException;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\ContentFileData;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 use function array_flip;
 use function array_map;
 use function collect;
 use function file_get_contents;
+use function iterator_to_array;
 
 final class SourcesLocator
 {
@@ -50,8 +51,14 @@ final class SourcesLocator
     ) {
         // Filter out anything in the assets' folder
         // These were compiled from mix into that folder before compiling the site.
-        $allSourceFiles = collect(File::allfiles($this->sourcesBasePath))
-            ->filter(static fn ($value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
+        $allSourceFiles = collect(iterator_to_array(
+            Finder::create()
+                ->files()
+                ->ignoreDotFiles(true)
+                ->in($this->sourcesBasePath)
+                ->sortByName(),
+            false,
+        ))->filter(static fn (SplFileInfo $value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
         // TODO: add a step that adds collection items into their respective collection...
         $sourcesCount = $allSourceFiles->count();
         for ($i = 0; $i < $sourcesCount; $i++) {
