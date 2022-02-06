@@ -61,6 +61,11 @@ final class SourcePageMetaData
             ->prepend('source');
     }
 
+    public function getRelativeDirectoryPath(): string
+    {
+        return $this->relativePath;
+    }
+
     public function getExtension(): string
     {
         return $this->implicitExtension;

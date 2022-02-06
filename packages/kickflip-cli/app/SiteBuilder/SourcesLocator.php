@@ -18,6 +18,7 @@ use function array_map;
 use function collect;
 use function file_get_contents;
 use function iterator_to_array;
+use function strcmp;
 
 final class SourcesLocator
 {
@@ -58,7 +59,11 @@ final class SourcesLocator
                 ->in($this->sourcesBasePath)
                 ->sortByName(),
             false,
-        ))->filter(static fn (SplFileInfo $value) => ! Str::of($value->getRelativePath())->startsWith('assets'));
+        ))->filter(static function (SplFileInfo $value) {
+            $relativePath = Str::of($value->getRelativePath());
+
+            return ! $relativePath->startsWith('assets') && ! $relativePath->startsWith('_');
+        });
         // TODO: add a step that adds collection items into their respective collection...
         $sourcesCount = $allSourceFiles->count();
         for ($i = 0; $i < $sourcesCount; $i++) {
@@ -81,48 +86,26 @@ final class SourcesLocator
 
     private function buildRenderList(): void
     {
-        // TODO: figure out what this should do for collections
-        /**
-         * @var SourcePageMetaData $bladeSource
-         */
-        foreach ($this->bladeSources as $bladeSource) {
-            $frontMatterData = KickflipHelper::getFrontMatterParser()
-                    ->parse(file_get_contents($bladeSource->getFullPath()))
-                    ->getFrontMatter() ?? [];
-            $this->renderPageList[] = PageData::make(
-                $bladeSource,
-                $frontMatterData,
-            );
-        }
-        unset($bladeSource, $frontMatterData);
+        $renderList = collect($this->bladeSources)
+            ->merge($this->markdownSources)
+            ->merge($this->markdownBladeSources)
+            ->sort(static fn ($fileOne, $fileTwo) => strcmp($fileOne->getName(), $fileTwo->getName()))
+            ->sort(static fn ($fileOne, $fileTwo) => strcmp(
+                $fileOne->getRelativeDirectoryPath(),
+                $fileTwo->getRelativeDirectoryPath(),
+            ))
+            ->values();
 
-        /**
-         * @var SourcePageMetaData $markdownSource
-         */
-        foreach ($this->markdownSources as $markdownSource) {
+        // Compile source pages into PageData objects
+        $renderList->map(function (SourcePageMetaData $sourcePageMetaData) {
             $frontMatterData = KickflipHelper::getFrontMatterParser()
-                    ->parse(file_get_contents($markdownSource->getFullPath()))
+                    ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
                     ->getFrontMatter() ?? [];
             $this->renderPageList[] = PageData::make(
-                $markdownSource,
+                $sourcePageMetaData,
                 $frontMatterData,
             );
-        }
-        unset($markdownSource, $frontMatterData);
-
-        /**
-         * @var SourcePageMetaData $markdownBladeSource
-         */
-        foreach ($this->markdownBladeSources as $markdownBladeSource) {
-            $frontMatterData = KickflipHelper::getFrontMatterParser()
-                    ->parse(file_get_contents($markdownBladeSource->getFullPath()))
-                    ->getFrontMatter() ?? [];
-            $this->renderPageList[] = PageData::make(
-                $markdownBladeSource,
-                $frontMatterData,
-            );
-        }
-        unset($markdownBladeSource, $frontMatterData);
+        });
     }
 
     /**
