@@ -203,7 +203,7 @@ jobs:
 
       - name: "Run Plugin Unit tests (paratest)"
         shell: "bash"
-        run: "composer dev-para-plugin"
+        run: "composer dev-test-unit -- --testsuite PluginsTests --no-coverage"
 
       - name: "Run Feature tests (PHPUnit)"
         shell: "bash"
