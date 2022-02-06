@@ -15,6 +15,7 @@ declare(strict_types=1);
 use Illuminate\Config\Repository;
 use Kickflip\Enums\ConsoleVerbosity;
 use Kickflip\KickflipHelper;
+use Kickflip\Logger;
 
 if (!class_exists('\KickflipHelper')) {
     class_alias(KickflipHelper::class, '\KickflipHelper', true);
@@ -54,7 +55,9 @@ $app->singleton(
 |
 */
 $app->singleton('kickflipTimings', static fn () => new Repository());
+Logger::bootKickflipTimings(app('kickflipTimings'));
 $app->singleton('kickflipCli', static fn () => new Repository());
+KickflipHelper::bootKickflipState(app('kickflipCli'));
 app('kickflipCli')->set('output.verbosity', ConsoleVerbosity::normal());
 
 /*

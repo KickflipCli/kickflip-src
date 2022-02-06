@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Unit;
 
-use Illuminate\Config\Repository;
-use Illuminate\Foundation\Application;
 use Kickflip\Logger;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\ReflectionHelpers;
-use PHPUnit\Framework\TestCase;
-use Throwable;
+use RuntimeException;
 
-use function app;
-
-class LoggerTest extends TestCase
+class LoggerTest extends BaseUnitTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;
@@ -30,19 +25,8 @@ class LoggerTest extends TestCase
      */
     public function testItFailsWithoutAccessToKickflip(string $logLevel): void
     {
-        try {
-            $kickflip = app('kickflipCli');
-            if ($kickflip instanceof Repository) {
-                /**
-                 * @var Application $app
-                 */
-                $app = app();
-                $app->flush();
-            }
-        } catch (Throwable) {
-        }
-        $this->expectException(Throwable::class);
-        $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot access Kickflip state before initialized.');
         Logger::{$logLevel}('test');
     }
 
@@ -61,15 +45,15 @@ class LoggerTest extends TestCase
 
     public function testTablesFailWithoutKickflip(): void
     {
-        $this->expectException(Throwable::class);
-        $this->expectExceptionMessage('Target class [kickflipCli] does not exist.');
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot access Kickflip state before initialized.');
         Logger::veryVerboseTable([], []);
     }
 
     public function testTimingFailWithoutKickflipTimings(): void
     {
-        $this->expectException(Throwable::class);
-        $this->expectExceptionMessage('Target class [kickflipTimings] does not exist.');
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot access Kickflip timings state before initialized.');
         Logger::timing('yeetBoy', 'NotStatic');
     }
 }

@@ -14,6 +14,7 @@ use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\UrlHelper;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
+use RuntimeException;
 
 use function app;
 use function dirname;
@@ -31,6 +32,21 @@ use const PHP_URL_PATH;
 final class KickflipHelper
 {
     private static string $basePath;
+    private static Repository | null $kickflipState = null;
+
+    public static function bootKickflipState(Repository $state)
+    {
+        self::$kickflipState = $state;
+    }
+
+    public static function getKickflipState(): Repository
+    {
+        if (self::$kickflipState === null) {
+            throw new RuntimeException('Cannot access Kickflip state before initialized.');
+        }
+
+        return self::$kickflipState;
+    }
 
     /**
      * Get the path relative to the kickflip working dir.
@@ -44,10 +60,7 @@ final class KickflipHelper
      */
     public static function config(?string $key = null, mixed $default = null)
     {
-        /**
-         * @var Repository $kickflipState
-         */
-        $kickflipState = app('kickflipCli');
+        $kickflipState = self::getKickflipState();
         if (is_null($key)) {
             return $kickflipState;
         }

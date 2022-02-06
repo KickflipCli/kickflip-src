@@ -9,20 +9,33 @@ use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Kickflip\Enums\ConsoleVerbosity;
+use RuntimeException;
 
-use function app;
 use function microtime;
 
 class Logger
 {
     protected static OutputStyle $consoleOutput;
 
+    private static Repository | null $kickflipTimings = null;
+
+    public static function bootKickflipTimings(Repository $state)
+    {
+        self::$kickflipTimings = $state;
+    }
+
+    public static function getKickflipTimings(): Repository
+    {
+        if (self::$kickflipTimings === null) {
+            throw new RuntimeException('Cannot access Kickflip timings state before initialized.');
+        }
+
+        return self::$kickflipTimings;
+    }
+
     public static function timing(string $methodName, ?string $static = null): void
     {
-        /**
-         * @var Repository $timingsRepo
-         */
-        $timingsRepo = app('kickflipTimings');
+        $timingsRepo = self::getKickflipTimings();
         $index = Str::of($methodName)->afterLast('\\')->replace('::', '.');
         if ($static !== null) {
             $index = $index->replaceFirst(

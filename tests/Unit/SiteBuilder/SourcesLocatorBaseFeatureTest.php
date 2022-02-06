@@ -6,12 +6,12 @@ namespace KickflipMonoTests\Unit\SiteBuilder;
 
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\ReflectionHelpers;
-use PHPUnit\Framework\TestCase;
+use KickflipMonoTests\Unit\BaseUnitTestCase;
 use RuntimeException;
 
 use function dirname;
 
-class SourcesLocatorBaseFeatureTest extends TestCase
+class SourcesLocatorBaseFeatureTest extends BaseUnitTestCase
 {
     use ReflectionHelpers;
 
@@ -22,8 +22,8 @@ class SourcesLocatorBaseFeatureTest extends TestCase
 
     public function testExpectsAnException()
     {
-        self::expectException(RuntimeException::class);
-        self::expectExceptionMessage('A facade root has not been set.');
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot access Kickflip state before initialized.');
         new SourcesLocator(dirname(__DIR__, 2) . '/sources');
     }
 }
