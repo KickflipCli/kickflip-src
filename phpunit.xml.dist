@@ -18,10 +18,10 @@
         <testsuite name="Features">
             <directory suffix="Test.php">tests/Feature</directory>
         </testsuite>
-        <testsuite name="Plugins Tests">
+        <testsuite name="PluginsTests">
             <directory suffix="Test.php">tests/Plugins</directory>
         </testsuite>
-        <testsuite name="Docs Site Tests">
+        <testsuite name="DocsSiteTests">
             <directory suffix="Test.php">tests/DocsSite</directory>
         </testsuite>
     </testsuites>

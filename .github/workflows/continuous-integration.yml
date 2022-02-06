@@ -199,11 +199,11 @@ jobs:
 
       - name: "Run unit tests (paratest)"
         shell: "bash"
-        run: "./vendor/bin/paratest --testsuite 'Unit' --no-coverage"
+        run: "composer dev-para-unit"
 
       - name: "Run Plugin Unit tests (paratest)"
         shell: "bash"
-        run: "./vendor/bin/paratest --testsuite 'Plugins Tests' --no-coverage"
+        run: "composer dev-para-plugin"
 
       - name: "Run Feature tests (PHPUnit)"
         shell: "bash"
@@ -211,7 +211,7 @@ jobs:
 
       - name: "Run Docs Site tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Docs Site Tests' --no-coverage"
+        run: "composer dev-test-unit -- --testsuite 'DocsSiteTests' --no-coverage"
 
   provide_packages_json:
     needs: unit-tests

@@ -122,12 +122,17 @@
         "dev-test-coverage-ci": "phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml",
         "dev-test-coverage-html": "phpunit --colors=always --coverage-html build/coverage/coverage-html",
         "dev-test-unit": "phpunit --colors=always",
+        "dev-para-unit": "paratest --testsuite 'Unit' --no-coverage",
+        "dev-para-plugin": "paratest --testsuite 'PluginsTests' --no-coverage",
         "test-temp": [
             "@dev-lint-style",
             "@dev-lint-syntax",
             "@dev-analyze-phpstan",
             "@dev-analyze-psalm",
-            "@dev-test-unit"
+            "@dev-para-unit",
+            "@dev-para-plugin",
+            "@dev-test-unit --testsuite Features --no-coverage",
+            "@dev-test-unit --testsuite DocsSiteTests --no-coverage"
         ]
     },
     "minimum-stability": "dev",
