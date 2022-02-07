@@ -29,10 +29,12 @@ class SortHandler
                 $sortValueA = $sortOption->toFilter()($itemA);
                 $sortValueB = $sortOption->toFilter()($itemB);
 
-                return match (gettype($sortValueA)) {
-                    'integer', 'double' => $sortValueA <=> $sortValueB,
-                    'string' => strcmp($sortValueA, $sortValueB),
-                };
+                $type = gettype($sortValueA);
+                if ($type === 'integer' || $type === 'double') {
+                    return $sortValueA <=> $sortValueB;
+                }
+
+                return strcmp($sortValueA, $sortValueB);
             });
         }
         // Reset keys to new order and then update PageData
