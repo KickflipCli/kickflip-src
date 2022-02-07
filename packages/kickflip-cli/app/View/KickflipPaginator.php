@@ -27,7 +27,7 @@ class KickflipPaginator extends Paginator
     /**
      * Get the URL for a given page number.
      *
-     * @param int @page
+     * @param int $page
      *
      * @return ?string
      */

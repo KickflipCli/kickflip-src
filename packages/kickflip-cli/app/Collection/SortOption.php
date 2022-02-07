@@ -21,6 +21,7 @@ class SortOption extends Enum
 {
     /** @psalm-var array<class-string, array<int|string, SortOption>> */
     private static array $instances = [];
+    public mixed $backedValue;
 
     /**
      * @param array<int|string|bool> $arguments
