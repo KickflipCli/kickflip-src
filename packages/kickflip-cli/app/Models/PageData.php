@@ -6,7 +6,6 @@ namespace Kickflip\Models;
 
 use Exception;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Kickflip\Collection\CollectionConfig;
 use Kickflip\Collection\PageCollection;
@@ -111,6 +110,9 @@ class PageData implements PageInterface
         return $newPageData;
     }
 
+    /**
+     * @param array<string, mixed> $frontMatter
+     */
     public static function makeFromCollection(
         PageCollection $itemCollection,
         int $collectionIndex,
@@ -201,7 +203,7 @@ class PageData implements PageInterface
         $this->collectionIndex = $index;
     }
 
-    public function getCollection(): ?Collection
+    public function getCollection(): ?PageCollection
     {
         if (!$this->isCollectionItem) {
             return null;

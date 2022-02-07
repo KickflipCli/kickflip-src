@@ -11,6 +11,9 @@ namespace Kickflip\Collection;
  */
 final class InverseSortOption extends SortOption
 {
+    /**
+     * @return string[]
+     */
     protected static function values(): array
     {
         return [

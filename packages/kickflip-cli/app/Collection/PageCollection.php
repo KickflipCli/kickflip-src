@@ -14,30 +14,42 @@ use Kickflip\View\KickflipPaginator;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-use function array_slice;
 use function collect;
 use function dirname;
 use function is_dir;
 use function iterator_to_array;
 
-/**
- * @protected array<PageData> $items
- */
-class PageCollection extends Collection
+class PageCollection
 {
     public string $name;
+
     public CollectionConfig $config;
+
     /**
      * @var Collection<SourcePageMetaData>
      */
     public Collection $sourceItems;
 
-    public function __construct(CollectionConfig $config, $items = [])
+    /**
+     * @var Collection<PageData>
+     */
+    public Collection $pageItems;
+
+    private function __construct(CollectionConfig $config)
     {
         $this->name = $config->name;
         $this->config = $config;
         $this->sourceItems = collect();
+    }
 
+    public static function fromConfig(CollectionConfig $config): PageCollection
+    {
+        return new PageCollection($config);
+    }
+
+    public function discoverItems(): static
+    {
+        $config = $this->config;
         if (is_dir($config->basePath)) {
             $collectionSourceFiles = collect(iterator_to_array(
                 Finder::create()
@@ -47,7 +59,9 @@ class PageCollection extends Collection
                     ->sortByName(),
                 false,
             ))
-                ->reject(static fn (SplFileInfo $value) => ! Str::of($value->getRelativePath())->startsWith($config->path))
+                ->reject(
+                    static fn (SplFileInfo $value) => ! Str::of($value->getRelativePath())->startsWith($config->path),
+                )
                 ->values();
 
             $sourcesCount = $collectionSourceFiles->count();
@@ -65,30 +79,34 @@ class PageCollection extends Collection
                 };
             }
         }
-        parent::__construct($items);
-    }
 
-    public static function fromConfig(CollectionConfig $config): PageCollection
-    {
-        return new PageCollection($config);
+        return $this;
     }
 
     /**
      * @param array<PageData> $collectionItems
+     * @param array<int, PageData> &$renderPageList
      */
     public function loadItems(array $collectionItems, array &$renderPageList)
     {
-        $this->items = $collectionItems = (new SortHandler($this->config))($collectionItems);
-        foreach ($collectionItems as $key => $collectionItem) {
+        $this->pageItems = (new SortHandler($this->config))($collectionItems);
+        foreach ($this->pageItems as $key => $collectionItem) {
             $collectionItem->updateCollectionIndex($key);
             $renderPageList[] = $collectionItem;
         }
     }
 
+    public function getItems(): Collection
+    {
+        return $this->pageItems;
+    }
+
     public function backAndNextPaginate(PageData $page): Paginator
     {
+        $slice = $this->pageItems->slice($page->getCollectionIndex() - 1, 2)->values();
+
         return new KickflipPaginator(
-            array_slice($this->items, $page->getCollectionIndex() - 1, 2),
+            $slice,
             1,
             $page->getCollectionIndex(),
             [
@@ -98,10 +116,12 @@ class PageCollection extends Collection
         );
     }
 
-    public function paginate(PageData $page, $perPage = 5): Paginator
+    public function paginate(PageData $page, ?int $perPage = 5): Paginator
     {
+        $slice = $this->pageItems->slice($page->getCollectionIndex() - 1, $perPage + 1)->values();
+
         return new KickflipPaginator(
-            array_slice($this->items, $page->getCollectionIndex() - 1, $perPage + 1),
+            $slice,
             $perPage,
             $page->getCollectionIndex(),
             [

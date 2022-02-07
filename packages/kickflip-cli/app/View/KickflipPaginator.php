@@ -6,6 +6,7 @@ namespace Kickflip\View;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Kickflip\Collection\PageCollection;
 
 class KickflipPaginator extends Paginator
 {
@@ -26,17 +27,22 @@ class KickflipPaginator extends Paginator
     /**
      * Get the URL for a given page number.
      *
-     * @return string
+     * @param int @page
+     *
+     * @return ?string
      */
-    public function url(int $page)
+    public function url($page)
     {
         if ($page <= 0) {
             $page = 1;
         }
 
-        $paginatorCollection = $this->items[0]->getCollection();
+        /**
+         * @var PageCollection $paginatorCollection
+         */
+        $paginatorCollection = $this->items->get(0)->getCollection();
 
-        return $paginatorCollection->get($page - 1)?->getUrl();
+        return $paginatorCollection->getItems()->get($page - 1)?->getUrl();
     }
 
     /**

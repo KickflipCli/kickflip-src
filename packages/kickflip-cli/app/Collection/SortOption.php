@@ -23,7 +23,7 @@ class SortOption extends Enum
     private static array $instances = [];
 
     /**
-     * @param array $arguments
+     * @param array<int|string|bool> $arguments
      *
      * @return static
      */
@@ -33,6 +33,8 @@ class SortOption extends Enum
     }
 
     /**
+     * @param array<int|string|bool> $arguments
+     *
      * @return static
      */
     final public static function fromBacked(string | int $value, array $arguments): SortOption

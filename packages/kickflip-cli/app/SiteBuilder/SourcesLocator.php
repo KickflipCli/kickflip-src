@@ -6,6 +6,7 @@ namespace Kickflip\SiteBuilder;
 
 use BadMethodCallException;
 use Illuminate\Support\Str;
+use Kickflip\Collection\CollectionConfig;
 use Kickflip\Collection\PageCollection;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\ContentFileData;
@@ -102,7 +103,7 @@ final class SourcesLocator
         $collections = $kickflipCliState->get('site.collections');
         $itemCollections = [];
         foreach ($collections as $collectionConfig) {
-            $itemCollections[$collectionConfig->name] = PageCollection::fromConfig($collectionConfig);
+            $itemCollections[$collectionConfig->name] = PageCollection::fromConfig($collectionConfig)->discoverItems();
         }
         $kickflipCliState->set('collections', $itemCollections);
     }
@@ -140,18 +141,20 @@ final class SourcesLocator
         // Sort item collections based on collection name...
         uasort(
             $itemCollections,
-            static fn (PageCollection $collectionOne, PageCollection $collectionTwo) => strcmp($collectionOne->name, $collectionTwo->name),
+            static fn (PageCollection $collectionOne, PageCollection $collectionTwo) => strcmp(
+                $collectionOne->name,
+                $collectionTwo->name,
+            ),
         );
 
         foreach ($itemCollections as $itemCollection) {
             $collectionItems = [];
             $sourcesCount = $itemCollection->sourceItems->count();
             for ($i = 0; $i < $sourcesCount; $i++) {
-                $sourcePageMetaData = $itemCollection->sourceItems->get($i);
-
                 /**
                  * @var SourcePageMetaData $sourcePageMetaData
                  */
+                $sourcePageMetaData = $itemCollection->sourceItems->get($i);
                 $frontMatterData = KickflipHelper::getFrontMatterParser()
                         ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
                         ->getFrontMatter() ?? [];
