@@ -24,7 +24,7 @@ class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
      */
     public function testPageRouteNameHelper(PageData $page)
     {
-        self::assertEquals($page->source->getName(), KickflipHelper::pageRouteName($page));
+        self::assertEquals($page->source->getRouteName(), KickflipHelper::pageRouteName($page));
     }
 
     /**

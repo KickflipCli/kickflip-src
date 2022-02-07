@@ -218,7 +218,7 @@ final class KickflipHelper
     #[Pure]
     public static function pageRouteName(PageData $pageData): string
     {
-        return $pageData->source->getName();
+        return $pageData->source->getRouteName();
     }
 
     public static function pageUrl(PageData $pageData): string
@@ -252,5 +252,10 @@ final class KickflipHelper
     public static function urlFromSource(string $name): string
     {
         return UrlHelper::getSourceFileUrl($name);
+    }
+
+    public static function hasItemCollections(): bool
+    {
+        return self::config()->has('site.collections');
     }
 }

@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Support\HtmlString;
 use Kickflip\KickflipHelper;
 
 if (!function_exists('kickflip_asset_url')) {
     /**
      * Get the path to a versioned Mix file.
      *
-     * @param  string  $path
-     * @param  string  $manifestDirectory
-     * @return \Illuminate\Support\HtmlString|string
+     * @param string $manifestDirectory
      *
-     * @throws \Exception
+     * @return HtmlString|string
+     *
+     * @throws Exception
      */
-    function kickflip_asset_url($path)
+    function kickflip_asset_url(string $path)
     {
         return KickflipHelper::assetUrl($path);
     }

@@ -17,6 +17,7 @@
         "illuminate/events": "^8.74",
         "illuminate/log": "^8.74",
         "illuminate/support": "^8.74",
+        "illuminate/translation": "^8.74",
         "illuminate/view": "^8.74",
         "laravel-zero/framework": "^8.9.1",
         "league/commonmark": "^2.1",

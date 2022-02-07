@@ -6,6 +6,7 @@ namespace Kickflip\SiteBuilder;
 
 use BadMethodCallException;
 use Illuminate\Support\Str;
+use Kickflip\Collection\PageCollection;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\ContentFileData;
 use Kickflip\Models\PageData;
@@ -19,6 +20,7 @@ use function collect;
 use function file_get_contents;
 use function iterator_to_array;
 use function strcmp;
+use function uasort;
 
 final class SourcesLocator
 {
@@ -50,8 +52,16 @@ final class SourcesLocator
     public function __construct(
         private string $sourcesBasePath,
     ) {
-        // Filter out anything in the assets' folder
-        // These were compiled from mix into that folder before compiling the site.
+        $this->discoverSourceFiles();
+        // TODO: add a step that discovers and adds items based on collections too...
+        $this->discoverCollections();
+        $this->buildRenderList();
+    }
+
+    private function discoverSourceFiles(): void
+    {
+        // Filter out anything in the `assets` folder or `_` prefixed folders for collections.
+        // Files from `assets` were compiled from mix into that folder before compiling the site.
         $allSourceFiles = collect(iterator_to_array(
             Finder::create()
                 ->files()
@@ -59,12 +69,9 @@ final class SourcesLocator
                 ->in($this->sourcesBasePath)
                 ->sortByName(),
             false,
-        ))->filter(static function (SplFileInfo $value) {
-            $relativePath = Str::of($value->getRelativePath());
-
-            return ! $relativePath->startsWith('assets') && ! $relativePath->startsWith('_');
-        });
-        // TODO: add a step that adds collection items into their respective collection...
+        ))
+            ->reject(static fn (SplFileInfo $value) => Str::of($value->getRelativePath())->startsWith('_'))
+            ->reject(static fn (SplFileInfo $value) => Str::of($value->getRelativePath())->startsWith('assets'));
         $sourcesCount = $allSourceFiles->count();
         for ($i = 0; $i < $sourcesCount; $i++) {
             /**
@@ -80,8 +87,24 @@ final class SourcesLocator
                 default => 'do nothing',
             };
         }
-        unset($allSourceFiles);
-        $this->buildRenderList();
+    }
+
+    private function discoverCollections(): void
+    {
+        if (! KickflipHelper::hasItemCollections()) {
+            return;
+        }
+
+        $kickflipCliState = KickflipHelper::config();
+        /**
+         * @var CollectionConfig[] $collections
+         */
+        $collections = $kickflipCliState->get('site.collections');
+        $itemCollections = [];
+        foreach ($collections as $collectionConfig) {
+            $itemCollections[$collectionConfig->name] = PageCollection::fromConfig($collectionConfig);
+        }
+        $kickflipCliState->set('collections', $itemCollections);
     }
 
     private function buildRenderList(): void
@@ -93,8 +116,7 @@ final class SourcesLocator
             ->sort(static fn ($fileOne, $fileTwo) => strcmp(
                 $fileOne->getRelativeDirectoryPath(),
                 $fileTwo->getRelativeDirectoryPath(),
-            ))
-            ->values();
+            ));
 
         // Compile source pages into PageData objects
         $renderList->map(function (SourcePageMetaData $sourcePageMetaData) {
@@ -106,6 +128,43 @@ final class SourcesLocator
                 $frontMatterData,
             );
         });
+
+        // Skip doing this if there are no item collections in the config...
+        if (! KickflipHelper::hasItemCollections()) {
+            return;
+        }
+        /**
+         * @var PageCollection[] $itemCollections
+         */
+        $itemCollections = KickflipHelper::config('collections');
+        // Sort item collections based on collection name...
+        uasort(
+            $itemCollections,
+            static fn (PageCollection $collectionOne, PageCollection $collectionTwo) => strcmp($collectionOne->name, $collectionTwo->name),
+        );
+
+        foreach ($itemCollections as $itemCollection) {
+            $collectionItems = [];
+            $sourcesCount = $itemCollection->sourceItems->count();
+            for ($i = 0; $i < $sourcesCount; $i++) {
+                $sourcePageMetaData = $itemCollection->sourceItems->get($i);
+
+                /**
+                 * @var SourcePageMetaData $sourcePageMetaData
+                 */
+                $frontMatterData = KickflipHelper::getFrontMatterParser()
+                        ->parse(file_get_contents($sourcePageMetaData->getFullPath()))
+                        ->getFrontMatter() ?? [];
+                $pageData = PageData::makeFromCollection(
+                    itemCollection: $itemCollection,
+                    collectionIndex: $i,
+                    metaData: $sourcePageMetaData,
+                    frontMatter: $frontMatterData,
+                );
+                $collectionItems[] = $pageData;
+            }
+            $itemCollection->loadItems($collectionItems, $this->renderPageList);
+        }
     }
 
     /**
@@ -113,7 +172,6 @@ final class SourcesLocator
      */
     public function getRenderPageList(): array
     {
-        // TODO: find a way to make this consider collection pages too
         return $this->renderPageList;
     }
 

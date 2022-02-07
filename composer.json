@@ -19,6 +19,7 @@
         "illuminate/events": "^8.74",
         "illuminate/http": "^8.74",
         "illuminate/log": "^8.74",
+        "illuminate/translation": "^8.74",
         "illuminate/routing": "^8.74",
         "illuminate/support": "^8.74",
         "illuminate/view": "^8.74",

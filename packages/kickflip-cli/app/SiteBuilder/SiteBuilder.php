@@ -21,6 +21,7 @@ use Kickflip\Models\SiteData;
 use function app;
 use function array_merge;
 use function collect;
+use function config;
 use function count;
 use function dirname;
 use function file_exists;
@@ -64,6 +65,9 @@ final class SiteBuilder
             'site',
             SiteData::fromConfig($kickflipCliState->get('site')),
         );
+
+        // Set language...
+        config()->set('app.locale', $kickflipCliState->get('site.locale'));
     }
 
     public static function updateAppUrl(): void
@@ -95,6 +99,16 @@ final class SiteBuilder
         $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::EnvBuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         $kickflipCliState->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
+    }
+
+    public static function initCollections()
+    {
+        $kickflipCliState = KickflipHelper::config();
+        $collections = $kickflipCliState->get('site.collections');
+        if ($collections !== null) {
+            // TODO: Figure out appropriate validation steps, or similar for init...
+            Logger::debug('Validated Collections');
+        }
     }
 
     public function build(OutputStyle $consoleOutput): void
@@ -147,7 +161,12 @@ final class SiteBuilder
          * @var PageData $page
          */
         foreach ($renderPageList as $page) {
-            $consoleOutput->writeln(sprintf('Rendering page from %s', $page->source->getFilename()));
+            KickflipHelper::config()->set('page', $page);
+            $consoleOutput->writeln(sprintf(
+                'Rendering page `%s` from `%s` ',
+                $page->getUrl(),
+                $page->source->getRelativePath(),
+            ));
             Logger::verbose('Building ' . $page->source->getName() . ':' . $page->url . ':' . $page->title);
             $outputFile = $page->getOutputPath();
             $outputDir = dirname($outputFile);
@@ -158,6 +177,7 @@ final class SiteBuilder
                 mkdir(directory: $outputDir, recursive: true);
             }
             file_put_contents($outputFile, $view->render());
+            KickflipHelper::config()->set('page', null);
         }
         $consoleOutput->writeln('<info>Completed page rendering.</info>');
 

@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Events\EventServiceProvider;
 use Illuminate\Filesystem\FilesystemServiceProvider;
 use Illuminate\Log\LogServiceProvider;
+use Illuminate\Translation\TranslationServiceProvider;
+use Kickflip\Providers\CustomPaginatorServiceProvider;
 use Kickflip\Providers\InitServiceProvider;
 use Kickflip\Providers\KickflipServiceProvider;
 use Kickflip\Providers\ViewServiceProvider;
@@ -52,6 +54,33 @@ return [
 
     'env' => 'development',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Locale Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application locale determines the default locale that will be used
+    | by the translation service provider. You are free to set this value
+    | to any of the locales which will be supported by the application.
+    |
+    */
+
+    'locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Fallback Locale
+    |--------------------------------------------------------------------------
+    |
+    | The fallback locale determines the locale to use when the current one
+    | is not available. You may change the value to correspond to any of
+    | the language folders that are provided through your application.
+    |
+    */
+
+    'fallback_locale' => 'en',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -71,5 +100,7 @@ return [
         ViewServiceProvider::class,
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
+        TranslationServiceProvider::class,
+        CustomPaginatorServiceProvider::class, // TODO: Consider replacing for conditional load based on router plugin?
     ],
 ];
