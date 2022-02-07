@@ -6,23 +6,19 @@ namespace KickflipMonoTests\DocsSite;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\File;
+use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
+use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\DataProviderHelpers;
-use KickflipMonoTests\PlatformAgnosticHelpers;
-use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
-use Spatie\Snapshots\MatchesSnapshots;
+use KickflipMonoTests\Feature\BaseFeatureTestCase;
 
-use function collect;
 use function file_get_contents;
 use function realpath;
 
-abstract class DocsTestCase extends BaseTestCase
+abstract class DocsTestCase extends BaseFeatureTestCase
 {
-    use PlatformAgnosticHelpers;
-    use MatchesSnapshots;
     use DataProviderHelpers;
 
     /**
@@ -32,20 +28,35 @@ abstract class DocsTestCase extends BaseTestCase
      */
     public function createApplication()
     {
+        // Reset PageData to defaults
+        PageData::$defaultExtendsView = 'layouts.master';
+        PageData::$defaultExtendsSection = 'body';
+
         /**
          * @var \LaravelZero\Framework\Application $app
          */
         $app = require __DIR__ . '/../../packages/kickflip-cli/bootstrap/app.php';
-        $projectPath = realpath(__DIR__ . '/../../packages/kickflip-docs');
-        KickflipHelper::setPaths(KickflipHelper::basePath(self::agnosticPath($projectPath)));
-        $app->make(Kernel::class)->bootstrap();
+        $basePath = realpath(__DIR__ . '/../../packages/kickflip-docs');
+        KickflipHelper::basePath($basePath);
+        KickflipHelper::setPaths($basePath);
+        /**
+         * @var KickflipKernel $kernel
+         */
+        $kernel = $app->make(Kernel::class);
+        $kernel->bootstrap();
+        $this->callAfterResolving($app, 'view', function ($view) {
+            /**
+             * @var Factory $view
+             */
+            $view->addLocation(realpath(__DIR__ . self::agnosticPath('/../views')));
+        });
 
         return $app;
     }
 
     public function getDocsPageData(string $pageName): PageData
     {
-        $allSources = collect(File::allfiles(KickflipHelper::sourcePath()))
+        $allSources = KickflipHelper::getFiles(KickflipHelper::sourcePath())
             ->map(fn ($splFileInfo) => SourcePageMetaData::fromSplFileInfo($splFileInfo))
             ->filter(fn (SourcePageMetaData $sourcePageMetaData) => match ($sourcePageMetaData->getExtension()) {
                     'blade.php', 'md', 'markdown',

@@ -7,6 +7,5 @@
     </header>
 
     <main role="main" class="w-full flex-auto prose mx-auto mb-2">
-        @yield('content')
-    </main>
+        @yield('content')</main>
 @endsection

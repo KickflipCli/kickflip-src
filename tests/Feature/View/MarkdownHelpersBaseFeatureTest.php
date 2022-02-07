@@ -76,7 +76,7 @@ class MarkdownHelpersBaseFeatureTest extends BaseFeatureTestCase
     public function siteDataProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            [0, 'content', 'layouts.master'],
+            [0, 'content', 'layouts.default'],
             [1, 'postContent', 'layouts.post'],
             [4, 'postContent', 'layouts.post'],
         ]);

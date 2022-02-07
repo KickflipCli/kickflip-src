@@ -68,6 +68,8 @@ final class SiteBuilder
 
         // Set language...
         config()->set('app.locale', $kickflipCliState->get('site.locale'));
+
+        self::initCollections();
     }
 
     public static function updateAppUrl(): void

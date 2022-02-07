@@ -12,14 +12,12 @@ use Kickflip\KickflipHelper;
 use Kickflip\Models\ContentFileData;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 use function array_flip;
 use function array_map;
 use function collect;
 use function file_get_contents;
-use function iterator_to_array;
 use function strcmp;
 use function uasort;
 
@@ -63,14 +61,7 @@ final class SourcesLocator
     {
         // Filter out anything in the `assets` folder or `_` prefixed folders for collections.
         // Files from `assets` were compiled from mix into that folder before compiling the site.
-        $allSourceFiles = collect(iterator_to_array(
-            Finder::create()
-                ->files()
-                ->ignoreDotFiles(true)
-                ->in($this->sourcesBasePath)
-                ->sortByName(),
-            false,
-        ))
+        $allSourceFiles = KickflipHelper::getFiles($this->sourcesBasePath)
             ->reject(static fn (SplFileInfo $value) => Str::of($value->getRelativePath())->startsWith('_'))
             ->reject(static fn (SplFileInfo $value) => Str::of($value->getRelativePath())->startsWith('assets'));
         $sourcesCount = $allSourceFiles->count();

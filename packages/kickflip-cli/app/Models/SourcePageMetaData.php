@@ -15,6 +15,9 @@ use const DIRECTORY_SEPARATOR;
 final class SourcePageMetaData
 {
     private string $viewName;
+    /**
+     * @var string|null Only set when created via fromSplFileInfoForCollection
+     */
     private string | null $routeName = null;
     private string $implicitExtension;
 

@@ -15,7 +15,7 @@ class ExtendsInfo
     }
 
     #[Pure]
-    public static function make(string $view, string $section): ExtendsInfo
+    public static function make(string $view = 'layouts.master', string $section = 'body'): ExtendsInfo
     {
         return new self($view, $section);
     }

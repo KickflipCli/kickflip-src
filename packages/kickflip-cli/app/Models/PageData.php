@@ -177,22 +177,22 @@ class PageData implements PageInterface
         return $this->isCollectionItem;
     }
 
-    public function getCollectionName(): ?string
+    public function getCollectionName(): string
     {
-        if ($this->isCollectionItem) {
-            return $this->collectionName;
+        if (!$this->isCollectionItem) {
+            throw new RuntimeException('Should only call `getCollectionName` on PageData part of a collection');
         }
 
-        return null;
+        return $this->collectionName;
     }
 
-    public function getCollectionIndex(): ?int
+    public function getCollectionIndex(): int
     {
-        if ($this->isCollectionItem) {
-            return $this->collectionIndex + 1;
+        if (!$this->isCollectionItem) {
+            throw new RuntimeException('Should only call `getCollectionIndex` on PageData part of a collection');
         }
 
-        return null;
+        return $this->collectionIndex + 1;
     }
 
     public function updateCollectionIndex(int $index)
@@ -203,10 +203,10 @@ class PageData implements PageInterface
         $this->collectionIndex = $index;
     }
 
-    public function getCollection(): ?PageCollection
+    public function getCollection(): PageCollection
     {
         if (!$this->isCollectionItem) {
-            return null;
+            throw new RuntimeException('Should only call `getCollection` on PageData part of a collection');
         }
         /**
          * @var PageCollection[] $collections
@@ -216,10 +216,10 @@ class PageData implements PageInterface
         return $collections[$this->collectionName];
     }
 
-    public function getPreviousNextPaginator(): ?Paginator
+    public function getPreviousNextPaginator(): Paginator
     {
         if (!$this->isCollectionItem) {
-            return null;
+            throw new RuntimeException('Should only call `getPreviousNextPaginator` on PageData part of a collection');
         }
 
         $pageCollection = $this->getCollection();

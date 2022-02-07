@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipDocs\View\Components;
 
 use Illuminate\Support\HtmlString;

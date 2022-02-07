@@ -63,7 +63,6 @@ class BuildCommand extends Command
         BeforeConfigurationLoads::dispatch();
         // Load in the local projects config based on env...
         SiteBuilder::includeEnvironmentConfig($env);
-        SiteBuilder::initCollections();
         SiteBuilder::updateBuildPaths($env);
 
         $buildDest = KickflipHelper::buildPath();

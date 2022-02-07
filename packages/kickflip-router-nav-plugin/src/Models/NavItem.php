@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function app;
 use function count;
+use function route;
 
 class NavItem implements NavItemInterface
 {
@@ -51,6 +52,16 @@ class NavItem implements NavItemInterface
         return new self(
             title: $title,
             url: $url,
+            routeName: $routeName,
+        );
+    }
+
+    #[Pure]
+    public static function makeFromRouteName(string $title, string $routeName): self
+    {
+        return new self(
+            title: $title,
+            url: route($routeName),
             routeName: $routeName,
         );
     }

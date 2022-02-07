@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Plugins\RouterNav;
 
+use Kickflip\Models\PageData;
 use Kickflip\RouterNavPlugin\Models\NavItem;
 use Kickflip\SiteBuilder\SiteBuilder;
-use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DocsSite\DocsTestCase;
 
-use function app;
+use function explode;
 use function route;
 
 class DocsNavItemTest extends DocsTestCase
@@ -30,15 +30,23 @@ class DocsNavItemTest extends DocsTestCase
         SiteBuilder::includeEnvironmentConfig(static::ENV);
         SiteBuilder::updateBuildPaths(static::ENV);
         SiteBuilder::updateAppUrl();
-        app(SourcesLocator::class);
+
+        // Init SiteBuilder to boot needed services...
+        new SiteBuilder();
     }
 
     /**
      * @dataProvider navItemRawDataProvider
      */
-    public function testBasicNavItemCanBeCreated(string $title, string $url, bool $hasRoute, ?string $routeName): void
+    public function testBasicNavItemCanBeCreated(string $pageName, string $title, string $url, bool $hasRoute): void
     {
-        $navItem = NavItem::make($title, $url);
+        [$type, $pageName] = explode(':', $pageName);
+        if ($type === 'test') {
+            $page = $this->getTestPageData((int) $pageName);
+        } else {
+            $page = $this->getDocsPageData($pageName);
+        }
+        $navItem = NavItem::makeFromRouteName($page->title, $page->source->getRouteName());
         // Verify title
         self::assertIsString($navItem->getLabel());
         self::assertEquals($title, $navItem->getLabel());
@@ -52,21 +60,21 @@ class DocsNavItemTest extends DocsTestCase
         self::assertEquals($url, $navItem->url);
         // Verify route name
         self::assertEquals($hasRoute, $navItem->hasRouteName());
-        self::assertEquals($routeName, $navItem->getRouteName());
-        self::assertEquals($routeName, $navItem->routeName);
+        self::assertEquals($page->source->getRouteName(), $navItem->getRouteName());
+        self::assertEquals($page->source->getRouteName(), $navItem->routeName);
         // verify children
         self::assertFalse($navItem->hasChildren());
     }
 
     /**
-     * @return array<array-key, string[]>
+     * @return array<array-key, PageData>
      */
     public function navItemRawDataProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            ['Home', '/', true, 'index'],
-            ['Basic Page', '/basic', false, null],
-            ['Another Page', '/another-page', false, null],
+            ['docs:index', 'Getting Started', 'http://kickflip-docs.test', true],
+            ['test:0', 'Basic', 'http://kickflip-docs.test/basic', true],
+            ['test:6', 'Simple', 'http://kickflip-docs.test/simple', true],
         ]);
     }
 
@@ -88,9 +96,10 @@ class DocsNavItemTest extends DocsTestCase
     public function testCanVerifyNavItemMatchPage()
     {
         $indexPage = $this->getDocsPageData('index');
-        $indexNavItem = NavItem::make('Home', route('index'));
+        $basicPage = $this->getTestPageData();
+        $indexNavItem = NavItem::make($indexPage->title, route('index'));
         $indexNavItem->setChildren([
-            NavItem::make('Basic Page', '/basic')
+            NavItem::make($basicPage->title, '/basic')
                 ->setChildren([
                     NavItem::make('Another Page', '/another-page'),
                 ]),

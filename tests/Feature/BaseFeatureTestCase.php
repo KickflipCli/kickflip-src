@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
 use Kickflip\KickflipKernel;
@@ -23,8 +22,6 @@ use function file_exists;
 use function file_get_contents;
 use function func_get_args;
 use function realpath;
-
-use const DIRECTORY_SEPARATOR;
 
 abstract class BaseFeatureTestCase extends BaseTestCase
 {
@@ -96,7 +93,7 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     public function getTestPageData(int $index = 0): PageData
     {
         // Fetch a single Symfony SplFileInfo object
-        $splFileInfo = File::files(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'sources')[$index];
+        $splFileInfo = KickflipHelper::getFiles(__DIR__ . self::agnosticPath('/../sources'))[$index];
         // Create a SourcePageMetaData object
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
         // Parse out the front matter page metadata
