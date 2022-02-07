@@ -179,7 +179,7 @@ class PageData implements PageInterface
 
     public function getCollectionName(): string
     {
-        if (!$this->isCollectionItem) {
+        if (!$this->isCollectionItem || $this->collectionName === null) {
             throw new RuntimeException('Should only call `getCollectionName` on PageData part of a collection');
         }
 
