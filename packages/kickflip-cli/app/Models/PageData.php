@@ -35,7 +35,7 @@ class PageData implements PageInterface
         public string | null $description = null,
         public bool | null $autoExtend = true,
         public ExtendsInfo | null $extends = null,
-        protected bool | null $isCollectionItem = false,
+        protected bool $isCollectionItem = false,
         protected string | null $collectionName = null,
         protected int | null $collectionIndex = null,
     ) {

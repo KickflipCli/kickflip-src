@@ -39,6 +39,7 @@
         <exclude-pattern>packages/kickflip-cli/app/View/Compilers/BladeCompiler.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/Engine/*Engine.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/KickflipPaginator.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Collection/SortOption.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint">
         <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
@@ -47,6 +48,10 @@
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
         <exclude-pattern>packages/kickflip-cli/app/View/Compilers/*.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/Engine/*.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Collection/SortOption.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint">
+        <exclude-pattern>packages/kickflip-cli/app/Collection/SortOption.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification">
         <exclude-pattern>packages/kickflip-cli/app/Providers/*.php</exclude-pattern>

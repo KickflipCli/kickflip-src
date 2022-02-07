@@ -12,7 +12,7 @@ namespace Kickflip\Collection;
 final class InverseSortOption extends SortOption
 {
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     protected static function values(): array
     {

@@ -26,12 +26,12 @@ class PageCollection
     public CollectionConfig $config;
 
     /**
-     * @var Collection<SourcePageMetaData>
+     * @var Collection of SourcePageMetaData
      */
     public Collection $sourceItems;
 
     /**
-     * @var Collection<PageData>
+     * @var Collection of PageData
      */
     public Collection $pageItems;
 

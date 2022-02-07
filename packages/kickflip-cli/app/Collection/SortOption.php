@@ -23,11 +23,6 @@ class SortOption extends Enum
     private static array $instances = [];
     public mixed $backedValue;
 
-    /**
-     * @param array<int|string|bool> $arguments
-     *
-     * @return static
-     */
     public static function __callStatic(string $name, array $arguments)
     {
         return static::fromBacked($name, $arguments);
@@ -51,8 +46,10 @@ class SortOption extends Enum
 
     /**
      * @internal
+     *
+     * @param string|int $value
      */
-    public function __construct(string | int $value, array | null $arguments = null)
+    public function __construct($value, array | null $arguments = null)
     {
         if ($arguments !== null && count($arguments) > 0) {
             $this->backedValue = $arguments[0];

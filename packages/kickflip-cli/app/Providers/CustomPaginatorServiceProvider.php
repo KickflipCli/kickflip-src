@@ -20,10 +20,9 @@ class CustomPaginatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $app = $this->app;
-        KickflipPaginator::viewFactoryResolver(fn () => $app['view']);
+        KickflipPaginator::viewFactoryResolver(fn () => $this->app->get('view'));
 
-        KickflipPaginator::currentPathResolver(fn () => $app->get('kickflipCli')->get('page')->getUrl());
+        KickflipPaginator::currentPathResolver(fn () => $this->app->get('kickflipCli')->get('page')->getUrl());
 
         KickflipPaginator::queryStringResolver(fn () => '');
     }

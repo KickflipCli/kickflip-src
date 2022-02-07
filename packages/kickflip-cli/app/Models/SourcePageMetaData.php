@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kickflip\Models;
 
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\Pure;
 use Kickflip\Collection\CollectionConfig;
 use Kickflip\KickflipHelper;
 use Symfony\Component\Finder\SplFileInfo;
@@ -57,21 +58,25 @@ final class SourcePageMetaData
         return $newInstance;
     }
 
+    #[Pure]
     public function getName(): string
     {
         return $this->viewName;
     }
 
+    #[Pure]
     public function getRouteName(): string
     {
         return $this->routeName ?? $this->viewName;
     }
 
+    #[Pure]
     public function getFilename(): string
     {
         return $this->filename;
     }
 
+    #[Pure]
     public function getFullPath(): string
     {
         return $this->fullPath;
@@ -84,21 +89,25 @@ final class SourcePageMetaData
             ->prepend('source');
     }
 
+    #[Pure]
     public function getRelativeDirectoryPath(): string
     {
         return $this->relativePath;
     }
 
+    #[Pure]
     public function getExtension(): string
     {
         return $this->implicitExtension;
     }
 
+    #[Pure]
     public function getMimeExtension(): string
     {
         return $this->explicitExtension;
     }
 
+    #[Pure]
     public function getType(): string
     {
         return match ($this->implicitExtension) {
