@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Plugins\RouterNav;
 
-use Kickflip\Models\PageData;
 use Kickflip\RouterNavPlugin\Models\NavItem;
 use Kickflip\SiteBuilder\SiteBuilder;
 use KickflipMonoTests\DocsSite\DocsTestCase;
@@ -67,7 +66,7 @@ class DocsNavItemTest extends DocsTestCase
     }
 
     /**
-     * @return array<array-key, PageData>
+     * @return array<array<string>>
      */
     public function navItemRawDataProvider(): array
     {
