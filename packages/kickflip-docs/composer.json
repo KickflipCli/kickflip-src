@@ -9,8 +9,7 @@
         "mallardduck/blade-boxicons": "^2.2.1",
         "mallardduck/blade-emoji-icons": "^1.2",
         "kickflip/kickflip-cli": "^0.10",
-        "kickflip/kickflip-router-nav-plugin": "^0.10",
-        "samdark/sitemap": "^2.4",
+        "kickflip/kickflip-router-nav-plugin": "^0.10"
         "spatie/emoji": "^3.0"
     },
     "autoload": {
