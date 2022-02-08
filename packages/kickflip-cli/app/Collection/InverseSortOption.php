@@ -16,7 +16,6 @@ use function serialize;
  * @method static self custom(?string $type = null)
  * @method static self name()
  * @method static self relativeDirectoryPath()
- * @mixin SortOption
  */
 final class InverseSortOption extends Enum implements SortOptionContract
 {
