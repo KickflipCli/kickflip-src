@@ -22,6 +22,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function array_values;
+use function collect;
 use function ltrim;
 
 class KickflipKernel extends BaseKernel
@@ -65,7 +66,7 @@ class KickflipKernel extends BaseKernel
              */
             $flags = $this->explode(' ')->map(static fn ($value) => ltrim($value, '-'));
             $flags->shift();
-            $flags = $flags->intersect(['q', ...array_values(VerbosityFlag::toValues())])
+            $flags = $flags->intersect(collect(['q', ...array_values(VerbosityFlag::toValues())]))
                 ->map(static fn ($value) => $value === 'q' ? 'quiet' : $value)
                 ->map(static fn ($value) => VerbosityFlag::from($value));
 

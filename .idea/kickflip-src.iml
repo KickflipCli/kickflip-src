@@ -166,6 +166,14 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastianfeldmann/git" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastianfeldmann/cli" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastianfeldmann/camino" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slevomat/coding-standard" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpcsstandards/phpcsutils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpcsstandards/phpcsextra" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/coding-standard" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-parallel-lint/php-parallel-lint" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

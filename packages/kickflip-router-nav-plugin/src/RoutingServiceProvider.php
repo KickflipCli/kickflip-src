@@ -59,24 +59,30 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
             );
         });
 
-        $this->app->extend('url', function (UrlGeneratorContract $url, $app) {
+        $this->app->extend(
+            'url',
+            /**
+             * @param UrlGenerator&UrlGeneratorContract $url
+             */
+            function ($url, $app) {
             // Next we will set a few service resolvers on the URL generator so it can
             // get the information it needs to function. This just provides some of
             // the convenience features to this URL generator like "signed" URLs.
-            $url->setSessionResolver(fn () => null);
+                $url->setSessionResolver(fn () => null);
 
-            $url->setKeyResolver(fn () => 'base64:' . base64_encode(
-                random_bytes(32),
-            ));
+                $url->setKeyResolver(fn () => 'base64:' . base64_encode(
+                    random_bytes(32),
+                ));
 
             // If the route collection is "rebound", for example, when the routes stay
             // cached for the application, we will need to rebind the routes on the
             // URL generator instance so it has the latest version of the routes.
-            $app->rebinding('routes', function ($app, $routes) {
-                $app['url']->setRoutes($routes);
-            });
+                $app->rebinding('routes', function ($app, $routes) {
+                    $app['url']->setRoutes($routes);
+                });
 
-            return $url;
-        });
+                return $url;
+            },
+        );
     }
 }

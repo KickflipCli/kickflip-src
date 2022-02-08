@@ -30,7 +30,7 @@ final class ShikiNpmFetcher
 {
     private string $projectRootDirectory;
     /**
-     * @var Filesystem|FilesystemAdapter
+     * @var Filesystem&FilesystemAdapter
      */
     private Filesystem $projectRootDirectoryFilesystem;
     private bool $isNpmUsedByProject;
@@ -44,7 +44,11 @@ final class ShikiNpmFetcher
 
         // Init a filesystem object for the project root directory.
         config()->set('filesystems.disks.arbitrary.root', $this->projectRootDirectory);
-        $this->projectRootDirectoryFilesystem = Storage::disk('arbitrary');
+        /**
+         * @var Filesystem&FilesystemAdapter $arbitraryDisk
+         */
+        $arbitraryDisk = Storage::disk('arbitrary');
+        $this->projectRootDirectoryFilesystem = $arbitraryDisk;
 
         // Collect this on init since we'll DL shiki no matter what - this way we know if we should clean up later.
         $this->isNpmUsedByProject = $this->projectRootDirectoryFilesystem->exists('package.json');
