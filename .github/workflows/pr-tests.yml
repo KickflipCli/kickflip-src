@@ -197,7 +197,7 @@ jobs:
 
       - name: "Run unit tests (paratest)"
         shell: "bash"
-        run: "./vendor/bin/paratest --testsuite 'Unit' --no-coverage"
+        run: "./vendor/bin/paratest --testsuite Unit --no-coverage"
 
       - name: "Run Plugin Unit tests (paratest)"
         shell: "bash"
@@ -205,8 +205,8 @@ jobs:
 
       - name: "Run Feature tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Features' --no-coverage"
+        run: "composer dev-test-unit -- --testsuite Features --no-coverage"
 
       - name: "Run Docs Site tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Docs Site Tests' --no-coverage"
+        run: "composer dev-test-unit -- --testsuite DocsSiteTests --no-coverage"
