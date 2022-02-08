@@ -31,7 +31,7 @@ class KickflipKernel extends BaseKernel
      *
      * @var string[]
      */
-    protected array $bootstrappers = [
+    protected $bootstrappers = [
         CoreBindings::class,
         LoadConfiguration::class,
         HandleExceptions::class,

@@ -32,6 +32,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
         <exclude-pattern>packages/kickflip-router-nav-plugin/src/*ServiceProvider.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/Commands/BuildCommand.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
         <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
