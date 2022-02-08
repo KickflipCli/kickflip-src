@@ -42,7 +42,7 @@ class CustomPaginatorServiceProvider extends ServiceProvider
      */
     protected function registerTranslationLoader(string $path)
     {
-        $fileLoader = new FileLoader($this->app['files'], $path);
+        $fileLoader = new FileLoader($this->app->get('files'), $path);
         $this->app->singleton('translation.loader', static fn () => $fileLoader);
 
         $this->app->singleton('translator', function ($app) use ($fileLoader) {
