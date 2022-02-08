@@ -17,6 +17,7 @@ use Spatie\LaravelMarkdown\Renderers\AnchorHeadingRenderer;
 
 use function class_exists;
 use function is_string;
+use function method_exists;
 
 final class MarkdownRenderer extends BaseMarkdownRenderer
 {
@@ -72,6 +73,11 @@ final class MarkdownRenderer extends BaseMarkdownRenderer
 
     public function convertToHtml(string $markdown): RenderedContentInterface
     {
-        return $this->getMarkdownConverter()->convert($markdown);
+        $markdownConverter = $this->getMarkdownConverter();
+        if (method_exists($markdownConverter, 'convert')) {
+            return $this->getMarkdownConverter()->convert($markdown);
+        }
+
+        return $this->getMarkdownConverter()->convertToHtml($markdown);
     }
 }
