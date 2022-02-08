@@ -30,7 +30,7 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     use MatchesSnapshots;
 
     public bool $shouldRunShikiFetcher = true;
-    public string $manifestPath = __DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json';
+    public string $manifestPath = '/source/assets/build/mix-manifest.json';
 
     public function basePath(): string
     {
@@ -50,9 +50,10 @@ abstract class BaseFeatureTestCase extends BaseTestCase
         // Reset PageData to defaults
         PageData::$defaultExtendsView = 'layouts.master';
         PageData::$defaultExtendsSection = 'body';
+        $basePath = $this->basePath();
 
         if ($this->shouldRunShikiFetcher) {
-            if (!file_exists($this->manifestPath)) {
+            if (!file_exists($basePath . $this->manifestPath)) {
                 $this->callNpmProcess('install');
                 $this->callNpmProcess('run', 'prod');
             }
@@ -61,7 +62,6 @@ abstract class BaseFeatureTestCase extends BaseTestCase
          * @var Application $app
          */
         $app = require __DIR__ . '/../../packages/kickflip-cli/bootstrap/app.php';
-        $basePath = $this->basePath();
         KickflipHelper::basePath($basePath);
         KickflipHelper::setPaths($basePath);
         /**

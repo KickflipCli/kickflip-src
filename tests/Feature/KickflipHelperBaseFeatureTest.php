@@ -12,12 +12,18 @@ use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 
 use function app;
+use function class_exists;
 
 class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
     use ReflectionHelpers;
     use PlatformAgnosticHelpers;
+
+    public function testVerifyHelperAlias(): void
+    {
+        self::assertTrue(class_exists('\KickflipHelper'));
+    }
 
     /**
      * @dataProvider pageDataProvider
