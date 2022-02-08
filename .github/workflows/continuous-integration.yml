@@ -146,7 +146,7 @@ jobs:
             ${{github.workspace}}/build/coverage/cobertura.xml:cobertura
 
   unit-tests:
-    name: "Unit tests - P${{ matrix.php-version }} - L${{ matrix.laravel-version }} - ${{ matrix.dependencies }} - ${{ matrix.operating-system }}"
+    name: "Unit tests - P${{ matrix.php-version }} - ${{ matrix.dependencies }} - ${{ matrix.operating-system }}"
 
     needs: ["code-coverage", "security-analysis"]
     runs-on: ${{ matrix.operating-system }}
@@ -154,8 +154,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        laravel-version:
-          - "8.*"
         php-version:
           - "8.0"
           - "8.1"
