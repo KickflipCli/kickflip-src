@@ -13,7 +13,7 @@ use function md5;
 use function serialize;
 
 /**
- * @method static self custom(string $type)
+ * @method static self custom(?string $type = null)
  * @method static self name()
  * @method static self relativeDirectoryPath()
  * @mixin SortOption
