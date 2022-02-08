@@ -92,14 +92,14 @@ class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
     {
         $config = KickflipHelper::config();
         $config->set('http://kickflip.test');
-        self::assertEquals('test/', \KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        self::assertEquals('test/', KickflipHelper::relativeUrl('http://kickflip.test/test/'));
         $config->set('http://kickflip.test/');
-        self::assertEquals('test/', \KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        self::assertEquals('test/', KickflipHelper::relativeUrl('http://kickflip.test/test/'));
         $config->set('http://kickflip.test/subdir/');
-        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
-        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('/subdir/test/'));
         $config->set('http://kickflip.test');
-        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
-        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('/subdir/test/'));
     }
 }
