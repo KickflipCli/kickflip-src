@@ -29,7 +29,8 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     use PlatformAgnosticHelpers;
     use MatchesSnapshots;
 
-    public bool $shouldRunShikiFetcher = false;
+    public bool $shouldRunShikiFetcher = true;
+    public string $manifestPath = __DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json';
 
     public function basePath(): string
     {
@@ -51,7 +52,7 @@ abstract class BaseFeatureTestCase extends BaseTestCase
         PageData::$defaultExtendsSection = 'body';
 
         if ($this->shouldRunShikiFetcher) {
-            if (!file_exists(__DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json')) {
+            if (!file_exists($this->manifestPath)) {
                 $this->callNpmProcess('install');
                 $this->callNpmProcess('run', 'prod');
             }
