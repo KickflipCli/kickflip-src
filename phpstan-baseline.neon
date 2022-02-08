@@ -11,3 +11,8 @@ parameters:
 			paths:
 			  - packages/*/*.php
 			  - tests/*/*.php
+
+		-
+			message: "#^Static method Kickflip\\\\Collection\\\\(Inverse)?SortOption\\:\\:custom\\(\\) invoked with 1 parameter, 0 required.$#"
+			paths:
+			  - tests/*/*.php
