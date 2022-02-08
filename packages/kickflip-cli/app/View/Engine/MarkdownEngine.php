@@ -6,20 +6,20 @@ namespace Kickflip\View\Engine;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Engines\FileEngine;
-use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
+use Kickflip\View\MarkdownRenderer;
 
 final class MarkdownEngine extends FileEngine
 {
     use MarkdownHelpers;
 
-    private BaseMarkdownRenderer $markdown;
+    private MarkdownRenderer $markdown;
 
     /**
      * Create a new file engine instance.
      *
      * @return void
      */
-    public function __construct(Filesystem $files, BaseMarkdownRenderer $markdownRenderer)
+    public function __construct(Filesystem $files, MarkdownRenderer $markdownRenderer)
     {
         $this->markdown = $markdownRenderer;
         parent::__construct($files);

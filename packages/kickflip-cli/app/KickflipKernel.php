@@ -6,10 +6,16 @@ namespace Kickflip;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Foundation\Bootstrap\BootProviders;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Kickflip\Enums\ConsoleVerbosity;
 use Kickflip\Enums\VerbosityFlag;
+use LaravelZero\Framework\Bootstrap\CoreBindings;
+use LaravelZero\Framework\Bootstrap\LoadConfiguration;
+use LaravelZero\Framework\Bootstrap\RegisterFacades;
+use LaravelZero\Framework\Bootstrap\RegisterProviders;
 use LaravelZero\Framework\Kernel as BaseKernel;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,6 +26,20 @@ use function ltrim;
 
 class KickflipKernel extends BaseKernel
 {
+    /**
+     * The application's bootstrap classes.
+     *
+     * @var string[]
+     */
+    protected $bootstrappers = [
+        CoreBindings::class,
+        LoadConfiguration::class,
+        HandleExceptions::class,
+        RegisterFacades::class,
+        RegisterProviders::class,
+        BootProviders::class,
+    ];
+
     /**
      * Kernel constructor.
      */

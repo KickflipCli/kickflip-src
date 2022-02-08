@@ -11,6 +11,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Event;
 use Kickflip\Events\SiteBuildComplete;
 use Kickflip\Listeners\GenerateSitemap;
+use Kickflip\Models\PageData;
 use Kickflip\Providers\KickflipServiceProvider;
 
 /*
@@ -24,3 +25,6 @@ use Kickflip\Providers\KickflipServiceProvider;
  */
 
 Event::listen(SiteBuildComplete::class, GenerateSitemap::class);
+
+PageData::$defaultExtendsView = 'layouts.default';
+PageData::$defaultExtendsSection = 'content';

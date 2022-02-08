@@ -64,7 +64,7 @@ class PageDataBaseFeatureTest extends BaseFeatureTestCase
 
         // Check Extends values
         self::assertIsString($pageData->getExtendsView());
-        self::assertEquals('layouts.master', $pageData->getExtendsView());
+        self::assertEquals('layouts.default', $pageData->getExtendsView());
         self::assertIsString($pageData->getExtendsSection());
         self::assertEquals('content', $pageData->getExtendsSection());
 

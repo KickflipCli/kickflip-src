@@ -23,7 +23,6 @@ class Application extends BaseApplication
     public function resourcePath($path = '')
     {
         $basePath = static::$localBase ?? $this->basePath;
-
         return $basePath . DIRECTORY_SEPARATOR . 'resources' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
     // phpcs:enable

@@ -12,6 +12,7 @@ use KickflipMonoTests\PlatformAgnosticHelpers;
 use KickflipMonoTests\ReflectionHelpers;
 
 use function app;
+use function class_exists;
 
 class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
 {
@@ -19,12 +20,17 @@ class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
     use ReflectionHelpers;
     use PlatformAgnosticHelpers;
 
+    public function testVerifyHelperAlias(): void
+    {
+        self::assertTrue(class_exists('\KickflipHelper'));
+    }
+
     /**
      * @dataProvider pageDataProvider
      */
     public function testPageRouteNameHelper(PageData $page)
     {
-        self::assertEquals($page->source->getName(), KickflipHelper::pageRouteName($page));
+        self::assertEquals($page->source->getRouteName(), KickflipHelper::pageRouteName($page));
     }
 
     /**
@@ -61,5 +67,39 @@ class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
             ['http://kickflip.test/half-life/blackmesa/', 'half-life/blackmesa/'],
             ['http://kickflip.test/half-life/blackmesa.html', 'half-life/blackmesa.html'],
         ]);
+    }
+
+    /**
+     * @dataProvider urlFromSourceProvider
+     */
+    public function testUrlFromSource(string $input, string $expected): void
+    {
+        self::assertEquals($expected, KickflipHelper::urlFromSource($input));
+    }
+
+    /**
+     * @return array<array-key, array<array-key, string[]>>
+     */
+    public function urlFromSourceProvider(): array
+    {
+        return $this->autoAddDataProviderKeys([
+            ['index', 'http://kickflip.test/'],
+            ['404', 'http://kickflip.test/404'],
+        ]);
+    }
+
+    public function testRelativeUrl(): void
+    {
+        $config = KickflipHelper::config();
+        $config->set('http://kickflip.test');
+        self::assertEquals('test/', KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        $config->set('http://kickflip.test/');
+        self::assertEquals('test/', KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        $config->set('http://kickflip.test/subdir/');
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('/subdir/test/'));
+        $config->set('http://kickflip.test');
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', KickflipHelper::relativeUrl('/subdir/test/'));
     }
 }

@@ -6,22 +6,22 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
+use function view;
+
 class DocsPage extends Component
 {
     /**
      * @var array
      */
-    public $navigation;
+    public array $navigation;
 
-    /**
-     * @var string
-     */
-    public $content;
+    public string $content;
 
     /**
      * Create the component instance.
      *
      * @param array $navigation
+     *
      * @return void
      */
     public function __construct(array $navigation)
@@ -29,10 +29,7 @@ class DocsPage extends Component
         $this->navigation = $navigation;
     }
 
-    /**
-     * @return View|Closure|string
-     */
-    public function render(): string|Closure|View
+    public function render(): string | Closure | View
     {
         return view('layouts.documentation');
     }

@@ -42,7 +42,7 @@ class BasicSourcesLocatorTest extends BaseFeatureTestCase
     {
         $sourceLocator = new SourcesLocator(dirname(__DIR__, 2) . '/sources');
         self::assertIsArray($sourceLocator->getRenderPageList());
-        self::assertCount(7, $sourceLocator->getRenderPageList());
+        self::assertCount(13, $sourceLocator->getRenderPageList());
         foreach ($sourceLocator->getRenderPageList() as $pageData) {
             self::assertInstanceOf(PageData::class, $pageData);
         }

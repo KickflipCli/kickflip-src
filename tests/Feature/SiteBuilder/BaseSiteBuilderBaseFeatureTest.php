@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\SiteBuilder;
 
+use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
@@ -24,6 +25,7 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
     public function setUp(): void
     {
         parent::setUp();
+        // Emulate steps done to prepare things in the build command....
         $this->app->get('kickflipCli')->set('prettyUrls', static::$prettyUrls);
         SiteBuilder::includeEnvironmentConfig(static::$buildEnv);
         SiteBuilder::updateBuildPaths(static::$buildEnv);
@@ -32,6 +34,8 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
         if (!$shikiNpmFetcher->isShikiDownloaded()) {
             $shikiNpmFetcher->installShiki();
         }
+        // Init SiteBuilder to boot needed services...
+        new SiteBuilder();
     }
 
     public function tearDown(): void
@@ -48,11 +52,12 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
      */
     public function testItWillProduceExpectedHtml(PageData $page): void
     {
+        KickflipHelper::config()->set('page', $page);
         $view = view($page->source->getName(), [
             'page' => $page,
         ]);
-
         self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml($view->render()));
+        KickflipHelper::config()->set('page', null);
     }
 
     /**

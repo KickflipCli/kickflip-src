@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Kickflip\RouterNavPlugin\Models\NavItem;
 
 return [
-    NavItem::make('Getting Started', route('docs.getting-started'))
+    NavItem::makeFromRouteName('Getting Started', 'docs.getting-started')
         ->setChildren([
             NavItem::make('Installation', route('docs.getting-started-installation')),
             NavItem::make('Directory Structure', route('docs.getting-started-structure')),

@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageInterface;
 use Kickflip\RouterNavPlugin\Models\NavItem;
-use Kickflip\SiteBuilder\UrlHelper;
 
 // phpcs:disable
 /**
@@ -54,7 +53,7 @@ function getDocUrl(string $routeName, ?string $anchorLink = null): string
 {
     // Throw an exception if the routeName isn't a valid doc page...
     try {
-        $pageUrl = UrlHelper::getSourceFileUrl('docs.' . $routeName);
+        $pageUrl = KickflipHelper::urlFromSource('docs.' . $routeName);
     } catch (Throwable $throwable) {
         if (KickflipHelper::config('production', false)) {
             throw $throwable;

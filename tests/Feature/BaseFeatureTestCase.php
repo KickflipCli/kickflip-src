@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Facades\File;
 use Illuminate\View\Factory;
+use Kickflip\Application;
 use Kickflip\KickflipHelper;
 use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\PlatformAgnosticHelpers;
-use LaravelZero\Framework\Application;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -22,14 +21,21 @@ use Symfony\Component\Process\Process;
 use function file_exists;
 use function file_get_contents;
 use function func_get_args;
+use function libxml_use_internal_errors;
 use function realpath;
-
-use const DIRECTORY_SEPARATOR;
 
 abstract class BaseFeatureTestCase extends BaseTestCase
 {
     use PlatformAgnosticHelpers;
     use MatchesSnapshots;
+
+    public bool $shouldRunShikiFetcher = true;
+    public string $manifestPath = '/source/assets/build/mix-manifest.json';
+
+    public function basePath(): string
+    {
+        return realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip'));
+    }
 
     /**
      * Creates the application.
@@ -38,19 +44,24 @@ abstract class BaseFeatureTestCase extends BaseTestCase
      */
     public function createApplication()
     {
+        libxml_use_internal_errors(true);
+        Application::$localBase = null;
+
         // Reset PageData to defaults
         PageData::$defaultExtendsView = 'layouts.master';
         PageData::$defaultExtendsSection = 'body';
+        $basePath = $this->basePath();
 
-        if (!file_exists(__DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json')) {
-            $this->callNpmProcess('install');
-            $this->callNpmProcess('run', 'prod');
+        if ($this->shouldRunShikiFetcher) {
+            if (!file_exists($basePath . $this->manifestPath)) {
+                $this->callNpmProcess('install');
+                $this->callNpmProcess('run', 'prod');
+            }
         }
         /**
          * @var Application $app
          */
         $app = require __DIR__ . '/../../packages/kickflip-cli/bootstrap/app.php';
-        $basePath = realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip'));
         KickflipHelper::basePath($basePath);
         KickflipHelper::setPaths($basePath);
         /**
@@ -96,7 +107,7 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     public function getTestPageData(int $index = 0): PageData
     {
         // Fetch a single Symfony SplFileInfo object
-        $splFileInfo = File::files(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'sources')[$index];
+        $splFileInfo = KickflipHelper::getFiles(__DIR__ . self::agnosticPath('/../sources'))[$index];
         // Create a SourcePageMetaData object
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
         // Parse out the front matter page metadata

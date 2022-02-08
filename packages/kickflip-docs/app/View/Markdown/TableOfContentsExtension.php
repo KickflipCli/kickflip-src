@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KickflipDocs\View\Markdown;
 
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
@@ -24,9 +26,20 @@ final class TableOfContentsExtension implements ConfigurableExtensionInterface
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
         $builder->addSchema('table_of_contents', Expect::structure([
-            'position' => Expect::anyOf(TableOfContentsBuilder::POSITION_BEFORE_HEADINGS, TableOfContentsBuilder::POSITION_PLACEHOLDER, TableOfContentsBuilder::POSITION_TOP)->default(TableOfContentsBuilder::POSITION_PLACEHOLDER),
-            'style' => Expect::anyOf(ListBlock::TYPE_BULLET, ListBlock::TYPE_ORDERED)->default(ListBlock::TYPE_BULLET),
-            'normalize' => Expect::anyOf(TableOfContentsGenerator::NORMALIZE_RELATIVE, TableOfContentsGenerator::NORMALIZE_FLAT, TableOfContentsGenerator::NORMALIZE_DISABLED)->default(TableOfContentsGenerator::NORMALIZE_RELATIVE),
+            'position' => Expect::anyOf(
+                TableOfContentsBuilder::POSITION_BEFORE_HEADINGS,
+                TableOfContentsBuilder::POSITION_PLACEHOLDER,
+                TableOfContentsBuilder::POSITION_TOP,
+            )->default(TableOfContentsBuilder::POSITION_PLACEHOLDER),
+            'style' => Expect::anyOf(
+                ListBlock::TYPE_BULLET,
+                ListBlock::TYPE_ORDERED,
+            )->default(ListBlock::TYPE_BULLET),
+            'normalize' => Expect::anyOf(
+                TableOfContentsGenerator::NORMALIZE_RELATIVE,
+                TableOfContentsGenerator::NORMALIZE_FLAT,
+                TableOfContentsGenerator::NORMALIZE_DISABLED,
+            )->default(TableOfContentsGenerator::NORMALIZE_RELATIVE),
             'min_heading_level' => Expect::int()->min(1)->max(6)->default(1),
             'max_heading_level' => Expect::int()->min(1)->max(6)->default(6),
             'html_class' => Expect::string()->default('table-of-contents'),
@@ -37,9 +50,13 @@ final class TableOfContentsExtension implements ConfigurableExtensionInterface
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment->addRenderer(TableOfContents::class, new TableOfContentsRenderer(new ListBlockRenderer()));
-        $environment->addEventListener(DocumentParsedEvent::class, [new TableOfContentsBuilder(), 'onDocumentParsed'], -150);
+        $environment->addEventListener(
+            DocumentParsedEvent::class,
+            [new TableOfContentsBuilder(), 'onDocumentParsed'],
+            -150,
+        );
 
-        // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
+        // phpcs:ignore Generic.Files.LineLength.TooLong
         if ($environment->getConfiguration()->get('table_of_contents/position') === TableOfContentsBuilder::POSITION_PLACEHOLDER) {
             $environment->addBlockStartParser(TableOfContentsPlaceholderParser::blockStartParser(), 200);
             // If a placeholder cannot be replaced with a TOC element this renderer will ensure the parser won't error out

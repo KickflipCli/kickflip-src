@@ -6,6 +6,7 @@ namespace Kickflip;
 
 use Exception;
 use Illuminate\Config\Repository;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
@@ -15,11 +16,14 @@ use Kickflip\SiteBuilder\UrlHelper;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use RuntimeException;
+use Symfony\Component\Finder\Finder;
 
 use function app;
+use function collect;
 use function dirname;
 use function getcwd;
 use function is_null;
+use function iterator_to_array;
 use function ltrim;
 use function mix;
 use function parse_url;
@@ -218,7 +222,7 @@ final class KickflipHelper
     #[Pure]
     public static function pageRouteName(PageData $pageData): string
     {
-        return $pageData->source->getName();
+        return $pageData->source->getRouteName();
     }
 
     public static function pageUrl(PageData $pageData): string
@@ -252,5 +256,22 @@ final class KickflipHelper
     public static function urlFromSource(string $name): string
     {
         return UrlHelper::getSourceFileUrl($name);
+    }
+
+    public static function hasItemCollections(): bool
+    {
+        return self::config()->has('site.collections');
+    }
+
+    public static function getFiles(string $path): Collection
+    {
+        return collect(iterator_to_array(
+            Finder::create()
+                ->files()
+                ->ignoreDotFiles(true)
+                ->in($path)
+                ->sortByName(),
+            false,
+        ));
     }
 }

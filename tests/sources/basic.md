@@ -1,5 +1,5 @@
 ---
-extends: layouts.master
+extends: layouts.default
 section: content
 tags: ['test', 'data']
 ---

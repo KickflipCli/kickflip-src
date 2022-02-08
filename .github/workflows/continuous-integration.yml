@@ -211,11 +211,11 @@ jobs:
 
       - name: "Run Feature tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'Features' --no-coverage"
+        run: "composer dev-test-unit -- --testsuite Features --no-coverage"
 
       - name: "Run Docs Site tests (PHPUnit)"
         shell: "bash"
-        run: "composer dev-test-unit -- --testsuite 'DocsSiteTests' --no-coverage"
+        run: "composer dev-test-unit -- --testsuite DocsSiteTests --no-coverage"
 
   provide_packages_json:
     needs: unit-tests
