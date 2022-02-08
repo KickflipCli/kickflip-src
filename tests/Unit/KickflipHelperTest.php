@@ -11,7 +11,6 @@ use KickflipMonoTests\ReflectionHelpers;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParserInterface;
 use PHPUnit\Framework\TestCase;
 
-use function class_exists;
 use function dirname;
 
 class KickflipHelperTest extends TestCase
@@ -27,11 +26,6 @@ class KickflipHelperTest extends TestCase
     protected function cleanUp(): void
     {
         KickflipHelper::basePath('');
-    }
-
-    public function testVerifyHelperAlias(): void
-    {
-        self::assertFalse(class_exists('\KickflipHelper'));
     }
 
     public function testDefaultBasePath(): void

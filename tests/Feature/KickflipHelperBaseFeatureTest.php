@@ -68,4 +68,38 @@ class KickflipHelperBaseFeatureTest extends BaseFeatureTestCase
             ['http://kickflip.test/half-life/blackmesa.html', 'half-life/blackmesa.html'],
         ]);
     }
+
+    /**
+     * @dataProvider urlFromSourceProvider
+     */
+    public function testUrlFromSource(string $input, string $expected): void
+    {
+        self::assertEquals($expected, KickflipHelper::urlFromSource($input));
+    }
+
+    /**
+     * @return array<array-key, array<array-key, string[]>>
+     */
+    public function urlFromSourceProvider(): array
+    {
+        return $this->autoAddDataProviderKeys([
+            ['index', 'http://kickflip.test/'],
+            ['404', 'http://kickflip.test/404'],
+        ]);
+    }
+
+    public function testRelativeUrl(): void
+    {
+        $config = KickflipHelper::config();
+        $config->set('http://kickflip.test');
+        self::assertEquals('test/', \KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        $config->set('http://kickflip.test/');
+        self::assertEquals('test/', \KickflipHelper::relativeUrl('http://kickflip.test/test/'));
+        $config->set('http://kickflip.test/subdir/');
+        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('/subdir/test/'));
+        $config->set('http://kickflip.test');
+        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('http://kickflip.test/subdir/test/'));
+        self::assertEquals('subdir/test/', \KickflipHelper::relativeUrl('/subdir/test/'));
+    }
 }
