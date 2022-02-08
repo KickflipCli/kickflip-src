@@ -65,13 +65,11 @@
         "vimeo/psalm": "^4.14"
     },
     "replace": {
-        "kickflip/kickflip": "0.9.0",
-        "kickflip/kickflip-cli": "0.9.0",
-        "kickflip/kickflip-docs": "0.9.0",
-        "kickflip/kickflip-router-nav-plugin": "0.9.0"
+        "kickflip/kickflip": "0.9.1",
+        "kickflip/kickflip-cli": "0.9.1",
+        "kickflip/kickflip-docs": "0.9.1",
+        "kickflip/kickflip-router-nav-plugin": "0.9.1"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "packages/kickflip/app/",
@@ -141,5 +139,7 @@
             "@dev-test-unit --testsuite Features --no-coverage",
             "@dev-test-unit --testsuite DocsSiteTests --no-coverage"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
