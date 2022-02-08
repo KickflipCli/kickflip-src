@@ -13,7 +13,7 @@ use function md5;
 use function serialize;
 
 /**
- * @method static self custom(?string $type = null)
+ * @method static self custom()
  * @method static self name()
  * @method static self relativePath()
  * @method static self relativeDirectoryPath()
