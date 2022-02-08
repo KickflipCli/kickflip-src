@@ -25,7 +25,7 @@ final class InverseSortOption extends Enum implements SortOptionContract
 
     public static function __callStatic(string $name, array $arguments)
     {
-        return static::fromBacked($name, $arguments);
+        return self::fromBacked($name, $arguments);
     }
 
     /**

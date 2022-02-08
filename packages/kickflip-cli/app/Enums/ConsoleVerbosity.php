@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\Enums;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Spatie\Enum\Enum;
 
 /**
@@ -17,12 +18,19 @@ final class ConsoleVerbosity extends Enum
 {
     public static function fromFlag(VerbosityFlag $flag): ConsoleVerbosity
     {
-        return static::{$flag->label}();
+        return self::{$flag->label}();
     }
 
     /**
      * @return array<string, int>
      */
+    #[ArrayShape([
+        'quiet' => 'string',
+        'normal' => 'string',
+        'verbose' => 'string',
+        'veryVerbose' => 'string',
+        'debug' => 'string',
+    ])]
     protected static function values(): array
     {
         return [

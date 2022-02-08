@@ -232,7 +232,7 @@ final class KickflipHelper
 
     public static function relativeUrl(string $url): string
     {
-        $baseUrl = self::config('site.baseUrl', null);
+        $baseUrl = self::config('site.baseUrl', '');
         if (Str::startsWith($url, 'http')) {
             return self::leftTrimPath(Str::replaceFirst($baseUrl, '', $url));
         }

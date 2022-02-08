@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kickflip\Enums;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Spatie\Enum\Enum;
 
 /**
@@ -18,6 +19,13 @@ final class VerbosityFlag extends Enum
     /**
      * @return array<string, string>
      */
+    #[ArrayShape([
+        'quiet' => 'string',
+        'normal' => 'string',
+        'verbose' => 'string',
+        'veryVerbose' => 'string',
+        'debug' => 'string',
+    ])]
     protected static function values(): array
     {
         return [
