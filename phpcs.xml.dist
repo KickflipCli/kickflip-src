@@ -41,10 +41,13 @@
         <exclude-pattern>packages/kickflip-cli/app/View/Engine/*Engine.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/KickflipPaginator.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/Collection/SortOption.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Collection/InverseSortOption.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint">
         <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/View/KickflipPaginator.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Collection/SortOption.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Collection/InverseSortOption.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
         <exclude-pattern>packages/kickflip-cli/app/View/Compilers/*.php</exclude-pattern>

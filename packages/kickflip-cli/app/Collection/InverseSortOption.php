@@ -47,7 +47,7 @@ final class InverseSortOption extends Enum implements SortOptionContract
     /**
      * @internal
      */
-    public function __construct(string | int $value, array | null $arguments = null)
+    public function __construct($value, array | null $arguments = null)
     {
         if ($arguments !== null && count($arguments) > 0) {
             $this->backedValue = $arguments[0];
