@@ -5,7 +5,7 @@
     "type": "project",
     "require": {
         "php": "^8.0",
-        "mallardduck/blade-emoji-icons": "^1.1",
+        "mallardduck/blade-emoji-icons": "^1.2",
         "kickflip/kickflip-cli": "^0.9",
         "samdark/sitemap": "^2.4"
     },

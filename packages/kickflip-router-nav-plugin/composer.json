@@ -12,8 +12,8 @@
     "require": {
         "php": "^8.0",
         "kickflip/kickflip-cli": "^0.9",
-        "illuminate/routing": "^8.74",
-        "illuminate/support": "^8.74"
+        "illuminate/routing": "^9.0",
+        "illuminate/support": "^9.0"
     },
     "config": {
         "optimize-autoloader": true,
