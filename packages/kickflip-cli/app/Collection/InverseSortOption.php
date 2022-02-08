@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Kickflip\Collection;
 
+use Spatie\Enum\Enum;
+
 /**
  * @method static self name()
  * @method static self relativeDirectoryPath()
  * @mixin SortOption
  */
-final class InverseSortOption extends SortOption
+final class InverseSortOption extends Enum implements SortOptionContract
 {
     /**
      * @return array<string, string>
@@ -20,5 +22,10 @@ final class InverseSortOption extends SortOption
             'name' => '-name',
             'relativeDirectoryPath' => '-relativeDirectoryPath',
         ];
+    }
+
+    public function toFilter(): callable
+    {
+        // TODO: Implement toFilter() method.
     }
 }

@@ -15,9 +15,10 @@ use function serialize;
 /**
  * @method static self custom()
  * @method static self name()
+ * @method static self relativePath()
  * @method static self relativeDirectoryPath()
  */
-class SortOption extends Enum
+class SortOption extends Enum implements SortOptionContract
 {
     /** @psalm-var array<class-string, array<int|string, SortOption>> */
     private static array $instances = [];
