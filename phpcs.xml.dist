@@ -11,8 +11,6 @@
     <file>./packages/kickflip-router-nav-plugin</file>
     <file>./tests</file>
 
-    <rule ref="Ramsey"/>
-
     <rule ref="Generic.Commenting.Todo.TaskFound">
         <exclude-pattern>packages/kickflip-cli/**/*.php</exclude-pattern>
     </rule>
