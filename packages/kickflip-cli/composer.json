@@ -20,7 +20,7 @@
         "illuminate/translation": "^9.0",
         "illuminate/view": "^9.0",
         "laravel-zero/framework": "^9.0",
-        "league/commonmark": "^2.1",
+        "league/commonmark": "^2.2",
         "mallardduck/laravel-traits": "^0.3.1",
         "samdark/sitemap": "^2.4",
         "nunomaduro/termwind": "^1.3",
