@@ -67,7 +67,7 @@ final class SiteBuilder
         );
 
         // Set language...
-        config()->set('app.locale', $kickflipCliState->get('site.locale'));
+        config()->set('app.locale', $kickflipCliState->get('site.locale', 'en'));
 
         self::initCollections();
     }

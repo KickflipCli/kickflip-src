@@ -6,12 +6,12 @@ namespace KickflipMonoTests\Feature;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory;
+use Kickflip\Application;
 use Kickflip\KickflipHelper;
 use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\PlatformAgnosticHelpers;
-use LaravelZero\Framework\Application;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -29,6 +29,13 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     use PlatformAgnosticHelpers;
     use MatchesSnapshots;
 
+    public bool $shouldRunShikiFetcher = false;
+
+    public function basePath(): string
+    {
+        return realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip'));
+    }
+
     /**
      * Creates the application.
      *
@@ -37,20 +44,23 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     public function createApplication()
     {
         libxml_use_internal_errors(true);
+        Application::$localBase = null;
 
         // Reset PageData to defaults
         PageData::$defaultExtendsView = 'layouts.master';
         PageData::$defaultExtendsSection = 'body';
 
-        if (!file_exists(__DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json')) {
-            $this->callNpmProcess('install');
-            $this->callNpmProcess('run', 'prod');
+        if ($this->shouldRunShikiFetcher) {
+            if (!file_exists(__DIR__ . '/../../packages/kickflip/source/assets/build/mix-manifest.json')) {
+                $this->callNpmProcess('install');
+                $this->callNpmProcess('run', 'prod');
+            }
         }
         /**
          * @var Application $app
          */
         $app = require __DIR__ . '/../../packages/kickflip-cli/bootstrap/app.php';
-        $basePath = realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip'));
+        $basePath = $this->basePath();
         KickflipHelper::basePath($basePath);
         KickflipHelper::setPaths($basePath);
         /**

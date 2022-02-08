@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Illuminate\Events\EventServiceProvider;
 use Illuminate\Filesystem\FilesystemServiceProvider;
 use Illuminate\Log\LogServiceProvider;
-use Illuminate\Translation\TranslationServiceProvider;
 use Kickflip\Providers\CustomPaginatorServiceProvider;
 use Kickflip\Providers\InitServiceProvider;
 use Kickflip\Providers\KickflipServiceProvider;
@@ -100,7 +99,6 @@ return [
         ViewServiceProvider::class,
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
-        TranslationServiceProvider::class,
         CustomPaginatorServiceProvider::class, // TODO: Consider replacing for conditional load based on router plugin?
     ],
 ];

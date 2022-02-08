@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\DocsSite;
 
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Application;
-use Illuminate\View\Factory;
 use Kickflip\KickflipHelper;
-use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
 use KickflipMonoTests\DataProviderHelpers;
@@ -21,37 +17,11 @@ abstract class DocsTestCase extends BaseFeatureTestCase
 {
     use DataProviderHelpers;
 
-    /**
-     * Creates the application.
-     *
-     * @return Application
-     */
-    public function createApplication()
+    public bool $shouldRunShikiFetcher = false;
+
+    public function basePath(): string
     {
-        // Reset PageData to defaults
-        PageData::$defaultExtendsView = 'layouts.master';
-        PageData::$defaultExtendsSection = 'body';
-
-        /**
-         * @var \LaravelZero\Framework\Application $app
-         */
-        $app = require __DIR__ . '/../../packages/kickflip-cli/bootstrap/app.php';
-        $basePath = realpath(__DIR__ . '/../../packages/kickflip-docs');
-        KickflipHelper::basePath($basePath);
-        KickflipHelper::setPaths($basePath);
-        /**
-         * @var KickflipKernel $kernel
-         */
-        $kernel = $app->make(Kernel::class);
-        $kernel->bootstrap();
-        $this->callAfterResolving($app, 'view', function ($view) {
-            /**
-             * @var Factory $view
-             */
-            $view->addLocation(realpath(__DIR__ . self::agnosticPath('/../views')));
-        });
-
-        return $app;
+        return realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip-docs'));
     }
 
     public function getDocsPageData(string $pageName): PageData
