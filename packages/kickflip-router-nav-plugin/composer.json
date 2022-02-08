@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "kickflip/kickflip-cli": "^0.9.1",
+        "kickflip/kickflip-cli": "^0.10",
         "illuminate/routing": "^9.0",
         "illuminate/support": "^9.0"
     },

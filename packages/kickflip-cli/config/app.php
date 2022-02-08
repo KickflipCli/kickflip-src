@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'env' => 'production',
+    'env' => 'development',
 
 
     /*
