@@ -13,7 +13,7 @@ use function md5;
 use function serialize;
 
 /**
- * @method static self custom()
+ * @method static self custom(string $type)
  * @method static self name()
  * @method static self relativePath()
  * @method static self relativeDirectoryPath()
@@ -34,7 +34,7 @@ class SortOption extends Enum implements SortOptionContract
      *
      * @return static
      */
-    final public static function fromBacked(string | int $value, array $arguments): SortOption
+    public static function fromBacked(string | int $value, array $arguments): SortOption
     {
         $backedValueHash = md5(serialize($arguments));
         if (!isset(self::$instances[static::class][$value][$backedValueHash])) {

@@ -31,8 +31,8 @@ class InverseSortOptionEnumsTest extends TestCase
     public function sortOptionProvider(): array
     {
         return $this->autoAddDataProviderKeys([
-            [InverseSortOption::name(), '-name'],
-            [InverseSortOption::relativeDirectoryPath(), '-relativeDirectoryPath'],
+            [InverseSortOption::name(), 'name'],
+            [InverseSortOption::relativeDirectoryPath(), 'relativeDirectoryPath'],
         ]);
     }
 
@@ -45,17 +45,28 @@ class InverseSortOptionEnumsTest extends TestCase
     {
         $values = InverseSortOption::toValues();
         self::assertIsArray($values);
-        self::assertCount(2, $values);
-        self::assertContains('-name', $values);
-        self::assertContains('-relativeDirectoryPath', $values);
+        self::assertCount(3, $values);
+        self::assertContains('custom', $values);
+        self::assertContains('name', $values);
+        self::assertContains('relativeDirectoryPath', $values);
     }
 
     public function testSortOptionLabels(): void
     {
         $labels = InverseSortOption::toLabels();
         self::assertIsArray($labels);
-        self::assertCount(2, $labels);
+        self::assertCount(3, $labels);
+        self::assertContains('custom', $labels);
         self::assertContains('name', $labels);
         self::assertContains('relativeDirectoryPath', $labels);
+    }
+
+    public function testBackedEnumExample(): void
+    {
+        $backedEnum = InverseSortOption::custom('route');
+        self::assertInstanceOf(InverseSortOption::class, $backedEnum);
+        self::assertEquals('custom', $backedEnum->value);
+        self::assertEquals('route', $backedEnum->backedValue);
+        self::assertIsCallable($backedEnum->toFilter());
     }
 }

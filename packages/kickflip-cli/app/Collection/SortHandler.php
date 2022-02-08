@@ -24,14 +24,27 @@ class SortHandler
     public function __invoke(array $items): Collection
     {
         $collection = collect($items);
+        /**
+         * @var SortOptionContract $sortOption
+         */
         foreach ($this->config->sort as $sortOption) {
             $collection = $collection->sort(callback: static function ($itemA, $itemB) use ($sortOption) {
-                $sortValueA = $sortOption->toFilter()($itemA);
-                $sortValueB = $sortOption->toFilter()($itemB);
+                $isInverted = ($sortOption::class === InverseSortOption::class);
+                $sortFilter = $sortOption->toFilter();
+                $sortValueA = $sortFilter($itemA);
+                $sortValueB = $sortFilter($itemB);
 
                 $type = gettype($sortValueA);
                 if ($type === 'integer' || $type === 'double') {
+                    if ($isInverted) {
+                        return $sortValueB <=> $sortValueA;
+                    }
+
                     return $sortValueA <=> $sortValueB;
+                }
+
+                if ($isInverted) {
+                    return strcmp($sortValueB, $sortValueA);
                 }
 
                 return strcmp($sortValueA, $sortValueB);
