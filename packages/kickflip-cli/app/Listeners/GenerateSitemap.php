@@ -73,7 +73,7 @@ final class GenerateSitemap
     private function getOutputPaths(string $outputBaseDir): array
     {
         /**
-         * @var FilesystemAdapter|Filesystem $localFilesystem
+         * @var FilesystemAdapter&Filesystem $localFilesystem
          */
         $localFilesystem = Storage::disk('local');
         $relativeDir = Str::of($outputBaseDir)
