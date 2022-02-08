@@ -9,6 +9,8 @@ use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 use Spatie\LaravelMarkdown\MarkdownRenderer as BaseMarkdownRenderer;
 use Spatie\LaravelMarkdown\Renderers\AnchorHeadingRenderer;
@@ -59,5 +61,17 @@ final class MarkdownRenderer extends BaseMarkdownRenderer
         $this->configureCommonMarkEnvironment($environment);
 
         return $environment;
+    }
+
+    private function getMarkdownConverter(): MarkdownConverter
+    {
+        return new MarkdownConverter(
+            environment: $this->getMarkdownEnvironment(),
+        );
+    }
+
+    public function convertToHtml(string $markdown): RenderedContentInterface
+    {
+        return $this->getMarkdownConverter()->convert($markdown);
     }
 }

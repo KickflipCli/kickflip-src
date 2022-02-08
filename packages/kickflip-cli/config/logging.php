@@ -57,6 +57,11 @@ return [
             ],
         ],
 
+        'deprecations' => [
+            'driver' => 'stack',
+            'channels' => ['stderr'],
+        ],
+
         'syslog' => [
             'driver' => 'syslog',
             'level' => 'debug',

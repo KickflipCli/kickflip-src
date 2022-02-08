@@ -21,6 +21,7 @@ use Symfony\Component\Process\Process;
 use function file_exists;
 use function file_get_contents;
 use function func_get_args;
+use function libxml_use_internal_errors;
 use function realpath;
 
 abstract class BaseFeatureTestCase extends BaseTestCase
@@ -35,6 +36,8 @@ abstract class BaseFeatureTestCase extends BaseTestCase
      */
     public function createApplication()
     {
+        libxml_use_internal_errors(true);
+
         // Reset PageData to defaults
         PageData::$defaultExtendsView = 'layouts.master';
         PageData::$defaultExtendsSection = 'body';
