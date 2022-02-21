@@ -62,12 +62,12 @@ class NpmFetcherRemoveBaseFeatureTest extends BaseFeatureTestCase
         }
         // Initial test
         self::assertFileIsReadable($filePath);
-        self::assertTrue($npmFetcher->isShikiRequired());
+        self::assertTrue($npmFetcher->isRequired());
         // Change devDeps to deps...
         file_put_contents($filePath, str_replace('devDependencies', 'dependencies', file_get_contents($filePath)));
-        self::assertTrue($npmFetcher->isShikiRequired());
+        self::assertTrue($npmFetcher->isRequired());
         // Change deps to boogers...
         file_put_contents($filePath, str_replace('dependencies', 'boogers', file_get_contents($filePath)));
-        self::assertFalse($npmFetcher->isShikiRequired());
+        self::assertFalse($npmFetcher->isRequired());
     }
 }
