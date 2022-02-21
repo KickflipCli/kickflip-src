@@ -11,7 +11,7 @@ use Illuminate\View\Factory as ViewFactory;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
 use Kickflip\Logger;
-use Kickflip\SiteBuilder\ShikiNpmFetcher;
+use Kickflip\SiteBuilder\NpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use Kickflip\View\Engine\BladeMarkdownEngine;
@@ -52,6 +52,9 @@ class KickflipServiceProvider extends ServiceProvider
             SiteBuilder::updateAppUrl();
         }
 
+        // Set default minify HTML value from site config, or set to false
+        $kickflipCliState->set('minify_html', $kickflipCliState->get('site.minifyHtml', false));
+
         /**
          * Kickflip level autoloading...
          *
@@ -62,7 +65,10 @@ class KickflipServiceProvider extends ServiceProvider
             $this->registerSemiAutoloadProviders($packages);
         }
 
-        $this->app->singleton(ShikiNpmFetcher::class, static fn () => new ShikiNpmFetcher());
+        $this->app->singleton(NpmFetcher::class, static fn () => new NpmFetcher([
+            'shiki',
+            'prettier',
+        ]));
         $this->registerBladeEngines();
         $this->app->singleton(SourcesLocator::class, fn ($app) => new SourcesLocator(KickflipHelper::sourcePath()));
         $this->loadProjectMarkdownConfig();

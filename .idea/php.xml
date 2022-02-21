@@ -176,6 +176,23 @@
       <path value="$PROJECT_DIR$/vendor/phpcsstandards/phpcsextra" />
       <path value="$PROJECT_DIR$/vendor/ramsey/coding-standard" />
       <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-parallel-lint" />
+      <path value="$PROJECT_DIR$/vendor/tubalmartin/cssmin" />
+      <path value="$PROJECT_DIR$/vendor/tedivm/jshrink" />
+      <path value="$PROJECT_DIR$/vendor/websharks/css-minifier" />
+      <path value="$PROJECT_DIR$/vendor/matthiasmullie/minify" />
+      <path value="$PROJECT_DIR$/vendor/matthiasmullie/path-converter" />
+      <path value="$PROJECT_DIR$/vendor/meenie/javascript-packer" />
+      <path value="$PROJECT_DIR$/vendor/linkorb/jsmin-php" />
+      <path value="$PROJECT_DIR$/vendor/voku/html-min" />
+      <path value="$PROJECT_DIR$/vendor/voku/simple_html_dom" />
+      <path value="$PROJECT_DIR$/vendor/thecodingmachine/safe" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/compress" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/constants" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/html-compress" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/compress-contracts" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/css-compress" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/js-compress" />
+      <path value="$PROJECT_DIR$/vendor/mallardduck/prettier-php-runner" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

@@ -60,6 +60,8 @@ class BuildCommand extends Command
         Logger::setOutput($this->output);
         [$env, $quiet] = $this->initCommandVars();
 
+        $this->info('Site will build for ENV: ' . $env);
+
         BeforeConfigurationLoads::dispatch();
         // Load in the local projects config based on env...
         SiteBuilder::includeEnvironmentConfig($env);

@@ -6,6 +6,8 @@ namespace Kickflip\SiteBuilder;
 
 use Illuminate\Config\Repository;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -17,6 +19,8 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
+use MallardDuck\PrettierPhp\PrettierHtml;
+use WyriHaximus\HtmlCompress\Factory as HtmlCompressFactory;
 
 use function app;
 use function array_merge;
@@ -26,6 +30,7 @@ use function count;
 use function dirname;
 use function file_exists;
 use function file_put_contents;
+use function in_array;
 use function is_dir;
 use function mkdir;
 use function rtrim;
@@ -35,15 +40,17 @@ use function view;
 final class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
-    private ShikiNpmFetcher $shikiNpmFetcher;
+    private NpmFetcher $npmFetcher;
 
     public function __construct()
     {
         $this->sourcesLocator = app(SourcesLocator::class);
 
-        $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
-        if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
-            $this->shikiNpmFetcher->installShiki();
+        $this->npmFetcher = app(NpmFetcher::class);
+        if (!$this->npmFetcher->isDownloaded()) {
+            foreach ($this->npmFetcher->packages() as $package) {
+                $this->npmFetcher->installPackage($package);
+            }
         }
     }
 
@@ -56,6 +63,14 @@ final class SiteBuilder
         $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
+            if (
+                in_array($env, [
+                    'prod',
+                    'production',
+                ]) && !isset($envSiteConfig['minifyHtml'])
+            ) {
+                $kickflipCliState->set('minify_html', true);
+            }
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
             self::updateAppUrl();
         }
@@ -178,7 +193,8 @@ final class SiteBuilder
             if (!is_dir($outputDir)) {
                 mkdir(directory: $outputDir, recursive: true);
             }
-            file_put_contents($outputFile, $view->render());
+            // Pre-render view then decide to minify, or beautify output...
+            file_put_contents($outputFile, $this->prepareViewRender($view));
             KickflipHelper::config()->set('page', null);
         }
         $consoleOutput->writeln('<info>Completed page rendering.</info>');
@@ -186,10 +202,23 @@ final class SiteBuilder
         return $this;
     }
 
+    private function prepareViewRender(Factory | ViewContract $view): string
+    {
+        $renderedHtml = $view->render();
+
+        if (KickflipHelper::config()->get('minify_html', false)) {
+            $parser = HtmlCompressFactory::constructSmallest();
+
+            return $parser->compress($renderedHtml);
+        }
+
+        return PrettierHtml::format($renderedHtml);
+    }
+
     private function cleanup(): void
     {
-        if (!$this->shikiNpmFetcher->isNpmUsedByProject()) {
-            $this->shikiNpmFetcher->removeShikiAndNodeModules();
+        if (!$this->npmFetcher->isNpmUsedByProject()) {
+            $this->npmFetcher->removeAndCleanNodeModules();
         }
     }
 
