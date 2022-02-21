@@ -209,7 +209,7 @@ final class SiteBuilder
         if (KickflipHelper::config()->get('minify_html', false)) {
             $parser = HtmlCompressFactory::constructSmallest();
 
-            return $parser->compress($renderedHtml);
+            return @$parser->compress($renderedHtml);
         }
 
         return PrettierHtml::format($renderedHtml);
