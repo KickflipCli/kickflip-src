@@ -25,7 +25,7 @@ trait DataProviderHelpers
     /**
      * @param array<string|string|int, object|array<array-key, mixed>> $array
      *
-     * @return array<string, array<array-key, mixed>>
+     * @return array<string, object|array<array-key, mixed>>
      */
     public function autoAddDataProviderKeys(array $array): array
     {
