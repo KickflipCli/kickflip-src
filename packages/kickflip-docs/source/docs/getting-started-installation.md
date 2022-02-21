@@ -1,7 +1,13 @@
 ---
 title: Installation
 ---
-While other installation methods may be supported in the future, for now the best way to get started is to install via Composer!
+
+## Requirements
+
+To use Kickflip you need PHP 8+ and **composer** installed and setup on your machine.
+You will also need **Node.js** and **NPM** installed as Kickflip uses **_ShikiJS_** for syntax highlighting within markdown rendering workflows.
+
+---
 
 ## Install via Composer
 These directions assume your computer already has PHP and Composer installed, if you do not stop and set those up first.

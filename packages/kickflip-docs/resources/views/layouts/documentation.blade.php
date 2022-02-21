@@ -16,6 +16,7 @@
             @yield('docs_content')
         </article>
         <aside class="flex-grow pl-4">
+            <h2 class="text-lg font-thin">Page TOC</h2>
             <x-page-toc />
         </aside>
     </section>
