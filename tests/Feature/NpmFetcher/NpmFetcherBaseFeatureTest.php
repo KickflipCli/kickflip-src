@@ -39,15 +39,17 @@ class NpmFetcherBaseFeatureTest extends BaseFeatureTestCase
 
     public function testVerifyNpmFetcherMethods()
     {
-        $npmFetcher = new NpmFetcher();
+        $npmFetcher = new NpmFetcher([]);
         self::assertInstanceOf(NpmFetcher::class, $npmFetcher);
         // Verify methods
         self::assertIsString($npmFetcher->getProjectRootDirectory());
         self::assertEquals(dirname(__FILE__, 4), $npmFetcher->getProjectRootDirectory());
+        self::assertIsArray($npmFetcher->packages());
+        self::assertSame([], $npmFetcher->packages());
         self::assertIsBool($npmFetcher->isNpmUsedByProject());
         self::assertFalse($npmFetcher->isNpmUsedByProject());
         self::assertIsBool($npmFetcher->isRequired());
-        self::assertFalse($npmFetcher->isRequired());
+        self::assertTrue($npmFetcher->isRequired());
         self::assertIsBool($npmFetcher->isDownloaded());
         self::assertFalse($npmFetcher->isDownloaded());
     }
@@ -58,6 +60,8 @@ class NpmFetcherBaseFeatureTest extends BaseFeatureTestCase
         $npmFetcher->installPackage('shiki');
         self::assertInstanceOf(NpmFetcher::class, $npmFetcher);
         // Verify methods
+        self::assertIsArray($npmFetcher->packages());
+        self::assertCount(1, $npmFetcher->packages());
         self::assertIsBool($npmFetcher->isNpmUsedByProject());
         self::assertFalse($npmFetcher->isNpmUsedByProject());
         self::assertIsBool($npmFetcher->isRequired());
@@ -69,8 +73,12 @@ class NpmFetcherBaseFeatureTest extends BaseFeatureTestCase
     public function testCanReproduceBugsInGithubActions()
     {
         // Initialize shiki npm state when bug happens...
-        $npmFetcher = new NpmFetcher();
+        $npmFetcher = new NpmFetcher([
+            'shiki',
+            'prettier',
+        ]);
         $npmFetcher->installPackage('shiki');
+        $npmFetcher->installPackage('prettier');
         $rootPath = $npmFetcher->getProjectRootDirectory();
         unset($npmFetcher);
         if (File::isFile($rootPath . DIRECTORY_SEPARATOR . 'package.json')) {
