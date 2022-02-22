@@ -20,7 +20,6 @@ use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
 use MallardDuck\PrettierPhp\PrettierHtml;
-use WyriHaximus\HtmlCompress\Factory as HtmlCompressFactory;
 
 use function app;
 use function array_merge;
@@ -35,10 +34,7 @@ use function is_dir;
 use function mkdir;
 use function rtrim;
 use function sprintf;
-use function str_replace;
 use function view;
-
-use const PHP_OS_FAMILY;
 
 final class SiteBuilder
 {
@@ -208,16 +204,6 @@ final class SiteBuilder
     private function prepareViewRender(Factory | ViewContract $view): string
     {
         $renderedHtml = $view->render();
-
-        if (KickflipHelper::config()->get('minify_html', false)) {
-            $parser = HtmlCompressFactory::constructSmallest();
-
-            if (PHP_OS_FAMILY === 'Windows') {
-                $renderedHtml = str_replace("\r\n", "\n", $renderedHtml);
-            }
-
-            return @$parser->compress($renderedHtml);
-        }
 
         return PrettierHtml::format($renderedHtml);
     }
