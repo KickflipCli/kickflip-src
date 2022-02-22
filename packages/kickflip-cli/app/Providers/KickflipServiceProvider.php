@@ -52,9 +52,6 @@ class KickflipServiceProvider extends ServiceProvider
             SiteBuilder::updateAppUrl();
         }
 
-        // Set default minify HTML value from site config, or set to false
-        $kickflipCliState->set('minify_html', $kickflipCliState->get('site.minifyHtml', false));
-
         /**
          * Kickflip level autoloading...
          *

@@ -29,7 +29,6 @@ use function count;
 use function dirname;
 use function file_exists;
 use function file_put_contents;
-use function in_array;
 use function is_dir;
 use function mkdir;
 use function rtrim;
@@ -62,14 +61,6 @@ final class SiteBuilder
         $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
-            if (
-                in_array($env, [
-                    'prod',
-                    'production',
-                ]) && !isset($envSiteConfig['minifyHtml'])
-            ) {
-                $kickflipCliState->set('minify_html', true);
-            }
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
             self::updateAppUrl();
         }
@@ -192,7 +183,7 @@ final class SiteBuilder
             if (!is_dir($outputDir)) {
                 mkdir(directory: $outputDir, recursive: true);
             }
-            // Pre-render view then decide to minify, or beautify output...
+            // Pre-render view and beautify output...
             file_put_contents($outputFile, $this->prepareViewRender($view));
             KickflipHelper::config()->set('page', null);
         }
