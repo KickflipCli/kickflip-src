@@ -35,7 +35,10 @@ use function is_dir;
 use function mkdir;
 use function rtrim;
 use function sprintf;
+use function str_replace;
 use function view;
+
+use const PHP_OS_FAMILY;
 
 final class SiteBuilder
 {
@@ -208,6 +211,10 @@ final class SiteBuilder
 
         if (KickflipHelper::config()->get('minify_html', false)) {
             $parser = HtmlCompressFactory::constructSmallest();
+
+            if (PHP_OS_FAMILY === 'Windows') {
+                $renderedHtml = str_replace("\r\n", "\n", $renderedHtml);
+            }
 
             return @$parser->compress($renderedHtml);
         }
