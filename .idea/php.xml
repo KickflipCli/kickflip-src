@@ -176,7 +176,8 @@
       <path value="$PROJECT_DIR$/vendor/phpcsstandards/phpcsextra" />
       <path value="$PROJECT_DIR$/vendor/ramsey/coding-standard" />
       <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-parallel-lint" />
-      <path value="$PROJECT_DIR$/vendor/mallardduck/prettier-php-runner" />
+      <path value="$PROJECT_DIR$/vendor/navindex/simple-config" />
+      <path value="$PROJECT_DIR$/vendor/navindex/html-formatter" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

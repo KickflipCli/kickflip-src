@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4432a8bab8082524c983f9b61ce058f8",
+    "content-hash": "1a396d6f81f068f5ef148b6487c9969f",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1768,59 +1768,6 @@
             "time": "2022-02-08T15:38:16+00:00"
         },
         {
-            "name": "mallardduck/prettier-php-runner",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mallardduck/prettier-php-runner.git",
-                "reference": "dffaac5a5abef1af29102b5706b60a498ea2c20b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/prettier-php-runner/zipball/dffaac5a5abef1af29102b5706b60a498ea2c20b",
-                "reference": "dffaac5a5abef1af29102b5706b60a498ea2c20b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "symfony/process": "^6.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v3.0",
-                "league/flysystem": "^3.0",
-                "pestphp/pest": "^1.8",
-                "phpunit/phpunit": "^9.5",
-                "spatie/pest-plugin-snapshots": "^1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MallardDuck\\PrettierPhp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dan Pock",
-                    "email": "self@danpock.me",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Reformat code using Prettier in PHP",
-            "homepage": "https://github.com/mallardduck/prettier-php-runner",
-            "keywords": [
-                "prettier"
-            ],
-            "support": {
-                "issues": "https://github.com/mallardduck/prettier-php-runner/issues",
-                "source": "https://github.com/mallardduck/prettier-php-runner/tree/1.0.0"
-            },
-            "time": "2022-02-21T22:10:12+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "2.3.5",
             "source": {
@@ -1918,6 +1865,134 @@
                 }
             ],
             "time": "2021-10-01T21:08:31+00:00"
+        },
+        {
+            "name": "navindex/html-formatter",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/navindex/html-formatter.git",
+                "reference": "12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/navindex/html-formatter/zipball/12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221",
+                "reference": "12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "navindex/simple-config": "^0.2.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.1",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.99",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Navindex\\HtmlFormatter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miklos Karpati",
+                    "email": "mk@navindex.com.au",
+                    "homepage": "https://www.navindex.com.au",
+                    "role": "Developer"
+                }
+            ],
+            "description": "HTML beautifier and minifier library for development and testing.",
+            "homepage": "https://github.com/navindex/html-formatter",
+            "keywords": [
+                "Navindex",
+                "beautify",
+                "format",
+                "html",
+                "indent",
+                "minify",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/navindex/html-formatter/issues",
+                "source": "https://github.com/navindex/html-formatter/tree/v0.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/navindex",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-10-14T08:47:34+00:00"
+        },
+        {
+            "name": "navindex/simple-config",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/navindex/simple-config.git",
+                "reference": "008b6341f0a2b310460828d9ffc060c88a911829"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/navindex/simple-config/zipball/008b6341f0a2b310460828d9ffc060c88a911829",
+                "reference": "008b6341f0a2b310460828d9ffc060c88a911829",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.1",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.99",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Navindex\\SimpleConfig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miklos Karpati",
+                    "email": "mk@navindex.com.au",
+                    "homepage": "https://www.navindex.com.au",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple library to create and modify a configuration structure.",
+            "homepage": "https://github.com/navindex/simple-config",
+            "keywords": [
+                "Navindex",
+                "config",
+                "configuration",
+                "options",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/navindex/simple-config/issues",
+                "source": "https://github.com/navindex/simple-config/tree/v0.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/navindex",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-09-27T07:35:57+00:00"
         },
         {
             "name": "nesbot/carbon",

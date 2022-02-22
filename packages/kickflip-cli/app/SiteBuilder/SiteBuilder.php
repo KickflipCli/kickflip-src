@@ -19,7 +19,7 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
-use MallardDuck\PrettierPhp\PrettierHtml;
+use Navindex\HtmlFormatter\Formatter;
 
 use function app;
 use function array_merge;
@@ -195,8 +195,9 @@ final class SiteBuilder
     private function prepareViewRender(Factory | ViewContract $view): string
     {
         $renderedHtml = $view->render();
+        $formatter = new Formatter();
 
-        return PrettierHtml::format($renderedHtml);
+        return $formatter->beautify($renderedHtml);
     }
 
     private function cleanup(): void

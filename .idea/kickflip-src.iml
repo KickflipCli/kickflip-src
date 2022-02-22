@@ -174,7 +174,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpcsstandards/phpcsextra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/coding-standard" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-parallel-lint/php-parallel-lint" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/mallardduck/prettier-php-runner" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/navindex/simple-config" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/navindex/html-formatter" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
