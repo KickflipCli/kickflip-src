@@ -197,7 +197,7 @@ final class SiteBuilder
         $renderedHtml = $view->render();
         $formatter = new Formatter();
 
-        return $formatter->beautify($renderedHtml);
+        return @$formatter->beautify($renderedHtml);
     }
 
     private function cleanup(): void
