@@ -32,6 +32,8 @@ abstract class BaseFeatureTestCase extends BaseTestCase
     public bool $shouldRunShikiFetcher = true;
     public string $manifestPath = '/source/assets/build/mix-manifest.json';
 
+    public array $expectedOutputSubstrings = []; // Remove this once this is merged https://github.com/laravel-zero/foundation/pull/76
+
     public function basePath(): string
     {
         return realpath(__DIR__ . self::agnosticPath('/../../packages/kickflip'));
