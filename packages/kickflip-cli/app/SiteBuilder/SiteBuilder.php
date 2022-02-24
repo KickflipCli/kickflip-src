@@ -40,17 +40,15 @@ use function view;
 final class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
-    private NpmFetcher $npmFetcher;
+    private ShikiNpmFetcher $shikiNpmFetcher;
 
     public function __construct()
     {
         $this->sourcesLocator = app(SourcesLocator::class);
 
-        $this->npmFetcher = app(NpmFetcher::class);
-        if (!$this->npmFetcher->isDownloaded()) {
-            foreach ($this->npmFetcher->packages() as $package) {
-                $this->npmFetcher->installPackage($package);
-            }
+        $this->shikiNpmFetcher = app(ShikiNpmFetcher::class);
+        if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
+            $this->shikiNpmFetcher->installShiki();
         }
     }
 
@@ -220,8 +218,8 @@ final class SiteBuilder
 
     private function cleanup(): void
     {
-        if (!$this->npmFetcher->isNpmUsedByProject()) {
-            $this->npmFetcher->removeAndCleanNodeModules();
+        if (!$this->shikiNpmFetcher->isNpmUsedByProject()) {
+            $this->shikiNpmFetcher->removeShikiAndNodeModules();
         }
     }
 

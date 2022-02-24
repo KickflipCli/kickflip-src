@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Kickflip\Enums\CliStateDirPaths;
 use Kickflip\KickflipHelper;
-use Kickflip\SiteBuilder\NpmFetcher;
+use Kickflip\SiteBuilder\ShikiNpmFetcher;
 
 use function is_dir;
 use function mkdir;
@@ -20,7 +20,7 @@ class BuildCommandProdTest extends DocsTestCase
     public function setUp(): void
     {
         parent::setUp();
-        (new NpmFetcher())->removeAndCleanNodeModules();
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
         $buildPath = (string) Str::of(
             KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
         )->replaceEnv(self::BUILD_ENV);
@@ -31,7 +31,7 @@ class BuildCommandProdTest extends DocsTestCase
 
     public function tearDown(): void
     {
-        (new NpmFetcher())->removeAndCleanNodeModules();
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
         $buildPath = (string) Str::of(
             KickflipHelper::namedPath(CliStateDirPaths::BuildDestination),
         )->replaceEnv(self::BUILD_ENV);

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Feature\NpmFetcher;
+namespace KickflipMonoTests\Feature\ShikiFetcher;
 
 use Illuminate\Support\Facades\File;
-use Kickflip\SiteBuilder\NpmFetcher;
+use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -13,34 +13,34 @@ use function touch;
 
 use const DIRECTORY_SEPARATOR;
 
-class NpmFetcherFailureBaseFeatureTest extends BaseFeatureTestCase
+class ShikiFetcherFailureBaseFeatureTest extends BaseFeatureTestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-        (new NpmFetcher())->removeAndCleanNodeModules();
+        (new ShikiNpmFetcher())->removeShikiAndNodeModules();
     }
 
     public function tearDown(): void
     {
-        $npmFetcher = new NpmFetcher();
-        $nodeModules = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules';
-        $packageJson = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
-        $packageLock = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
+        $shikiFetcher = new ShikiNpmFetcher();
+        $nodeModules = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules';
+        $packageJson = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+        $packageLock = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
         File::chmod($packageJson, 0777);
         File::chmod($packageLock, 0777);
         File::chmod($nodeModules, 0777);
-        $npmFetcher->removeAndCleanNodeModules();
+        $shikiFetcher->removeShikiAndNodeModules();
         parent::tearDown();
     }
 
     public function testExpectsExceptionWhenShikiFetcherFails()
     {
-        // Create NPM fetcher
-        $npmFetcher = new NpmFetcher();
-        $nodeModules = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules';
-        $packageJson = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
-        $packageLock = $npmFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
+        // Create shiki fetcher
+        $shikiFetcher = new ShikiNpmFetcher();
+        $nodeModules = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'node_modules';
+        $packageJson = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package.json';
+        $packageLock = $shikiFetcher->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
         // Setup directory that will cause failure...
         touch($packageJson);
         touch($packageLock);
@@ -54,6 +54,6 @@ class NpmFetcherFailureBaseFeatureTest extends BaseFeatureTestCase
 
         // Expect the exception and trigger the failure
         $this->expectException(ProcessFailedException::class);
-        $npmFetcher->installPackage('shiki');
+        $shikiFetcher->installShiki();
     }
 }

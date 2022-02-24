@@ -6,7 +6,7 @@ namespace KickflipMonoTests\DocsSite\SiteBuilder;
 
 use Kickflip\Events\SiteBuildStarted;
 use Kickflip\Models\PageData;
-use Kickflip\SiteBuilder\NpmFetcher;
+use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
@@ -30,26 +30,18 @@ abstract class BaseSiteBuilderTest extends DocsTestCase
         SiteBuilder::includeEnvironmentConfig(static::$buildEnv);
         SiteBuilder::updateBuildPaths(static::$buildEnv);
         SiteBuilder::updateAppUrl();
-        /**
-         * @var NpmFetcher $npmFetcher
-         */
-        $npmFetcher = app(NpmFetcher::class);
-        if (!$npmFetcher->isDownloaded()) {
-            foreach ($npmFetcher->packages() as $package) {
-                $npmFetcher->installPackage($package);
-            }
+        $shikiNpmFetcher = app(ShikiNpmFetcher::class);
+        if (!$shikiNpmFetcher->isShikiDownloaded()) {
+            $shikiNpmFetcher->installShiki();
         }
         SiteBuildStarted::dispatch();
     }
 
     public function tearDown(): void
     {
-        /**
-         * @var NpmFetcher $npmFetcher
-         */
-        $npmFetcher = app(NpmFetcher::class);
-        if ($npmFetcher->isDownloaded()) {
-            $npmFetcher->removeAndCleanNodeModules();
+        $shikiNpmFetcher = app(ShikiNpmFetcher::class);
+        if ($shikiNpmFetcher->isShikiDownloaded()) {
+            $shikiNpmFetcher->removeShikiAndNodeModules();
         }
         parent::tearDown();
     }

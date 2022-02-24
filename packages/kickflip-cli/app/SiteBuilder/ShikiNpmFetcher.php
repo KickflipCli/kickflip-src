@@ -16,7 +16,6 @@ use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
 use function config;
-use function count;
 use function dirname;
 use function file_get_contents;
 use function json_decode;
@@ -27,7 +26,7 @@ use const DIRECTORY_SEPARATOR;
 /**
  * This class is responsible for fetching Shiki to ensure code highlighting always works
  */
-final class NpmFetcher
+final class ShikiNpmFetcher
 {
     private string $projectRootDirectory;
     /**
@@ -36,12 +35,8 @@ final class NpmFetcher
     private Filesystem $projectRootDirectoryFilesystem;
     private bool $isNpmUsedByProject;
 
-    /**
-     * @param string[] $packages
-     */
-    public function __construct(
-        private array $packages = ['shiki'],
-    ) {
+    public function __construct()
+    {
         // Determine the root folder based on the composer vendor dir in use.
         $reflection = new ReflectionClass(InstalledVersions::class);
         $this->projectRootDirectory = dirname($reflection->getFileName(), 3);
@@ -55,16 +50,8 @@ final class NpmFetcher
         $arbitraryDisk = Storage::disk('arbitrary');
         $this->projectRootDirectoryFilesystem = $arbitraryDisk;
 
-        // Collect this on init since we'll DL pakages no matter what - this way we know if we should clean up later.
+        // Collect this on init since we'll DL shiki no matter what - this way we know if we should clean up later.
         $this->isNpmUsedByProject = $this->projectRootDirectoryFilesystem->exists('package.json');
-    }
-
-    /**
-     * @return string[]
-     */
-    public function packages(): array
-    {
-        return $this->packages;
     }
 
     /**
@@ -81,25 +68,16 @@ final class NpmFetcher
     }
 
     /**
-     * Determine if NPM's package.json exists and if the configured NPM package(s) is in either dependencies or devDependencies.
+     * Determine if NPM's package.json exists and if shiki is in either dependencies or devDependencies.
      *
      * @throws Exception
      */
-    public function isRequired(): bool
+    public function isShikiRequired(): bool
     {
-        $i = 0;
-        $packageCount = count($this->packages);
-        $result = true;
-        while ($result && $i < $packageCount) {
-            $package = $this->packages[$i];
-            $result = $this->isRequiredPackage($package) || $this->isRequiredPackageLock($package);
-            $i++;
-        }
-
-        return $result;
+        return $this->isShikiRequiredPackage() || $this->isShikiRequiredPackageLock();
     }
 
-    public function isRequiredPackage(string $package): bool
+    public function isShikiRequiredPackage(): bool
     {
         if (!$this->projectRootDirectoryFilesystem->exists('package.json')) {
             return false;
@@ -111,15 +89,15 @@ final class NpmFetcher
         return ($rootNpmPackages !== false) &&
             (
                 property_exists($rootNpmPackages, 'dependencies') &&
-                property_exists($rootNpmPackages->dependencies, $package)
+                property_exists($rootNpmPackages->dependencies, 'shiki')
             ) ||
             (
                 property_exists($rootNpmPackages, 'devDependencies') &&
-                property_exists($rootNpmPackages->devDependencies, $package)
+                property_exists($rootNpmPackages->devDependencies, 'shiki')
             );
     }
 
-    public function isRequiredPackageLock(string $package): bool
+    public function isShikiRequiredPackageLock(): bool
     {
         $packageJsonLockPath = $this->getProjectRootDirectory() . DIRECTORY_SEPARATOR . 'package-lock.json';
 
@@ -133,40 +111,30 @@ final class NpmFetcher
                     property_exists($rootNpmPackageLock, 'packages') &&
                     (
                         property_exists($rootNpmPackageLock->packages->{''}, 'dependencies') &&
-                        property_exists($rootNpmPackageLock->packages->{''}->dependencies, $package) ||
+                        property_exists($rootNpmPackageLock->packages->{''}->dependencies, 'shiki') ||
                         property_exists($rootNpmPackageLock->packages->{''}, 'devDependencies') &&
-                        property_exists($rootNpmPackageLock->packages->{''}->devDependencies, $package)
+                        property_exists($rootNpmPackageLock->packages->{''}->devDependencies, 'shiki')
                     )
                 ) ||
                 // V1 Package Lock
                 (
                     property_exists($rootNpmPackageLock, 'dependencies') &&
-                    property_exists($rootNpmPackageLock->dependencies, $package) ||
+                    property_exists($rootNpmPackageLock->dependencies, 'shiki') ||
                     property_exists($rootNpmPackageLock, 'devDependencies') &&
-                    property_exists($rootNpmPackageLock->devDependencies, $package)
+                    property_exists($rootNpmPackageLock->devDependencies, 'shiki')
                 )
             );
     }
 
     /**
      * Determine if Shiki has been downloaded by NPM yet.
+     *
+     * @throws Exception
      */
-    public function isDownloaded(): bool
+    public function isShikiDownloaded(): bool
     {
-        if (!$this->projectRootDirectoryFilesystem->exists('node_modules')) {
-            return false;
-        }
-
-        $i = 0;
-        $packageCount = count($this->packages);
-        $result = true;
-        while ($result && $i < $packageCount) {
-            $package = $this->packages[$i];
-            $result = $this->projectRootDirectoryFilesystem->exists('node_modules' . DIRECTORY_SEPARATOR . $package);
-            $i++;
-        }
-
-        return $result;
+        return $this->projectRootDirectoryFilesystem->exists('node_modules') &&
+            $this->projectRootDirectoryFilesystem->exists('node_modules' . DIRECTORY_SEPARATOR . 'shiki');
     }
 
     /**
@@ -176,7 +144,7 @@ final class NpmFetcher
      *
      * @throws Exception
      */
-    public function installPackage(string $package)
+    public function installShiki()
     {
         $command = [
             (new ExecutableFinder())->find('npm', 'npm', [
@@ -185,7 +153,7 @@ final class NpmFetcher
             ]),
             'install',
             '-D',
-            $package,
+            'shiki',
         ];
 
         $process = new Process(
@@ -208,7 +176,7 @@ final class NpmFetcher
      *
      * @throws Exception
      */
-    public function removeAndCleanNodeModules(): void
+    public function removeShikiAndNodeModules(): void
     {
         $filesToDelete = [
             'package.json',
