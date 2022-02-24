@@ -20,6 +20,7 @@ use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
 use Navindex\HtmlFormatter\Formatter;
+use Throwable;
 
 use function app;
 use function array_merge;
@@ -29,6 +30,7 @@ use function count;
 use function dirname;
 use function file_exists;
 use function file_put_contents;
+use function in_array;
 use function is_dir;
 use function mkdir;
 use function rtrim;
@@ -61,6 +63,14 @@ final class SiteBuilder
         $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
+            if (
+                in_array($env, [
+                    'prod',
+                    'production',
+                ]) && !isset($envSiteConfig['minifyHtml'])
+            ) {
+                $kickflipCliState->set('minify_html', true);
+            }
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
             self::updateAppUrl();
         }
@@ -197,7 +207,15 @@ final class SiteBuilder
         $renderedHtml = $view->render();
         $formatter = new Formatter();
 
-        return @$formatter->beautify($renderedHtml);
+        try {
+            if (KickflipHelper::config()->get('minify_html', false)) {
+                return @$formatter->minify($renderedHtml);
+            }
+
+            return @$formatter->beautify($renderedHtml);
+        } catch (Throwable) {
+            return $renderedHtml;
+        }
     }
 
     private function cleanup(): void
