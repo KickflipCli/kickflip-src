@@ -5,95 +5,68 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="The static site generation based on Laravel Zero">
-
         <meta property="og:site_name" content="Kickflip">
         <meta property="og:title" content="Getting Started | Kickflip">
         <meta property="og:description" content="The static site generation based on Laravel Zero">
         <meta property="og:url" content="http://kickflip.test/">
         <meta property="og:image" content="http://kickflip.test/assets/img/logo.png">
         <meta property="og:type" content="website">
-
         <meta name="twitter:image:alt" content="Kickflip">
         <meta name="twitter:card" content="summary_large_image">
-
         <title>Getting Started | Kickflip</title>
         <base href="http://kickflip.test/">
         <link rel="home" href="http://kickflip.test/">
         <link rel="icon" href="http://kickflip.test/favicon.ico">
-
-        
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
         <link rel="stylesheet" href="http://kickflip.test/assets/build/css/main.css">
     </head>
-
     <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans">
-            <header class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:text-neutral-50 dark:bg-gray-900 sm:items-center py-4 sm:pt-0" role="banner">
-        Hello, world!
-        <span class="text-5xl">&#128761;</span>
-    </header>
-
-    <main role="main" class="w-full flex-auto prose mx-auto mb-2">
-        <h1 id="meet-kickflip">Meet Kickflip</h1>
-<p>Kickflip is a Laravel-based open-source framework for creating static content based websites.
-It's great for building basic portfolio sites, simple blogs, or documentation sites.</p>
-<h2 id="building-your-site">Building your site</h2>
-<p>You might want to get started by building our your template first, then writing up your content.
-This is the suggested route, but really you can do it any way you want!</p>
-<h3 id="site-template">Site Template</h3>
-<p>Your Site's template will be located in the <code>resources</code> - this will include the Blade Views, JS and PostCSS/Styles.
-Technically you can swap out the style language with anything you like that's supported by Laravel's Mix.</p>
-<p>Since the overall structure of this folder is identical to Laravel - if you're a seasoned Laravel user, you should feel right at home!</p>
-<h3 id="site-content">Site Content</h3>
-<p>The site content is all stored within the <code>source</code> directory.
-Anything in here that's supported by kickflip will be rendered to HTML.
-Or if it's in the <code>source/assets</code> folder it will be copied into the compiled site.</p>
-<h3 id="site-page-and-asset-urls">Site Page and Asset URLs</h3>
-<p>Since by default Kickflip is meant to be a CLI based site generator we don't have a real <code>HttpKernel</code>.
-And as such, we won't have access to Laravel's <code>UrlGenerator</code> based <code>url()</code> and <code>route()</code> helper methods.</p>
-<p>This means that your on-site page links will need to be URLs you manage within your project for the most part.
-However, a very naive URL helper is built-in as <code>KickflipHelper::urlFromSource()</code>.
-This method will accept a source file "name" (determined by the file path with <code>.</code> instead of <code>/</code>).</p>
-<p>On this simple site the only other page is the 404 page, so we'll use that as an example:</p>
-<pre class="shiki" style="background-color: #ffffff"><code><span class="line"><span style="color: #24292F">The 404 page URL is: </span><span style="color: #0550AE">{{</span><span style="color: #24292F"> </span><span style="color: #953800">KickflipHelper</span><span style="color: #CF222E">::</span><span style="color: #8250DF">urlFromSource</span><span style="color: #24292F">(</span><span style="color: #0A3069">'404'</span><span style="color: #24292F">) </span><span style="color: #0550AE">}}</span></span>
+        <header class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:text-neutral-50 dark:bg-gray-900 sm:items-center py-4 sm:pt-0" role="banner">Hello, world! <span class="text-5xl">&#128761;</span></header>
+        <main role="main" class="w-full flex-auto prose mx-auto mb-2">
+            <h1 id="meet-kickflip">Meet Kickflip</h1>
+            <p>Kickflip is a Laravel-based open-source framework for creating static content based websites. It's great for building basic portfolio sites, simple blogs, or documentation sites.</p>
+            <h2 id="building-your-site">Building your site</h2>
+            <p>You might want to get started by building our your template first, then writing up your content. This is the suggested route, but really you can do it any way you want!</p>
+            <h3 id="site-template">Site Template</h3>
+            <p>Your Site's template will be located in the <code>resources</code> - this will include the Blade Views, JS and PostCSS/Styles. Technically you can swap out the style language with anything you like that's supported by Laravel's Mix.</p>
+            <p>Since the overall structure of this folder is identical to Laravel - if you're a seasoned Laravel user, you should feel right at home!</p>
+            <h3 id="site-content">Site Content</h3>
+            <p>The site content is all stored within the <code>source</code> directory. Anything in here that's supported by kickflip will be rendered to HTML. Or if it's in the <code>source/assets</code> folder it will be copied into the compiled site.</p>
+            <h3 id="site-page-and-asset-urls">Site Page and Asset URLs</h3>
+            <p>Since by default Kickflip is meant to be a CLI based site generator we don't have a real <code>HttpKernel</code>. And as such, we won't have access to Laravel's <code>UrlGenerator</code> based <code>url()</code> and <code>route()</code> helper methods.</p>
+            <p>This means that your on-site page links will need to be URLs you manage within your project for the most part. However, a very naive URL helper is built-in as <code>KickflipHelper::urlFromSource()</code>. This method will accept a source file "name" (determined by the file path with <code>.</code> instead of <code>/</code>).</p>
+            <p>On this simple site the only other page is the 404 page, so we'll use that as an example:</p>
+<pre class="shiki" style="background-color: #ffffff">
+<code><span class="line"><span style="color: #24292F">The 404 page URL is: </span><span style="color: #0550AE">{{</span><span style="color: #24292F"> </span><span style="color: #953800">KickflipHelper</span><span style="color: #CF222E">::</span><span style="color: #8250DF">urlFromSource</span><span style="color: #24292F">(</span><span style="color: #0A3069">'404'</span><span style="color: #24292F">) </span><span style="color: #0550AE">}}</span></span>
 <span class="line"></span></code></pre>
-<blockquote>
-<p>Results:  The 404 page URL is: /404</p>
-</blockquote>
-<blockquote>
-<p>For a more "batteries included" experience that allows you to use the <code>UrlGenerator</code> based methods, checkout the optional <a href="https://github.com/KickflipCli/kickflip-router-nav-plugin">KickflipCli/kickflip-router-nav-plugin</a>.</p>
-</blockquote>
-<p>However, when it comes to asset URLs we do have access to Mix via a conveniently pre-configured <code>KickflipHelpers::mix()</code> and <code>KickflipHelpers::asset()</code> methods.
-These work the same as they do in Laravel, just pre-configured for Kickflip's folder structure. It all even works without the router nav plugin!</p>
-<h2 id="using-laravel-packages">Using Laravel Packages</h2>
-<p>Be cautions to not try and use a package that requires PHP to handle logic.
-Kickflip can only render HTML sites out of your code, but it will not have a API/Backend!</p>
-<h3 id="registering-laravel-package-service-providers">Registering Laravel Package Service Providers</h3>
-<p>Kickflip will allow you to register packages similar to how in Laravel's <code>config/app.php</code> file you can register providers.
-Unlike Laravel's <code>app.providers</code> config, in kickflip our config file has <code>providePackages</code> index.</p>
-<p>To use Blade Icons, for example, require a icon package and then update the config as:</p>
-<pre class="shiki" style="background-color: #ffffff"><code><span class="line"><span style="color: #24292F">    </span><span style="color: #6E7781">// Composer packages with laravel providers to load</span></span>
+            <blockquote>
+                <p>Results: The 404 page URL is: /404</p>
+            </blockquote>
+            <blockquote>
+                <p>For a more "batteries included" experience that allows you to use the <code>UrlGenerator</code> based methods, checkout the optional <a href="https://github.com/KickflipCli/kickflip-router-nav-plugin">KickflipCli/kickflip-router-nav-plugin</a>.</p>
+            </blockquote>
+            <p>However, when it comes to asset URLs we do have access to Mix via a conveniently pre-configured <code>KickflipHelpers::mix()</code> and <code>KickflipHelpers::asset()</code> methods. These work the same as they do in Laravel, just pre-configured for Kickflip's folder structure. It all even works without the router nav plugin!</p>
+            <h2 id="using-laravel-packages">Using Laravel Packages</h2>
+            <p>Be cautions to not try and use a package that requires PHP to handle logic. Kickflip can only render HTML sites out of your code, but it will not have a API/Backend!</p>
+            <h3 id="registering-laravel-package-service-providers">Registering Laravel Package Service Providers</h3>
+            <p>Kickflip will allow you to register packages similar to how in Laravel's <code>config/app.php</code> file you can register providers. Unlike Laravel's <code>app.providers</code> config, in kickflip our config file has <code>providePackages</code> index.</p>
+            <p>To use Blade Icons, for example, require a icon package and then update the config as:</p>
+<pre class="shiki" style="background-color: #ffffff">
+<code><span class="line"><span style="color: #24292F">    </span><span style="color: #6E7781">// Composer packages with laravel providers to load</span></span>
 <span class="line"><span style="color: #24292F">    </span><span style="color: #0A3069">'providePackages'</span><span style="color: #24292F"> </span><span style="color: #CF222E">=&gt;</span><span style="color: #24292F"> [</span></span>
 <span class="line"><span style="color: #24292F">        </span><span style="color: #0550AE">BladeIconsServiceProvider</span><span style="color: #CF222E">::class</span><span style="color: #24292F">,</span></span>
 <span class="line"><span style="color: #24292F">        </span><span style="color: #0550AE">BladeBoxiconsServiceProvider</span><span style="color: #CF222E">::class</span><span style="color: #24292F">,</span></span>
 <span class="line"><span style="color: #24292F">    ],</span></span>
 <span class="line"></span></code></pre>
-<p>You must manually load dependant services too - as such in the example above we load both the general <code>BladeIconsServiceProvider::class</code> provider and the icon package.</p>
-<h1 id="learn-more">Learn More!</h1>
-<p>To learn more, check out the official <a href="#add-docs-link">Kickflip Docs</a>!</p>
-</main>
-
+            <p>You must manually load dependant services too - as such in the example above we load both the general <code>BladeIconsServiceProvider::class</code> provider and the icon package.</p>
+            <h1 id="learn-more">Learn More!</h1>
+            <p>To learn more, check out the official <a href="#add-docs-link">Kickflip Docs</a>!</p>
+        </main>
         <script src="http://kickflip.test/assets/build/js/main.js"></script>
-                <footer class="bg-white text-center text-sm py-4 border-t" role="contentinfo">
+        <footer class="bg-white text-center text-sm py-4 border-t" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
-                <li class="md:mr-2">
-                    Built by <a href="https://github.com/mallardduck">MallardDuck</a> with Kickflip!
-                </li>
-
-                <li class="flex flex-col items-center">
-                    <a href="https://github.com/mallardduck/kickflip" title="Kickflip on GitHub" target="_blank">
-                        Contribute on GitHub
-                    </a>
-                </li>
+                <li class="md:mr-2">Built by <a href="https://github.com/mallardduck">MallardDuck</a> with Kickflip!</li>
+                <li class="flex flex-col items-center"><a href="https://github.com/mallardduck/kickflip" title="Kickflip on GitHub" target="_blank">Contribute on GitHub</a></li>
             </ul>
         </footer>
     </body>

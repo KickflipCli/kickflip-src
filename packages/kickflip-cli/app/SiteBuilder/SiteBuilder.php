@@ -6,8 +6,6 @@ namespace Kickflip\SiteBuilder;
 
 use Illuminate\Config\Repository;
 use Illuminate\Console\OutputStyle;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -19,8 +17,6 @@ use Kickflip\KickflipHelper;
 use Kickflip\Logger;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SiteData;
-use Navindex\HtmlFormatter\Formatter;
-use Throwable;
 
 use function app;
 use function array_merge;
@@ -192,28 +188,12 @@ final class SiteBuilder
                 mkdir(directory: $outputDir, recursive: true);
             }
             // Pre-render view and beautify output...
-            file_put_contents($outputFile, $this->prepareViewRender($view));
+            file_put_contents($outputFile, HtmlFormatter::render($view));
             KickflipHelper::config()->set('page', null);
         }
         $consoleOutput->writeln('<info>Completed page rendering.</info>');
 
         return $this;
-    }
-
-    private function prepareViewRender(Factory | ViewContract $view): string
-    {
-        $renderedHtml = $view->render();
-        $formatter = new Formatter();
-
-        try {
-            if (KickflipHelper::config()->get('minify_html', false)) {
-                return @$formatter->minify($renderedHtml);
-            }
-
-            return @$formatter->beautify($renderedHtml);
-        } catch (Throwable) {
-            return $renderedHtml;
-        }
     }
 
     private function cleanup(): void

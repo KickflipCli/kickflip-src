@@ -6,6 +6,7 @@ namespace KickflipMonoTests\Feature\SiteBuilder;
 
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
+use Kickflip\SiteBuilder\HtmlFormatter;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
@@ -56,7 +57,7 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
         $view = view($page->source->getName(), [
             'page' => $page,
         ]);
-        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml($view->render()));
+        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml(HtmlFormatter::render($view)));
         KickflipHelper::config()->set('page', null);
     }
 
