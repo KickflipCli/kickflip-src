@@ -26,7 +26,6 @@ use function count;
 use function dirname;
 use function file_exists;
 use function file_put_contents;
-use function in_array;
 use function is_dir;
 use function mkdir;
 use function rtrim;
@@ -57,23 +56,17 @@ final class SiteBuilder
         $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
-            if (
-                in_array($env, [
-                    'prod',
-                    'production',
-                ]) && !isset($envSiteConfig['minifyHtml'])
-            ) {
-                $kickflipCliState->set('minify_html', true);
-            }
             $kickflipCliState->set('site', array_merge($kickflipCliState->get('site'), $envSiteConfig));
             self::updateAppUrl();
         }
 
         // Share site config into global View data...
-        View::share(
-            'site',
-            SiteData::fromConfig($kickflipCliState->get('site')),
-        );
+        $siteData = SiteData::fromConfig($kickflipCliState->get('site'));
+        View::share('site', $siteData);
+        // Update minify html value
+        if ($siteData->production && !isset($envSiteConfig['minifyHtml'])) {
+            $kickflipCliState->set('minify_html', true);
+        }
 
         // Set language...
         config()->set('app.locale', $kickflipCliState->get('site.locale', 'en'));
