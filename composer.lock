@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98441e28ad4aff4ad417c4b426a41adf",
+    "content-hash": "a6e2441c0de281b211bd2235067a2706",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2605,6 +2605,78 @@
             "time": "2022-02-08T16:16:07+00:00"
         },
         {
+            "name": "mallardduck/html-formatter",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mallardduck/html-formatter.git",
+                "reference": "c87b3ed64a89be991473fc968a6060a36db097ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mallardduck/html-formatter/zipball/c87b3ed64a89be991473fc968a6060a36db097ef",
+                "reference": "c87b3ed64a89be991473fc968a6060a36db097ef",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "replace": {
+                "navindex/html-formatter": "*"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.5",
+                "phpstan/phpstan": "^1.2.0",
+                "phpunit/phpunit": "^9.5.16",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "symfony/var-dumper": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MallardDuck\\HtmlFormatter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Pock",
+                    "email": "self@danpock.me",
+                    "homepage": "https://danpock.me",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Miklos Karpati",
+                    "email": "mk@navindex.com.au",
+                    "homepage": "https://www.navindex.com.au",
+                    "role": "OG Developer"
+                }
+            ],
+            "description": "HTML beautifier and minifier library for development and testing.",
+            "homepage": "https://github.com/mallardduck/html-formatter",
+            "keywords": [
+                "beautify",
+                "format",
+                "html",
+                "indent",
+                "minify"
+            ],
+            "support": {
+                "source": "https://github.com/mallardduck/html-formatter/tree/1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/navindex",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-27T22:30:48+00:00"
+        },
+        {
             "name": "mallardduck/laravel-traits",
             "version": "0.3.1",
             "source": {
@@ -2763,134 +2835,6 @@
                 }
             ],
             "time": "2021-10-01T21:08:31+00:00"
-        },
-        {
-            "name": "navindex/html-formatter",
-            "version": "v0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/navindex/html-formatter.git",
-                "reference": "12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/navindex/html-formatter/zipball/12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221",
-                "reference": "12753c3d5b2b2ec8a635f0e0b7fa102a66b4e221",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "navindex/simple-config": "^0.2.0",
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "larapack/dd": "^1.1",
-                "php-coveralls/php-coveralls": "^2.4",
-                "phpstan/phpstan": "^0.12.99",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Navindex\\HtmlFormatter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Miklos Karpati",
-                    "email": "mk@navindex.com.au",
-                    "homepage": "https://www.navindex.com.au",
-                    "role": "Developer"
-                }
-            ],
-            "description": "HTML beautifier and minifier library for development and testing.",
-            "homepage": "https://github.com/navindex/html-formatter",
-            "keywords": [
-                "Navindex",
-                "beautify",
-                "format",
-                "html",
-                "indent",
-                "minify",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/navindex/html-formatter/issues",
-                "source": "https://github.com/navindex/html-formatter/tree/v0.1.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/navindex",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-10-14T08:47:34+00:00"
-        },
-        {
-            "name": "navindex/simple-config",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/navindex/simple-config.git",
-                "reference": "008b6341f0a2b310460828d9ffc060c88a911829"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/navindex/simple-config/zipball/008b6341f0a2b310460828d9ffc060c88a911829",
-                "reference": "008b6341f0a2b310460828d9ffc060c88a911829",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "larapack/dd": "^1.1",
-                "php-coveralls/php-coveralls": "^2.4",
-                "phpstan/phpstan": "^0.12.99",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Navindex\\SimpleConfig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Miklos Karpati",
-                    "email": "mk@navindex.com.au",
-                    "homepage": "https://www.navindex.com.au",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple library to create and modify a configuration structure.",
-            "homepage": "https://github.com/navindex/simple-config",
-            "keywords": [
-                "Navindex",
-                "config",
-                "configuration",
-                "options",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/navindex/simple-config/issues",
-                "source": "https://github.com/navindex/simple-config/tree/v0.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/navindex",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-09-27T07:35:57+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -11576,16 +11520,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.21.0",
+            "version": "4.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "d8bec4c7aaee111a532daec32fb09de5687053d1"
+                "reference": "fc2c6ab4d5fa5d644d8617089f012f3bb84b8703"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d8bec4c7aaee111a532daec32fb09de5687053d1",
-                "reference": "d8bec4c7aaee111a532daec32fb09de5687053d1",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/fc2c6ab4d5fa5d644d8617089f012f3bb84b8703",
+                "reference": "fc2c6ab4d5fa5d644d8617089f012f3bb84b8703",
                 "shasum": ""
             },
             "require": {
@@ -11676,9 +11620,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.21.0"
+                "source": "https://github.com/vimeo/psalm/tree/4.22.0"
             },
-            "time": "2022-02-18T04:34:15+00:00"
+            "time": "2022-02-24T20:34:05+00:00"
         },
         {
             "name": "webmozart/path-util",

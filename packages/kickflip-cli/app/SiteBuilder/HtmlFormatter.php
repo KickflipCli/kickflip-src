@@ -7,7 +7,7 @@ namespace Kickflip\SiteBuilder;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View as ViewContract;
 use Kickflip\KickflipHelper;
-use Navindex\HtmlFormatter\Formatter;
+use MallardDuck\HtmlFormatter\Formatter;
 
 final class HtmlFormatter
 {
@@ -17,9 +17,9 @@ final class HtmlFormatter
         $formatter = new Formatter();
 
         if (KickflipHelper::config()->get('minify_html', false)) {
-            return @$formatter->minify($renderedHtml);
+            return $formatter->minify($renderedHtml);
         }
 
-        return @$formatter->beautify($renderedHtml);
+        return $formatter->beautify($renderedHtml);
     }
 }
