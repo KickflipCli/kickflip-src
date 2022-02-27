@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6e2441c0de281b211bd2235067a2706",
+    "content-hash": "fd3e65078906771bd73d8c58482341c5",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2606,16 +2606,16 @@
         },
         {
             "name": "mallardduck/html-formatter",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/html-formatter.git",
-                "reference": "c87b3ed64a89be991473fc968a6060a36db097ef"
+                "reference": "c6e0db652571d96ba63980658c70cd3bb0001ea1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/html-formatter/zipball/c87b3ed64a89be991473fc968a6060a36db097ef",
-                "reference": "c87b3ed64a89be991473fc968a6060a36db097ef",
+                "url": "https://api.github.com/repos/mallardduck/html-formatter/zipball/c6e0db652571d96ba63980658c70cd3bb0001ea1",
+                "reference": "c6e0db652571d96ba63980658c70cd3bb0001ea1",
                 "shasum": ""
             },
             "require": {
@@ -2629,8 +2629,8 @@
                 "php-coveralls/php-coveralls": "^2.5",
                 "phpstan/phpstan": "^1.2.0",
                 "phpunit/phpunit": "^9.5.16",
-                "spatie/phpunit-snapshot-assertions": "^4.2",
-                "symfony/var-dumper": "^6.0"
+                "spatie/phpunit-snapshot-assertions": "^4.2.10",
+                "symfony/var-dumper": "^5.0 || ^6.0"
             },
             "type": "library",
             "autoload": {
@@ -2666,7 +2666,7 @@
                 "minify"
             ],
             "support": {
-                "source": "https://github.com/mallardduck/html-formatter/tree/1.0.0"
+                "source": "https://github.com/mallardduck/html-formatter/tree/1.0.1"
             },
             "funding": [
                 {
@@ -2674,7 +2674,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-27T22:30:48+00:00"
+            "time": "2022-02-27T23:38:37+00:00"
         },
         {
             "name": "mallardduck/laravel-traits",
