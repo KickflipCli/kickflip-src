@@ -2,6 +2,7 @@
 *.css               linguist-vendored
 *.scss              linguist-vendored
 *.js                linguist-vendored
+*.html              linguist-language=HTML eol=lf
 /_ide_helper.php            export-ignore
 /.allowed-licenses          export-ignore
 /.editorconfig              export-ignore
