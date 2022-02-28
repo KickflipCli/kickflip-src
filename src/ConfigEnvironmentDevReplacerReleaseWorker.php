@@ -22,7 +22,9 @@ final class ConfigEnvironmentDevReplacerReleaseWorker implements ReleaseWorkerIn
             return;
         }
         $configFileContent = file_get_contents($configFile);
-        $configFileContent = Strings::replace($configFileContent, "/'env' => '([a-z]+)'/", "'env' => 'development'");
+        $match = "/'env' => env\('APP_ENV', '([a-z]+)'\)/";
+        $replacement = "'env' => env('APP_ENV', 'development')";
+        $configFileContent = Strings::replace($configFileContent, $match, $replacement);
         file_put_contents($configFile, $configFileContent);
     }
 

@@ -6,6 +6,7 @@ namespace KickflipMonoTests\Feature\SiteBuilder;
 
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
+use Kickflip\SiteBuilder\HtmlFormatter;
 use Kickflip\SiteBuilder\ShikiNpmFetcher;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\SiteBuilder\SourcesLocator;
@@ -13,6 +14,7 @@ use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 
 use function app;
+use function str_replace;
 use function view;
 
 abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
@@ -56,7 +58,15 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
         $view = view($page->source->getName(), [
             'page' => $page,
         ]);
-        self::assertMatchesHtmlSnapshot(self::stripMixIdsFromHtml($view->render()));
+        self::assertMatchesHtmlSnapshot(
+            str_replace(
+                "\r\n",
+                "\n",
+                self::stripMixIdsFromHtml(
+                    HtmlFormatter::render($view),
+                ),
+            ),
+        );
         KickflipHelper::config()->set('page', null);
     }
 

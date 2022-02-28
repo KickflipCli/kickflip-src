@@ -61,10 +61,12 @@ final class SiteBuilder
         }
 
         // Share site config into global View data...
-        View::share(
-            'site',
-            SiteData::fromConfig($kickflipCliState->get('site')),
-        );
+        $siteData = SiteData::fromConfig($kickflipCliState->get('site'));
+        View::share('site', $siteData);
+        // Update minify html value
+        if ($siteData->production && !isset($envSiteConfig['minifyHtml'])) {
+            $kickflipCliState->set('minify_html', true);
+        }
 
         // Set language...
         config()->set('app.locale', $kickflipCliState->get('site.locale', 'en'));
@@ -178,7 +180,8 @@ final class SiteBuilder
             if (!is_dir($outputDir)) {
                 mkdir(directory: $outputDir, recursive: true);
             }
-            file_put_contents($outputFile, $view->render());
+            // Pre-render view and beautify output...
+            file_put_contents($outputFile, HtmlFormatter::render($view));
             KickflipHelper::config()->set('page', null);
         }
         $consoleOutput->writeln('<info>Completed page rendering.</info>');

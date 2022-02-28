@@ -26,4 +26,7 @@
             <text outputFile="build/coverage.txt"/>
         </report>
     </coverage>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+    </php>
 </phpunit>
