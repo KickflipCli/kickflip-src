@@ -4158,16 +4158,16 @@
         },
         {
             "name": "spatie/laravel-markdown",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-markdown.git",
-                "reference": "de451b6dddfdcfdfa3db2ad77d9cd1ee7fe8e937"
+                "reference": "cca6e7676d0b5921f9c8f2ca497fbe6f007bc829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/de451b6dddfdcfdfa3db2ad77d9cd1ee7fe8e937",
-                "reference": "de451b6dddfdcfdfa3db2ad77d9cd1ee7fe8e937",
+                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/cca6e7676d0b5921f9c8f2ca497fbe6f007bc829",
+                "reference": "cca6e7676d0b5921f9c8f2ca497fbe6f007bc829",
                 "shasum": ""
             },
             "require": {
@@ -4175,6 +4175,7 @@
                 "illuminate/contracts": "^8.37|^9.0",
                 "illuminate/support": "^8.49|^9.0",
                 "illuminate/view": "^8.49|^9.0",
+                "league/commonmark": "^2.2",
                 "php": "^8.0",
                 "spatie/commonmark-shiki-highlighter": "^2.0",
                 "spatie/laravel-package-tools": "^1.4.3"
@@ -4220,7 +4221,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-markdown/tree/2.2.0"
+                "source": "https://github.com/spatie/laravel-markdown/tree/2.2.1"
             },
             "funding": [
                 {
@@ -4228,7 +4229,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-13T10:08:03+00:00"
+            "time": "2022-02-28T12:18:07+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -5727,16 +5728,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.0.3",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "298ed357274c1868c20a0061df256a1250a6c4af"
+                "reference": "1ccceccc6497e96f4f646218f04b97ae7d9fa7a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/298ed357274c1868c20a0061df256a1250a6c4af",
-                "reference": "298ed357274c1868c20a0061df256a1250a6c4af",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1ccceccc6497e96f4f646218f04b97ae7d9fa7a1",
+                "reference": "1ccceccc6497e96f4f646218f04b97ae7d9fa7a1",
                 "shasum": ""
             },
             "require": {
@@ -5768,7 +5769,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.0.3"
+                "source": "https://github.com/symfony/process/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -5784,7 +5785,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-26T17:23:29+00:00"
+            "time": "2022-01-30T18:19:12+00:00"
         },
         {
             "name": "symfony/routing",
@@ -6043,16 +6044,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.0.3",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "71bb15335798f8c4da110911bcf2d2fead7a430d"
+                "reference": "e69501c71107cc3146b32aaa45f4edd0c3427875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/71bb15335798f8c4da110911bcf2d2fead7a430d",
-                "reference": "71bb15335798f8c4da110911bcf2d2fead7a430d",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/e69501c71107cc3146b32aaa45f4edd0c3427875",
+                "reference": "e69501c71107cc3146b32aaa45f4edd0c3427875",
                 "shasum": ""
             },
             "require": {
@@ -6118,7 +6119,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.0.3"
+                "source": "https://github.com/symfony/translation/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -6134,7 +6135,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-07T00:29:03+00:00"
+            "time": "2022-02-09T15:52:48+00:00"
         },
         {
             "name": "symfony/translation-contracts",
