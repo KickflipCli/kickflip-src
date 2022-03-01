@@ -2678,16 +2678,16 @@
         },
         {
             "name": "mallardduck/laravel-traits",
-            "version": "0.3.1",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/laravel-traits.git",
-                "reference": "bc64c026e1eacbf3b8d55b521254e256ce6f4b4a"
+                "reference": "6a14194b81701e39f72611a03da0baaa01504a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/laravel-traits/zipball/bc64c026e1eacbf3b8d55b521254e256ce6f4b4a",
-                "reference": "bc64c026e1eacbf3b8d55b521254e256ce6f4b4a",
+                "url": "https://api.github.com/repos/mallardduck/laravel-traits/zipball/6a14194b81701e39f72611a03da0baaa01504a1f",
+                "reference": "6a14194b81701e39f72611a03da0baaa01504a1f",
                 "shasum": ""
             },
             "require": {
@@ -2698,13 +2698,6 @@
                 "php": "^7.2 || ^8.0.0"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\LaravelMarkdown\\MarkdownServiceProvider"
-                    ]
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "MallardDuck\\LaravelTraits\\": "src/"
@@ -2733,9 +2726,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mallardduck/laravel-traits/issues",
-                "source": "https://github.com/mallardduck/laravel-traits/tree/0.3.1"
+                "source": "https://github.com/mallardduck/laravel-traits/tree/0.3.2"
             },
-            "time": "2022-02-08T15:38:16+00:00"
+            "time": "2022-02-28T20:27:38+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4354,16 +4347,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.0.3",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "22e8efd019c3270c4f79376234a3f8752cd25490"
+                "reference": "3bebf4108b9e07492a2a4057d207aa5a77d146b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/22e8efd019c3270c4f79376234a3f8752cd25490",
-                "reference": "22e8efd019c3270c4f79376234a3f8752cd25490",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3bebf4108b9e07492a2a4057d207aa5a77d146b1",
+                "reference": "3bebf4108b9e07492a2a4057d207aa5a77d146b1",
                 "shasum": ""
             },
             "require": {
@@ -4429,7 +4422,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.0.3"
+                "source": "https://github.com/symfony/console/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -4445,7 +4438,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-26T17:23:29+00:00"
+            "time": "2022-02-25T10:48:52+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5727,16 +5720,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.0.3",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "298ed357274c1868c20a0061df256a1250a6c4af"
+                "reference": "1ccceccc6497e96f4f646218f04b97ae7d9fa7a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/298ed357274c1868c20a0061df256a1250a6c4af",
-                "reference": "298ed357274c1868c20a0061df256a1250a6c4af",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1ccceccc6497e96f4f646218f04b97ae7d9fa7a1",
+                "reference": "1ccceccc6497e96f4f646218f04b97ae7d9fa7a1",
                 "shasum": ""
             },
             "require": {
@@ -5768,7 +5761,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.0.3"
+                "source": "https://github.com/symfony/process/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -5784,7 +5777,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-26T17:23:29+00:00"
+            "time": "2022-01-30T18:19:12+00:00"
         },
         {
             "name": "symfony/routing",
@@ -6043,16 +6036,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.0.3",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "71bb15335798f8c4da110911bcf2d2fead7a430d"
+                "reference": "e69501c71107cc3146b32aaa45f4edd0c3427875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/71bb15335798f8c4da110911bcf2d2fead7a430d",
-                "reference": "71bb15335798f8c4da110911bcf2d2fead7a430d",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/e69501c71107cc3146b32aaa45f4edd0c3427875",
+                "reference": "e69501c71107cc3146b32aaa45f4edd0c3427875",
                 "shasum": ""
             },
             "require": {
@@ -6118,7 +6111,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.0.3"
+                "source": "https://github.com/symfony/translation/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -6134,7 +6127,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-07T00:29:03+00:00"
+            "time": "2022-02-09T15:52:48+00:00"
         },
         {
             "name": "symfony/translation-contracts",
