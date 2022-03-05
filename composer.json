@@ -56,7 +56,7 @@
         "nunomaduro/larastan": "^2.0",
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "phpstan/phpstan": "^1.2",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^9.5.17",
         "ramsey/coding-standard": "^2.0",
         "slevomat/coding-standard": "~7.0",
         "spatie/phpunit-snapshot-assertions": "^4.2",
