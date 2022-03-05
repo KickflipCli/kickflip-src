@@ -14,6 +14,10 @@
 </p>
 <!-- BADGES_END -->
 
+## A message to Russian 🇷🇺 people
+
+If you currently live in Russia, please read [this message](./ToRussianPeople.md).
+
 <!-- DESC_START -->
 ## About
 
