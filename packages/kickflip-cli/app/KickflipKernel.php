@@ -97,7 +97,8 @@ class KickflipKernel extends BaseKernel
         $castInput = (string) $input;
         Logger::timing(__METHOD__);
         // Globally sets the verbosity so that the app itself, not just commands know the verbosity level
-        $this->app->get('kickflipCli')
+        $this->app
+            ->get('kickflipCli')
             ->set('output.verbosity', Str::of($castInput)->findVerbosity());
 
         return parent::handle($input, $output);

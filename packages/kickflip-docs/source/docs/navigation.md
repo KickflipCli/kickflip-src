@@ -10,7 +10,7 @@ As there are many different shapes and sizes of navigation Kickflip does not dir
 Ultimately the concern of creating and rendering a site navigation is something your site project will manage.
 There are already a lot of good solutions for building menu's in Blade templates.
 
-> TIP: Be cautious of which you try to use though as many will rely on dynamic URL generation a static site won't have.
+> TIP: Be cautious of which method you use as it may rely on dynamic URL generation a static site won't have.
 
 ## Suggestions
 
