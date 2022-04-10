@@ -5,7 +5,7 @@
 
 <p align="center">
     <a href="https://github.com/KickflipCli/kickflip-src"><img src="http://img.shields.io/badge/source-KickflipCli/kickflip--src-blue.svg?style=flat-square" alt="Source Code"></a>
-    <a href="https://packagist.org/packages/KickflipCli/kickflip-cli"><img src="https://img.shields.io/packagist/v/Kickflip/kickflip-cli.svg?style=flat-square&label=release" alt="Download Package"></a>
+    <a href="https://packagist.org/packages/Kickflip/kickflip-cli"><img src="https://img.shields.io/packagist/v/Kickflip/kickflip-cli.svg?style=flat-square&label=release" alt="Download Package"></a>
     <a href="https://php.net"><img src="https://img.shields.io/packagist/php-v/Kickflip/kickflip-cli.svg?style=flat-square&colorB=%238892BF" alt="PHP Programming Language"></a>
     <a href="https://github.com/KickflipCli/kickflip-src/blob/main/LICENSE.md"><img src="https://img.shields.io/packagist/l/Kickflip/kickflip-cli.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
     <a href="https://github.com/KickflipCli/kickflip-src/actions/workflows/continuous-integration.yml"><img src="https://img.shields.io/github/workflow/status/KickflipCli/kickflip-src/Run%20CI%20Tests/main?style=flat-square&logo=github" alt="Build Status"></a>
