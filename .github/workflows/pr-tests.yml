@@ -125,7 +125,7 @@ jobs:
         run: "composer dev-test-coverage-ci"
 
       - name: "Publish coverage report to Codecov"
-        uses: "codecov/codecov-action@v2"
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./build/coverage
