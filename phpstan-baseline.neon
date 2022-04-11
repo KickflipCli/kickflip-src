@@ -16,3 +16,8 @@ parameters:
 			message: "#^Static method Kickflip\\\\Collection\\\\(Inverse)?SortOption\\:\\:custom\\(\\) invoked with 1 parameter, 0 required.$#"
 			paths:
 			  - tests/*/*.php
+
+		-
+			message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Collection\\:\\:filterTimings\\(\\).$#"
+			paths:
+			  - tests/*/*.php
