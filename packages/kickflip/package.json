@@ -13,7 +13,7 @@
     "@tailwindcss/typography": "0.5.2",
     "laravel-mix": "6.0.43",
     "postcss": "8.4.12",
-    "shiki": "0.9.15",
+    "shiki": "0.10.1",
     "tailwindcss": "3.0.23"
   }
 }
