@@ -46,7 +46,6 @@ final class GenerateSitemap
         $outputBaseDir = $kickflipConfig->get('paths.build.destination');
         $sitemap = new Sitemap($outputBaseDir . '/sitemap.xml');
 
-        // TODO: make sure this works with all URL generator modes - seems to only show `index.html` support
         collect($this->getOutputPaths((string) $outputBaseDir))
             ->reject(fn ($path) => $this->isExcluded($path))
             ->map(fn ($path) => str_replace('index.html', '', $path))
