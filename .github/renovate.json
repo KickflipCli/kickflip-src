@@ -1,9 +1,0 @@
-{
-    "rangeStrategy": "widen",
-    "ignorePaths": ["examples/**"],
-    "packageRules": [{
-        "packagePatterns": ["^illuminate/.*"],
-        "groupName": "illuminate",
-        "rangeStrategy": "in-range-only"
-    }]
-}
