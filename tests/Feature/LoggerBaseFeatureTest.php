@@ -7,15 +7,17 @@ namespace KickflipMonoTests\Feature;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;
 use Kickflip\Logger;
+use ReflectionProperty;
 
-use ReflectionClass;
 use function app;
+use function collect;
+use function is_array;
+use function is_float;
 
 class LoggerBaseFeatureTest extends BaseFeatureTestCase
 {
-
     /**
-     * @var array{0: \ReflectionClass<Repository>, 1: \ReflectionProperty}
+     * @var array{0: ReflectionClass<Repository>, 1: ReflectionProperty}
      */
     private array $timingReflection;
 
@@ -25,7 +27,12 @@ class LoggerBaseFeatureTest extends BaseFeatureTestCase
         Collection::macro('filterTimings', [static::class, 'stripTimeValues']);
     }
 
-    public static function stripTimeValues($input)
+    /**
+     * @param mixed[]|string|float|int $input
+     *
+     * @return mixed[]|string
+     */
+    public static function stripTimeValues(array | string | float | int $input)
     {
         if (is_float($input)) {
             return '<DUMMY VALUE>';
@@ -33,6 +40,7 @@ class LoggerBaseFeatureTest extends BaseFeatureTestCase
 
         if (is_array($input)) {
             $subItems = collect($input);
+
             return $subItems->map([static::class, 'stripTimeValues'])->toArray();
         }
 
