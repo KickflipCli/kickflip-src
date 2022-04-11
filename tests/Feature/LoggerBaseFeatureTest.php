@@ -7,7 +7,6 @@ namespace KickflipMonoTests\Feature;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;
 use Kickflip\Logger;
-use ReflectionProperty;
 
 use function app;
 use function collect;
@@ -16,11 +15,6 @@ use function is_float;
 
 class LoggerBaseFeatureTest extends BaseFeatureTestCase
 {
-    /**
-     * @var array{0: ReflectionClass<Repository>, 1: ReflectionProperty}
-     */
-    private array $timingReflection;
-
     public function setUp(): void
     {
         parent::setUp();
