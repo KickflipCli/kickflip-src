@@ -32,6 +32,11 @@ class BuildCommand extends Command
                             {env=local : What environment should we use to build?}';
 
     /**
+     * @var string
+     */
+    protected static $defaultName = 'build';
+
+    /**
      * The description of the command.
      *
      * @var string
