@@ -14,7 +14,7 @@
     "laravel-mix": "6.0.43",
     "postcss": "8.4.12",
     "postcss-custom-selectors": "6.0.0",
-    "postcss-import": "14.0.2",
+    "postcss-import": "14.1.0",
     "postcss-mixins": "9.0.2",
     "postcss-nested": "5.0.6",
     "postcss-omit-import-tilde": "1.0.1",
