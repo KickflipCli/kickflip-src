@@ -1,0 +1,14 @@
+KickflipKernel:
+    __construct: '<DUMMY VALUE>'
+InitServiceProvider:
+    register: '<DUMMY VALUE>'
+    boot: '<DUMMY VALUE>'
+KickflipServiceProvider:
+    register: '<DUMMY VALUE>'
+    registerSemiAutoloadProviders: '<DUMMY VALUE>'
+    boot: '<DUMMY VALUE>'
+NotStatic:
+    stepOne: '<DUMMY VALUE>'
+    extended: { Static: { stepTwo: '<DUMMY VALUE>' } }
+Static:
+    stepThree: '<DUMMY VALUE>'
