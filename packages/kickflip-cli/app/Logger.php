@@ -36,11 +36,12 @@ class Logger
     public static function timing(string $methodName, ?string $static = null): void
     {
         $timingsRepo = self::getKickflipTimings();
-        $index = Str::of($methodName)->afterLast('\\')->replace('::', '.');
-        if ($static !== null) {
+        $methodClass = (string) Str::of($methodName)->before('::');
+        $index = Str::of($methodName)->replace('::', '.');
+        if ($static !== null && $methodClass !== $static) {
             $index = $index->replaceFirst(
                 '.',
-                Str::of($static)->afterLast('\\')->prepend('.extended.')->append('.'),
+                Str::of($static)->prepend('.extended.')->append('.'),
             );
         }
         $timingsRepo->set((string) $index, microtime(true));
