@@ -50,5 +50,6 @@ Before V1 is released this repo may undergo a lot of changes with no backwards c
 - [x] Explore idea about mocking traditional laravel routes based on source files (could allow for named routes usage 🤔)
 - [x] Create a starter project
 - [ ] Sort out workflows for CHANGELOG.md updates
+  - Testing via:  PACKAGE="PACKAGENAME" auto-changelog --hide-credit  -t keepachangelog -u -o "./packages/$PACKAGE/CHANGELOG.md" --append-git-log "-- ./packages/$PACKAGE"
 - [x] Add README.md files to Kickflip-cli and Kickflip-docs
 - [x] Hook into NodeJS to ensure required dependencies are installed
