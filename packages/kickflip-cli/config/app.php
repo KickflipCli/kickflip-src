@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use Illuminate\Events\EventServiceProvider;
 use Illuminate\Filesystem\FilesystemServiceProvider;
-use Illuminate\Log\LogServiceProvider;
 use Kickflip\Providers\CustomPaginatorServiceProvider;
 use Kickflip\Providers\InitServiceProvider;
 use Kickflip\Providers\KickflipServiceProvider;
@@ -94,8 +92,6 @@ return [
     'providers' => [
         InitServiceProvider::class,
         FilesystemServiceProvider::class,
-        LogServiceProvider::class,
-        EventServiceProvider::class,
         ViewServiceProvider::class,
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
