@@ -27,7 +27,7 @@ class PageToc extends Component
      */
     public function render()
     {
-        $kickflipConfig = KickflipHelper::config();
+        $kickflipConfig = KickflipHelper::getKickflipState();
         /**
          * @var TableOfContents $tableOfContents
          */
