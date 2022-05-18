@@ -16,7 +16,7 @@ final class HtmlFormatter
         $renderedHtml = $view->render();
         $formatter = new Formatter();
 
-        if (KickflipHelper::config()->get('minify_html', false)) {
+        if (KickflipHelper::getKickflipState()->get('minify_html', false)) {
             return $formatter->minify($renderedHtml);
         }
 

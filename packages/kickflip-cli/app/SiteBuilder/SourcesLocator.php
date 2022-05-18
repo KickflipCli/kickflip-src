@@ -87,7 +87,7 @@ final class SourcesLocator
             return;
         }
 
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         /**
          * @var CollectionConfig[] $collections
          */

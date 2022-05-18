@@ -52,7 +52,7 @@ final class SiteBuilder
         /**
          * @var Repository $kickflipCliState
          */
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         $envConfigPath = (string) Str::of(KickflipHelper::namedPath(CliStateDirPaths::EnvConfig))->replaceEnv($env);
         if (file_exists($envConfigPath)) {
             $envSiteConfig = include $envConfigPath;
@@ -79,7 +79,7 @@ final class SiteBuilder
         /**
          * @var Repository $kickflipCliState
          */
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         $baseUrl = $kickflipCliState->get('site.baseUrl');
         if ($baseUrl !== '') {
             $baseUrl = (string) Str::of($kickflipCliState->get('site.baseUrl'))->rtrim('/')->append('/');
@@ -99,7 +99,7 @@ final class SiteBuilder
         /**
          * @var Repository $kickflipCliState
          */
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         $buildDestinationBasePath = KickflipHelper::namedPath(CliStateDirPaths::EnvBuildDestination);
         $buildDestinationEnvPath = (string) Str::of($buildDestinationBasePath)->replaceEnv($env);
         $kickflipCliState->set('paths.' . CliStateDirPaths::BuildDestination, $buildDestinationEnvPath);
@@ -107,7 +107,7 @@ final class SiteBuilder
 
     public static function initCollections()
     {
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         $collections = $kickflipCliState->get('site.collections');
         if ($collections !== null) {
             // TODO: Figure out appropriate validation steps, or similar for init...
@@ -165,7 +165,7 @@ final class SiteBuilder
          * @var PageData $page
          */
         foreach ($renderPageList as $page) {
-            KickflipHelper::config()->set('page', $page);
+            KickflipHelper::getKickflipState()->set('page', $page);
             $consoleOutput->writeln(sprintf(
                 'Rendering page `%s` from `%s` ',
                 $page->getUrl(),
@@ -182,7 +182,7 @@ final class SiteBuilder
             }
             // Pre-render view and beautify output...
             file_put_contents($outputFile, HtmlFormatter::render($view));
-            KickflipHelper::config()->set('page', null);
+            KickflipHelper::getKickflipState()->set('page', null);
         }
         $consoleOutput->writeln('<info>Completed page rendering.</info>');
 

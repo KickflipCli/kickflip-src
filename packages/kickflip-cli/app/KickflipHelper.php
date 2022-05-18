@@ -90,7 +90,7 @@ final class KickflipHelper
     public static function setPaths(string $basePath): void
     {
         Application::$localBase = $basePath;
-        $kickflipCliState = self::config();
+        $kickflipCliState = self::getKickflipState();
         $baseConfigPath = $basePath . DIRECTORY_SEPARATOR . 'config';
         $kickflipCliState->set('paths', [
             CliStateDirPaths::Base => $basePath,
@@ -260,7 +260,7 @@ final class KickflipHelper
 
     public static function hasItemCollections(): bool
     {
-        return self::config()->has('site.collections');
+        return self::getKickflipState()->has('site.collections');
     }
 
     public static function getFiles(string $path): Collection

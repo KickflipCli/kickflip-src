@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kickflip\Models;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Kickflip\KickflipHelper;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -13,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use function app;
 use function count;
 use function route;
+use function str_starts_with;
 
 class NavItem implements NavItemInterface
 {
@@ -33,10 +33,8 @@ class NavItem implements NavItemInterface
         // Try to find the route name if the URL starts with our base URL...
         $routeName = null;
         if (
-            Str::startsWith($url, [
-                KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl')),
-                '/',
-            ])
+            str_starts_with($url, '/') ||
+            str_starts_with($url, KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl')))
         ) {
             $fauxRequest = Request::create($url);
             try {
