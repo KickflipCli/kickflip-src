@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin\Listeners;
+namespace Kickflip\Listeners;
 
 use Illuminate\Support\Facades\Route;
 use Kickflip\Events\PageDataCreated;

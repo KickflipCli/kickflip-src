@@ -40,7 +40,7 @@ class KickflipServiceProvider extends ServiceProvider
     {
         Logger::timing(__METHOD__);
         Logger::debug('Firing ' . __METHOD__);
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
 
         // Correct the public_path helper
         $this->app->instance('path.public', KickflipHelper::namedPath(CliStateDirPaths::BuildSource));

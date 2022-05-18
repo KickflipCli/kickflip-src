@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Kickflip\KickflipHelper;
+use Kickflip\Models\NavItem;
 use Kickflip\Models\PageInterface;
-use Kickflip\RouterNavPlugin\Models\NavItem;
 
 // phpcs:disable
 /**

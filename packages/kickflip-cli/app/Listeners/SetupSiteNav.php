@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin\Listeners;
+namespace Kickflip\Listeners;
 
 use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\View;
@@ -24,7 +24,7 @@ final class SetupSiteNav
         /**
          * @var Repository $kickflipCliState
          */
-        $kickflipCliState = KickflipHelper::config();
+        $kickflipCliState = KickflipHelper::getKickflipState();
         $navConfigPath = KickflipHelper::configPath('navigation.php');
 
         // This forces the singleton to be initialized, must be done after Pretty URL setting loaded

@@ -90,7 +90,7 @@ final class KickflipHelper
     public static function setPaths(string $basePath): void
     {
         Application::$localBase = $basePath;
-        $kickflipCliState = self::config();
+        $kickflipCliState = self::getKickflipState();
         $baseConfigPath = $basePath . DIRECTORY_SEPARATOR . 'config';
         $kickflipCliState->set('paths', [
             CliStateDirPaths::Base => $basePath,
@@ -194,6 +194,7 @@ final class KickflipHelper
     /**
      * Return the path to the root of the `kickflip-cli` package.
      */
+    #[Pure]
     public static function rootPackagePath(): string
     {
         return dirname(__FILE__, 2);
@@ -204,16 +205,19 @@ final class KickflipHelper
         return (new FrontMatterExtension())->getFrontMatterParser();
     }
 
+    #[Pure]
     public static function leftTrimPath(string $path): string
     {
         return ltrim($path, ' .\\/');
     }
 
+    #[Pure]
     public static function rightTrimPath(string $path): string
     {
         return rtrim($path, ' .\\/');
     }
 
+    #[Pure]
     public static function trimPath(string $path): string
     {
         return rtrim(ltrim($path, ' .\\/'), ' .\\/');
@@ -260,7 +264,7 @@ final class KickflipHelper
 
     public static function hasItemCollections(): bool
     {
-        return self::config()->has('site.collections');
+        return self::getKickflipState()->has('site.collections');
     }
 
     public static function getFiles(string $path): Collection

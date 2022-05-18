@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin;
+namespace Kickflip\Providers;
 
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteCollectionInterface;
+use Illuminate\Routing\Router;
 use Illuminate\Routing\RoutingServiceProvider as BaseRoutingServiceProvider;
 use Illuminate\Routing\UrlGenerator;
 use Kickflip\KickflipHelper;
+use LaravelZero\Framework\Application;
 
 use function base64_encode;
 use function parse_url;
@@ -26,17 +28,23 @@ class RoutingServiceProvider extends BaseRoutingServiceProvider
         $this->registerUrlGenerator();
     }
 
+    private function getCurrentRoutes(Application $app): RouteCollectionInterface
+    {
+        /**
+         * @var Router $router
+         */
+        $router = $app['router'];
+
+        return $router->getRoutes();
+    }
+
     /**
      * Register the URL generator service.
      */
     protected function registerUrlGenerator(): void
     {
         $this->app->singleton('url', function ($app) {
-            /**
-             * @var Application $app
-             */
-            $routes = $app['router']->getRoutes();
-
+            $routes = $this->getCurrentRoutes($app);
             // The URL generator needs the route collection that exists on the router.
             // Keep in mind this is an object, so we're passing by references here
             // and all the registered routes will be available to the generator.

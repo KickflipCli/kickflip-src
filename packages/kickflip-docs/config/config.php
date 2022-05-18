@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Codeat3\BladeFileIcons\BladeFileIconsServiceProvider;
-use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
+use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use MallardDuck\BladeBoxicons\BladeBoxiconsServiceProvider;
 use MallardDuck\BladeEmojiIcons\BladeEmojiIconsServiceProvider;
 

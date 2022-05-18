@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace KickflipMonoTests\Plugins\RouterNav;
+namespace KickflipMonoTests\Feature\RouterNav;
 
-use Kickflip\RouterNavPlugin\Models\NavItem;
+use Kickflip\Models\NavItem;
 use Kickflip\SiteBuilder\SiteBuilder;
 use KickflipMonoTests\DocsSite\DocsTestCase;
 

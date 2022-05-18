@@ -41,7 +41,7 @@ final class GenerateSitemap
 
     public function handle(): void
     {
-        $kickflipConfig = KickflipHelper::config();
+        $kickflipConfig = KickflipHelper::getKickflipState();
         $baseUrl = $kickflipConfig->get('site.baseUrl');
         $outputBaseDir = $kickflipConfig->get('paths.build.destination');
         $sitemap = new Sitemap($outputBaseDir . '/sitemap.xml');

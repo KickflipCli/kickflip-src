@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin\Models;
+namespace Kickflip\Models;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Kickflip\KickflipHelper;
-use Kickflip\Models\PageData;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function app;
 use function count;
 use function route;
+use function str_starts_with;
 
 class NavItem implements NavItemInterface
 {
@@ -28,16 +27,13 @@ class NavItem implements NavItemInterface
     ) {
     }
 
-    #[Pure]
     public static function make(string $title, ?string $url = ''): self
     {
         // Try to find the route name if the URL starts with our base URL...
         $routeName = null;
         if (
-            Str::startsWith($url, [
-                KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl')),
-                '/',
-            ])
+            str_starts_with($url, '/') ||
+            str_starts_with($url, KickflipHelper::rightTrimPath(KickflipHelper::config('site.baseUrl')))
         ) {
             $fauxRequest = Request::create($url);
             try {
@@ -56,7 +52,6 @@ class NavItem implements NavItemInterface
         );
     }
 
-    #[Pure]
     public static function makeFromRouteName(string $title, string $routeName): self
     {
         return new self(
@@ -88,21 +83,25 @@ class NavItem implements NavItemInterface
         return $this->url !== '';
     }
 
+    #[Pure]
     public function getUrl(): string
     {
         return $this->url;
     }
 
+    #[Pure]
     public function hasRouteName(): bool
     {
         return $this->routeName !== null;
     }
 
+    #[Pure]
     public function getRouteName(): ?string
     {
         return $this->routeName;
     }
 
+    #[Pure]
     public function hasChildren(): bool
     {
         return $this->children !== null && count($this->children) > 0;

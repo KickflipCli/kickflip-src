@@ -61,14 +61,13 @@
         "slevomat/coding-standard": "~7.0",
         "spatie/phpunit-snapshot-assertions": "^4.2",
         "squizlabs/php_codesniffer": "3.*",
-        "symplify/monorepo-builder": "^10.2.2",
+        "symplify/monorepo-builder": "^10.2.6",
         "vimeo/psalm": "^4.14"
     },
     "replace": {
         "kickflip/kickflip": "0.9.1",
         "kickflip/kickflip-cli": "0.9.1",
-        "kickflip/kickflip-docs": "0.9.1",
-        "kickflip/kickflip-router-nav-plugin": "0.9.1"
+        "kickflip/kickflip-docs": "0.9.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -126,7 +125,6 @@
         "dev-lint-style": "phpcs --colors --cache=build/cache/phpcs.cache --",
         "dev-lint-syntax": "parallel-lint --colors src tests",
         "dev-lint-syntax-auto": "parallel-lint --colors",
-        "dev-para-plugin": "./vendor/bin/paratest --testsuite PluginsTests --no-coverage",
         "dev-para-unit": "./vendor/bin/paratest --testsuite Unit --no-coverage",
         "dev-test-coverage-ci": "phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml",
         "dev-test-coverage-html": "phpunit --colors=always --coverage-html build/coverage/coverage-html",
@@ -137,7 +135,6 @@
             "@dev-analyze-phpstan",
             "@dev-analyze-psalm",
             "@dev-para-unit",
-            "@dev-para-plugin",
             "@dev-test-unit --testsuite Features --no-coverage",
             "@dev-test-unit --testsuite DocsSiteTests --no-coverage"
         ]

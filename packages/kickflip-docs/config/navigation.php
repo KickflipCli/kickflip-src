@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Kickflip\RouterNavPlugin\Models\NavItem;
+use Kickflip\Models\NavItem;
 
 return [
     NavItem::makeFromRouteName('Getting Started', 'docs.getting-started')

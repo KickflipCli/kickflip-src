@@ -45,7 +45,7 @@ final class TableOfContentsBuilder implements ConfigurationAwareInterface
         }
 
         // Register TOC as global
-        $kickflipConfig = KickflipHelper::config();
+        $kickflipConfig = KickflipHelper::getKickflipState();
         $kickflipConfig->set('pageToc', clone $toc);
 
         // Add the TOC to the Document

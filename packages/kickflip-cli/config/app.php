@@ -6,6 +6,8 @@ use Illuminate\Filesystem\FilesystemServiceProvider;
 use Kickflip\Providers\CustomPaginatorServiceProvider;
 use Kickflip\Providers\InitServiceProvider;
 use Kickflip\Providers\KickflipServiceProvider;
+use Kickflip\Providers\RoutingEventsServiceProvider;
+use Kickflip\Providers\RoutingServiceProvider;
 use Kickflip\Providers\ViewServiceProvider;
 use Spatie\LaravelMarkdown\MarkdownServiceProvider;
 
@@ -95,6 +97,8 @@ return [
         ViewServiceProvider::class,
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
-        CustomPaginatorServiceProvider::class, // TODO: Consider replacing for conditional load based on router plugin?
+        RoutingServiceProvider::class,
+        RoutingEventsServiceProvider::class,
+        CustomPaginatorServiceProvider::class,
     ],
 ];
