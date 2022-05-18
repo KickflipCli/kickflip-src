@@ -7,7 +7,6 @@ parameters:
 	paths:
 		- tests
 		- packages/kickflip-cli/app
-		- packages/kickflip-router-nav-plugin/src
 	excludePaths:
 		analyse:
 			- tests/Feature/MockingLoggerTest.php
