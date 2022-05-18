@@ -194,6 +194,7 @@ final class KickflipHelper
     /**
      * Return the path to the root of the `kickflip-cli` package.
      */
+    #[Pure]
     public static function rootPackagePath(): string
     {
         return dirname(__FILE__, 2);
@@ -204,16 +205,19 @@ final class KickflipHelper
         return (new FrontMatterExtension())->getFrontMatterParser();
     }
 
+    #[Pure]
     public static function leftTrimPath(string $path): string
     {
         return ltrim($path, ' .\\/');
     }
 
+    #[Pure]
     public static function rightTrimPath(string $path): string
     {
         return rtrim($path, ' .\\/');
     }
 
+    #[Pure]
     public static function trimPath(string $path): string
     {
         return rtrim(ltrim($path, ' .\\/'), ' .\\/');

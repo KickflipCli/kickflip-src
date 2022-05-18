@@ -27,7 +27,6 @@ class NavItem implements NavItemInterface
     ) {
     }
 
-    #[Pure]
     public static function make(string $title, ?string $url = ''): self
     {
         // Try to find the route name if the URL starts with our base URL...
@@ -53,7 +52,6 @@ class NavItem implements NavItemInterface
         );
     }
 
-    #[Pure]
     public static function makeFromRouteName(string $title, string $routeName): self
     {
         return new self(
@@ -85,21 +83,25 @@ class NavItem implements NavItemInterface
         return $this->url !== '';
     }
 
+    #[Pure]
     public function getUrl(): string
     {
         return $this->url;
     }
 
+    #[Pure]
     public function hasRouteName(): bool
     {
         return $this->routeName !== null;
     }
 
+    #[Pure]
     public function getRouteName(): ?string
     {
         return $this->routeName;
     }
 
+    #[Pure]
     public function hasChildren(): bool
     {
         return $this->children !== null && count($this->children) > 0;
