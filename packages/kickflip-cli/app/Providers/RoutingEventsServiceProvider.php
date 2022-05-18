@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin;
+namespace Kickflip\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Kickflip\Events\PageDataCreated;
 use Kickflip\Events\SiteBuildStarted;
-use Kickflip\RouterNavPlugin\Listeners\BuildSiteNavRoute;
-use Kickflip\RouterNavPlugin\Listeners\SetupSiteNav;
+use Kickflip\Listeners\BuildSiteNavRoute;
+use Kickflip\Listeners\SetupSiteNav;
 
 class RoutingEventsServiceProvider extends ServiceProvider
 {

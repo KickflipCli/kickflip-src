@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin;
+namespace Kickflip\Providers;
 
 use Illuminate\Support\AggregateServiceProvider;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin\Models;
+namespace Kickflip\Models;
 
 interface NavItemInterface
 {

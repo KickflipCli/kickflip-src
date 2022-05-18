@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Kickflip\RouterNavPlugin\Models;
+namespace Kickflip\Models;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Kickflip\KickflipHelper;
-use Kickflip\Models\PageData;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function app;

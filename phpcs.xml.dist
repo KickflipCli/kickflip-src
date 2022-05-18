@@ -8,7 +8,6 @@
     <arg name="ignore" value="*.blade.php,./packages/kickflip-cli/bin/kickflip.php,./packages/kickflip/config/*.php,*/cache/*.php" />
 
     <file>./packages/kickflip-cli</file>
-    <file>./packages/kickflip-router-nav-plugin</file>
     <file>./tests</file>
 
     <rule ref="Ramsey"/>
@@ -27,10 +26,10 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix">
         <exclude-pattern>packages/kickflip-cli/app/Models/*Interface.php</exclude-pattern>
-        <exclude-pattern>packages/kickflip-router-nav-plugin/src/Models/NavItemInterface.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/src/Models/NavItemInterface.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
-        <exclude-pattern>packages/kickflip-router-nav-plugin/src/*ServiceProvider.php</exclude-pattern>
+        <exclude-pattern>packages/kickflip-cli/app/Providers/*.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/Commands/BuildCommand.php</exclude-pattern>
         <exclude-pattern>packages/kickflip-cli/app/KickflipKernel.php</exclude-pattern>
     </rule>

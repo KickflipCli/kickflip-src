@@ -7,7 +7,7 @@ namespace KickflipMonoTests\Feature\Collections;
 use Kickflip\Collection\PageCollection;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
-use Kickflip\RouterNavPlugin\KickflipRouterNavServiceProvider;
+use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\View\KickflipPaginator;
 use KickflipMonoTests\DataProviderHelpers;

@@ -61,14 +61,13 @@
         "slevomat/coding-standard": "~7.0",
         "spatie/phpunit-snapshot-assertions": "^4.2",
         "squizlabs/php_codesniffer": "3.*",
-        "symplify/monorepo-builder": "^10.2.2",
+        "symplify/monorepo-builder": "^10.2.6",
         "vimeo/psalm": "^4.14"
     },
     "replace": {
         "kickflip/kickflip": "0.9.1",
         "kickflip/kickflip-cli": "0.9.1",
-        "kickflip/kickflip-docs": "0.9.1",
-        "kickflip/kickflip-router-nav-plugin": "0.9.1"
+        "kickflip/kickflip-docs": "0.9.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
