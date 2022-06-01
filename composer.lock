@@ -10823,16 +10823,16 @@
         },
         {
             "name": "symplify/monorepo-builder",
-            "version": "10.2.6",
+            "version": "10.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/monorepo-builder.git",
-                "reference": "56c5dde690d417e42bff845f35f8bb5b60bb9200"
+                "reference": "90be580100863d97bbb45193e91ab14ab02186dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/monorepo-builder/zipball/56c5dde690d417e42bff845f35f8bb5b60bb9200",
-                "reference": "56c5dde690d417e42bff845f35f8bb5b60bb9200",
+                "url": "https://api.github.com/repos/symplify/monorepo-builder/zipball/90be580100863d97bbb45193e91ab14ab02186dd",
+                "reference": "90be580100863d97bbb45193e91ab14ab02186dd",
                 "shasum": ""
             },
             "require": {
@@ -10853,7 +10853,7 @@
             ],
             "description": "Prefixed version of Not only Composer tools to build a Monorepo.",
             "support": {
-                "source": "https://github.com/symplify/monorepo-builder/tree/10.2.6"
+                "source": "https://github.com/symplify/monorepo-builder/tree/10.2.7"
             },
             "funding": [
                 {
@@ -10865,7 +10865,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-17T07:08:29+00:00"
+            "time": "2022-05-21T11:11:21+00:00"
         },
         {
             "name": "theseer/tokenizer",
