@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e06567986f96674ce113c0b12a3746e8",
+    "content-hash": "4ac1a2b175d94e00275c0a6766cab014",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -10381,16 +10381,16 @@
         },
         {
             "name": "spatie/phpunit-snapshot-assertions",
-            "version": "4.2.11",
+            "version": "4.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/phpunit-snapshot-assertions.git",
-                "reference": "3c34fd460419b273b23bc7c8f72c18894b79a040"
+                "reference": "69a525ff2041d10b3fdec38ab19844158c3d3294"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/3c34fd460419b273b23bc7c8f72c18894b79a040",
-                "reference": "3c34fd460419b273b23bc7c8f72c18894b79a040",
+                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/69a525ff2041d10b3fdec38ab19844158c3d3294",
+                "reference": "69a525ff2041d10b3fdec38ab19844158c3d3294",
                 "shasum": ""
             },
             "require": {
@@ -10436,7 +10436,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/phpunit-snapshot-assertions/issues",
-                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.11"
+                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.12"
             },
             "funding": [
                 {
@@ -10444,7 +10444,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-03-18T08:44:50+00:00"
+            "time": "2022-05-31T14:34:27+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
