@@ -44,14 +44,15 @@ abstract class BaseFeatureTestCase extends BaseTestCase
      */
     public function createApplication()
     {
+        // Reset things to defaults...
         libxml_use_internal_errors(true);
         Application::$localBase = null;
-
         // Reset PageData to defaults
         PageData::$defaultExtendsView = 'layouts.master';
         PageData::$defaultExtendsSection = 'body';
-        $basePath = $this->basePath();
+        // End resets
 
+        $basePath = $this->basePath();
         if ($this->shouldRunShikiFetcher) {
             if (!file_exists($basePath . $this->manifestPath)) {
                 $this->callNpmProcess('install');
