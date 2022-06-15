@@ -12,12 +12,14 @@ use Kickflip\Logger;
 use Kickflip\SiteBuilder\SiteBuilder;
 use LaravelZero\Framework\Commands\Command;
 use MallardDuck\LaravelTraits\Console\CommandManagesSections;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 use function file_exists;
 use function filter_var;
 
 use const FILTER_VALIDATE_BOOL;
 
+#[AsCommand('build')]
 class BuildCommand extends Command
 {
     use CommandManagesSections;
@@ -30,11 +32,6 @@ class BuildCommand extends Command
     protected $signature = 'build
                             {--pretty=true : Should the site use pretty URLs?}
                             {env=local : What environment should we use to build?}';
-
-    /**
-     * @var string
-     */
-    protected static $defaultName = 'build';
 
     /**
      * The description of the command.
