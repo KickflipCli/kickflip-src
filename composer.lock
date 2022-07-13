@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5296890b6a7e4691d5771317748ffa9",
+    "content-hash": "66ae78ee786426098acbcff51dc6ff86",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -10449,22 +10449,23 @@
         },
         {
             "name": "spatie/phpunit-snapshot-assertions",
-            "version": "4.2.11",
+            "version": "4.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/phpunit-snapshot-assertions.git",
-                "reference": "3c34fd460419b273b23bc7c8f72c18894b79a040"
+                "reference": "514837b6b42d6b319b9cfc06df0854911d9bc412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/3c34fd460419b273b23bc7c8f72c18894b79a040",
-                "reference": "3c34fd460419b273b23bc7c8f72c18894b79a040",
+                "url": "https://api.github.com/repos/spatie/phpunit-snapshot-assertions/zipball/514837b6b42d6b319b9cfc06df0854911d9bc412",
+                "reference": "514837b6b42d6b319b9cfc06df0854911d9bc412",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.0",
                 "ext-dom": "*",
                 "ext-json": "*",
+                "ext-libxml": "*",
                 "php": "^7.3|^7.4|^8.0",
                 "phpunit/phpunit": "^8.3|^9.0",
                 "symfony/property-access": "^4.0|^5.0|^6.0",
@@ -10504,7 +10505,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/phpunit-snapshot-assertions/issues",
-                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.11"
+                "source": "https://github.com/spatie/phpunit-snapshot-assertions/tree/4.2.13"
             },
             "funding": [
                 {
@@ -10512,7 +10513,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-03-18T08:44:50+00:00"
+            "time": "2022-06-26T18:23:23+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
