@@ -178,6 +178,7 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/database" />
       <path value="$PROJECT_DIR$/vendor/mallardduck/html-formatter" />
       <path value="$PROJECT_DIR$/vendor/phpmyadmin/sql-parser" />
+      <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
