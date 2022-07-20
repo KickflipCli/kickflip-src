@@ -872,7 +872,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -1195,7 +1195,7 @@
         },
         {
             "name": "illuminate/events",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1312,16 +1312,16 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "7f8e21e8959f3584d993ddb9929e7c432e5a6278"
+                "reference": "6bcbe3de04b4ff73576a94f3f5ea272bd3ef56ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/7f8e21e8959f3584d993ddb9929e7c432e5a6278",
-                "reference": "7f8e21e8959f3584d993ddb9929e7c432e5a6278",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/6bcbe3de04b4ff73576a94f3f5ea272bd3ef56ba",
+                "reference": "6bcbe3de04b4ff73576a94f3f5ea272bd3ef56ba",
                 "shasum": ""
             },
             "require": {
@@ -1367,11 +1367,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-07-19T14:09:29+00:00"
+            "time": "2022-07-20T15:50:17+00:00"
         },
         {
             "name": "illuminate/log",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/log.git",
@@ -1420,7 +1420,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -1516,7 +1516,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1564,7 +1564,7 @@
         },
         {
             "name": "illuminate/routing",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
@@ -1627,7 +1627,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -1683,7 +1683,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1810,7 +1810,7 @@
         },
         {
             "name": "illuminate/translation",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/translation.git",
@@ -1862,7 +1862,7 @@
         },
         {
             "name": "illuminate/view",
-            "version": "v9.21.2",
+            "version": "v9.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
