@@ -10,12 +10,6 @@
             "homepage": "https://danpock.me"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/mallardduck/coding-standard"
-        }
-    ],
     "require": {
         "php": "^8.0",
         "ext-dom": "*",
@@ -65,7 +59,7 @@
         "phpunit/phpunit": "^9.5.21",
         "ramsey/coding-standard": "dev-patch-1",
         "slevomat/coding-standard": "~7.0",
-        "spatie/phpunit-snapshot-assertions": "^4.2",
+        "spatie/phpunit-snapshot-assertions": "^4.2.13",
         "squizlabs/php_codesniffer": "3.*",
         "symplify/monorepo-builder": "^11.0.8",
         "vimeo/psalm": "^4.24"
@@ -75,6 +69,12 @@
         "kickflip/kickflip-cli": "0.9.1",
         "kickflip/kickflip-docs": "0.9.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mallardduck/coding-standard"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
@@ -82,7 +82,7 @@
             "App\\": "packages/kickflip/app/",
             "KickflipDocs\\": "packages/kickflip-docs/app/",
             "Kickflip\\": "packages/kickflip-cli/app/",
-            "Kickflip\\RouterNavPlugin\\": "packages/kickflip-router-nav-plugin/src/",
+            "Illuminate\\": "packages/kickflip-cli/illuminate/",
             "RepoBuilder\\": "src/"
         },
         "files": [

@@ -48,7 +48,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Kickflip\\": "app/"
+            "Kickflip\\": "app/",
+            "Illuminate\\": "illuminate/"
         }
     },
     "autoload-dev": {
