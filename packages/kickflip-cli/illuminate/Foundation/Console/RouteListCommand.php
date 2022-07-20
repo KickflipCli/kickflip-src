@@ -12,13 +12,14 @@
 namespace Illuminate\Foundation\Console;
 
 use Closure;
-use Illuminate\Console\Command;
+use LaravelZero\Framework\Commands\Command;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\ViewController;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Kickflip\SiteBuilder\SourcesLocator;
 use ReflectionClass;
 use ReflectionFunction;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -52,6 +53,8 @@ class RouteListCommand extends Command
      * @var string
      */
     protected $description = 'List all registered routes';
+
+    protected $sourcesLocator;
 
     /**
      * The router instance.
@@ -96,10 +99,11 @@ class RouteListCommand extends Command
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function __construct(Router $router)
+    public function __construct(SourcesLocator $sourcesLocator, Router $router)
     {
         parent::__construct();
 
+        $this->sourcesLocator = $sourcesLocator;
         $this->router = $router;
     }
 
