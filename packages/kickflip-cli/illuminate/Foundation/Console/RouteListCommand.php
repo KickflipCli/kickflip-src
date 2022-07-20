@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Laravel RouteListCommand from Illuminate/Foundation
+ *
+ * @package    laravel/framework
+ * @copyright  2022 Laravel + Contributors
+ * @license    MIT
+ * @link       https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RouteListCommand.php
+ */
+
 namespace Illuminate\Foundation\Console;
 
 use Closure;

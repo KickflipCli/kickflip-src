@@ -82,7 +82,7 @@
             "App\\": "packages/kickflip/app/",
             "KickflipDocs\\": "packages/kickflip-docs/app/",
             "Kickflip\\": "packages/kickflip-cli/app/",
-            "Kickflip\\RouterNavPlugin\\": "packages/kickflip-router-nav-plugin/src/",
+            "Illuminate\\": "packages/kickflip-cli/illuminate/",
             "RepoBuilder\\": "src/"
         },
         "files": [

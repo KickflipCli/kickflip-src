@@ -4,11 +4,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/app" isTestSource="false" packagePrefix="Kickflip\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-docs/app" isTestSource="false" packagePrefix="KickflipDocs\" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-router-nav-plugin/src" isTestSource="false" packagePrefix="Kickflip\RouterNavPlugin\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/kickflip/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="RepoBuilder\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="KickflipMonoTests\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/kickflip-cli/illuminate" isTestSource="false" packagePrefix="Illuminate\" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
