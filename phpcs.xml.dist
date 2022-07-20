@@ -5,7 +5,7 @@
     <arg name="extensions" value="php"/>
     <arg name="colors"/>
     <arg value="sp"/>
-    <arg name="ignore" value="*.blade.php,./packages/kickflip-cli/bin/kickflip.php,./packages/kickflip/config/*.php,*/cache/*.php" />
+    <arg name="ignore" value="*.blade.php,./packages/kickflip-cli/bin/kickflip.php,./packages/kickflip/config/*.php,*/cache/*.php,./packages/kickflip-cli/illuminate/*" />
 
     <file>./packages/kickflip-cli</file>
     <file>./tests</file>
