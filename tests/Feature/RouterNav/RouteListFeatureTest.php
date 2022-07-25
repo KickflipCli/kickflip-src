@@ -13,6 +13,7 @@ use KickflipMonoTests\ReflectionHelpers;
 use LaravelZero\Framework\Kernel;
 
 use function app;
+use function putenv;
 
 class RouteListFeatureTest extends BaseFeatureTestCase
 {
@@ -43,7 +44,11 @@ class RouteListFeatureTest extends BaseFeatureTestCase
 
     public function testRouteListCommand(): void
     {
+        /**
+         * @var Kernel $artisanKernel
+         */
         $artisanKernel = $this->app->get(Kernel::class);
+        putenv('COLUMNS=80'); // Ensure the output is normalized on all systems
         $artisanKernel->call('route:list');
         $this->assertMatchesTextSnapshot($artisanKernel->output());
     }
