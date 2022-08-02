@@ -6,12 +6,14 @@
     "require": {
         "php": "^8.0",
         "codeat3/blade-file-icons": "^1.7.1",
-        "mallardduck/blade-boxicons": "^2.2.2",
-        "mallardduck/blade-emoji-icons": "^1.2.1",
         "kickflip/kickflip-cli": "^0.10",
         "kickflip/kickflip-router-nav-plugin": "^0.10",
+        "mallardduck/blade-boxicons": "^2.2.2",
+        "mallardduck/blade-emoji-icons": "^1.2.1",
         "spatie/emoji": "^3.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "KickflipDocs\\": "app/"
@@ -20,8 +22,6 @@
             "app/helpers.php"
         ]
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "build": "./vendor/bin/kickflip build",
         "prod": "./vendor/bin/kickflip build production",
