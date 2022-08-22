@@ -29,9 +29,7 @@ class DocsNavItemTest extends DocsTestCase
         SiteBuilder::includeEnvironmentConfig(static::ENV);
         SiteBuilder::updateBuildPaths(static::ENV);
         SiteBuilder::updateAppUrl();
-
-        // Init SiteBuilder to boot needed services...
-        new SiteBuilder();
+        $this->initAndFindSources();
     }
 
     /**

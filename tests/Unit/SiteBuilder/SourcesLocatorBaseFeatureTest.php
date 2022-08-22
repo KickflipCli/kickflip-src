@@ -24,6 +24,6 @@ class SourcesLocatorBaseFeatureTest extends BaseUnitTestCase
     {
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Cannot access Kickflip state before initialized.');
-        new SourcesLocator(dirname(__DIR__, 2) . '/sources');
+        (new SourcesLocator(dirname(__DIR__, 2) . '/sources'))();
     }
 }

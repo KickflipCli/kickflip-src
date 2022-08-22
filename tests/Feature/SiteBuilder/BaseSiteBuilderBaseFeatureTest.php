@@ -36,8 +36,8 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
         if (!$shikiNpmFetcher->isShikiDownloaded()) {
             $shikiNpmFetcher->installShiki();
         }
-        // Init SiteBuilder to boot needed services...
-        new SiteBuilder();
+        // This will force routes to be registered...
+        $this->initAndFindSources();
     }
 
     public function tearDown(): void

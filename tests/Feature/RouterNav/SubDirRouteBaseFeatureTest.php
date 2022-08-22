@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature\RouterNav;
 
 use Illuminate\Routing\UrlGenerator;
-use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\SiteBuilder;
-use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
@@ -29,11 +27,10 @@ class SubDirRouteBaseFeatureTest extends BaseFeatureTestCase
 
     protected function prepareProdEnv()
     {
-        $this->app->register(KickflipRouterNavServiceProvider::class, true);
         SiteBuilder::includeEnvironmentConfig(static::ENV);
         SiteBuilder::updateBuildPaths(static::ENV);
         SiteBuilder::updateAppUrl();
-        app(SourcesLocator::class);
+        $this->initAndFindSources();
     }
 
     public function tearDown(): void

@@ -7,7 +7,6 @@ namespace KickflipMonoTests\Feature\Collections;
 use Kickflip\Collection\PageCollection;
 use Kickflip\KickflipHelper;
 use Kickflip\Models\PageData;
-use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\SiteBuilder;
 use Kickflip\View\KickflipPaginator;
 use KickflipMonoTests\DataProviderHelpers;
@@ -28,13 +27,11 @@ class PageDataCollectionTest extends BaseFeatureTestCase
      */
     protected function prepareEnv(): void
     {
-        $this->app->register(KickflipRouterNavServiceProvider::class);
         SiteBuilder::includeEnvironmentConfig(static::ENV);
         SiteBuilder::updateBuildPaths(static::ENV);
         SiteBuilder::updateAppUrl();
 
-        // Init SiteBuilder to boot needed services...
-        new SiteBuilder();
+        $this->initAndFindSources();
     }
 
     public function testCollectionsExist()

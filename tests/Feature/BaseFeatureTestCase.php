@@ -11,6 +11,7 @@ use Kickflip\KickflipHelper;
 use Kickflip\KickflipKernel;
 use Kickflip\Models\PageData;
 use Kickflip\Models\SourcePageMetaData;
+use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\PlatformAgnosticHelpers;
 use LaravelZero\Framework\Testing\TestCase as BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -18,6 +19,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function app;
 use function file_exists;
 use function file_get_contents;
 use function func_get_args;
@@ -126,6 +128,14 @@ abstract class BaseFeatureTestCase extends BaseTestCase
 
         if ($app->resolved($name)) {
             $callback($app->make($name), $app);
+        }
+    }
+
+    protected function initAndFindSources()
+    {
+        $sourcesLocator = app(SourcesLocator::class);
+        if (!$sourcesLocator->hasRun()) {
+            $sourcesLocator();
         }
     }
 }

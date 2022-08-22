@@ -62,7 +62,7 @@ class UrlRoutesTest extends DocsTestCase
         self::assertInstanceOf(RouteCollection::class, $initialRoutes);
         self::assertCount(0, $initialRoutes->getRoutes());
         // This will force routes to be registered...
-        app(SourcesLocator::class);
+        $this->initAndFindSources();
         $updatedRoutes = clone self::assertHasNonPublicProperty($url, 'routes');
         self::assertInstanceOf(RouteCollection::class, $updatedRoutes);
         self::assertCount(count(app(SourcesLocator::class)->getRenderPageList()), $updatedRoutes->getRoutes());

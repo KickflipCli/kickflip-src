@@ -7,6 +7,8 @@ Kickflip\Providers\KickflipServiceProvider:
     register: '<DUMMY VALUE>'
     registerSemiAutoloadProviders: '<DUMMY VALUE>'
     boot: '<DUMMY VALUE>'
+Kickflip\Commands\BuildCommand:
+    __construct: '<DUMMY VALUE>'
 NotStatic:
     stepOne: '<DUMMY VALUE>'
     extended: { Static: { stepTwo: '<DUMMY VALUE>' } }

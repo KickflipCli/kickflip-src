@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace KickflipMonoTests\Feature\RouterNav;
 
-use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use Kickflip\SiteBuilder\SiteBuilder;
-use Kickflip\SiteBuilder\SourcesLocator;
 use KickflipMonoTests\DataProviderHelpers;
 use KickflipMonoTests\Feature\BaseFeatureTestCase;
 use KickflipMonoTests\ReflectionHelpers;
 use LaravelZero\Framework\Kernel;
 
-use function app;
 use function putenv;
 
 class RouteListFeatureTest extends BaseFeatureTestCase
@@ -30,11 +27,10 @@ class RouteListFeatureTest extends BaseFeatureTestCase
 
     protected function prepareProdEnv()
     {
-        $this->app->register(KickflipRouterNavServiceProvider::class, true);
         SiteBuilder::includeEnvironmentConfig(static::ENV);
         SiteBuilder::updateBuildPaths(static::ENV);
         SiteBuilder::updateAppUrl();
-        app(SourcesLocator::class);
+        $this->initAndFindSources();
     }
 
     public function tearDown(): void
