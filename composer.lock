@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "871c80473f5c86daad761b8b721757b6",
+    "content-hash": "4ed2621ca5666329e476c01b66c21ce1",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2023,16 +2023,16 @@
         },
         {
             "name": "laravel-zero/framework",
-            "version": "v9.1.2",
+            "version": "v9.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "bfb3b8adc23fbb92d4c7fddde79ce4da6989ad54"
+                "reference": "b4f23c067ea090429305ca5357759171e495e467"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/bfb3b8adc23fbb92d4c7fddde79ce4da6989ad54",
-                "reference": "bfb3b8adc23fbb92d4c7fddde79ce4da6989ad54",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/b4f23c067ea090429305ca5357759171e495e467",
+                "reference": "b4f23c067ea090429305ca5357759171e495e467",
                 "shasum": ""
             },
             "require": {
@@ -2075,7 +2075,7 @@
                 "illuminate/view": "^9.0.0",
                 "laminas/laminas-text": "^2.9.0",
                 "laravel-zero/phar-updater": "^1.2",
-                "laravel/pint": "^0.2.3",
+                "laravel/pint": "^1.0",
                 "nunomaduro/laravel-console-dusk": "^1.10.0",
                 "nunomaduro/laravel-console-menu": "^3.3.0",
                 "nunomaduro/termwind": "^1.3",
@@ -2119,7 +2119,7 @@
                 "issues": "https://github.com/laravel-zero/laravel-zero/issues",
                 "source": "https://github.com/laravel-zero/laravel-zero"
             },
-            "time": "2022-07-19T15:31:45+00:00"
+            "time": "2022-08-22T10:34:16+00:00"
         },
         {
             "name": "league/commonmark",
