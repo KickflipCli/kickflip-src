@@ -11,7 +11,7 @@ use MallardDuck\BladeEmojiIcons\BladeEmojiIconsServiceProvider;
 return [
     'baseUrl' => 'http://kickflip-docs.test/',
     'production' => false,
-    'siteName' => 'Kickflip',
+    'siteName' => 'Kickflip CLI',
     'siteDescription' => 'Static site generation based on Laravel Zero',
 
     // Composer packages with laravel providers to load
