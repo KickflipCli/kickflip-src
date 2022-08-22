@@ -51,10 +51,16 @@ final class SourcesLocator
     public function __construct(
         private string $sourcesBasePath,
     ) {
+    }
+
+    private bool $hasRun = false;
+
+    public function __invoke()
+    {
         $this->discoverSourceFiles();
-        // TODO: add a step that discovers and adds items based on collections too...
         $this->discoverCollections();
         $this->buildRenderList();
+        $this->hasRun = true;
     }
 
     private function discoverSourceFiles(): void
@@ -166,11 +172,18 @@ final class SourcesLocator
      */
     public function getRenderPageList(): array
     {
+        if (!$this->hasRun()) {
+            $this();
+        }
+
         return $this->renderPageList;
     }
 
     public function getRenderPageByName(string $name): PageData
     {
+        if (!$this->hasRun()) {
+            $this();
+        }
         $nameKeys = array_flip(array_map(
             fn (PageData $page) => $page->source->getName(),
             $this->renderPageList,
@@ -189,5 +202,10 @@ final class SourcesLocator
     public function getCopyFileList(): array
     {
         return $this->plainTextOrMediaSources;
+    }
+
+    public function hasRun(): bool
+    {
+        return $this->hasRun;
     }
 }

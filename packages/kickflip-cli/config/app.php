@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use Illuminate\Filesystem\FilesystemServiceProvider;
 use Kickflip\Providers\CustomPaginatorServiceProvider;
+use Kickflip\Providers\EventsServiceProvider;
 use Kickflip\Providers\InitServiceProvider;
 use Kickflip\Providers\KickflipServiceProvider;
-use Kickflip\Providers\RoutingEventsServiceProvider;
 use Kickflip\Providers\RoutingServiceProvider;
 use Kickflip\Providers\ViewServiceProvider;
 use Spatie\LaravelMarkdown\MarkdownServiceProvider;
@@ -98,7 +98,7 @@ return [
         MarkdownServiceProvider::class,
         KickflipServiceProvider::class,
         RoutingServiceProvider::class,
-        RoutingEventsServiceProvider::class,
+        EventsServiceProvider::class,
         CustomPaginatorServiceProvider::class,
     ],
 ];

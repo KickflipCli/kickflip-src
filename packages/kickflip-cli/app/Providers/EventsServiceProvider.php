@@ -8,9 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Kickflip\Events\PageDataCreated;
 use Kickflip\Events\SiteBuildStarted;
 use Kickflip\Listeners\BuildSiteNavRoute;
+use Kickflip\Listeners\FindSources;
 use Kickflip\Listeners\SetupSiteNav;
 
-class RoutingEventsServiceProvider extends ServiceProvider
+class EventsServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
@@ -22,6 +23,7 @@ class RoutingEventsServiceProvider extends ServiceProvider
             BuildSiteNavRoute::class,
         ],
         SiteBuildStarted::class => [
+            FindSources::class,
             SetupSiteNav::class,
         ],
     ];

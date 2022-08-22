@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Codeat3\BladeFileIcons\BladeFileIconsServiceProvider;
-use Kickflip\Providers\KickflipRouterNavServiceProvider;
 use MallardDuck\BladeBoxicons\BladeBoxiconsServiceProvider;
 use MallardDuck\BladeEmojiIcons\BladeEmojiIconsServiceProvider;
 
@@ -16,7 +15,6 @@ return [
 
     // Composer packages with laravel providers to load
     'providePackages' => [
-        KickflipRouterNavServiceProvider::class,
         BladeIconsServiceProvider::class,
         BladeFileIconsServiceProvider::class,
         BladeBoxiconsServiceProvider::class,
