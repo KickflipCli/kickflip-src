@@ -3,12 +3,7 @@
     "description": "A Laravel Zero based static site generator CLI tool.",
     "license": "MIT",
     "type": "library",
-    "keywords": [
-        "ssg",
-        "static site generator",
-        "laravel zero",
-        "cli"
-    ],
+    "keywords": ["ssg", "static site generator", "laravel zero", "cli"],
     "authors": [
         {
             "name": "Dan Pock",
