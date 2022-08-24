@@ -18,17 +18,17 @@ You should be able to build navigation menus however you're most comfortable.
 
 That in mind, here are some suggestions to try:
 
-### Build one with the "Router Nav plugin"
-You can opt to use the official [Router Nav plugin](https://packagist.org/packages/kickflip/kickflip-router-nav-plugin) which provides a pseudo-router for Kickflip.
-What this means is that Kickflip will create an instance of Laravel's Router to allow use of Router and URL methods.
+### Use Kickflips static router
+Out of the box, Kickflip creates an instance of Laravel's router defined based on your sources.
+This means that you can utilize some of the Router and URL methods you may already be familiar with.
 
-This gives users the ability to access familiar methods in templates such as: `url()` and `route()`.
-Additionally, this plugin will register an event listener that attempts to finda and load a `config/navigation.php` file.
+This gives users the ability to access helper methods in templates such as: `url()` and `route()`.
+Additionally, this plugin will register an event listener that attempts to find and load a `config/navigation.php` file.
 
 This navigation config file should return an array of `NavItem` instances which represent the desired Nav tree.
 Finally, when rendering a view you can access the `$navigation` variable in your blade templates to access Nav items.
 
-### Mimic the Docs Site
+#### Example: Mimic the Docs Site
 Our Docs website uses the method described above, you can feel free to copy this implementation example.
 Here's a shortened excerpt of the Nav config these docs use:
 ```php
