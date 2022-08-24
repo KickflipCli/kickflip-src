@@ -109,7 +109,7 @@ jobs:
       - name: "Setup NodeJS"
         uses: "actions/setup-node@v3"
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'npm'
           cache-dependency-path: packages/kickflip-docs/package-lock.json
 
@@ -179,7 +179,7 @@ jobs:
       - name: "Setup NodeJS"
         uses: "actions/setup-node@v3"
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'npm'
           cache-dependency-path: packages/kickflip-docs/package-lock.json
 
