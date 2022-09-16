@@ -64,9 +64,9 @@
         "vimeo/psalm": "^4.24"
     },
     "replace": {
-        "kickflip/kickflip": "0.10.1",
-        "kickflip/kickflip-cli": "0.10.1",
-        "kickflip/kickflip-docs": "0.10.1"
+        "kickflip/kickflip": "0.10.2",
+        "kickflip/kickflip-cli": "0.10.2",
+        "kickflip/kickflip-docs": "0.10.2"
     },
     "autoload": {
         "psr-4": {
