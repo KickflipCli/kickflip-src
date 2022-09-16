@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.0",
         "codeat3/blade-file-icons": "^1.7.1",
-        "kickflip/kickflip-cli": "^0.10.1",
+        "kickflip/kickflip-cli": "^0.11",
         "kickflip/kickflip-router-nav-plugin": "^0.10",
         "mallardduck/blade-boxicons": "^2.2.2",
         "mallardduck/blade-emoji-icons": "^1.2.1",
