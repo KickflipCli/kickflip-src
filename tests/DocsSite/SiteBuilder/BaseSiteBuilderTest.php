@@ -51,7 +51,7 @@ abstract class BaseSiteBuilderTest extends DocsTestCase
      */
     public function testItWillProduceExpectedHtml(PageData $page): void
     {
-        $view = view($page->source->getName(), [
+        $view = view($page->source->getViewName(), [
             'page' => $page,
         ]);
 

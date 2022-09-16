@@ -14,7 +14,7 @@ use const DIRECTORY_SEPARATOR;
 
 final class SourcePageMetaData
 {
-    private string $viewName;
+    private string $name;
     /**
      * @var string|null Only set when created via fromSplFileInfoForCollection
      */
@@ -42,7 +42,8 @@ final class SourcePageMetaData
         $baseViewName = $newInstance->relativePath === '' ?
             Str::of($newInstance->filename)->lower() :
             Str::of($newInstance->filename)->prepend($newInstance->relativePath . DIRECTORY_SEPARATOR)->lower();
-        $newInstance->viewName = (string) $baseViewName->beforeLast('.' . $newInstance->implicitExtension)
+
+        $newInstance->name = (string) $baseViewName->beforeLast('.' . $newInstance->implicitExtension)
             ->replace(DIRECTORY_SEPARATOR, '.')->lower();
 
         return $newInstance;
@@ -54,7 +55,7 @@ final class SourcePageMetaData
     ): self {
         $newInstance = self::fromSplFileInfo($fileInfo);
 
-        $baseViewName = Str::of($newInstance->viewName);
+        $baseViewName = Str::of($newInstance->name);
         // TODO: make this part more sophisticated....
         $newInstance->routeName = (string) $baseViewName->replace($config->path, $config->url);
 
@@ -64,13 +65,19 @@ final class SourcePageMetaData
     #[Pure]
     public function getName(): string
     {
-        return $this->viewName;
+        return $this->name;
+    }
+
+    #[Pure]
+    public function getViewName(): string
+    {
+        return 'source::' . $this->name;
     }
 
     #[Pure]
     public function getRouteName(): string
     {
-        return $this->routeName ?? $this->viewName;
+        return $this->routeName ?? $this->name;
     }
 
     #[Pure]

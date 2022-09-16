@@ -40,7 +40,7 @@ class SourcePageMetaDataTest extends TestCase
     public function testItCanGetTypeFromSourcePageMetaData(SplFileInfo $splFileInfo): void
     {
         $sourcePageMetaData = SourcePageMetaData::fromSplFileInfo($splFileInfo);
-        self::assertHasProperties($sourcePageMetaData, ['viewName', 'implicitExtension']);
+        self::assertHasProperties($sourcePageMetaData, ['name', 'routeName', 'implicitExtension']);
         self::assertIsString($sourcePageMetaData->getName());
         self::assertIsString($sourcePageMetaData->getFilename());
         self::assertIsString($sourcePageMetaData->getFullPath());

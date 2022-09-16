@@ -33,7 +33,6 @@ class InitServiceProvider extends ServiceProvider
         $config = app('config');
         $config->set('view.paths', [
             KickflipHelper::resourcePath('views'),
-            KickflipHelper::sourcePath(),
         ]);
         $config->set('view.compiled', KickflipHelper::namedPath(CliStateDirPaths::Cache));
     }

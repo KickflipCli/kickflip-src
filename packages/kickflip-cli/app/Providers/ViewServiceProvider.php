@@ -6,6 +6,7 @@ namespace Kickflip\Providers;
 
 use Illuminate\View\DynamicComponent;
 use Illuminate\View\ViewServiceProvider as BaseViewServiceProvider;
+use Kickflip\KickflipHelper;
 use Kickflip\View\Compilers\BladeCompiler;
 
 use function tap;
@@ -25,5 +26,10 @@ class ViewServiceProvider extends BaseViewServiceProvider
                 $blade->component('dynamic-component', DynamicComponent::class);
             }),
         );
+    }
+
+    public function boot()
+    {
+        $this->loadViewsFrom(KickflipHelper::sourcePath(), 'source');
     }
 }

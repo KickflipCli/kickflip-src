@@ -55,7 +55,7 @@ abstract class BaseSiteBuilderBaseFeatureTest extends BaseFeatureTestCase
     public function testItWillProduceExpectedHtml(PageData $page): void
     {
         KickflipHelper::config()->set('page', $page);
-        $view = view($page->source->getName(), [
+        $view = view($page->source->getViewName(), [
             'page' => $page,
         ]);
         self::assertMatchesHtmlSnapshot(

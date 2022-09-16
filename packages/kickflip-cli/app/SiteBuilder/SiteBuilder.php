@@ -6,6 +6,8 @@ namespace Kickflip\SiteBuilder;
 
 use Illuminate\Config\Repository;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -30,12 +32,12 @@ use function is_dir;
 use function mkdir;
 use function rtrim;
 use function sprintf;
-use function view;
 
 final class SiteBuilder
 {
     private SourcesLocator $sourcesLocator;
     private ShikiNpmFetcher $shikiNpmFetcher;
+    private ViewFactory $viewFactory;
 
     public function __construct()
     {
@@ -45,6 +47,8 @@ final class SiteBuilder
         if (!$this->shikiNpmFetcher->isShikiDownloaded()) {
             $this->shikiNpmFetcher->installShiki();
         }
+
+        $this->viewFactory = app(ViewFactory::class);
     }
 
     public static function includeEnvironmentConfig(string $env): void
@@ -140,6 +144,9 @@ final class SiteBuilder
         return $this;
     }
 
+    /**
+     * @throws BindingResolutionException
+     */
     private function buildSite(OutputStyle $consoleOutput): self
     {
         $renderPageList = $this->sourcesLocator->getRenderPageList();
@@ -174,7 +181,7 @@ final class SiteBuilder
             Logger::verbose('Building ' . $page->source->getName() . ':' . $page->url . ':' . $page->title);
             $outputFile = $page->getOutputPath();
             $outputDir = dirname($outputFile);
-            $view = view($page->source->getName(), [
+            $view = $this->viewFactory->make($page->source->getViewName(), [
                 'page' => $page,
             ]);
             if (!is_dir($outputDir)) {
