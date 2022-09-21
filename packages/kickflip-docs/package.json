@@ -9,7 +9,7 @@
   "devDependencies": {
     "@knagis/postcss-advanced-variables": "4.0.0",
     "@tailwindcss/typography": "0.5.7",
-    "autoprefixer": "10.4.11",
+    "autoprefixer": "10.4.12",
     "docsearch.js": "2.6.3",
     "laravel-mix": "^6.0.49",
     "postcss": "8.4.16",
