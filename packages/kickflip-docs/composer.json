@@ -10,7 +10,7 @@
         "kickflip/kickflip-router-nav-plugin": "^0.10",
         "mallardduck/blade-boxicons": "^2.2.2",
         "mallardduck/blade-emoji-icons": "^1.2.1",
-        "spatie/emoji": "^3.0"
+        "spatie/emoji": "^3.0 || ^4.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

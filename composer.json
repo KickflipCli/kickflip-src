@@ -32,7 +32,7 @@
         "mallardduck/laravel-traits": "^0.3.3",
         "nunomaduro/termwind": "^1.13",
         "samdark/sitemap": "^2.4",
-        "spatie/emoji": "^3.0",
+        "spatie/emoji": "^3.0 || ^4.0",
         "spatie/enum": "^3.12",
         "spatie/laravel-markdown": "^2.2.4",
         "symfony/yaml": "^6.0"
