@@ -41,10 +41,10 @@
     </head>
 
     <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans">
-        <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
+        <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
             <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
                 <div class="flex items-center">
-                    <a href="/" title="{{ $site->siteName }} home" class="inline-flex items-center">
+                    <a href="/" title="{{ $site->siteName }} home" class="inline-flex items-center no-underline">
                         <x-emoji-icon::skateboard class="text-5xl mr-3" alt="{{ $site->siteName }} logo" />
 
                         <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">{{ $site->siteName }}</h1>
