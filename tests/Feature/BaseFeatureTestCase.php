@@ -25,6 +25,7 @@ use function file_exists;
 use function file_get_contents;
 use function func_get_args;
 use function libxml_use_internal_errors;
+use function method_exists;
 use function realpath;
 
 abstract class BaseFeatureTestCase extends BaseTestCase
@@ -142,9 +143,15 @@ abstract class BaseFeatureTestCase extends BaseTestCase
 
     protected function tearDown(): void
     {
-        Component::flushCache();
-        Component::forgetComponentsResolver();
-        Component::forgetFactory();
+        if (method_exists(Component::class, 'flushCache')) {
+            Component::flushCache();
+        }
+        if (method_exists(Component::class, 'forgetComponentsResolver')) {
+            Component::forgetComponentsResolver();
+        }
+        if (method_exists(Component::class, 'forgetFactory')) {
+            Component::forgetFactory();
+        }
         parent::tearDown();
     }
 }
