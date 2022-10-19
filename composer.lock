@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4537b480d355e3186a18bb035aae658",
+    "content-hash": "c601efcef1fab61b08473c09e9414168",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -647,7 +647,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -700,7 +700,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -760,7 +760,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -815,7 +815,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -861,7 +861,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -909,7 +909,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -971,7 +971,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1022,7 +1022,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1070,16 +1070,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "3f09fd2eb7efe45c485754321174c4764338545d"
+                "reference": "dcad4f998891784b23e229bcb42bf0c0ea4cd52e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/3f09fd2eb7efe45c485754321174c4764338545d",
-                "reference": "3f09fd2eb7efe45c485754321174c4764338545d",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/dcad4f998891784b23e229bcb42bf0c0ea4cd52e",
+                "reference": "dcad4f998891784b23e229bcb42bf0c0ea4cd52e",
                 "shasum": ""
             },
             "require": {
@@ -1134,11 +1134,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-10-18T13:26:00+00:00"
+            "time": "2022-10-19T08:59:33+00:00"
         },
         {
             "name": "illuminate/events",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1193,7 +1193,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1255,7 +1255,7 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
@@ -1314,7 +1314,7 @@
         },
         {
             "name": "illuminate/log",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/log.git",
@@ -1363,7 +1363,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -1409,7 +1409,7 @@
         },
         {
             "name": "illuminate/pagination",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pagination.git",
@@ -1459,7 +1459,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1507,7 +1507,7 @@
         },
         {
             "name": "illuminate/routing",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
@@ -1570,7 +1570,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -1626,7 +1626,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1696,7 +1696,7 @@
         },
         {
             "name": "illuminate/testing",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/testing.git",
@@ -1754,7 +1754,7 @@
         },
         {
             "name": "illuminate/translation",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/translation.git",
@@ -1806,16 +1806,16 @@
         },
         {
             "name": "illuminate/view",
-            "version": "v9.36.2",
+            "version": "v9.36.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
-                "reference": "bb6088d006806972fbda29f8793cd578206688af"
+                "reference": "935608accf327a1c1cb20376a831aa419bcc64e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/view/zipball/bb6088d006806972fbda29f8793cd578206688af",
-                "reference": "bb6088d006806972fbda29f8793cd578206688af",
+                "url": "https://api.github.com/repos/illuminate/view/zipball/935608accf327a1c1cb20376a831aa419bcc64e5",
+                "reference": "935608accf327a1c1cb20376a831aa419bcc64e5",
                 "shasum": ""
             },
             "require": {
@@ -1856,7 +1856,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-10-18T16:03:56+00:00"
+            "time": "2022-10-19T13:21:05+00:00"
         },
         {
             "name": "jolicode/jolinotif",
@@ -2480,16 +2480,16 @@
         },
         {
             "name": "mallardduck/blade-emoji-icons",
-            "version": "1.2.1",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/blade-emoji-icons.git",
-                "reference": "6593a40fbc681b88f37cc680ee9d8012c19cc70a"
+                "reference": "0c60f0738483d9b238c742ca143955f1f6d2ac3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/blade-emoji-icons/zipball/6593a40fbc681b88f37cc680ee9d8012c19cc70a",
-                "reference": "6593a40fbc681b88f37cc680ee9d8012c19cc70a",
+                "url": "https://api.github.com/repos/mallardduck/blade-emoji-icons/zipball/0c60f0738483d9b238c742ca143955f1f6d2ac3d",
+                "reference": "0c60f0738483d9b238c742ca143955f1f6d2ac3d",
                 "shasum": ""
             },
             "require": {
@@ -2498,7 +2498,7 @@
                 "illuminate/support": "^8.74 || ^9.0",
                 "illuminate/view": "^8.74 || ^9.0",
                 "php": "^8.0",
-                "spatie/emoji": "^3.0",
+                "spatie/emoji": "^4.0",
                 "spatie/laravel-package-tools": "^1.11.0"
             },
             "require-dev": {
@@ -2544,7 +2544,7 @@
             ],
             "support": {
                 "issues": "https://github.com/mallardduck/blade-emoji-icons/issues",
-                "source": "https://github.com/mallardduck/blade-emoji-icons/tree/1.2.1"
+                "source": "https://github.com/mallardduck/blade-emoji-icons/tree/1.3.0"
             },
             "funding": [
                 {
@@ -2552,7 +2552,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-05T18:34:37+00:00"
+            "time": "2022-10-19T13:44:34+00:00"
         },
         {
             "name": "mallardduck/html-formatter",
@@ -3969,16 +3969,16 @@
         },
         {
             "name": "spatie/emoji",
-            "version": "3.0.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/emoji.git",
-                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f"
+                "reference": "aa9b01775ad3ff825914dab77f10fb8aa9aa297e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/emoji/zipball/69ff9c675d9a732319bf3f6c2d705f376ee7935f",
-                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f",
+                "url": "https://api.github.com/repos/spatie/emoji/zipball/aa9b01775ad3ff825914dab77f10fb8aa9aa297e",
+                "reference": "aa9b01775ad3ff825914dab77f10fb8aa9aa297e",
                 "shasum": ""
             },
             "require": {
@@ -4019,7 +4019,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/emoji/issues",
-                "source": "https://github.com/spatie/emoji/tree/3.0.0"
+                "source": "https://github.com/spatie/emoji/tree/4.0.0"
             },
             "funding": [
                 {
@@ -4031,7 +4031,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-27T17:14:27+00:00"
+            "time": "2022-09-22T07:46:11+00:00"
         },
         {
             "name": "spatie/enum",

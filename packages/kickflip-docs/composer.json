@@ -9,8 +9,8 @@
         "kickflip/kickflip-cli": "^0.11",
         "kickflip/kickflip-router-nav-plugin": "^0.10",
         "mallardduck/blade-boxicons": "^2.2.2",
-        "mallardduck/blade-emoji-icons": "^1.2.1",
-        "spatie/emoji": "^3.0"
+        "mallardduck/blade-emoji-icons": "^1.3",
+        "spatie/emoji": "^4.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
