@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KickflipMonoTests\Feature;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\View\Component;
 use Illuminate\View\Factory;
 use Kickflip\Application;
 use Kickflip\KickflipHelper;
@@ -137,5 +138,13 @@ abstract class BaseFeatureTestCase extends BaseTestCase
         if (!$sourcesLocator->hasRun()) {
             $sourcesLocator();
         }
+    }
+
+    protected function tearDown(): void
+    {
+        Component::flushCache();
+        Component::forgetComponentsResolver();
+        Component::forgetFactory();
+        parent::tearDown();
     }
 }
