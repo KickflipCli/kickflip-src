@@ -137,7 +137,7 @@ jobs:
           directory: ./build/coverage
 
       - name: "Publish coverage report to CodeClimate"
-        uses: "paambaati/codeclimate-action@v3.1.0"
+        uses: "paambaati/codeclimate-action@v3.2.0"
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
         with:
