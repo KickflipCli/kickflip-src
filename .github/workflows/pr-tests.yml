@@ -26,13 +26,13 @@ jobs:
         uses: "actions/checkout@v3"
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@2.21.2"
         with:
           php-version: "latest"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v2.1"
+        uses: "ramsey/composer-install@2.1.0"
 
       - name: "Check syntax (php-parallel-lint)"
         shell: "bash"
@@ -50,13 +50,13 @@ jobs:
         uses: "actions/checkout@v3"
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@2.21.2"
         with:
           php-version: "latest"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v2.1"
+        uses: "ramsey/composer-install@2.1.0"
 
       - name: "Statically analyze code (PHPStan)"
         shell: "bash"
@@ -75,13 +75,13 @@ jobs:
         uses: "actions/checkout@v3"
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@2.21.2"
         with:
           php-version: "latest"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v2.1"
+        uses: "ramsey/composer-install@2.1.0"
 
       - name: "Analyze security of code (Psalm)"
         shell: "bash"
@@ -108,14 +108,14 @@ jobs:
           cache-dependency-path: packages/kickflip-docs/package-lock.json
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@2.21.2"
         with:
           php-version: "latest"
           coverage: "pcov"
           ini-values: "memory_limit=-1,pcov.directory=packages"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v2.1"
+        uses: "ramsey/composer-install@2.1.0"
 
       - name: "Setup and build node deps"
         run: "cd packages/kickflip-docs && npm install && npm run dev && cd"
@@ -178,14 +178,14 @@ jobs:
           cache-dependency-path: packages/kickflip-docs/package-lock.json
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@2.21.2"
         with:
           php-version: "${{ matrix.php-version }}"
           extensions: fileinfo, filter, json
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v2.1"
+        uses: "ramsey/composer-install@2.1.0"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "${{ matrix.composer-options }}"

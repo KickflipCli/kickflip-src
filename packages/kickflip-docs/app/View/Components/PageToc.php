@@ -12,13 +12,19 @@ use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
 use League\CommonMark\Renderer\HtmlRenderer;
 
 use function app;
+use function count;
+use function sprintf;
+
+use const PHP_EOL;
 
 class PageToc extends Component
 {
     private HtmlRenderer $htmlRenderer;
+    private string $headingElement = '<h2 class="text-lg font-thin">%s</h2>';
 
-    public function __construct()
-    {
+    public function __construct(
+        private ?string $heading
+    ) {
         $this->htmlRenderer = new HtmlRenderer(app(MarkdownRenderer::class)->getMarkdownEnvironment());
     }
 
@@ -32,10 +38,11 @@ class PageToc extends Component
          * @var TableOfContents $tableOfContents
          */
         $tableOfContents = $kickflipConfig->get('pageToc', null);
-        if ($tableOfContents === null) {
+        if ($tableOfContents === null || count($tableOfContents->children()) === 0) {
             return '';
         }
-        $tableOfContentsHtml = new HtmlString($this->htmlRenderer->renderNodes([$tableOfContents]));
+        $tableOfContentsHtml = sprintf($this->headingElement, $this->heading) . PHP_EOL;
+        $tableOfContentsHtml .= new HtmlString($this->htmlRenderer->renderNodes([$tableOfContents]));
         $kickflipConfig->set('pageToc', null);
 
         return $tableOfContentsHtml;
