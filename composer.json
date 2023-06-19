@@ -39,7 +39,7 @@
     },
     "require-dev": {
         "ext-libxml": "*",
-        "brianium/paratest": "^6.4",
+        "brianium/paratest": "^6.4 || ^7.0",
         "captainhook/captainhook": "^5.10",
         "illuminate/bus": "^9.0",
         "illuminate/collections": "^9.0",
